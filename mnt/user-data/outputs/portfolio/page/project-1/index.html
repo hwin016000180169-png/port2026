@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAVYBAY — KDH Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#020202;--fg:#f0ece4;--acc:#c9a84c;--navy:#0a1628;--bdr:#1e1e1e;--mid:#666;--card:#0a0a0a;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
+#CU{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+#CR{position:fixed;width:36px;height:36px;border:1px solid rgba(201,168,76,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+#PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:200;width:0%;}
+a{text-decoration:none;color:inherit;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(2,2,2,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
+.nb{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
+.nb:hover{color:var(--acc);}
+.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
+.nn{font-size:12px;letter-spacing:.22em;color:var(--mid);}
+
+/* HERO */
+#hero{width:100vw;height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:60px;}
+.hl{background:var(--navy);display:flex;flex-direction:column;justify-content:flex-end;padding:64px 52px;position:relative;overflow:hidden;border-right:1px solid rgba(201,168,76,.12);}
+.hl::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.03) 1px,transparent 1px);background-size:60px 60px;}
+.hbignum{position:absolute;right:-.02em;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:26vw;line-height:1;color:rgba(201,168,76,.04);pointer-events:none;user-select:none;}
+.htag{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--acc);margin-bottom:20px;position:relative;z-index:1;}
+.htitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,8.5vw,110px);line-height:.88;letter-spacing:.02em;margin-bottom:22px;position:relative;z-index:1;}
+.htitle em{display:block;color:var(--acc);font-style:normal;}
+.hdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.55);margin-bottom:36px;position:relative;z-index:1;max-width:420px;}
+.hbtns{display:flex;gap:14px;position:relative;z-index:1;}
+.hbtn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:13px 26px;transition:all .3s;font-family:'Space Mono',monospace;cursor:none;}
+.hbtn.p{background:var(--acc);color:#000;font-weight:700;}
+.hbtn.p:hover{background:#e8c060;}
+.hbtn.s{border:1px solid rgba(240,236,228,.2);color:var(--fg);}
+.hbtn.s:hover{border-color:var(--acc);color:var(--acc);}
+.hr{background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:64px 52px;}
+.hmrow{display:flex;align-items:center;padding:22px 0;border-bottom:1px solid var(--bdr);}
+.hmrow:first-child{border-top:1px solid var(--bdr);}
+.hmnum{font-family:'Bebas Neue',sans-serif;font-size:50px;color:var(--acc);line-height:1;min-width:130px;}
+.hminfo{display:flex;flex-direction:column;gap:5px;}
+.hmk{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
+.hmv{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(240,236,228,.5);font-weight:300;}
+.hmeta2{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:20px;}
+.hm2{padding:16px 18px;background:var(--card);display:flex;flex-direction:column;gap:5px;}
+.hm2k{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
+.hm2v{font-size:13px;letter-spacing:.05em;}
+.hm2v.acc{color:var(--acc);}
+
+/* SHARED */
+.sec{padding:96px 52px;border-top:1px solid var(--bdr);}
+.sec-label{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,70px);letter-spacing:.02em;margin-bottom:52px;line-height:.95;}
+.sec-title em{font-style:normal;color:var(--acc);}
+
+/* OVERVIEW */
+.ov2{display:grid;grid-template-columns:1fr 1.3fr;gap:72px;align-items:start;}
+.problist{display:flex;flex-direction:column;}
+.pitem{padding:24px 0;border-bottom:1px solid var(--bdr);display:grid;grid-template-columns:48px 1fr;gap:18px;}
+.pnum{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--acc);line-height:1;}
+.ptitle{font-size:14px;letter-spacing:.05em;color:var(--fg);margin-bottom:8px;font-weight:700;}
+.pdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
+.goalbox{background:var(--navy);border:1px solid rgba(201,168,76,.2);padding:36px;margin-bottom:22px;}
+.gblabel{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--acc);margin-bottom:18px;}
+.gbitems{display:flex;flex-direction:column;gap:10px;}
+.gbitem{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.7;font-weight:300;color:rgba(240,236,228,.65);padding:12px 16px;border-left:2px solid var(--acc);}
+.rolegrid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.roleitem{padding:18px 20px;background:var(--card);}
+.rolekey{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:7px;}
+.roleval{font-size:14px;margin-bottom:10px;}
+.rolebar{height:2px;background:var(--bdr);position:relative;}
+.rolefill{position:absolute;top:0;left:0;height:100%;width:0%;background:var(--acc);transition:width 1.2s cubic-bezier(.22,1,.36,1);}
+
+/* IA */
+.ia2{display:grid;grid-template-columns:1fr 1.8fr;gap:64px;align-items:start;}
+.iadesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.5);margin-top:16px;}
+.iabox{background:var(--card);border:1px solid rgba(201,168,76,.15);padding:44px;}
+.iatree{font-family:'Space Mono',monospace;}
+.iaroot{background:var(--acc);color:#000;padding:10px 20px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;display:inline-block;margin-bottom:22px;font-weight:700;}
+.iarow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;padding-left:20px;border-left:1px solid rgba(201,168,76,.2);}
+.iachild{border:1px solid rgba(201,168,76,.18);padding:8px 14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,236,228,.5);transition:all .3s;}
+.iachild:hover,.iachild.hi{border-color:rgba(201,168,76,.5);color:var(--acc);}
+.iaconn{width:1px;background:rgba(201,168,76,.15);height:14px;margin-left:38px;}
+
+/* MOCKUP */
+.mockgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:3px;}
+.mockitem{aspect-ratio:16/10;background:var(--navy);border:1px solid var(--bdr);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.mockph{font-size:12px;letter-spacing:.14em;color:rgba(240,236,228,.12);text-transform:uppercase;}
+.mocklbl{position:absolute;bottom:14px;left:18px;font-size:12px;letter-spacing:.18em;color:rgba(201,168,76,.5);text-transform:uppercase;}
+.mockfull{width:100%;aspect-ratio:21/9;background:var(--navy);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;}
+.mocknote{margin-top:14px;font-size:12px;letter-spacing:.1em;color:var(--mid);text-align:center;}
+
+/* AI PROMPTS */
+.apgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.apcard{background:var(--card);padding:30px;}
+.apaitag{display:flex;align-items:center;gap:9px;margin-bottom:18px;}
+.aibadge{width:8px;height:8px;border-radius:50%;}
+.aibadge.gpt{background:#19c37d;}.aibadge.cla{background:#d97b36;}.aibadge.gem{background:#4285f4;}
+.apailabel{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);}
+.aptitle{font-size:13px;letter-spacing:.04em;color:var(--fg);margin-bottom:12px;font-weight:700;}
+.aptext{font-size:12px;line-height:1.7;color:rgba(240,236,228,.45);padding:16px;background:rgba(0,0,0,.5);border-left:2px solid var(--acc);}
+.apresult{margin-top:12px;font-family:'Noto Sans KR',sans-serif;font-size:12px;line-height:1.65;color:rgba(240,236,228,.38);font-weight:300;padding-top:10px;border-top:1px solid var(--bdr);}
+
+/* TIMELINE */
+.tlwrap{overflow-x:auto;padding-bottom:16px;}
+.tlwrap::-webkit-scrollbar{height:2px;}
+.tlwrap::-webkit-scrollbar-thumb{background:var(--acc);}
+.tltrack{display:flex;min-width:max-content;gap:0;}
+.tlitem{min-width:210px;padding-right:32px;position:relative;}
+.tlhdr{display:flex;align-items:center;margin-bottom:20px;}
+.tldot{width:12px;height:12px;border-radius:50%;border:2px solid var(--bdr);background:var(--bg);flex-shrink:0;}
+.tlitem.done .tldot{background:var(--acc);border-color:var(--acc);}
+.tlline{flex:1;height:1px;background:var(--bdr);}
+.tlitem.done .tlline{background:rgba(201,168,76,.3);}
+.tlitem:last-child .tlline{display:none;}
+.tlphase{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.tltask{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:8px;}
+.tlsub{font-family:'Noto Sans KR',sans-serif;font-size:12px;line-height:1.65;color:rgba(240,236,228,.38);font-weight:300;}
+
+/* RESULTS */
+.resgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.resitem{padding:48px 36px;background:var(--navy);border:1px solid rgba(201,168,76,.08);text-align:center;transition:border-color .3s;}
+.resitem:hover{border-color:rgba(201,168,76,.3);}
+.resnum{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--acc);line-height:1;margin-bottom:10px;}
+.reslabel{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;}
+.resdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.65;font-weight:300;color:rgba(240,236,228,.45);}
+
+/* BOTTOM NAV */
+.pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);}
+.pnl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
+.pnl:hover{color:var(--acc);}
+.pnc{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
+.rv.v{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.25s}.d4{transition-delay:.34s}
+</style>
+</head>
+<body>
+<div id="CU"></div><div id="CR"></div><div id="PB"></div>
+
+<nav>
+  <a class="nb" href="../../../../../../index.html">← Portfolio</a>
+  <span class="nt">NAVYBAY</span>
+  <span class="nn">01 / 06</span>
+</nav>
+
+<section id="hero">
+  <div class="hl">
+    <div class="hbignum">01</div>
+    <div class="htag">Brand Landing Page · Web Publishing · Identity</div>
+    <div class="htitle">NAVY<em>BAY</em></div>
+    <p class="hdesc">라이프스타일 브랜드의 철학과 스토리를 전달하는 몰입형 브랜드 랜딩 페이지. 기존 상품 중심 구조에서 브랜드 경험 중심으로 전환.</p>
+    <div class="hbtns">
+      <a class="hbtn p" href="https://navybay.com/" target="_blank">Live Site ↗</a>
+      <a class="hbtn s" href="#">GitHub</a>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="hmrow rv"><div class="hmnum">2025</div><div class="hminfo"><span class="hmk">Year</span><span class="hmv">브랜드 런칭 랜딩 페이지</span></div></div>
+    <div class="hmrow rv"><div class="hmnum">Solo</div><div class="hminfo"><span class="hmk">Build</span><span class="hmv">기획 · 디자인 · 퍼블리싱 전담</span></div></div>
+    <div class="hmrow rv"><div class="hmnum">6wk</div><div class="hminfo"><span class="hmk">Duration</span><span class="hmv">리서치부터 런칭까지</span></div></div>
+    <div class="hmeta2 rv d1">
+      <div class="hm2"><span class="hm2k">UI Design</span><span class="hm2v acc">100%</span></div>
+      <div class="hm2"><span class="hm2k">Publish</span><span class="hm2v acc">100%</span></div>
+      <div class="hm2"><span class="hm2k">Brand Identity</span><span class="hm2v">80%</span></div>
+      <div class="hm2"><span class="hm2k">AI Used</span><span class="hm2v">GPT · Claude</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— Problem &amp; Goal</div>
+  <div class="sec-title rv d1">PROJECT <em>OVERVIEW</em></div>
+  <div class="ov2">
+    <div class="problist rv d2">
+      <div class="pitem"><div class="pnum">01</div><div><div class="ptitle">브랜드 스토리 전달 부족</div><div class="pdesc">제품 판매 중심 구조로 브랜드 철학·가치가 충분히 전달되지 않았음</div></div></div>
+      <div class="pitem"><div class="pnum">02</div><div><div class="ptitle">브랜드 경험 콘텐츠 부재</div><div class="pdesc">상품→가격→구매 중심 구조로 브랜드 경험 콘텐츠가 전무했음</div></div></div>
+      <div class="pitem"><div class="pnum">03</div><div><div class="ptitle">프리미엄 이미지 구축 한계</div><div class="pdesc">라이프스타일 브랜드의 프리미엄 이미지가 기존 웹에서 표현되지 않았음</div></div></div>
+    </div>
+    <div class="rv d3">
+      <div class="goalbox">
+        <div class="gblabel">— Project Goals</div>
+        <div class="gbitems">
+          <div class="gbitem">브랜드 철학과 스토리를 전달하는 경험 페이지 구축</div>
+          <div class="gbitem">인터랙션 기반 몰입형 스크롤 브랜드 소개 구현</div>
+          <div class="gbitem">사용자에게 브랜드 이미지를 직관적으로 전달</div>
+          <div class="gbitem">배너·로고·상세 페이지로 통합 브랜드 아이덴티티 구축</div>
+        </div>
+      </div>
+      <div class="rolegrid">
+        <div class="roleitem"><div class="rolekey">UI Design</div><div class="roleval">100%</div><div class="rolebar"><div class="rolefill" data-w="100"></div></div></div>
+        <div class="roleitem"><div class="rolekey">Publishing</div><div class="roleval">100%</div><div class="rolebar"><div class="rolefill" data-w="100"></div></div></div>
+        <div class="roleitem"><div class="rolekey">Brand Identity</div><div class="roleval">80%</div><div class="rolebar"><div class="rolefill" data-w="80"></div></div></div>
+        <div class="roleitem"><div class="rolekey">Planning</div><div class="roleval">70%</div><div class="rolebar"><div class="rolefill" data-w="70"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="ia2">
+    <div>
+      <div class="sec-label rv">— Information Architecture</div>
+      <div class="sec-title rv d1">SITE <em>STRUCTURE</em></div>
+      <p class="iadesc rv d2">기존 쇼핑몰의 상품 중심 구조에서 브랜드 스토리 중심의 스크롤 내러티브 구조로 전환. 사용자가 스크롤을 통해 자연스럽게 브랜드를 경험하도록 설계.</p>
+    </div>
+    <div class="iabox rv d1">
+      <div class="iatree">
+        <div class="iaroot">NAVYBAY Landing Page</div>
+        <div class="iaconn"></div>
+        <div class="iarow"><div class="iachild hi">Hero Section</div><div class="iachild">Brand Message</div></div>
+        <div class="iaconn"></div>
+        <div class="iarow"><div class="iachild hi">Brand Story</div><div class="iachild">Vision</div><div class="iachild">Philosophy</div></div>
+        <div class="iaconn"></div>
+        <div class="iarow"><div class="iachild hi">Product Showcase</div><div class="iachild">Category</div></div>
+        <div class="iaconn"></div>
+        <div class="iarow"><div class="iachild">Lifestyle</div><div class="iachild hi">CTA / Shop</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— Visual Design</div>
+  <div class="sec-title rv d1">SCREENS &amp; <em>MOCKUPS</em></div>
+  <div class="mockgrid rv d1">
+    <div class="mockitem"><div class="mockph">Hero Section</div><div class="mocklbl">01 — Hero</div></div>
+    <div class="mockitem"><div class="mockph">Brand Story</div><div class="mocklbl">02 — Story</div></div>
+    <div class="mockitem"><div class="mockph">Product Showcase</div><div class="mocklbl">03 — Products</div></div>
+    <div class="mockitem"><div class="mockph">Lifestyle Section</div><div class="mocklbl">04 — Lifestyle</div></div>
+  </div>
+  <div class="mockfull rv d2"><div class="mockph">Banner &amp; Detail Page Full View</div></div>
+  <p class="mocknote rv d3">★ 이미지 교체: mockitem 안에 &lt;img src="../../../images/파일명.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"&gt; 삽입</p>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— AI Collaboration</div>
+  <div class="sec-title rv d1">AI PROMPT <em>EXAMPLES</em></div>
+  <div class="apgrid rv d1">
+    <div class="apcard">
+      <div class="apaitag"><div class="aibadge gpt"></div><span class="apailabel">ChatGPT — 기획</span></div>
+      <div class="aptitle">브랜드 콘텐츠 구조 기획</div>
+      <div class="aptext">"NAVYBAY 라이프스타일 브랜드 랜딩 페이지 섹션 구성을 제안해줘. 브랜드 스토리 전달이 핵심이고, 스크롤 기반 내러티브 구조로 만들고 싶어."</div>
+      <div class="apresult">→ Hero / Brand Story / Vision / Product / Lifestyle / CTA 구조 도출</div>
+    </div>
+    <div class="apcard">
+      <div class="apaitag"><div class="aibadge cla"></div><span class="apailabel">Claude — 퍼블리싱</span></div>
+      <div class="aptitle">스크롤 인터랙션 구현</div>
+      <div class="aptext">"스크롤 기반으로 콘텐츠가 순차적으로 등장하는 애니메이션을 IntersectionObserver로 구현해줘. 네이비+골드 컬러 브랜드야."</div>
+      <div class="apresult">→ scroll reveal 코드 + CSS transition 시스템 완성</div>
+    </div>
+    <div class="apcard">
+      <div class="apaitag"><div class="aibadge gpt"></div><span class="apailabel">ChatGPT — 카피</span></div>
+      <div class="aptitle">브랜드 카피라이팅</div>
+      <div class="aptext">"프리미엄 라이프스타일 브랜드 NAVYBAY의 Hero 슬로건과 브랜드 스토리 텍스트를 작성해줘. 간결하고 감성적인 영문+한국어."</div>
+      <div class="apresult">→ 브랜드 메시지 · 슬로건 · 섹션 카피 다수 생성</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— Production Timeline</div>
+  <div class="sec-title rv d1">PRODUCTION <em>PROCESS</em></div>
+  <div class="tlwrap rv d1">
+    <div class="tltrack">
+      <div class="tlitem done"><div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div><div class="tlphase">Week 01</div><div class="tltask">리서치 &amp; 분석</div><div class="tlsub">기존 사이트 분석<br>레퍼런스 수집<br>브랜드 방향 정의</div></div>
+      <div class="tlitem done"><div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div><div class="tlphase">Week 02</div><div class="tltask">IA &amp; 기획</div><div class="tlsub">정보 구조 설계<br>와이어프레임<br>콘텐츠 기획</div></div>
+      <div class="tlitem done"><div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div><div class="tlphase">Week 03</div><div class="tltask">UI 디자인</div><div class="tlsub">Figma 디자인<br>컬러 시스템<br>컴포넌트 설계</div></div>
+      <div class="tlitem done"><div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div><div class="tlphase">Week 04</div><div class="tltask">퍼블리싱</div><div class="tlsub">HTML/CSS/JS<br>인터랙션 구현<br>반응형 작업</div></div>
+      <div class="tlitem done"><div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div><div class="tlphase">Week 05</div><div class="tltask">배너 &amp; 로고</div><div class="tlsub">브랜드 배너 디자인<br>로고 작업<br>상세 페이지</div></div>
+      <div class="tlitem done"><div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div><div class="tlphase">Week 06</div><div class="tltask">QA &amp; 런칭</div><div class="tlsub">크로스브라우저<br>성능 최적화<br>navybay.com 런칭</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— Outcome</div>
+  <div class="sec-title rv d1">EXPECTED <em>RESULTS</em></div>
+  <div class="resgrid rv d1">
+    <div class="resitem"><div class="resnum">↑</div><div class="reslabel">Brand Story Delivery</div><div class="resdesc">기존 상품 중심 대비 브랜드 메시지 전달력 대폭 강화</div></div>
+    <div class="resitem"><div class="resnum">3×</div><div class="reslabel">Engagement Depth</div><div class="resdesc">스크롤 인터랙션으로 사용자 체류 시간 및 몰입도 증대</div></div>
+    <div class="resitem"><div class="resnum">✓</div><div class="reslabel">Unified Brand</div><div class="resdesc">배너·로고·상세 페이지 통합으로 일관된 브랜드 이미지</div></div>
+  </div>
+</section>
+
+<div class="pnav-bottom">
+  <a class="pnl" href="../../../../../../index.html">← Back to Works</a>
+  <span class="pnc">KDH PORTFOLIO</span>
+  <a class="pnl" href="../project-2/">Next: VALORANT →</a>
+</div>
+
+<script>
+const CU=document.getElementById('CU'),CR=document.getElementById('CR');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function l(){CU.style.left=mx+'px';CU.style.top=my+'px';rx+=(mx-rx)*.11;ry+=(my-ry)*.11;CR.style.left=rx+'px';CR.style.top=ry+'px';requestAnimationFrame(l);})();
+window.addEventListener('scroll',()=>{const m=document.body.scrollHeight-innerHeight;document.getElementById('PB').style.width=(m>0?scrollY/m*100:0)+'%';},{passive:true});
+const IO=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');x.target.querySelectorAll('.rolefill').forEach(b=>b.style.width=b.dataset.w+'%');}});},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>IO.observe(el));
+</script>
+</body>
+</html>

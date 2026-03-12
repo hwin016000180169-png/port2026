@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Command Center — KDH Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#000;--fg:#e0ffe0;--acc:#00ff41;--bdr:#0a1a0a;--mid:#2a5a2a;--card:#040d04;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent 0px,transparent 2px,rgba(0,255,65,.01) 2px,rgba(0,255,65,.01) 4px);pointer-events:none;z-index:1;}
+#CU{position:fixed;width:3px;height:16px;background:var(--acc);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);animation:blink .8s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+#PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);box-shadow:0 0 8px var(--acc);z-index:200;width:0%;}
+a{text-decoration:none;color:inherit;}
+#MX{position:fixed;inset:0;z-index:0;opacity:.05;pointer-events:none;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(0,0,0,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
+.nb{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
+.nb:hover{color:var(--acc);}
+.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
+.nn{font-size:12px;letter-spacing:.22em;color:var(--mid);}
+
+/* HERO TERMINAL */
+#hero{width:100vw;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 52px 60px;position:relative;z-index:2;}
+.termwin{max-width:900px;width:100%;}
+.termbar{background:#0a1a0a;padding:10px 16px;display:flex;align-items:center;gap:8px;border:1px solid var(--bdr);border-bottom:none;}
+.tdot{width:10px;height:10px;border-radius:50%;}
+.tdot.r{background:#ff5f57;}.tdot.y{background:#febc2e;}.tdot.g{background:var(--acc);}
+.ttitle{font-size:12px;letter-spacing:.12em;color:var(--mid);margin-left:10px;}
+.termbody{background:var(--card);border:1px solid var(--bdr);padding:36px;min-height:300px;}
+.tline{font-size:13px;line-height:2;margin-bottom:2px;}
+.tprompt{color:var(--mid);}
+.tcmd{color:var(--acc);font-weight:700;}
+.tout{color:rgba(224,255,224,.55);}
+.thl{color:#fff;font-weight:700;}
+.tgap{height:16px;}
+.tcursor{display:inline-block;width:8px;height:14px;background:var(--acc);vertical-align:middle;animation:blink .8s step-end infinite;}
+.hmeta{display:flex;gap:40px;margin-top:28px;padding-top:22px;border-top:1px solid var(--bdr);}
+.hmi{display:flex;flex-direction:column;gap:4px;}
+.hmik{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--mid);}
+.hmiv{font-size:13px;color:rgba(224,255,224,.5);}
+.hmiv.g{color:var(--acc);}
+
+/* SHARED */
+.sec{padding:88px 52px;border-top:1px solid var(--bdr);position:relative;z-index:2;}
+.sec-prefix{font-size:12px;letter-spacing:.28em;color:var(--mid);margin-bottom:10px;text-transform:uppercase;}
+.sec-prefix::before{content:'// ';color:var(--bdr);}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,68px);letter-spacing:.02em;margin-bottom:48px;line-height:.95;}
+.sec-title em{font-style:normal;color:var(--acc);}
+
+/* ARCH */
+.archdiag{display:flex;flex-direction:column;gap:3px;margin-bottom:36px;}
+.archrow{display:grid;gap:3px;}
+.archrow.r1{grid-template-columns:1fr;}
+.archrow.r3{grid-template-columns:repeat(3,1fr);}
+.archnode{padding:24px 28px;background:var(--card);border:1px solid var(--bdr);display:flex;flex-direction:column;gap:8px;transition:border-color .3s;}
+.archnode:hover{border-color:var(--acc);}
+.archnode.input{border-color:rgba(255,60,46,.2);}
+.archnode.out{border-color:rgba(0,255,65,.2);}
+.archlbl{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);}
+.archname{font-size:14px;letter-spacing:.08em;color:#e0ffe0;font-weight:700;}
+.archdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(224,255,224,.32);font-weight:300;margin-top:4px;}
+.archarrow{text-align:center;padding:6px 0;color:var(--mid);font-size:12px;letter-spacing:.18em;}
+.aagents{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.aagent{padding:28px 24px;background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;transition:border-color .3s;}
+.aagent:hover{border-color:var(--acc);}
+.aagent::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.aagent.gpt::before{background:#19c37d;}
+.aagent.cla::before{background:#d97b36;}
+.aagent.gem::before{background:#4285f4;}
+.aagrole{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.aagname{font-size:15px;letter-spacing:.1em;color:#e0ffe0;margin-bottom:12px;font-weight:700;}
+.aagtask{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(224,255,224,.38);font-weight:300;padding:3px 0 3px 10px;border-left:1px solid var(--bdr);}
+
+/* IA TREE */
+.iatermbox{background:var(--card);border:1px solid var(--bdr);padding:36px;font-family:'Space Mono',monospace;font-size:13px;line-height:2.1;}
+.iatermbox .c1{color:var(--acc);}
+.iatermbox .c2{color:#4285f4;}
+.iatermbox .c3{color:#d97b36;}
+.iatermbox .c4{color:#19c37d;}
+.iatermbox .cn{color:rgba(224,255,224,.28);}
+.iatermbox .ind{padding-left:20px;}
+.iatermbox .ind2{padding-left:40px;}
+
+/* SCREENS */
+.scterm{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:3px;}
+.sct{background:var(--card);border:1px solid var(--bdr);}
+.sctbar{background:#0a1a0a;padding:8px 12px;display:flex;align-items:center;gap:5px;border-bottom:1px solid var(--bdr);}
+.sctdot{width:8px;height:8px;border-radius:50%;background:var(--bdr);}
+.sctdot.g{background:var(--acc);}
+.scttitle{font-size:12px;letter-spacing:.1em;color:var(--mid);margin-left:6px;}
+.sctbody{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;}
+.sctbody img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.sctph{font-size:12px;letter-spacing:.12em;color:rgba(224,255,224,.1);text-transform:uppercase;}
+.sctwide{background:var(--card);border:1px solid var(--bdr);}
+.sctwide .sctbody{aspect-ratio:21/9;}
+
+/* PROMPTS */
+.ptlist{display:flex;flex-direction:column;gap:3px;}
+.ptrow{background:var(--card);border:1px solid var(--bdr);overflow:hidden;transition:border-color .3s;}
+.ptrow:hover{border-color:rgba(0,255,65,.2);}
+.ptrh{background:#0a1a0a;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--bdr);}
+.ptrhl{display:flex;align-items:center;gap:8px;}
+.aibadge{width:8px;height:8px;border-radius:50%;}
+.aibadge.gpt{background:#19c37d;}.aibadge.cla{background:#d97b36;}.aibadge.gem{background:#4285f4;}
+.ptrain{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);}
+.ptruse{font-size:13px;color:#e0ffe0;font-weight:700;}
+.ptrbody{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.pqlbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:8px;}
+.pptext{font-size:13px;line-height:1.7;color:rgba(224,255,224,.42);padding:12px 16px;background:rgba(0,255,65,.02);border:1px solid var(--bdr);}
+.pptext::before{content:'$ ';color:var(--mid);}
+.prlbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#19c37d;margin-bottom:8px;}
+.prresult{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.65;color:rgba(224,255,224,.38);font-weight:300;}
+
+/* TIMELINE */
+.tltermrows{display:flex;flex-direction:column;}
+.ttr{display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid var(--bdr);padding:20px 0;}
+.ttrphase{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);padding-top:2px;}
+.ttrcont{padding-left:24px;border-left:1px solid var(--bdr);}
+.ttrcmd{font-size:14px;color:#e0ffe0;margin-bottom:6px;font-weight:700;}
+.ttrcmd::before{content:'> ';color:var(--acc);}
+.ttrout{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(224,255,224,.35);font-weight:300;line-height:1.65;}
+
+/* RESULTS */
+.resgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.rg{padding:36px 24px;background:var(--card);border:1px solid var(--bdr);text-align:center;transition:border-color .35s;}
+.rg:hover{border-color:var(--acc);}
+.rg.v .rgnum{text-shadow:0 0 22px rgba(0,255,65,.4);}
+.rgnum{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--acc);line-height:1;margin-bottom:6px;}
+.rglbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
+.rgdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(224,255,224,.35);font-weight:300;line-height:1.55;}
+
+.pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);position:relative;z-index:2;}
+.pnl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
+.pnl:hover{color:var(--acc);}
+.pnc{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
+.rv.v{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.25s}
+</style>
+</head>
+<body>
+<canvas id="MX"></canvas>
+<div id="CU"></div><div id="PB"></div>
+<nav>
+  <a class="nb" href="../../../../../../index.html">← Portfolio</a>
+  <span class="nt">AI COMMAND CENTER</span>
+  <span class="nn">04 / 06</span>
+</nav>
+
+<section id="hero">
+  <div class="termwin rv">
+    <div class="termbar">
+      <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+      <span class="ttitle">kdh@portfolio ~ ai-command-center</span>
+    </div>
+    <div class="termbody">
+      <div class="tline"><span class="tprompt">kdh@portfolio:~$ </span><span class="tcmd">cat project_info.txt</span></div>
+      <div class="tgap"></div>
+      <div class="tline"><span class="tout">PROJECT  : </span><span class="thl">AI Command Center</span></div>
+      <div class="tline"><span class="tout">TYPE     : </span><span class="tout">다중 AI 모델 통합 시스템 / Dashboard Design</span></div>
+      <div class="tline"><span class="tout">STATUS   : </span><span class="tcmd">Prototype Complete ✓</span></div>
+      <div class="tline"><span class="tout">ROLE     : </span><span class="tcmd">Design 100% · Build 100%</span></div>
+      <div class="tgap"></div>
+      <div class="tline"><span class="tprompt">kdh@portfolio:~$ </span><span class="tcmd">describe --purpose</span></div>
+      <div class="tgap"></div>
+      <div class="tline"><span class="tout">GPT · Claude · Gemini를 하나의 인터페이스에서</span></div>
+      <div class="tline"><span class="tout">통합 운영하는 AI 협업 플랫폼. 각 AI의 강점을</span></div>
+      <div class="tline"><span class="tout">결합해 업무 자동화와 생산성 향상을 목표로 설계.</span></div>
+      <div class="tgap"></div>
+      <div class="tline"><span class="tprompt">kdh@portfolio:~$ </span><span class="tcursor"></span></div>
+    </div>
+  </div>
+  <div class="hmeta rv d1">
+    <div class="hmi"><span class="hmik">Year</span><span class="hmiv">2025</span></div>
+    <div class="hmi"><span class="hmik">Type</span><span class="hmiv">AI Platform Design</span></div>
+    <div class="hmi"><span class="hmik">Stack</span><span class="hmiv">UI + AI Integration</span></div>
+    <div class="hmi"><span class="hmik">Status</span><span class="hmiv g">Prototype ✓</span></div>
+    <div class="hmi"><span class="hmik">AI Used</span><span class="hmiv">GPT · Gemini · Claude</span></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-prefix rv">System Architecture</div>
+  <div class="sec-title rv d1">AI WORKFLOW <em>DESIGN</em></div>
+  <div class="archdiag rv d2">
+    <div class="archrow r1"><div class="archnode input"><span class="archlbl">Input Layer</span><span class="archname">Task Input</span><span class="archdesc">사용자 작업 명령 — 콘텐츠 제작·코드 작성·문서 분석 등</span></div></div>
+    <div class="archarrow">↓ AI Processing Pipeline ↓</div>
+    <div class="archrow r3">
+      <div class="archnode"><span class="archlbl">Agent A — Primary</span><span class="archname" style="color:#19c37d">GPT</span><span class="archdesc">작업 수행 · 콘텐츠 생성 · 다양한 태스크 처리</span></div>
+      <div class="archnode"><span class="archlbl">Agent B — Review</span><span class="archname" style="color:#d97b36">Claude</span><span class="archdesc">코드 검수 · 문서 분석 · 품질 및 논리 검토</span></div>
+      <div class="archnode"><span class="archlbl">Agent C — Enhance</span><span class="archname" style="color:#4285f4">Gemini</span><span class="archdesc">데이터 분석 · 최신 검색 보완 · 결과 강화</span></div>
+    </div>
+    <div class="archarrow">↓ Final Verification ↓</div>
+    <div class="archrow r1"><div class="archnode out"><span class="archlbl">Output Layer</span><span class="archname">Final Output</span><span class="archdesc">3개 AI 검증을 거친 최종 결과물 — 높은 정확도와 완성도</span></div></div>
+  </div>
+  <div class="aagents rv d3">
+    <div class="aagent gpt"><div class="aagrole">Primary Worker</div><div class="aagname">ChatGPT</div><div class="aagtask">콘텐츠 제작 및 아이디어 생성</div><div class="aagtask">다양한 포맷 작업 처리</div><div class="aagtask">초안 작성 및 기획 보조</div></div>
+    <div class="aagent cla"><div class="aagrole">Quality Control</div><div class="aagname">Claude</div><div class="aagtask">코드 분석 및 검수</div><div class="aagtask">문서 정확도 검증</div><div class="aagtask">논리 구조 검토</div></div>
+    <div class="aagent gem"><div class="aagrole">Data Enhancer</div><div class="aagname">Gemini</div><div class="aagtask">데이터 분석 및 검색</div><div class="aagtask">최신 정보 보완</div><div class="aagtask">결과 품질 향상</div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-prefix rv">Information Architecture</div>
+  <div class="sec-title rv d1">SYSTEM <em>STRUCTURE</em></div>
+  <div class="iatermbox rv d2">
+    <div><span class="c1">SYSTEM</span> :: <span class="c4">AI_COMMAND_CENTER_v1.0</span></div>
+    <div style="margin-top:10px;">
+      <div class="ind c2">┌─ DASHBOARD</div>
+      <div class="ind2 cn">├─ AI 작업 현황 모니터</div>
+      <div class="ind2 cn">└─ 실시간 결과 스트림</div>
+      <div class="ind c3">├─ TASK INPUT PANEL</div>
+      <div class="ind2 cn">├─ 작업 유형 선택</div>
+      <div class="ind2 cn">└─ AI 파이프라인 설정</div>
+      <div class="ind c1">├─ AI AGENT MANAGER</div>
+      <div class="ind2 cn">├─ GPT / Claude / Gemini 패널</div>
+      <div class="ind2 cn">└─ 상태 모니터링</div>
+      <div class="ind c4">└─ OUTPUT CENTER</div>
+      <div class="ind2 cn">├─ 결과 비교 뷰</div>
+      <div class="ind2 cn">└─ 히스토리 관리</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-prefix rv">Visual Design</div>
+  <div class="sec-title rv d1">화면 <em>목업</em></div>
+  <div class="scterm rv d1">
+    <div class="sct"><div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">dashboard.exe</span></div><div class="sctbody"><div class="sctph">Main Dashboard</div></div></div>
+    <div class="sct"><div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">task_input.exe</span></div><div class="sctbody"><div class="sctph">Task Input Panel</div></div></div>
+    <div class="sct"><div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">agent_mgr.exe</span></div><div class="sctbody"><div class="sctph">AI Agent Manager</div></div></div>
+  </div>
+  <div class="sctwide rv d2">
+    <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">output_center.exe — Full Width</span></div>
+    <div class="sctbody" style="aspect-ratio:21/9;"><div class="sctph">Output Center</div></div>
+  </div>
+  <p style="margin-top:14px;font-size:12px;letter-spacing:.1em;color:var(--mid);text-align:center;" class="rv d3">★ sctbody 안에 &lt;img&gt; 삽입으로 실제 화면 교체</p>
+</section>
+
+<section class="sec">
+  <div class="sec-prefix rv">AI Collaboration</div>
+  <div class="sec-title rv d1">PROMPT <em>LOG</em></div>
+  <div class="ptlist rv d1">
+    <div class="ptrow">
+      <div class="ptrh"><div class="ptrhl"><div class="aibadge gpt"></div><span class="ptrain">ChatGPT</span></div><span class="ptruse">시스템 기획 &amp; 구조</span></div>
+      <div class="ptrbody">
+        <div><div class="pqlbl">$ prompt</div><div class="pptext">여러 AI를 하나의 인터페이스에서 통합 운영하는 Command Center의 UI 구조를 설계해줘. 작업 입력 → AI 자동 분배 흐름으로.</div></div>
+        <div><div class="prlbl">→ output</div><div class="prresult">Task Input → Routing → Parallel Processing → Review → Output 구조 도출. 4패널 대시보드 레이아웃 제안</div></div>
+      </div>
+    </div>
+    <div class="ptrow">
+      <div class="ptrh"><div class="ptrhl"><div class="aibadge cla"></div><span class="ptrain">Claude</span></div><span class="ptruse">UI 컴포넌트 설계</span></div>
+      <div class="ptrbody">
+        <div><div class="pqlbl">$ prompt</div><div class="pptext">각 AI(GPT·Claude·Gemini)의 작업 상태·진행률·결과를 실시간으로 보여주는 에이전트 패널 컴포넌트. 터미널 스타일 다크 테마.</div></div>
+        <div><div class="prlbl">→ output</div><div class="prresult">에이전트 카드 + 진행 상태 바 + 실시간 로그 스트림 UI + 터미널 헤더 구현</div></div>
+      </div>
+    </div>
+    <div class="ptrow">
+      <div class="ptrh"><div class="ptrhl"><div class="aibadge gem"></div><span class="ptrain">Gemini</span></div><span class="ptruse">자동화 시나리오 검토</span></div>
+      <div class="ptrbody">
+        <div><div class="pqlbl">$ prompt</div><div class="pptext">1인 기업에서 AI를 가상 직원처럼 활용하는 자동화 시나리오를 검토해줘. 기획·분석·검수 AI 역할 분담 구조 효율성 분석.</div></div>
+        <div><div class="prlbl">→ output</div><div class="prresult">역할 분담 시나리오 3가지, 병렬/순차 처리 효율 비교, 자동화 가능 업무 목록 생성</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-prefix rv">Build Log</div>
+  <div class="sec-title rv d1">PRODUCTION <em>TIMELINE</em></div>
+  <div class="tltermrows rv d1">
+    <div class="ttr"><span class="ttrphase">Phase 01</span><div class="ttrcont"><div class="ttrcmd">concept_research.sh</div><div class="ttrout">다중 AI 협업 모델 리서치 · 각 AI 강점 분석 · 통합 UX 방향 정의</div></div></div>
+    <div class="ttr"><span class="ttrphase">Phase 02</span><div class="ttrcont"><div class="ttrcmd">ia_design.sh</div><div class="ttrout">시스템 아키텍처 설계 · 에이전트 역할 정의 · 정보 구조도 작성</div></div></div>
+    <div class="ttr"><span class="ttrphase">Phase 03</span><div class="ttrcont"><div class="ttrcmd">ui_build.sh --theme=terminal</div><div class="ttrout">터미널 스타일 UI 시스템 · 컴포넌트 설계 · 그린 모노크롬 컬러</div></div></div>
+    <div class="ttr"><span class="ttrphase">Phase 04</span><div class="ttrcont"><div class="ttrcmd">prototype.sh --ai=claude</div><div class="ttrout">Claude 활용 프로토타입 제작 · 인터랙션 구현 · 대시보드 완성</div></div></div>
+    <div class="ttr"><span class="ttrphase">Phase 05</span><div class="ttrcont"><div class="ttrcmd">qa.sh && deploy.sh</div><div class="ttrout">기능 검증 · UX 플로우 테스트 · 최종 프로토타입 완성</div></div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-prefix rv">Expected Results</div>
+  <div class="sec-title rv d1">SYSTEM <em>OUTPUT</em></div>
+  <div class="resgrid rv d1">
+    <div class="rg"><div class="rgnum">3×</div><div class="rglbl">Processing Power</div><div class="rgdesc">3개 AI 병렬 처리로 단일 AI 대비 결과 품질 향상</div></div>
+    <div class="rg"><div class="rgnum">↓70%</div><div class="rglbl">Manual Work</div><div class="rgdesc">반복 작업 자동화로 수동 처리 시간 감소</div></div>
+    <div class="rg"><div class="rgnum">1×</div><div class="rglbl">Unified UI</div><div class="rgdesc">3개 AI를 하나의 인터페이스로 통합 운영</div></div>
+    <div class="rg"><div class="rgnum">∞</div><div class="rglbl">Scalability</div><div class="rgdesc">새로운 AI 모델 추가 및 워크플로우 확장 가능</div></div>
+  </div>
+</section>
+
+<div class="pnav-bottom">
+  <a class="pnl" href="../project-3/">← Class Care</a>
+  <span class="pnc">KDH PORTFOLIO</span>
+  <a class="pnl" href="../project-5/">Next: OTT UX →</a>
+</div>
+
+<script>
+// matrix canvas
+const cv=document.getElementById('MX'),ctx=cv.getContext('2d');
+function resize(){cv.width=innerWidth;cv.height=innerHeight;}
+resize();window.addEventListener('resize',resize);
+const cols=Math.floor(cv.width/16),drops=Array.from({length:cols},()=>Math.random()*cv.height/16);
+const chars='01アイウエオ∑∂∆αβ{}[]<>/:#@!?'.split('');
+setInterval(()=>{ctx.fillStyle='rgba(0,0,0,.06)';ctx.fillRect(0,0,cv.width,cv.height);ctx.fillStyle='#00ff41';ctx.font='12px Space Mono,monospace';drops.forEach((y,i)=>{ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,y*16);if(y*16>cv.height&&Math.random()>.97)drops[i]=0;drops[i]+=.5;});},55);
+// cursor
+const CU=document.getElementById('CU');
+document.addEventListener('mousemove',e=>{CU.style.left=e.clientX+'px';CU.style.top=e.clientY+'px';});
+window.addEventListener('scroll',()=>{const m=document.body.scrollHeight-innerHeight;document.getElementById('PB').style.width=(m>0?scrollY/m*100:0)+'%';},{passive:true});
+const IO=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v');});},{threshold:.1});
+document.querySelectorAll('.rv,.rg').forEach(el=>IO.observe(el));
+</script>
+</body>
+</html>

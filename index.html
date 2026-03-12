@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIM DONG HWI — UI/UX Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#020202;--fg:#f0ece4;--acc:#ff3c2e;--bdr:#1e1e1e;--mid:#555;--card:#0d0d0d;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;cursor:none;overflow-x:hidden;}
+
+/* cursor */
+#CU{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .18s,height .18s;mix-blend-mode:difference;}
+#CR{position:fixed;width:36px;height:36px;border:1px solid rgba(240,236,228,.24);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+body.hov #CU{width:22px;height:22px;}
+
+/* scanlines + grain */
+#SL{position:fixed;inset:0;pointer-events:none;z-index:91;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,0,0,.12) 3px,rgba(0,0,0,.12) 4px);opacity:.42;}
+#GR{position:fixed;inset:-60%;width:220%;height:220%;pointer-events:none;z-index:90;opacity:.22;animation:gra 9s steps(10) infinite;}
+@keyframes gra{0%{transform:translate(0,0)}10%{transform:translate(-3%,-2%)}25%{transform:translate(2%,4%)}40%{transform:translate(-2%,1%)}55%{transform:translate(3%,-3%)}70%{transform:translate(-1%,2%)}85%{transform:translate(2%,-1%)}100%{transform:translate(0,0)}}
+#GR{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");}
+
+/* canvas bg */
+#CW{position:fixed;inset:0;z-index:0;pointer-events:none;}
+#C{width:100%;height:100%;}
+
+/* progress bar */
+#PB{position:fixed;bottom:0;left:0;height:1px;background:var(--acc);z-index:200;width:0%;transition:width .08s linear;}
+
+/* section index */
+#SIDX{position:fixed;top:50%;right:48px;transform:translateY(-50%);writing-mode:vertical-rl;font-size:12px;letter-spacing:.38em;color:rgba(175, 175, 175, 0.58);z-index:20;transition:color .3s;pointer-events:none;}
+
+/* ════════════════ LOADER ════════════════ */
+#LD{position:fixed;inset:0;background:var(--bg);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;}
+#LD.out{animation:ldout .65s ease forwards;}
+@keyframes ldout{to{opacity:0;pointer-events:none;visibility:hidden;}}
+#LDN{font-family:'Bebas Neue',sans-serif;font-size:104px;line-height:1;color:var(--fg);letter-spacing:-.02em;}
+.lbar{width:220px;height:1px;background:var(--bdr);}
+.lfill{height:100%;background:var(--acc);width:0%;}
+.ltxt{font-size:8px;letter-spacing:.42em;text-transform:uppercase;color:var(--mid);}
+
+/* ════════════════ SHARED ════════════════ */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .78s ease,transform .78s ease;}
+.rv.v{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.17s}.d3{transition-delay:.26s}.d4{transition-delay:.36s}.d5{transition-delay:.46s}
+@keyframes fup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fin{from{opacity:0}to{opacity:1}}
+
+/* ════════════════ S1 — INTRO ════════════════ */
+#S1{position:relative;z-index:10;width:100vw;height:100vh;}
+
+/* top corners */
+.itl{position:absolute;top:0;left:0;padding:36px 52px;display:flex;flex-direction:column;gap:4px;opacity:0;animation:fup .7s ease 2.8s forwards;}
+.itr{position:absolute;top:0;right:0;padding:36px 52px;text-align:right;opacity:0;animation:fup .7s ease 2.9s forwards;}
+.ibl{position:absolute;bottom:0;left:0;right:0;padding:0 52px 44px;opacity:0;animation:fup .8s ease 3.0s forwards;}
+.lbl{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
+.lbv{font-size:14px;letter-spacing:.09em;color:rgba(240,236,228,.5);margin-top:4px;display:block;}
+
+/* roles */
+.hrule{width:100%;height:1px;background:var(--bdr);margin-bottom:26px;}
+.ibl-row{display:flex;justify-content:space-between;align-items:flex-end;}
+.roles{display:flex;flex-direction:column;gap:5px;}
+.rl{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
+.rl.on{color:var(--acc);}
+
+/* enter btn */
+.ebtn{font-size:10px;letter-spacing:.3em;text-transform:uppercase;background:none;border:none;color:var(--fg);cursor:pointer;display:flex;align-items:center;gap:14px;transition:gap .35s;}
+.ebtn:hover{gap:26px;}
+.ea{display:inline-block;width:26px;height:1px;background:var(--acc);transition:width .35s;vertical-align:middle;}
+.ebtn:hover .ea{width:48px;}
+.eh{color:var(--acc);font-size:14px;}
+
+/* scroll hint */
+#SH{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fup .7s ease 3.4s forwards;pointer-events:none;}
+#SH span{font-size:12px;letter-spacing:.38em;text-transform:uppercase;color:var(--mid);}
+.sline{width:1px;height:44px;background:var(--bdr);position:relative;overflow:hidden;}
+.sline::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--acc);animation:sdrop 2s ease infinite 3.7s;}
+@keyframes sdrop{0%{top:-100%}100%{top:200%}}
+
+/* ════════════════ S2 — ABOUT ════════════════ */
+#S2{position:relative;z-index:10;width:100vw;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--bg);}
+
+.a-left{border-right:1px solid var(--bdr);min-height:100vh;position:relative;overflow:hidden;}
+.phwrap{width:100%;height:100%;min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;background:var(--card);overflow:hidden;}
+/* actual image — replace placeholder */
+.phwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(18%) contrast(1.08);transform:scale(1.04);transition:transform 10s ease;}
+.phwrap:hover img{transform:scale(1);}
+.phwrap::before{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(2,2,2,.45) 0%,transparent 22%,transparent 65%,rgba(2,2,2,.7) 100%);}
+.phwrap::after{content:'';position:absolute;inset:0;z-index:3;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,0,0,.08) 3px,rgba(0,0,0,.08) 4px);}
+.phph{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
+.phph-box{width:64px;height:64px;border:1px solid rgba(240,236,228,.1);}
+.phph-txt{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);}
+.phph-sub{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,60,46,.5);}
+.plbl{position:absolute;bottom:32px;left:32px;z-index:5;}
+
+.a-right{padding:88px 64px;display:flex;flex-direction:column;justify-content:center;}
+.snum{font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:var(--mid);margin-bottom:40px;}
+.aname{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,96px);line-height:.92;letter-spacing:.02em;margin-bottom:28px;}
+.aname em{color:var(--acc);font-style:normal;display:block;}
+.adiv{width:36px;height:1px;background:var(--acc);margin-bottom:28px;transform:scaleX(0);transform-origin:left;transition:transform .7s ease .2s;}
+.rv.v .adiv{transform:scaleX(1);}
+.abio{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:2;font-weight:300;color:rgba(240,236,228,.58);margin-bottom:48px;}
+.abio strong{color:var(--fg);font-weight:700;}
+.igrid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--bdr);margin-bottom:44px;}
+.ii{padding:18px 0;border-bottom:1px solid var(--bdr);display:flex;flex-direction:column;gap:5px;}
+.ii:nth-child(odd){padding-right:24px;border-right:1px solid var(--bdr);}
+.ii:nth-child(even){padding-left:24px;}
+.ik{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);}
+.iv{font-size:13px;letter-spacing:.05em;}
+.iv a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--bdr);transition:color .3s,border-color .3s;}
+.iv a:hover{color:var(--acc);border-color:var(--acc);}
+.iv.on{color:var(--acc);}
+.sklbl{font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;}
+.skrow{display:flex;align-items:center;gap:14px;margin-bottom:10px;}
+.skn{font-size:13px;letter-spacing:.07em;color:rgba(240,236,228,.5);min-width:134px;}
+.skbg{flex:1;height:1px;background:var(--bdr);position:relative;}
+.skf{position:absolute;top:0;left:0;height:100%;width:0%;transition:width 1.3s cubic-bezier(.22,1,.36,1);}
+.skf.ac{background:var(--acc);}
+.skf.wh{background:rgba(240,236,228,.5);}
+.skp{font-size:13px;color:var(--mid);min-width:30px;text-align:right;}
+
+/* ════════════════ S3 — WORKS ════════════════ */
+#S3{position:relative;z-index:10;padding:120px 52px 140px;background:var(--bg);}
+.whead{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:26px;border-bottom:1px solid var(--bdr);margin-bottom:72px;}
+.whn{font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;}
+.wht{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7vw,88px);line-height:.9;letter-spacing:.02em;}
+.wcnt{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.wcnt span:first-child{font-size:9px;letter-spacing:.2em;color:var(--mid);}
+.wcnt span:last-child{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--bdr);}
+
+/* grid: 3 col, mixed span */
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.wc{position:relative;overflow:hidden;background:var(--card);cursor:pointer;opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;}
+.wc.v{opacity:1;transform:none;}
+.wc:nth-child(1){transition-delay:.00s;grid-column:span 2;}
+.wc:nth-child(2){transition-delay:.10s;}
+.wc:nth-child(3){transition-delay:.15s;}
+.wc:nth-child(4){transition-delay:.22s;}
+.wc:nth-child(5){transition-delay:.28s;grid-column:span 2;}
+.wc:nth-child(6){transition-delay:.34s;}
+
+.ct{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;}
+.ctbg{position:absolute;inset:0;transition:transform .7s cubic-bezier(.22,1,.36,1);}
+.wc:hover .ctbg{transform:scale(1.05);}
+.wc:nth-child(1) .ctbg{background:linear-gradient(135deg,#0a1628 0%,#18304a 50%,#0a1628 100%);}
+.wc:nth-child(2) .ctbg{background:linear-gradient(135deg,#0f0000 0%,#220a0a 50%,#0f0000 100%);}
+.wc:nth-child(3) .ctbg{background:linear-gradient(135deg,#020d03 0%,#08200a 50%,#020d03 100%);}
+.wc:nth-child(4) .ctbg{background:linear-gradient(135deg,#000 0%,#050505 50%,#000 100%);}
+.wc:nth-child(5) .ctbg{background:linear-gradient(135deg,#0a0012 0%,#1a0a2a 50%,#0a0012 100%);}
+.wc:nth-child(6) .ctbg{background:linear-gradient(135deg,#020814 0%,#0a1828 50%,#020814 100%);}
+.ctbg::after{content:'';position:absolute;inset:0;opacity:.05;background-image:repeating-linear-gradient(0,transparent,transparent 30px,rgba(255,255,255,.2) 30px,rgba(255,255,255,.2) 31px),repeating-linear-gradient(90deg,transparent,transparent 30px,rgba(255,255,255,.2) 30px,rgba(255,255,255,.2) 31px);}
+/* thumbnail image */
+.ct img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:2;transition:opacity .5s;}
+.ct img.loaded{opacity:.75;}
+.ctnum{position:absolute;bottom:12px;right:16px;z-index:3;font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:1;color:rgba(240,236,228,.04);pointer-events:none;}
+.ctlabel{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,236,228,.14);}
+.cov{position:absolute;inset:0;z-index:9;background:rgba(2,2,2,.76);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .38s;}
+.wc:hover .cov{opacity:1;}
+.covtxt{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--fg);transform:translateY(8px);transition:transform .38s;}
+.wc:hover .covtxt{transform:translateY(0);}
+.covline{width:26px;height:1px;background:var(--acc);}
+
+.ci{padding:22px 26px 26px;border-top:1px solid var(--bdr);}
+.cimeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.cino{font-size:8px;letter-spacing:.3em;color:var(--mid);}
+.ciy{font-size:8px;letter-spacing:.2em;color:var(--mid);}
+.ciname{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,1.8vw,26px);line-height:1.1;margin-bottom:8px;}
+.cidesc{font-family:'Noto Sans KR',sans-serif;font-size:11px;line-height:1.65;font-weight:300;color:rgba(240,236,228,.38);margin-bottom:12px;}
+.citags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.tag{font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--bdr);color:var(--mid);}
+.tag.ac{border-color:rgba(255,60,46,.35);color:rgba(255,60,46,.65);}
+.ciai{display:flex;align-items:center;gap:7px;}
+.aidot{width:5px;height:5px;border-radius:50%;}
+.aidot.gpt{background:#19c37d;}.aidot.gem{background:#4285f4;}.aidot.cla{background:#d97b36;}
+.ain{font-size:8px;letter-spacing:.14em;color:var(--mid);}
+
+/* ════════════════ S4 — CONTACT ════════════════ */
+#S4{position:relative;z-index:10;padding:120px 52px;background:var(--bg);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;border-top:1px solid var(--bdr);}
+.ce{font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:var(--mid);margin-bottom:26px;}
+.ch{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,88px);line-height:.93;letter-spacing:.02em;margin-bottom:28px;}
+.ch em{color:var(--acc);font-style:normal;}
+.cs{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:2;font-weight:300;color:rgba(240,236,228,.48);}
+.cr{display:flex;flex-direction:column;padding-left:72px;border-left:1px solid var(--bdr);}
+.clink{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--bdr);text-decoration:none;color:var(--fg);transition:padding-left .3s;}
+.clink:first-child{border-top:1px solid var(--bdr);}
+.clink:hover{padding-left:14px;}
+.clink:hover .carrow{color:var(--acc);}
+.clinfo{display:flex;flex-direction:column;gap:5px;}
+.clk{font-size:8px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);}
+.clv{font-size:13px;letter-spacing:.05em;}
+.carrow{font-size:18px;color:var(--bdr);transition:color .3s;}
+
+/* footer */
+footer{position:relative;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:22px 52px;border-top:1px solid var(--bdr);}
+.ft{font-size:8px;letter-spacing:.2em;color:var(--mid);text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+<div id="LD">
+  <div id="LDN">000</div>
+  <div class="lbar"><div class="lfill" id="LF"></div></div>
+  <div class="ltxt">Loading Portfolio</div>
+</div>
+
+<div id="CU"></div><div id="CR"></div>
+<div id="SL"></div><div id="GR"></div>
+<div id="CW"><canvas id="C"></canvas></div>
+<div id="PB"></div>
+<span id="SIDX">001&nbsp;/&nbsp;INTRO</span>
+
+<!-- ─── S1 INTRO ─── -->
+<section id="S1">
+  <div class="itl rv">
+    <span class="lbl">Based in</span><span class="lbv">Seoul, Korea</span>
+    <span class="lbl" style="margin-top:14px">Discipline</span><span class="lbv">UI/UX · Publishing</span>
+  </div>
+  <div class="itr rv">
+    <span class="lbl">Portfolio</span><span class="lbv">2026</span>
+    <span class="lbl" style="margin-top:14px">AI Powered</span><span class="lbv">GPT · Claude · Gemini</span>
+  </div>
+  <div class="ibl">
+    <div class="hrule"></div>
+    <div class="ibl-row">
+      <div class="roles">
+        <span class="rl on">UI / UX Designer</span>
+        <span class="rl">Web Publisher</span>
+        <span class="rl">AI Collaborator</span>
+      </div>
+      <button class="ebtn" id="EBTN">Enter Portfolio <span class="ea"></span><span class="eh">→</span></button>
+    </div>
+  </div>
+  <div id="SH"><span>Scroll</span><div class="sline"></div></div>
+</section>
+
+<!-- ─── S2 ABOUT ─── -->
+<section id="S2">
+  <div class="a-left">
+    <div class="phwrap">
+     
+      <img style="  margin: 0 auto; object-fit: cover;" src="images/photo.jpg" alt="">
+      <div class="plbl">
+        <span class="lbl">Kim Dong Hwi</span>
+        <span class="lbv">UI/UX · Publisher</span>
+      </div>
+    </div>
+  </div>
+  <div class="a-right">
+    <div class="snum rv">— 002 / About Me</div>
+    <div class="aname rv d1">KIM<em>DONG</em>HWI</div>
+    <div class="rv d2"><div class="adiv"></div></div>
+    <p class="abio rv d3"><strong>AI와 협업하는 UI/UX 디자이너</strong>이자<br>웹 퍼블리셔입니다.<br><br>ChatGPT · Gemini · Claude를 활용해<br>기획부터 디자인, 퍼블리싱까지<br>빠르고 정교하게 구현합니다.</p>
+    <div class="igrid rv d4">
+      <div class="ii"><span class="ik">Location</span><span class="iv">Seoul, Korea</span></div>
+      <div class="ii"><span class="ik">Contact</span><span class="iv">kdh[at]email.com</span></div>
+      <div class="ii"><span class="ik">GitHub</span><span class="iv"><a href="#" target="_blank">github.com/username</a></span></div>
+      <div class="ii"><span class="ik">Status</span><span class="iv on">Available · 2026</span></div>
+    </div>
+    <div class="rv d5">
+      <div class="sklbl">— Skills</div>
+      <div class="skrow"><span class="skn">UI / UX Design</span><div class="skbg"><div class="skf ac" data-w="92"></div></div><span class="skp">92%</span></div>
+      <div class="skrow"><span class="skn">Web Publishing</span><div class="skbg"><div class="skf wh" data-w="85"></div></div><span class="skp">85%</span></div>
+      <div class="skrow"><span class="skn">AI Prompting</span><div class="skbg"><div class="skf ac" data-w="88"></div></div><span class="skp">88%</span></div>
+      <div class="skrow"><span class="skn">Figma</span><div class="skbg"><div class="skf wh" data-w="80"></div></div><span class="skp">80%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── S3 WORKS ─── -->
+<section id="S3">
+  <div class="whead rv">
+    <div>
+      <div class="whn">— 003 / Selected Works</div>
+      <div class="wht">WORKS</div>
+    </div>
+    <div class="wcnt"><span>Total Projects</span><span>06</span></div>
+  </div>
+
+  <div class="wgrid">
+
+    <!-- 01 NAVYBAY -->
+    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-1/">
+      <div class="ct">
+       <div class="ctbg" style="background-image:url(images/thunmb-01.png); background-size:cover; background-position:center;"></div>
+        <!-- <img src="images/thumb-01.jpg"> -->
+        <div class="ctnum">01</div>
+        <div class="ctlabel">Brand · Landing · Publishing</div>
+      </div>
+      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+      <div class="ci">
+        <div class="cimeta"><span class="cino">Project 01</span><span class="ciy">2026</span></div>
+        <div class="ciname">NAVYBAY Brand Landing Page</div>
+        <div class="cidesc">라이프스타일 브랜드 철학 전달을 위한 몰입형 스크롤 랜딩 페이지. 배너 · 로고 · 상세 페이지 작업 포함.</div>
+        <div class="citags"><span class="tag ac">Brand</span><span class="tag">Landing Page</span><span class="tag">Publishing</span><span class="tag">Identity</span></div>
+        <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+      </div>
+    </div>
+
+    <!-- 02 VALORANT -->
+    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-2/">
+      <div class="ct">
+        <div class="ctbg"></div>
+        <div class="ctnum">02</div>
+        <div class="ctlabel">Game · Info · UI</div>
+      </div>
+      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+      <div class="ci">
+        <div class="cimeta"><span class="cino">Project 02</span><span class="ciy">2026</span></div>
+        <div class="ciname">VALORANT Game Guide Site</div>
+        <div class="cidesc">분산된 게임 정보를 하나로 통합. 에이전트·맵·토너먼트 가이드 웹사이트 설계 및 퍼블리싱.</div>
+        <div class="citags"><span class="tag ac">Game UI</span><span class="tag">Interaction</span><span class="tag">HTML·CSS·JS</span></div>
+        <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+      </div>
+    </div>
+
+    <!-- 03 CLASS CARE -->
+    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-3/">
+      <div class="ct">
+        <div class="ctbg"></div>
+        <div class="ctnum">03</div>
+        <div class="ctlabel">Education · App · AI</div>
+      </div>
+      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+      <div class="ci">
+        <div class="cimeta"><span class="cino">Project 03</span><span class="ciy">2026</span></div>
+        <div class="ciname">Class Care Education Platform</div>
+        <div class="cidesc">학원·학교 수업 관리 통합 앱. 파일 공유 · 모의 시험 · Gemini AI 오답 노트. 실제 학원 운영 중.</div>
+        <div class="citags"><span class="tag ac">App UI</span><span class="tag">Gemini API</span><span class="tag">Live Service</span></div>
+        <div class="ciai"><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+      </div>
+    </div>
+
+    <!-- 04 AI COMMAND CENTER -->
+    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-4/">
+      <div class="ct">
+        <div class="ctbg"></div>
+        <div class="ctnum">04</div>
+        <div class="ctlabel">AI · Platform · Design</div>
+      </div>
+      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+      <div class="ci">
+        <div class="cimeta"><span class="cino">Project 04</span><span class="ciy">2026</span></div>
+        <div class="ciname">AI Command Center</div>
+        <div class="cidesc">GPT·Claude·Gemini 다중 AI 통합 운영 대시보드. 업무 자동화 파이프라인 시스템 설계.</div>
+        <div class="citags"><span class="tag ac">AI Platform</span><span class="tag">Dashboard</span><span class="tag">Automation</span></div>
+        <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+      </div>
+    </div>
+
+    <!-- 05 OTT -->
+    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-5/">
+      <div class="ct">
+        <div class="ctbg"></div>
+        <div class="ctnum">05</div>
+        <div class="ctlabel">OTT · UX · Research</div>
+      </div>
+      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+      <div class="ci">
+        <div class="cimeta"><span class="cino">Project 05</span><span class="ciy">2026</span></div>
+        <div class="ciname">OTT Platform UX Redesign</div>
+        <div class="cidesc">Netflix·Watcha 콘텐츠 탐색 효율 개선. Mood 기반 30초 추천 UX · 선택 피로 해소 설계.</div>
+        <div class="citags"><span class="tag ac">UX Research</span><span class="tag">OTT</span><span class="tag">Prototype</span></div>
+        <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span></div>
+      </div>
+    </div>
+
+    <!-- 06 HOSPITAL -->
+    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-6/">
+      <div class="ct">
+        <div class="ctbg"></div>
+        <div class="ctnum">06</div>
+        <div class="ctlabel">Medical · Mobile · UX</div>
+      </div>
+      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+      <div class="ci">
+        <div class="cimeta"><span class="cino">Project 06</span><span class="ciy">2026</span></div>
+        <div class="ciname">Hospital Booking UX</div>
+        <div class="cidesc">복잡한 병원 예약 프로세스를 증상 선택 기반으로 단순화. 굿닥·똑닥 분석 기반 모바일 UX 개선.</div>
+        <div class="citags"><span class="tag ac">Mobile UX</span><span class="tag">Healthcare</span><span class="tag">Figma</span></div>
+        <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── S4 CONTACT ─── -->
+<section id="S4">
+  <div class="rv">
+    <div class="ce">— 004 / Contact</div>
+    <div class="ch">LET'S<br><em>WORK</em><br>TOGETHER</div>
+    <p class="cs">새로운 프로젝트, 협업 제안,<br>또는 궁금한 점이 있으시면<br>언제든지 연락해 주세요.</p>
+  </div>
+  <div class="cr rv d2">
+    <a class="clink" href="#"><div class="clinfo"><span class="clk">Email</span><span class="clv">kdh[at]email.com</span></div><span class="carrow">↗</span></a>
+    <a class="clink" href="#" target="_blank"><div class="clinfo"><span class="clk">GitHub</span><span class="clv">github.com/username</span></div><span class="carrow">↗</span></a>
+    <a class="clink" href="#" target="_blank"><div class="clinfo"><span class="clk">Instagram</span><span class="clv">@username</span></div><span class="carrow">↗</span></a>
+  </div>
+</section>
+<footer>
+  <span class="ft">© 2026 Kim Dong Hwi</span>
+  <span class="ft">UI/UX Design · Web Publishing · AI Collaboration</span>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const CU=document.getElementById('CU'),CR=document.getElementById('CR');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function loop(){CU.style.left=mx+'px';CU.style.top=my+'px';rx+=(mx-rx)*.13;ry+=(my-ry)*.13;CR.style.left=rx+'px';CR.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.wc').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));});
+
+/* ── LOADER ── */
+const LDN=document.getElementById('LDN'),LF=document.getElementById('LF');
+let pct=0;
+const LI=setInterval(()=>{
+  pct+=Math.random()*2.8+.6;
+  if(pct>=100){pct=100;clearInterval(LI);setTimeout(()=>{document.getElementById('LD').classList.add('out');setTimeout(initCanvas,600);},300);}
+  LDN.textContent=String(Math.floor(pct)).padStart(3,'0');
+  LF.style.width=pct+'%';
+},40);
+
+/* ── CANVAS PARTICLE ── */
+function initCanvas(){
+  const cv=document.getElementById('C');
+  const ctx=cv.getContext('2d');
+  let W,H,pts=[];
+  const MOUSE={x:-9999,y:-9999};
+  document.addEventListener('mousemove',e=>{MOUSE.x=e.clientX;MOUSE.y=e.clientY;});
+
+  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;build();}
+
+  function sampleText(){
+    const tmp=document.createElement('canvas');
+    tmp.width=W;tmp.height=H;
+    const tc=tmp.getContext('2d');
+    tc.fillStyle='#fff';tc.textAlign='center';tc.textBaseline='middle';
+    const sz=Math.min(Math.floor(W*.094),110);
+    tc.font=`900 ${sz*1.65}px 'Bebas Neue',sans-serif`;
+    tc.fillText('KIM',W/2,H*.38);
+    tc.font=`900 ${sz*1.8}px 'Bebas Neue',sans-serif`;
+    tc.fillText('DONG HWI',W/2,H*.62);
+    const d=tc.getImageData(0,0,W,H).data,res=[],step=W<640?7:5;
+    for(let y=0;y<H;y+=step)for(let x=0;x<W;x+=step)if(d[(y*W+x)*4+3]>120)res.push({x,y});
+    return res;
+  }
+
+  const CHARS='01アイウエオ∑∂∆Ωαβπ{}[]<>/:#@!?—~▒░'.split('');
+  const rc=()=>CHARS[Math.floor(Math.random()*CHARS.length)];
+
+  function build(){
+    const sampled=sampleText();
+    pts=sampled.map(p=>({
+      tx:p.x,ty:p.y,
+      x:Math.random()*W,y:Math.random()*H,
+      vx:0,vy:0,
+      ch:rc(),ct:0,ci:10+Math.floor(Math.random()*18),
+      sz:6.5+Math.random()*4,al:0,
+      delay:Math.random()*90,age:0,
+      isAcc:Math.random()<.055
+    }));
+  }
+
+  /* background streaks */
+  const streaks=Array.from({length:14},()=>({x:Math.random(),y:Math.random(),len:.05+Math.random()*.18,spd:.00012+Math.random()*.0002,a:.012+Math.random()*.025}));
+
+  let frame=0;
+  function draw(){
+    frame++;
+    ctx.clearRect(0,0,W,H);
+
+    /* radial vignette */
+    const vg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.7);
+    vg.addColorStop(0,'transparent');vg.addColorStop(1,'rgba(0,0,0,.55)');
+    ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
+
+    /* streaks */
+    streaks.forEach(s=>{
+      s.y+=s.spd;if(s.y>1.15)s.y=-.15;
+      ctx.strokeStyle=`rgba(240,236,228,${s.a})`;ctx.lineWidth=.6;
+      ctx.beginPath();ctx.moveTo(s.x*W,s.y*H);ctx.lineTo(s.x*W,(s.y+s.len)*H);ctx.stroke();
+    });
+
+    /* particles */
+    pts.forEach(p=>{
+      p.age++;if(p.age<p.delay)return;
+      const elapsed=p.age-p.delay;
+      p.al=Math.min(elapsed/80,1);
+      const dx=p.x-MOUSE.x,dy=p.y-MOUSE.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<100&&d>0){const f=(100-d)/100;p.vx+=(dx/d)*f*4.5;p.vy+=(dy/d)*f*4.5;}
+      p.vx+=(p.tx-p.x)*.045;p.vy+=(p.ty-p.y)*.045;
+      p.vx*=.81;p.vy*=.81;
+      p.x+=p.vx;p.y+=p.vy;
+      p.ct++;if(p.ct>=p.ci){p.ch=rc();p.ct=0;p.ci=10+Math.floor(Math.random()*24);}
+      const spd=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
+      ctx.font=`${p.sz}px 'Space Mono',monospace`;
+      if(p.isAcc){ctx.fillStyle=`rgba(255,60,46,${p.al})`;}
+      else{ctx.fillStyle=`rgba(240,236,228,${p.al*(.44+Math.min(spd*.065,.56))})`;}
+      ctx.fillText(p.ch,p.x,p.y);
+      if(spd>2){ctx.fillStyle=`rgba(255,60,46,${Math.min(spd/9,.28)})`;ctx.fillText(p.ch,p.x+.5,p.y+.5);}
+    });
+
+    /* horizontal scan */
+    const sy=(frame*1.1)%H;
+    const sg=ctx.createLinearGradient(0,sy-18,0,sy+18);
+    sg.addColorStop(0,'transparent');sg.addColorStop(.5,'rgba(255,255,255,.008)');sg.addColorStop(1,'transparent');
+    ctx.fillStyle=sg;ctx.fillRect(0,sy-18,W,36);
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();draw();
+  window.addEventListener('resize',resize);
+}
+
+/* ── SCROLL PROGRESS ── */
+window.addEventListener('scroll',()=>{
+  const max=document.body.scrollHeight-innerHeight;
+  document.getElementById('PB').style.width=(max>0?scrollY/max*100:0)+'%';
+  /* section index */
+  const IDX=document.getElementById('SIDX');
+  const secs=[{id:'S1',t:'001 / INTRO'},{id:'S2',t:'002 / ABOUT'},{id:'S3',t:'003 / WORKS'},{id:'S4',t:'004 / CONTACT'}];
+  let cur='001 / INTRO';
+  secs.forEach(s=>{const el=document.getElementById(s.id);if(el&&el.getBoundingClientRect().top<=innerHeight*.55)cur=s.t;});
+  IDX.textContent=cur.replace('/','\u00a0/\u00a0');
+},{passive:true});
+
+/* ── ENTER BTN ── */
+document.getElementById('EBTN').addEventListener('click',()=>document.getElementById('S3').scrollIntoView({behavior:'smooth'}));
+
+/* ── ROLE CYCLE ── */
+const RLS=document.querySelectorAll('.rl');let RI=0;
+setInterval(()=>{RLS.forEach(r=>r.classList.remove('on'));RI=(RI+1)%RLS.length;RLS[RI].classList.add('on');},2200);
+
+/* ── INTERSECTION OBSERVER ── */
+const IO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('v');
+      e.target.querySelectorAll('.skf').forEach(b=>b.style.width=b.dataset.w+'%');
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.rv,.wc').forEach(el=>IO.observe(el));
+
+/* ── CARD CLICK ── */
+document.querySelectorAll('.wc').forEach(c=>c.addEventListener('click',()=>{if(c.dataset.href)location.href=c.dataset.href;}));
+</script>
+</body>
+</html>

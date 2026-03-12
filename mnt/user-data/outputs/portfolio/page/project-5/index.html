@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OTT UX Redesign — KDH Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#020202;--fg:#f0ece4;--acc:#9b6dff;--acc2:#1a0a2a;--bdr:#1e1e1e;--mid:#666;--card:#0d0d0d;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
+#CU{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+#CR{position:fixed;width:34px;height:34px;border:1px solid rgba(155,109,255,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+#PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:200;width:0%;}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(2,2,2,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
+.nb{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
+.nb:hover{color:var(--acc);}
+.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
+.nn{font-size:12px;letter-spacing:.22em;color:var(--mid);}
+
+/* HERO */
+#hero{width:100vw;min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:88px 52px 64px;}
+#hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(155,109,255,.08) 0%,transparent 65%);}
+.hbigtext{position:absolute;right:-0.04em;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:22vw;line-height:1;color:rgba(155,109,255,.04);pointer-events:none;user-select:none;}
+.htag{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);margin-bottom:18px;position:relative;z-index:1;}
+.htitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,9vw,118px);line-height:.9;letter-spacing:.02em;margin-bottom:22px;position:relative;z-index:1;}
+.htitle em{display:block;color:var(--acc);font-style:normal;}
+.hdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.5);max-width:540px;margin-bottom:36px;position:relative;z-index:1;}
+.hbtns{display:flex;gap:16px;position:relative;z-index:1;}
+.hbtn{font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:13px 26px;transition:all .3s;cursor:none;}
+.hbtn.p{background:var(--acc);color:#fff;font-weight:700;}.hbtn.p:hover{background:#7b4de0;}
+.hbtn.s{border:1px solid rgba(240,236,228,.2);color:var(--fg);}.hbtn.s:hover{border-color:var(--acc);color:var(--acc);}
+.hmeta{display:flex;gap:40px;margin-top:36px;padding-top:28px;border-top:1px solid var(--bdr);position:relative;z-index:1;}
+.hmi{display:flex;flex-direction:column;gap:5px;}
+.hmik{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);}
+.hmiv{font-size:13px;color:rgba(240,236,228,.55);}
+.hmiv.p{color:var(--acc);}
+
+/* SHARED */
+.sec{padding:96px 52px;border-top:1px solid var(--bdr);}
+.sec-label{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,70px);letter-spacing:.02em;margin-bottom:52px;line-height:.95;}
+.sec-title em{font-style:normal;color:var(--acc);}
+
+/* CONTEXT CARDS */
+.ctxgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.ctxcard{padding:32px 26px;background:var(--card);border:1px solid var(--bdr);position:relative;transition:border-color .3s;overflow:hidden;}
+.ctxcard:hover{border-color:rgba(155,109,255,.3);}
+.ctxnum{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--acc);line-height:1;margin-bottom:14px;}
+.ctxtitle{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:10px;font-weight:700;}
+.ctxdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.4);}
+
+/* BEFORE/AFTER */
+.compare{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;align-items:start;}
+.compbox{padding:32px 28px;border:1px solid var(--bdr);}
+.compbox.before{background:rgba(255,60,46,.03);border-color:rgba(255,60,46,.15);}
+.compbox.after{background:rgba(155,109,255,.04);border-color:rgba(155,109,255,.15);}
+.complbl{font-size:12px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:18px;}
+.compbox.before .complbl{color:rgba(255,60,46,.6);}
+.compbox.after .complbl{color:var(--acc);}
+.compstep{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bdr);font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:300;color:rgba(240,236,228,.55);}
+.compstep:last-child{border-bottom:none;}
+.csn{font-family:'Space Mono',monospace;font-size:12px;color:var(--mid);min-width:24px;}
+.compstep.hi{color:var(--acc);}
+.compstep.hi .csn{color:var(--acc);}
+.compnote{margin-top:16px;font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.7;font-weight:300;}
+.compbox.before .compnote{color:rgba(255,60,46,.5);}
+.compbox.after .compnote{color:rgba(155,109,255,.6);}
+.comparrow{display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--bdr);padding-top:80px;}
+
+/* UX FEATURES */
+.uxgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.uxcard{padding:36px 28px;background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;transition:border-color .3s;}
+.uxcard:hover{border-color:rgba(155,109,255,.3);}
+.uxcard::after{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--acc);transition:height .7s ease;}
+.uxcard.v::after{height:100%;}
+.uxnum{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--acc);line-height:1;margin-bottom:14px;}
+.uxtitle{font-size:14px;letter-spacing:.05em;color:var(--fg);margin-bottom:10px;font-weight:700;}
+.uxdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
+.uxtag{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(155,109,255,.3);color:rgba(155,109,255,.65);}
+
+/* MOCKUP */
+.wfgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:3px;}
+.wfitem{background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;}
+.wfitem::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--acc);}
+.wfbody{aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;position:relative;}
+.wfbody img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.wfph{font-size:12px;letter-spacing:.14em;color:rgba(240,236,228,.1);text-transform:uppercase;}
+.wflbl{position:absolute;bottom:14px;left:18px;font-size:12px;letter-spacing:.2em;color:rgba(155,109,255,.5);text-transform:uppercase;}
+.wfbottom{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.wfb{aspect-ratio:16/9;background:var(--card);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;}
+
+/* AI PROMPTS */
+.apgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.apcard{background:var(--card);padding:30px;border:1px solid var(--bdr);transition:border-color .3s;}
+.apcard:hover{border-color:rgba(155,109,255,.25);}
+.apaitag{display:flex;align-items:center;gap:9px;margin-bottom:16px;}
+.aibadge{width:8px;height:8px;border-radius:50%;}
+.aibadge.gpt{background:#19c37d;}.aibadge.gem{background:#4285f4;}
+.apailbl{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);}
+.aptitle{font-size:13px;letter-spacing:.04em;color:var(--fg);margin-bottom:12px;font-weight:700;}
+.aptext{font-size:13px;line-height:1.7;color:rgba(240,236,228,.42);padding:14px;background:rgba(0,0,0,.3);border-left:2px solid var(--acc);}
+.apresult{margin-top:12px;font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.65;color:rgba(240,236,228,.35);font-weight:300;padding-top:10px;border-top:1px solid var(--bdr);}
+
+/* TABLE */
+.mtable{width:100%;border-collapse:collapse;}
+.mtable th{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);padding:14px 18px;border-bottom:1px solid var(--bdr);text-align:left;}
+.mtable td{font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:14px 18px;border-bottom:1px solid var(--bdr);color:rgba(240,236,228,.5);font-weight:300;}
+.mtable td.b{color:rgba(255,60,46,.55);}
+.mtable td.g{color:rgba(155,109,255,.7);}
+
+.pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);}
+.pnl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
+.pnl:hover{color:var(--acc);}
+.pnc{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
+.rv.v{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.25s}
+</style>
+</head>
+<body>
+<div id="CU"></div><div id="CR"></div><div id="PB"></div>
+<nav>
+  <a class="nb" href="../../../../../../index.html">← Portfolio</a>
+  <span class="nt">OTT UX REDESIGN</span>
+  <span class="nn">05 / 06</span>
+</nav>
+
+<section id="hero">
+  <div class="hbigtext">OTT</div>
+  <div style="position:relative;z-index:1;max-width:720px;">
+    <div class="htag rv">OTT Platform · UX Research · UX Redesign · Prototype</div>
+    <div class="htitle rv d1">OTT<br><em>UX REDESIGN</em></div>
+    <p class="hdesc rv d2">Netflix·Watcha 스타일 OTT 플랫폼의 콘텐츠 탐색 효율 개선 프로젝트. 선택 피로 해소를 위한 Mood 기반 30초 추천 UX 설계.</p>
+    <div class="hbtns rv d3">
+      <a class="hbtn p" href="#">Prototype ↗</a>
+      <a class="hbtn s" href="#">Case Study</a>
+    </div>
+    <div class="hmeta rv d3">
+      <div class="hmi"><span class="hmik">Year</span><span class="hmiv">2025</span></div>
+      <div class="hmi"><span class="hmik">Type</span><span class="hmiv">UX Research + Prototype</span></div>
+      <div class="hmi"><span class="hmik">Role</span><span class="hmiv p">UX Research · Design</span></div>
+      <div class="hmi"><span class="hmik">AI Used</span><span class="hmiv">GPT · Gemini</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— Problem Analysis</div>
+  <div class="sec-title rv d1">기존 OTT의 <em>UX 문제</em></div>
+  <div class="ctxgrid rv d2">
+    <div class="ctxcard"><div class="ctxnum">01</div><div class="ctxtitle">선택 피로 (Choice Overload)</div><div class="ctxdesc">추천 콘텐츠가 너무 많아 오히려 선택하지 못하고 스크롤만 반복하는 현상 발생</div></div>
+    <div class="ctxcard"><div class="ctxnum">02</div><div class="ctxtitle">직관적이지 않은 장르 필터</div><div class="ctxdesc">장르 분류 기준이 모호하고 사용자 취향 기반 탐색보다 카테고리 탐색 중심 구조</div></div>
+    <div class="ctxcard"><div class="ctxnum">03</div><div class="ctxtitle">긴 콘텐츠 선택 시간</div><div class="ctxdesc">콘텐츠 선택까지 평균 3~5분 소요. 모바일에서 탐색 동선이 불필요하게 긴 문제</div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— UX Redesign</div>
+  <div class="sec-title rv d1">정보 구조 <em>개선안</em></div>
+  <div class="compare rv d2">
+    <div class="compbox before">
+      <div class="complbl">기존 구조 (AS-IS)</div>
+      <div class="compstep"><span class="csn">01</span>추천 콘텐츠 (많음)</div>
+      <div class="compstep"><span class="csn">02</span>인기 콘텐츠</div>
+      <div class="compstep"><span class="csn">03</span>장르 카테고리 탐색</div>
+      <div class="compstep"><span class="csn">04</span>계속 시청</div>
+      <div class="compnote">→ 선택 기준 없음<br>→ 사용자 취향 반영 부족</div>
+    </div>
+    <div class="comparrow">→</div>
+    <div class="compbox after">
+      <div class="complbl">개선 구조 (TO-BE)</div>
+      <div class="compstep hi"><span class="csn">01</span>Today for You (맥락 기반)</div>
+      <div class="compstep hi"><span class="csn">02</span>Mood 기반 즉시 추천</div>
+      <div class="compstep hi"><span class="csn">03</span>30초 Quick Pick</div>
+      <div class="compstep"><span class="csn">04</span>장르 빠른 필터</div>
+      <div class="compnote">→ 사용자 맥락 중심<br>→ 취향 기반 즉시 추천</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— Key UX Features</div>
+  <div class="sec-title rv d1">핵심 UX <em>개선안</em></div>
+  <div class="uxgrid rv d2">
+    <div class="uxcard"><div class="uxnum">01</div><div class="uxtitle">Mood 기반 콘텐츠 탐색</div><div class="uxdesc">오늘의 기분(가볍게·긴장감·로맨스·영화 등)을 선택하면 해당 분위기의 콘텐츠를 즉시 추천. 장르 카테고리보다 직관적.</div><span class="uxtag">Mood Filter</span></div>
+    <div class="uxcard"><div class="uxnum">02</div><div class="uxtitle">30초 콘텐츠 선택 UX</div><div class="uxdesc">3개 질문(오늘 기분은? / 시청 시간은? / 장르는?)에 답하면 즉시 추천. 기존 3~5분 탐색을 30초로 단축.</div><span class="uxtag">Quick Pick</span></div>
+    <div class="uxcard"><div class="uxnum">03</div><div class="uxtitle">스크롤 탐색 최소화</div><div class="uxdesc">선택 기반 탐색 구조로 무한 스크롤을 줄이고 원하는 콘텐츠에 빠르게 도달할 수 있는 네비게이션 설계.</div><span class="uxtag">Focused Nav</span></div>
+    <div class="uxcard"><div class="uxnum">04</div><div class="uxtitle">경쟁 서비스 분석 기반</div><div class="uxdesc">Netflix·Watcha·Disney+ 탐색 구조·추천 방식을 Jakob Nielsen UX 원칙 적용하여 비교 분석 후 개선안 도출.</div><span class="uxtag">Competitive Analysis</span></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— Visual Design</div>
+  <div class="sec-title rv d1">화면 &amp; <em>프로토타입</em></div>
+  <div class="wfgrid rv d1">
+    <div class="wfitem"><div class="wfbody"><div class="wfph">Home Screen (Redesign)</div></div><div class="wflbl">01 — Home</div></div>
+    <div class="wfitem"><div class="wfbody"><div class="wfph">Mood Selection</div></div><div class="wflbl">02 — Mood</div></div>
+  </div>
+  <div class="wfbottom rv d2">
+    <div class="wfb"><div class="wfph" style="font-size:12px;">30초 Quick Pick</div></div>
+    <div class="wfb"><div class="wfph" style="font-size:12px;">Personalized Feed</div></div>
+    <div class="wfb"><div class="wfph" style="font-size:12px;">Content Detail</div></div>
+  </div>
+  <p style="margin-top:14px;font-size:12px;letter-spacing:.1em;color:var(--mid);text-align:center;" class="rv d3">★ wfbody 안에 &lt;img&gt; 삽입으로 실제 화면 교체</p>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— AI Collaboration</div>
+  <div class="sec-title rv d1">AI 프롬프트 <em>예시</em></div>
+  <div class="apgrid rv d1">
+    <div class="apcard">
+      <div class="apaitag"><div class="aibadge gpt"></div><span class="apailbl">ChatGPT — UX 분석</span></div>
+      <div class="aptitle">경쟁 서비스 UX 분석</div>
+      <div class="aptext">"Netflix·Watcha·Disney+의 콘텐츠 탐색 UX를 비교 분석해줘. 사용자가 콘텐츠를 발견하는 방식, 필터 기능, 추천 알고리즘 노출 방식 중심으로."</div>
+      <div class="apresult">→ 3개 서비스 탐색 구조 비교표, 공통 문제점 도출, UX 개선 방향 3가지 제안</div>
+    </div>
+    <div class="apcard">
+      <div class="apaitag"><div class="aibadge gem"></div><span class="apailbl">Gemini — UX 설계</span></div>
+      <div class="aptitle">Mood 기반 추천 UX 설계</div>
+      <div class="aptext">"사용자 기분 기반으로 콘텐츠를 추천하는 UI 플로우를 설계해줘. 3개 이하의 선택으로 즉시 추천이 나오는 구조. 모바일 퍼스트."</div>
+      <div class="apresult">→ Mood → Genre → Time 3단계 Quick Pick 플로우, UI 컴포넌트 구조 완성</div>
+    </div>
+    <div class="apcard">
+      <div class="apaitag"><div class="aibadge gpt"></div><span class="apailbl">ChatGPT — 리서치</span></div>
+      <div class="aptitle">사용자 행동 패턴 분석</div>
+      <div class="aptext">"OTT 서비스 이용 시 콘텐츠 선택에 걸리는 시간과 이유에 대한 리서치 데이터를 찾아줘. 선택 피로 관련 UX 리서치 포함."</div>
+      <div class="apresult">→ 평균 탐색 시간 데이터, 선택 피로 관련 연구, 개선 사례 정리</div>
+    </div>
+    <div class="apcard">
+      <div class="apaitag"><div class="aibadge gem"></div><span class="apailbl">Gemini — 검증</span></div>
+      <div class="aptitle">UX 휴리스틱 평가</div>
+      <div class="aptext">"제안된 OTT UX 개선안을 Jakob Nielsen의 10가지 사용성 원칙으로 평가해줘. 문제점과 개선 방향 포함."</div>
+      <div class="apresult">→ 10개 원칙별 평가, 개선 필요 항목 3가지, 최종 UX 구조 검증</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— Expected Results</div>
+  <div class="sec-title rv d1">개선 <em>효과</em></div>
+  <table class="mtable rv d2">
+    <thead><tr><th>항목</th><th>기존</th><th>개선 후</th></tr></thead>
+    <tbody>
+      <tr><td>콘텐츠 선택 시간</td><td class="b">3~5분</td><td class="g">약 30초</td></tr>
+      <tr><td>탐색 스크롤</td><td class="b">많음 (무한 스크롤)</td><td class="g">최소화 (선택 기반)</td></tr>
+      <tr><td>개인화 추천</td><td class="b">알고리즘 중심</td><td class="g">Mood 기반 즉시 추천</td></tr>
+      <tr><td>사용자 만족도</td><td class="b">선택 피로 발생</td><td class="g">직관적 탐색 경험</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="pnav-bottom">
+  <a class="pnl" href="../project-4/">← AI Command Center</a>
+  <span class="pnc">KDH PORTFOLIO</span>
+  <a class="pnl" href="../project-6/">Next: Hospital UX →</a>
+</div>
+<script>
+const CU=document.getElementById('CU'),CR=document.getElementById('CR');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function l(){CU.style.left=mx+'px';CU.style.top=my+'px';rx+=(mx-rx)*.11;ry+=(my-ry)*.11;CR.style.left=rx+'px';CR.style.top=ry+'px';requestAnimationFrame(l);})();
+window.addEventListener('scroll',()=>{const m=document.body.scrollHeight-innerHeight;document.getElementById('PB').style.width=(m>0?scrollY/m*100:0)+'%';},{passive:true});
+const IO=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v');});},{threshold:.1});
+document.querySelectorAll('.rv,.uxcard').forEach(el=>IO.observe(el));
+</script>
+</body>
+</html>
