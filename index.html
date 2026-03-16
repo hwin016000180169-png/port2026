@@ -505,23 +505,10 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
   </div>
 </section>
 
-<!-- ─── S4 CONTACT ─── -->
-<section id="S4">
-  <div class="rv">
-    <div class="ce">— 004 / Contact</div>
-    <div class="ch">LET'S<br><em>WORK</em><br>TOGETHER</div>
-    <p class="cs">새로운 프로젝트, 협업 제안,<br>또는 궁금한 점이 있으시면<br>언제든지 연락해 주세요.</p>
-  </div>
-  <div class="cr rv d2">
-    <a class="clink" href="#"><div class="clinfo"><span class="clk">Email</span><span class="clv">rlaehdgnldls@naver.com</span></div><span class="carrow">↗</span></a>
-    <a class="clink" href="#" target="_blank"><div class="clinfo"><span class="clk">GitHub</span><span class="clv">github.com/hwin016000180169-png</span></div><span class="carrow">↗</span></a>
-    <a class="clink" href="#" target="_blank"><div class="clinfo"><span class="clk">Instagram</span><span class="clv">_rlaehdgnl</span></div><span class="carrow">↗</span></a>
-  </div>
-</section>
 <!-- ─── S5 ARCHIVE ─── -->
 <section id="S5">
   <div class="rv">
-    <div class="ar-eyebrow">— Archive</div>
+    <div class="ar-eyebrow">— 004 / Archive</div>
     <div class="ar-badge"><span class="ar-badge-dot"></span><span class="ar-badge-txt">Before AI · 2025</span></div>
     <div class="ar-title">2025<em>PORT<br>FOLIO</em></div>
     <div class="ar-div"></div>
@@ -551,6 +538,19 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
         </div>
       </div>
     </a>
+  </div>
+</section>
+<!-- ─── S4 CONTACT ─── -->
+<section id="S4">
+  <div class="rv">
+    <div class="ce">— 005 / Contact</div>
+    <div class="ch">LET'S<br><em>WORK</em><br>TOGETHER</div>
+    <p class="cs">새로운 프로젝트, 협업 제안,<br>또는 궁금한 점이 있으시면<br>언제든지 연락해 주세요.</p>
+  </div>
+  <div class="cr rv d2">
+    <a class="clink" href="#"><div class="clinfo"><span class="clk">Email</span><span class="clv">rlaehdgnldls@naver.com</span></div><span class="carrow">↗</span></a>
+    <a class="clink" href="#" target="_blank"><div class="clinfo"><span class="clk">GitHub</span><span class="clv">github.com/hwin016000180169-png</span></div><span class="carrow">↗</span></a>
+    <a class="clink" href="#" target="_blank"><div class="clinfo"><span class="clk">Instagram</span><span class="clv">_rlaehdgnl</span></div><span class="carrow">↗</span></a>
   </div>
 </section>
 
@@ -683,7 +683,7 @@ window.addEventListener('scroll',()=>{
   document.getElementById('PB').style.width=(max>0?scrollY/max*100:0)+'%';
   /* section index */
   const IDX=document.getElementById('SIDX');
-  const secs=[{id:'S1',t:'001 / INTRO'},{id:'S2',t:'002 / ABOUT'},{id:'S3',t:'003 / WORKS'},{id:'S4',t:'004 / CONTACT'},{id:'S5',t:'005 / ARCHIVE'}];
+  const secs=[{id:'S1',t:'001 / INTRO'},{id:'S2',t:'002 / ABOUT'},{id:'S3',t:'003 / WORKS'},{id:'S5',t:'004 / ARCHIVE'},{id:'S4',t:'005 / CONTACT'}];
   let cur='001 / INTRO';
   secs.forEach(s=>{const el=document.getElementById(s.id);if(el&&el.getBoundingClientRect().top<=innerHeight*.55)cur=s.t;});
   IDX.textContent=cur.replace('/','\u00a0/\u00a0');
