@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Command Center — Live Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#000;--fg:#e0ffe0;--acc:#00ff41;
+  --bdr:#0d1f0d;--mid:#2a5a2a;--card:#040d04;
+  --gpt:#19c37d;--cla:#d97b36;--gem:#4285f4;
+}
+html,body{height:100%;overflow:hidden;}
+body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;font-size:12px;line-height:1.5;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent 0,transparent 2px,rgba(0,255,65,.006) 2px,rgba(0,255,65,.006) 4px);pointer-events:none;z-index:999;}
+
+/* LAYOUT */
+.app{display:grid;grid-template-rows:42px 1fr;grid-template-columns:190px 1fr 268px;height:100vh;}
+
+/* TOPBAR */
+.topbar{grid-column:1/-1;display:flex;align-items:center;padding:0 22px;background:#000;border-bottom:1px solid var(--bdr);gap:18px;z-index:100;}
+.tb-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.18em;color:var(--acc);text-shadow:0 0 18px rgba(0,255,65,.4);}
+.tb-sep{color:var(--bdr);}
+.tb-title{font-size:10px;letter-spacing:.22em;color:var(--mid);text-transform:uppercase;}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:16px;}
+.tb-stat{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--mid);}
+.tb-dot{width:5px;height:5px;border-radius:50%;background:var(--acc);animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.back-btn{font-size:10px;letter-spacing:.16em;color:var(--mid);text-decoration:none;transition:color .2s;border:1px solid var(--bdr);padding:5px 12px;}
+.back-btn:hover{color:var(--acc);border-color:var(--acc);}
+
+/* SIDEBAR */
+.sidebar{background:var(--card);border-right:1px solid var(--bdr);display:flex;flex-direction:column;}
+.sb-header{padding:16px;border-bottom:1px solid var(--bdr);}
+.sb-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);}
+.sb-nav{display:flex;flex-direction:column;padding:6px 0;flex:1;}
+.sb-item{display:flex;align-items:center;gap:10px;padding:11px 16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);cursor:pointer;transition:all .2s;border-left:2px solid transparent;}
+.sb-item:hover{color:var(--fg);background:rgba(0,255,65,.03);}
+.sb-item.active{color:var(--acc);border-left-color:var(--acc);background:rgba(0,255,65,.05);}
+.sb-ico{font-size:14px;width:18px;text-align:center;}
+.sb-footer{padding:12px 16px;border-top:1px solid var(--bdr);}
+.sb-version{font-size:10px;color:rgba(42,90,42,.5);letter-spacing:.1em;}
+
+/* MAIN */
+.main{overflow:hidden;display:flex;flex-direction:column;background:#000;}
+.view{display:none;flex-direction:column;height:100%;overflow-y:auto;padding:20px;gap:12px;}
+.view.active{display:flex;}
+
+/* RIGHT PANEL */
+.rightpanel{background:var(--card);border-left:1px solid var(--bdr);display:flex;flex-direction:column;}
+.rp-header{padding:14px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;}
+.rp-title{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);}
+.rp-count{font-size:11px;color:var(--acc);}
+.agent-list{display:flex;flex-direction:column;gap:1px;padding:1px;}
+.agent-card{background:var(--bg);border:1px solid var(--bdr);padding:14px 16px;position:relative;overflow:hidden;transition:border-color .3s;}
+.agent-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.agent-card.gpt::before{background:var(--gpt);}
+.agent-card.cla::before{background:var(--cla);}
+.agent-card.gem::before{background:var(--gem);}
+.ac-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.ac-name{font-size:13px;font-weight:700;letter-spacing:.08em;}
+.ac-name.gpt{color:var(--gpt);}
+.ac-name.cla{color:var(--cla);}
+.ac-name.gem{color:var(--gem);}
+.ac-status{display:flex;align-items:center;gap:5px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);}
+.ac-dot{width:6px;height:6px;border-radius:50%;background:var(--bdr);}
+.ac-dot.idle{background:var(--mid);}
+.ac-dot.working{animation:blink 1s ease-in-out infinite;}
+.ac-dot.working.gpt{background:var(--gpt);}
+.ac-dot.working.cla{background:var(--cla);}
+.ac-dot.working.gem{background:var(--gem);}
+.ac-dot.done{background:var(--acc);}
+.ac-role{font-size:10px;color:rgba(224,255,224,.25);letter-spacing:.08em;margin-bottom:8px;}
+.ac-task{font-size:11px;color:rgba(224,255,224,.45);line-height:1.4;min-height:28px;font-family:'Noto Sans KR',sans-serif;font-weight:300;}
+.ac-bar-wrap{margin-top:10px;height:2px;background:var(--bdr);}
+.ac-bar{height:100%;width:0%;transition:width .3s linear;}
+.ac-bar.gpt{background:var(--gpt);}
+.ac-bar.cla{background:var(--cla);}
+.ac-bar.gem{background:var(--gem);}
+.ac-pct{font-size:10px;color:var(--mid);margin-top:5px;}
+.rp-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--bdr);}
+.rp-total{display:flex;justify-content:space-between;font-size:10px;color:var(--mid);margin-bottom:6px;}
+.rp-mini-bar{height:2px;background:var(--bdr);}
+.rp-mini-fill{height:100%;background:var(--acc);width:0%;transition:width .5s;box-shadow:0 0 6px rgba(0,255,65,.4);}
+
+/* SHARED */
+.sec-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);padding-bottom:8px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:8px;}
+.sec-label::before{content:'//';color:var(--bdr);}
+
+/* DASHBOARD */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.stat-box{background:var(--card);border:1px solid var(--bdr);padding:16px;transition:border-color .3s;}
+.stat-box:hover{border-color:rgba(0,255,65,.2);}
+.stat-val{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--acc);line-height:1;}
+.stat-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-top:4px;}
+.task-feed{display:flex;flex-direction:column;gap:1px;}
+.task-item{display:grid;grid-template-columns:88px 1fr 90px 80px;align-items:center;gap:12px;padding:11px 14px;background:var(--card);border:1px solid var(--bdr);cursor:pointer;transition:all .2s;}
+.task-item:hover{border-color:rgba(0,255,65,.2);background:rgba(0,255,65,.02);}
+.ti-id{font-size:11px;color:var(--mid);}
+.ti-name{font-size:12px;color:var(--fg);font-family:'Noto Sans KR',sans-serif;font-weight:400;}
+.ti-time{font-size:11px;color:var(--mid);text-align:right;}
+.ti-badge{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border:1px solid;text-align:center;}
+.ti-badge.done{color:var(--acc);border-color:rgba(0,255,65,.3);}
+.ti-badge.proc{color:var(--gpt);border-color:rgba(25,195,125,.3);}
+.ti-badge.pend{color:var(--mid);border-color:var(--bdr);}
+.quick-row{display:flex;gap:6px;}
+.qbtn{padding:12px 22px;border:1px solid var(--bdr);background:transparent;color:var(--mid);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.qbtn:hover{border-color:rgba(0,255,65,.3);color:var(--acc);}
+.qbtn.primary{border-color:var(--acc);color:var(--acc);background:rgba(0,255,65,.05);}
+.qbtn.primary:hover{background:rgba(0,255,65,.12);}
+
+/* TASK INPUT */
+.task-form{display:flex;flex-direction:column;gap:14px;max-width:680px;}
+.form-label{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
+.type-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.type-btn{padding:13px 8px;border:1px solid var(--bdr);background:transparent;color:var(--mid);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;cursor:pointer;transition:all .2s;text-align:center;}
+.type-btn:hover{border-color:rgba(0,255,65,.3);color:var(--fg);}
+.type-btn.selected{border-color:var(--acc);color:var(--acc);background:rgba(0,255,65,.06);}
+.type-ico{font-size:20px;display:block;margin-bottom:6px;}
+.task-ta{width:100%;min-height:110px;background:var(--card);border:1px solid var(--bdr);color:var(--fg);font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:300;line-height:1.7;padding:14px 16px;resize:vertical;outline:none;transition:border-color .2s;}
+.task-ta:focus{border-color:rgba(0,255,65,.35);}
+.task-ta::placeholder{color:rgba(224,255,224,.2);}
+.ai-routing{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.ai-tog{display:flex;align-items:center;gap:10px;padding:14px 16px;border:1px solid var(--bdr);cursor:pointer;transition:all .2s;user-select:none;}
+.ai-tog.on.gpt{border-color:rgba(25,195,125,.4);background:rgba(25,195,125,.04);}
+.ai-tog.on.cla{border-color:rgba(217,123,54,.4);background:rgba(217,123,54,.04);}
+.ai-tog.on.gem{border-color:rgba(66,133,244,.4);background:rgba(66,133,244,.04);}
+.ai-chk{width:14px;height:14px;border:1px solid var(--mid);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all .2s;}
+.ai-tog.on.gpt .ai-chk{border-color:var(--gpt);color:var(--gpt);}
+.ai-tog.on.cla .ai-chk{border-color:var(--cla);color:var(--cla);}
+.ai-tog.on.gem .ai-chk{border-color:var(--gem);color:var(--gem);}
+.ai-info{display:flex;flex-direction:column;gap:2px;}
+.ai-nm{font-size:13px;font-weight:700;}
+.ai-nm.gpt{color:var(--gpt);}
+.ai-nm.cla{color:var(--cla);}
+.ai-nm.gem{color:var(--gem);}
+.ai-rl{font-size:10px;color:rgba(224,255,224,.28);letter-spacing:.08em;}
+.pipe-row{display:flex;gap:2px;}
+.pipe-opt{padding:10px 20px;border:1px solid var(--bdr);background:transparent;color:var(--mid);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;cursor:pointer;transition:all .2s;}
+.pipe-opt.selected{border-color:rgba(0,255,65,.4);color:var(--acc);background:rgba(0,255,65,.04);}
+.run-btn{padding:15px;border:1px solid var(--acc);background:rgba(0,255,65,.06);color:var(--acc);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.run-btn:hover{background:rgba(0,255,65,.14);box-shadow:0 0 28px rgba(0,255,65,.1);}
+
+/* PROCESSING */
+.proc-hd{display:flex;align-items:center;justify-content:space-between;}
+.proc-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
+.proc-pct{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--acc);}
+.overall-bar{height:3px;background:var(--bdr);}
+.overall-fill{height:100%;background:var(--acc);width:0%;transition:width .4s;box-shadow:0 0 8px rgba(0,255,65,.5);}
+.proc-agents{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.proc-card{background:var(--card);border:1px solid var(--bdr);padding:16px;position:relative;overflow:hidden;transition:border-color .5s;}
+.proc-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.proc-card.gpt::after{background:var(--gpt);}
+.proc-card.cla::after{background:var(--cla);}
+.proc-card.gem::after{background:var(--gem);}
+.proc-card.running{border-color:rgba(0,255,65,.15);}
+.proc-card.done.gpt{border-color:rgba(25,195,125,.4);}
+.proc-card.done.cla{border-color:rgba(217,123,54,.4);}
+.proc-card.done.gem{border-color:rgba(66,133,244,.4);}
+.pa-chk{position:absolute;top:12px;right:14px;font-size:16px;opacity:0;transition:opacity .3s;}
+.pa-chk.show{opacity:1;}
+.pa-nm{font-size:13px;font-weight:700;margin-bottom:4px;}
+.pa-nm.gpt{color:var(--gpt);}
+.pa-nm.cla{color:var(--cla);}
+.pa-nm.gem{color:var(--gem);}
+.pa-st{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
+.pa-log{font-size:11px;color:rgba(224,255,224,.38);font-family:'Noto Sans KR',sans-serif;font-weight:300;min-height:44px;line-height:1.6;}
+.pa-bar{height:2px;background:var(--bdr);margin-top:10px;}
+.pa-fill{height:100%;width:0%;transition:width .3s linear;}
+.pa-fill.gpt{background:var(--gpt);}
+.pa-fill.cla{background:var(--cla);}
+.pa-fill.gem{background:var(--gem);}
+.log-stream{background:var(--card);border:1px solid var(--bdr);padding:14px;height:130px;overflow-y:auto;font-size:11px;line-height:1.85;}
+.log-line{color:rgba(224,255,224,.3);}
+.log-line.hi{color:var(--acc);}
+
+/* OUTPUT */
+.out-hd{display:flex;align-items:center;justify-content:space-between;}
+.out-actions{display:flex;gap:6px;}
+.out-btn{padding:8px 14px;border:1px solid var(--bdr);background:transparent;color:var(--mid);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;cursor:pointer;transition:all .2s;}
+.out-btn:hover{border-color:rgba(0,255,65,.3);color:var(--acc);}
+.out-btn.primary{border-color:var(--acc);color:var(--acc);}
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.result-card{background:var(--card);border:1px solid var(--bdr);display:flex;flex-direction:column;position:relative;overflow:hidden;}
+.result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.result-card.gpt::before{background:var(--gpt);}
+.result-card.cla::before{background:var(--cla);}
+.result-card.gem::before{background:var(--gem);}
+.rc-hd{padding:11px 14px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;}
+.rc-nm{font-size:13px;font-weight:700;}
+.rc-nm.gpt{color:var(--gpt);}
+.rc-nm.cla{color:var(--cla);}
+.rc-nm.gem{color:var(--gem);}
+.rc-meta{font-size:10px;color:var(--mid);}
+.rc-body{padding:14px;flex:1;overflow-y:auto;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:300;color:rgba(224,255,224,.68);line-height:1.7;}
+.rc-ft{padding:9px 14px;border-top:1px solid var(--bdr);display:flex;gap:5px;}
+.rc-tag{font-size:10px;letter-spacing:.1em;color:var(--mid);padding:2px 7px;border:1px solid var(--bdr);}
+.synthesis{background:var(--card);border:1px solid rgba(0,255,65,.2);padding:18px;}
+.syn-lbl{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--acc);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.syn-lbl::before{content:'//';color:rgba(0,255,65,.3);}
+.syn-text{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(224,255,224,.6);line-height:1.7;font-weight:300;}
+
+/* HISTORY */
+.hist-filters{display:flex;gap:2px;}
+.hf{padding:8px 14px;border:1px solid var(--bdr);background:transparent;color:var(--mid);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;cursor:pointer;transition:all .2s;}
+.hf.active{border-color:rgba(0,255,65,.3);color:var(--acc);}
+.hist-table{display:flex;flex-direction:column;gap:1px;}
+.ht-row{display:grid;grid-template-columns:96px 1fr 100px 80px 70px;align-items:center;gap:12px;padding:11px 14px;background:var(--card);border:1px solid var(--bdr);cursor:pointer;transition:border-color .2s;}
+.ht-row:hover{border-color:rgba(0,255,65,.2);}
+.ht-id{font-size:11px;color:var(--mid);}
+.ht-name{font-size:12px;font-family:'Noto Sans KR',sans-serif;}
+.ht-agents{display:flex;gap:3px;align-items:center;}
+.ht-dot{width:8px;height:8px;border-radius:50%;}
+.ht-time{font-size:11px;color:var(--mid);text-align:right;}
+.ht-st{font-size:10px;padding:3px 7px;border:1px solid;text-align:center;}
+.ht-st.done{color:var(--acc);border-color:rgba(0,255,65,.3);}
+
+/* SETTINGS */
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.setting-block{background:var(--card);border:1px solid var(--bdr);padding:20px;}
+.sblk-nm{font-size:13px;font-weight:700;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bdr);}
+.sblk-nm.gpt{color:var(--gpt);}
+.sblk-nm.cla{color:var(--cla);}
+.sblk-nm.gem{color:var(--gem);}
+.sblk-nm.sys{color:var(--acc);}
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bdr);font-size:11px;color:rgba(224,255,224,.45);}
+.setting-row:last-child{border-bottom:none;}
+.sv{color:var(--fg);}
+.api-masked{color:var(--mid);letter-spacing:.06em;font-size:11px;}
+.toggle{width:36px;height:18px;background:var(--bdr);border:1px solid var(--mid);position:relative;cursor:pointer;transition:all .25s;flex-shrink:0;}
+.toggle.on{background:rgba(0,255,65,.15);border-color:var(--acc);}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:12px;height:12px;background:var(--mid);transition:all .25s;}
+.toggle.on::after{left:20px;background:var(--acc);}
+
+/* scrollbar */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--bdr);}
+::-webkit-scrollbar-thumb:hover{background:var(--mid);}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span class="tb-logo">AI⌘CMD</span>
+    <span class="tb-sep">|</span>
+    <span class="tb-title">Command Center v1.0 — Prototype</span>
+    <div class="tb-right">
+      <div class="tb-stat"><div class="tb-dot"></div>System Online</div>
+      <div class="tb-stat" id="clock">00:00:00</div>
+      <a class="back-btn" href="index.html">← Case Study</a>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sb-header"><div class="sb-label">Navigation</div></div>
+    <nav class="sb-nav">
+      <div class="sb-item active" data-view="dashboard"><span class="sb-ico">◈</span>Dashboard</div>
+      <div class="sb-item" data-view="task-input"><span class="sb-ico">✦</span>New Task</div>
+      <div class="sb-item" data-view="history"><span class="sb-ico">≡</span>History</div>
+      <div class="sb-item" data-view="settings"><span class="sb-ico">⚙</span>Settings</div>
+    </nav>
+    <div class="sb-footer"><div class="sb-version">v1.0.0 // PROTOTYPE</div></div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div class="view active" id="view-dashboard">
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-val" id="stat-total">24</div><div class="stat-lbl">Total Tasks</div></div>
+        <div class="stat-box"><div class="stat-val" id="stat-done">21</div><div class="stat-lbl">Completed</div></div>
+        <div class="stat-box"><div class="stat-val">4.2s</div><div class="stat-lbl">Avg Time</div></div>
+        <div class="stat-box"><div class="stat-val" id="stat-active" style="color:var(--gpt)">0</div><div class="stat-lbl">Active Now</div></div>
+      </div>
+      <div class="sec-label">Recent Tasks</div>
+      <div class="task-feed" id="task-feed">
+        <div class="task-item"><span class="ti-id">#T-024</span><span class="ti-name">소셜미디어 카피 제작 요청</span><span class="ti-time">방금 전</span><span class="ti-badge done">Done</span></div>
+        <div class="task-item"><span class="ti-id">#T-023</span><span class="ti-name">React 컴포넌트 코드 리뷰</span><span class="ti-time">12분 전</span><span class="ti-badge done">Done</span></div>
+        <div class="task-item"><span class="ti-id">#T-022</span><span class="ti-name">경쟁사 마케팅 전략 분석</span><span class="ti-time">1시간 전</span><span class="ti-badge done">Done</span></div>
+        <div class="task-item"><span class="ti-id">#T-021</span><span class="ti-name">신제품 기획서 초안 작성</span><span class="ti-time">3시간 전</span><span class="ti-badge done">Done</span></div>
+        <div class="task-item"><span class="ti-id">#T-020</span><span class="ti-name">사용자 리서치 데이터 분석</span><span class="ti-time">어제</span><span class="ti-badge done">Done</span></div>
+      </div>
+      <div class="quick-row">
+        <button class="qbtn primary" onclick="switchView('task-input')">✦ New Task</button>
+        <button class="qbtn" onclick="switchView('history')">≡ History</button>
+      </div>
+    </div>
+
+    <!-- TASK INPUT -->
+    <div class="view" id="view-task-input">
+      <div class="sec-label">New Task</div>
+      <div class="task-form">
+        <div>
+          <div class="form-label">Task Type</div>
+          <div class="type-grid">
+            <div class="type-btn selected" data-type="content"><span class="type-ico">✍</span>Content</div>
+            <div class="type-btn" data-type="code"><span class="type-ico">⌨</span>Code</div>
+            <div class="type-btn" data-type="analysis"><span class="type-ico">◎</span>Analysis</div>
+            <div class="type-btn" data-type="research"><span class="type-ico">◈</span>Research</div>
+          </div>
+        </div>
+        <div>
+          <div class="form-label">Prompt</div>
+          <textarea class="task-ta" id="task-prompt" placeholder="작업 내용을 입력하세요. 구체적일수록 더 정확한 결과를 얻을 수 있습니다.">소셜미디어용 신제품 출시 콘텐츠 초안을 작성해줘. 감성적이고 임팩트 있는 카피 3가지와 각 카피에 맞는 이미지 방향을 제안해줘.</textarea>
+        </div>
+        <div>
+          <div class="form-label">AI Routing</div>
+          <div class="ai-routing">
+            <div class="ai-tog on gpt" data-ai="gpt">
+              <div class="ai-chk">✓</div>
+              <div class="ai-info"><span class="ai-nm gpt">ChatGPT</span><span class="ai-rl">Primary Worker</span></div>
+            </div>
+            <div class="ai-tog on cla" data-ai="cla">
+              <div class="ai-chk">✓</div>
+              <div class="ai-info"><span class="ai-nm cla">Claude</span><span class="ai-rl">Quality Control</span></div>
+            </div>
+            <div class="ai-tog on gem" data-ai="gem">
+              <div class="ai-chk">✓</div>
+              <div class="ai-info"><span class="ai-nm gem">Gemini</span><span class="ai-rl">Data Enhancer</span></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="form-label">Pipeline Mode</div>
+          <div class="pipe-row">
+            <div class="pipe-opt selected">Parallel (Fastest)</div>
+            <div class="pipe-opt">Sequential (Verified)</div>
+          </div>
+        </div>
+        <button class="run-btn" onclick="runTask()">▶ EXECUTE TASK</button>
+      </div>
+    </div>
+
+    <!-- PROCESSING -->
+    <div class="view" id="view-processing">
+      <div class="proc-hd">
+        <div class="proc-label">// Processing Task #T-025</div>
+        <div class="proc-pct" id="proc-pct">0%</div>
+      </div>
+      <div class="overall-bar"><div class="overall-fill" id="overall-fill"></div></div>
+      <div class="proc-agents">
+        <div class="proc-card gpt" id="pa-gpt">
+          <div class="pa-chk" id="chk-gpt">✓</div>
+          <div class="pa-nm gpt">ChatGPT</div>
+          <div class="pa-st" id="st-gpt">Initializing...</div>
+          <div class="pa-log" id="log-gpt">대기 중...</div>
+          <div class="pa-bar"><div class="pa-fill gpt" id="fill-gpt"></div></div>
+        </div>
+        <div class="proc-card cla" id="pa-cla">
+          <div class="pa-chk" id="chk-cla">✓</div>
+          <div class="pa-nm cla">Claude</div>
+          <div class="pa-st" id="st-cla">Initializing...</div>
+          <div class="pa-log" id="log-cla">대기 중...</div>
+          <div class="pa-bar"><div class="pa-fill cla" id="fill-cla"></div></div>
+        </div>
+        <div class="proc-card gem" id="pa-gem">
+          <div class="pa-chk" id="chk-gem">✓</div>
+          <div class="pa-nm gem">Gemini</div>
+          <div class="pa-st" id="st-gem">Initializing...</div>
+          <div class="pa-log" id="log-gem">대기 중...</div>
+          <div class="pa-bar"><div class="pa-fill gem" id="fill-gem"></div></div>
+        </div>
+      </div>
+      <div class="sec-label">System Log</div>
+      <div class="log-stream" id="log-stream"></div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="view" id="view-output">
+      <div class="out-hd">
+        <div class="sec-label" style="border:none;margin-bottom:0"># Task #T-025 — Results</div>
+        <div class="out-actions">
+          <button class="out-btn">↓ Export</button>
+          <button class="out-btn primary" onclick="switchView('task-input');resetTask()">+ New Task</button>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="result-card gpt">
+          <div class="rc-hd"><span class="rc-nm gpt">ChatGPT</span><span class="rc-meta">2.3s · 387 tokens</span></div>
+          <div class="rc-body">
+            <strong style="color:var(--gpt);font-size:11px;letter-spacing:.1em">COPY 01 — 감성 스토리텔링</strong><br><br>
+            "당신의 하루가 달라집니다."<br>
+            아침을 여는 순간부터, 오늘이 특별해지는 이유.<br>
+            새로운 시작을 위한 선택.<br><br>
+            📷 이미지 방향: 골든아워의 따뜻한 빛, 테이블 위 제품 클로즈업<br><br>
+            <strong style="color:var(--gpt);font-size:11px;letter-spacing:.1em">COPY 02 — 임팩트 퍼스트</strong><br><br>
+            "기다렸던 그것, 드디어 출시."<br>
+            더 이상 타협하지 마세요.<br>
+            완벽한 선택의 순간이 왔습니다.<br><br>
+            📷 이미지 방향: 미니멀 화이트 배경, 제품 단독 컷
+          </div>
+          <div class="rc-ft"><span class="rc-tag">Content</span><span class="rc-tag">Social</span><span class="rc-tag">GPT-4o</span></div>
+        </div>
+        <div class="result-card cla">
+          <div class="rc-hd"><span class="rc-nm cla">Claude</span><span class="rc-meta">3.1s · 412 tokens</span></div>
+          <div class="rc-body">
+            <strong style="color:var(--cla);font-size:11px;letter-spacing:.1em">COPY 01 — 브랜드 철학</strong><br><br>
+            "완벽함을 만드는 단 하나의 선택."<br>
+            우리는 오랫동안 이 순간을 준비했습니다.<br>
+            이제 당신 차례입니다.<br><br>
+            📷 이미지 방향: 장인의 손과 제품 디테일, 텍스처 강조<br><br>
+            <strong style="color:var(--cla);font-size:11px;letter-spacing:.1em">COPY 02 — 공감 유도</strong><br><br>
+            "모두가 원했던, 아무도 없었던."<br>
+            시장의 빈자리를 채우는 제품.<br>
+            당신의 니즈를 정확히 알고 있습니다.<br><br>
+            📷 이미지 방향: 라이프스타일 컷, 실제 사용 장면
+          </div>
+          <div class="rc-ft"><span class="rc-tag">Content</span><span class="rc-tag">Brand</span><span class="rc-tag">Claude 3.5</span></div>
+        </div>
+        <div class="result-card gem">
+          <div class="rc-hd"><span class="rc-nm gem">Gemini</span><span class="rc-meta">2.8s · 356 tokens</span></div>
+          <div class="rc-body">
+            <strong style="color:var(--gem);font-size:11px;letter-spacing:.1em">COPY 01 — 트렌드 기반</strong><br><br>
+            "2025년 가장 핫한 선택."<br>
+            SNS를 장악할 그 제품,<br>
+            지금 바로 경험하세요.<br><br>
+            📷 이미지 방향: 비비드 컬러 그라데이션, Z세대 감성<br><br>
+            <strong style="color:var(--gem);font-size:11px;letter-spacing:.1em">COPY 02 — 데이터 드리븐</strong><br><br>
+            "사용자 94%가 추천하는 단 하나."<br>
+            검증된 품질, 압도적인 만족도.<br>
+            숫자가 증명합니다.<br><br>
+            📷 이미지 방향: 인포그래픽 + 제품 합성, 신뢰도 강조
+          </div>
+          <div class="rc-ft"><span class="rc-tag">Content</span><span class="rc-tag">Trend</span><span class="rc-tag">Gemini Pro</span></div>
+        </div>
+      </div>
+      <div class="synthesis">
+        <div class="syn-lbl">AI Synthesis — Final Recommendation</div>
+        <div class="syn-text">3개 AI 결과 종합: <strong style="color:#e0ffe0">감성 스토리텔링(GPT)</strong> + <strong style="color:#e0ffe0">브랜드 철학(Claude)</strong> + <strong style="color:#e0ffe0">트렌드 데이터(Gemini)</strong> 조합이 최적. 타깃 오디언스와 플랫폼에 따라 카피를 선택적으로 활용하고, 비주얼은 골든아워 라이프스타일 컷을 기본으로 설정 권장.</div>
+      </div>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="view" id="view-history">
+      <div class="sec-label">Task History</div>
+      <div class="hist-filters">
+        <div class="hf active">All</div>
+        <div class="hf">Content</div>
+        <div class="hf">Code</div>
+        <div class="hf">Analysis</div>
+      </div>
+      <div class="hist-table">
+        <div class="ht-row"><span class="ht-id">#T-025</span><span class="ht-name">소셜미디어 카피 제작 요청</span><div class="ht-agents"><div class="ht-dot" style="background:var(--gpt)"></div><div class="ht-dot" style="background:var(--cla)"></div><div class="ht-dot" style="background:var(--gem)"></div></div><span class="ht-time">방금 전</span><span class="ht-st done">Done</span></div>
+        <div class="ht-row"><span class="ht-id">#T-024</span><span class="ht-name">React 컴포넌트 코드 리뷰</span><div class="ht-agents"><div class="ht-dot" style="background:var(--cla)"></div></div><span class="ht-time">12분 전</span><span class="ht-st done">Done</span></div>
+        <div class="ht-row"><span class="ht-id">#T-023</span><span class="ht-name">경쟁사 마케팅 전략 분석</span><div class="ht-agents"><div class="ht-dot" style="background:var(--gpt)"></div><div class="ht-dot" style="background:var(--gem)"></div></div><span class="ht-time">1시간 전</span><span class="ht-st done">Done</span></div>
+        <div class="ht-row"><span class="ht-id">#T-022</span><span class="ht-name">신제품 기획서 초안 작성</span><div class="ht-agents"><div class="ht-dot" style="background:var(--gpt)"></div><div class="ht-dot" style="background:var(--cla)"></div></div><span class="ht-time">3시간 전</span><span class="ht-st done">Done</span></div>
+        <div class="ht-row"><span class="ht-id">#T-021</span><span class="ht-name">사용자 리서치 데이터 분석</span><div class="ht-agents"><div class="ht-dot" style="background:var(--gem)"></div></div><span class="ht-time">어제</span><span class="ht-st done">Done</span></div>
+        <div class="ht-row"><span class="ht-id">#T-020</span><span class="ht-name">이메일 뉴스레터 콘텐츠</span><div class="ht-agents"><div class="ht-dot" style="background:var(--gpt)"></div></div><span class="ht-time">어제</span><span class="ht-st done">Done</span></div>
+        <div class="ht-row"><span class="ht-id">#T-019</span><span class="ht-name">Python 데이터 분석 스크립트</span><div class="ht-agents"><div class="ht-dot" style="background:var(--cla)"></div><div class="ht-dot" style="background:var(--gem)"></div></div><span class="ht-time">2일 전</span><span class="ht-st done">Done</span></div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="view" id="view-settings">
+      <div class="sec-label">System Settings</div>
+      <div class="settings-grid">
+        <div class="setting-block">
+          <div class="sblk-nm gpt">ChatGPT</div>
+          <div class="setting-row"><span>API Key</span><span class="api-masked">sk-••••••••••••••••••••</span></div>
+          <div class="setting-row"><span>Model</span><span class="sv">GPT-4o</span></div>
+          <div class="setting-row"><span>Status</span><span style="color:var(--acc)">● Connected</span></div>
+          <div class="setting-row"><span>Max Tokens</span><span class="sv">4096</span></div>
+        </div>
+        <div class="setting-block">
+          <div class="sblk-nm cla">Claude</div>
+          <div class="setting-row"><span>API Key</span><span class="api-masked">sk-ant-••••••••••••••</span></div>
+          <div class="setting-row"><span>Model</span><span class="sv">Claude 3.5 Sonnet</span></div>
+          <div class="setting-row"><span>Status</span><span style="color:var(--acc)">● Connected</span></div>
+          <div class="setting-row"><span>Max Tokens</span><span class="sv">8192</span></div>
+        </div>
+        <div class="setting-block">
+          <div class="sblk-nm gem">Gemini</div>
+          <div class="setting-row"><span>API Key</span><span class="api-masked">AIzaS••••••••••••••</span></div>
+          <div class="setting-row"><span>Model</span><span class="sv">Gemini 1.5 Pro</span></div>
+          <div class="setting-row"><span>Status</span><span style="color:var(--acc)">● Connected</span></div>
+          <div class="setting-row"><span>Max Tokens</span><span class="sv">2048</span></div>
+        </div>
+        <div class="setting-block">
+          <div class="sblk-nm sys">System</div>
+          <div class="setting-row"><span>Parallel Mode</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="setting-row"><span>Auto-Summary</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="setting-row"><span>History Save</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="setting-row"><span>Theme</span><span class="sv">Terminal Dark</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="rightpanel">
+    <div class="rp-header">
+      <span class="rp-title">AI Agents</span>
+      <span class="rp-count" id="rp-active">0 active</span>
+    </div>
+    <div class="agent-list">
+      <div class="agent-card gpt">
+        <div class="ac-top">
+          <span class="ac-name gpt">ChatGPT</span>
+          <div class="ac-status"><div class="ac-dot idle" id="dot-gpt"></div><span id="status-gpt">Idle</span></div>
+        </div>
+        <div class="ac-role">Primary Worker · GPT-4o</div>
+        <div class="ac-task" id="task-gpt">대기 중</div>
+        <div class="ac-bar-wrap"><div class="ac-bar gpt" id="bar-gpt"></div></div>
+        <div class="ac-pct" id="pct-gpt">—</div>
+      </div>
+      <div class="agent-card cla">
+        <div class="ac-top">
+          <span class="ac-name cla">Claude</span>
+          <div class="ac-status"><div class="ac-dot idle" id="dot-cla"></div><span id="status-cla">Idle</span></div>
+        </div>
+        <div class="ac-role">Quality Control · Claude 3.5</div>
+        <div class="ac-task" id="task-cla">대기 중</div>
+        <div class="ac-bar-wrap"><div class="ac-bar cla" id="bar-cla"></div></div>
+        <div class="ac-pct" id="pct-cla">—</div>
+      </div>
+      <div class="agent-card gem">
+        <div class="ac-top">
+          <span class="ac-name gem">Gemini</span>
+          <div class="ac-status"><div class="ac-dot idle" id="dot-gem"></div><span id="status-gem">Idle</span></div>
+        </div>
+        <div class="ac-role">Data Enhancer · Gemini Pro</div>
+        <div class="ac-task" id="task-gem">대기 중</div>
+        <div class="ac-bar-wrap"><div class="ac-bar gem" id="bar-gem"></div></div>
+        <div class="ac-pct" id="pct-gem">—</div>
+      </div>
+    </div>
+    <div class="rp-footer">
+      <div class="rp-total"><span>Pipeline</span><span id="rp-pct">—</span></div>
+      <div class="rp-mini-bar"><div class="rp-mini-fill" id="rp-fill"></div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Clock
+function tick(){const n=new Date();document.getElementById('clock').textContent=n.toTimeString().slice(0,8);}
+tick();setInterval(tick,1000);
+
+// View switching
+const navMap={'dashboard':'dashboard','task-input':'task-input','history':'history','settings':'settings'};
+function switchView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
+  if(navMap[id]){
+    const el=document.querySelector(`[data-view="${navMap[id]}"]`);
+    if(el)el.classList.add('active');
+  }
+}
+document.querySelectorAll('.sb-item').forEach(item=>{
+  item.addEventListener('click',()=>switchView(item.dataset.view));
+});
+
+// Type selector
+document.querySelectorAll('.type-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('selected'));
+    btn.classList.add('selected');
+  });
+});
+
+// Pipeline selector
+document.querySelectorAll('.pipe-opt').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    document.querySelectorAll('.pipe-opt').forEach(o=>o.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
+});
+
+// AI toggles
+document.querySelectorAll('.ai-tog').forEach(tog=>{
+  tog.addEventListener('click',()=>{
+    const on=tog.classList.toggle('on');
+    const chk=tog.querySelector('.ai-chk');
+    chk.textContent=on?'✓':'';
+  });
+});
+
+// History filters
+document.querySelectorAll('.hf').forEach(f=>{
+  f.addEventListener('click',()=>{
+    document.querySelectorAll('.hf').forEach(x=>x.classList.remove('active'));
+    f.classList.add('active');
+  });
+});
+
+// Processing state
+function resetTask(){
+  ['gpt','cla','gem'].forEach(ai=>{
+    document.getElementById('bar-'+ai).style.width='0%';
+    document.getElementById('pct-'+ai).textContent='—';
+    document.getElementById('status-'+ai).textContent='Idle';
+    document.getElementById('task-'+ai).textContent='대기 중';
+    document.getElementById('dot-'+ai).className='ac-dot idle';
+    document.getElementById('fill-'+ai).style.width='0%';
+    document.getElementById('chk-'+ai).classList.remove('show');
+    document.getElementById('pa-'+ai).className='proc-card '+ai;
+    document.getElementById('st-'+ai).textContent='Initializing...';
+    document.getElementById('log-'+ai).textContent='대기 중...';
+  });
+  document.getElementById('overall-fill').style.width='0%';
+  document.getElementById('proc-pct').textContent='0%';
+  document.getElementById('rp-fill').style.width='0%';
+  document.getElementById('rp-pct').textContent='—';
+  document.getElementById('rp-active').textContent='0 active';
+  document.getElementById('stat-active').textContent='0';
+  document.getElementById('log-stream').innerHTML='';
+}
+
+function addLog(msg,hi){
+  const el=document.createElement('div');
+  el.className='log-line'+(hi?' hi':'');
+  el.textContent=`[${new Date().toTimeString().slice(0,8)}] ${msg}`;
+  const ls=document.getElementById('log-stream');
+  ls.appendChild(el);
+  ls.scrollTop=ls.scrollHeight;
+}
+
+function runTask(){
+  resetTask();
+  switchView('processing');
+  addLog('Task #T-025 dispatched to pipeline',true);
+  addLog('Parallel mode activated — 3 agents');
+
+  const prom={gpt:0,cla:0,gem:0};
+  const done={gpt:false,cla:false,gem:false};
+
+  document.getElementById('rp-active').textContent='3 active';
+  document.getElementById('stat-active').textContent='3';
+
+  const steps={
+    gpt:['프롬프트 파싱 중...','컨텍스트 분석','카피 초안 생성','감성 톤 최적화','결과 포맷팅'],
+    cla:['입력 검증 중...','품질 기준 체크','브랜드 보이스 분석','표현 정확도 검토','최종 출력 준비'],
+    gem:['데이터 수집 중...','트렌드 분석 실행','시장 데이터 조회','비교 분석 완료','결과 보완 중']
+  };
+  const spd={gpt:1.9,cla:1.5,gem:1.7};
+  const stepIdx={gpt:0,cla:0,gem:0};
+
+  ['gpt','cla','gem'].forEach(ai=>{
+    document.getElementById('dot-'+ai).className='ac-dot working '+ai;
+    document.getElementById('status-'+ai).textContent='Processing';
+    document.getElementById('task-'+ai).textContent='소셜미디어 카피 작성';
+    document.getElementById('pa-'+ai).classList.add('running');
+    document.getElementById('st-'+ai).textContent='Running...';
+  });
+  addLog('GPT-4o → Processing started');
+  addLog('Claude 3.5 → Processing started');
+  addLog('Gemini Pro → Processing started');
+
+  const iv=setInterval(()=>{
+    ['gpt','cla','gem'].forEach(ai=>{
+      if(done[ai])return;
+      prom[ai]+=spd[ai]*(0.7+Math.random()*0.6);
+      if(prom[ai]>100)prom[ai]=100;
+      document.getElementById('bar-'+ai).style.width=prom[ai]+'%';
+      document.getElementById('fill-'+ai).style.width=prom[ai]+'%';
+      document.getElementById('pct-'+ai).textContent=Math.floor(prom[ai])+'%';
+      const idx=Math.min(Math.floor(prom[ai]/20),steps[ai].length-1);
+      if(idx!==stepIdx[ai]){stepIdx[ai]=idx;document.getElementById('log-'+ai).textContent=steps[ai][idx];}
+      if(prom[ai]>=100&&!done[ai]){
+        done[ai]=true;
+        document.getElementById('status-'+ai).textContent='Done';
+        document.getElementById('dot-'+ai).className='ac-dot done';
+        document.getElementById('pa-'+ai).classList.remove('running');
+        document.getElementById('pa-'+ai).classList.add('done',ai);
+        document.getElementById('chk-'+ai).classList.add('show');
+        document.getElementById('st-'+ai).textContent='Complete ✓';
+        document.getElementById('task-'+ai).textContent='완료';
+        addLog(ai.toUpperCase()+' → Task complete',true);
+      }
+    });
+
+    const avg=(prom.gpt+prom.cla+prom.gem)/3;
+    document.getElementById('overall-fill').style.width=avg+'%';
+    document.getElementById('proc-pct').textContent=Math.floor(avg)+'%';
+    document.getElementById('rp-fill').style.width=avg+'%';
+    document.getElementById('rp-pct').textContent=Math.floor(avg)+'%';
+    const active=[done.gpt,done.cla,done.gem].filter(d=>!d).length;
+    document.getElementById('rp-active').textContent=active+' active';
+    document.getElementById('stat-active').textContent=active;
+
+    if(done.gpt&&done.cla&&done.gem){
+      clearInterval(iv);
+      addLog('Pipeline complete — 3/3 done',true);
+      addLog('Generating synthesis...');
+      setTimeout(()=>{
+        addLog('Synthesis ready — redirecting to output',true);
+        document.getElementById('stat-total').textContent='25';
+        document.getElementById('stat-done').textContent='22';
+        setTimeout(()=>switchView('output'),600);
+      },900);
+    }
+  },75);
+}
+</script>
+</body>
+</html>
