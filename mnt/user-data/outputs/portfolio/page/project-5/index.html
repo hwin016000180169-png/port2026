@@ -137,7 +137,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
     <div class="htitle rv d1">OTT<br><em>UX REDESIGN</em></div>
     <p class="hdesc rv d2">Netflix·Watcha 스타일 OTT 플랫폼의 콘텐츠 탐색 효율 개선 프로젝트. 선택 피로 해소를 위한 Mood 기반 30초 추천 UX 설계.</p>
     <div class="hbtns rv d3">
-      <a class="hbtn p" href="#">Prototype ↗</a>
+      <a class="hbtn p" href="https://cinepick-sigma.vercel.app/" target="_blank">Live Site ↗</a>
       <a class="hbtn s" href="#">Case Study</a>
     </div>
     <div class="hmeta rv d3">
@@ -198,15 +198,186 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <div class="sec-label rv">— Visual Design</div>
   <div class="sec-title rv d1">화면 &amp; <em>프로토타입</em></div>
   <div class="wfgrid rv d1">
-    <div class="wfitem"><div class="wfbody"><div class="wfph">Home Screen (Redesign)</div></div><div class="wflbl">01 — Home</div></div>
-    <div class="wfitem"><div class="wfbody"><div class="wfph">Mood Selection</div></div><div class="wflbl">02 — Mood</div></div>
+
+    <!-- 01 HOME -->
+    <div class="wfitem">
+      <div class="wfbody">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;background:#0a0a0a;">
+          <!-- status bar -->
+          <div style="height:20px;background:#050505;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex-shrink:0;">
+            <span style="font-size:9px;color:rgba(255,255,255,.6);font-family:'Space Mono',monospace;">9:41</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.4);">●●●</span>
+          </div>
+          <!-- nav -->
+          <div style="background:#111;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid #1a1a1a;">
+            <span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#E50914;letter-spacing:.06em;">CINEPICK</span>
+            <div style="display:flex;gap:10px;">
+              <span style="font-size:9px;color:rgba(255,255,255,.5);">홈</span>
+              <span style="font-size:9px;color:#9b6dff;font-weight:700;">QuickPick</span>
+              <span style="font-size:9px;color:rgba(255,255,255,.5);">장르</span>
+            </div>
+          </div>
+          <!-- hero banner -->
+          <div style="background:linear-gradient(160deg,#1a0030,#0d0020);padding:12px;position:relative;flex-shrink:0;">
+            <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(229,9,20,.08),rgba(155,109,255,.06));"></div>
+            <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.5);margin-bottom:3px;position:relative;">오늘의 Pick</div>
+            <div style="font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;position:relative;">인터스텔라</div>
+            <div style="display:flex;gap:3px;margin-bottom:7px;position:relative;">
+              <span style="font-size:7px;background:rgba(229,9,20,.2);color:#E50914;padding:1px 5px;border-radius:3px;">SF</span>
+              <span style="font-size:7px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:1px 5px;border-radius:3px;">169분</span>
+              <span style="font-size:7px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:1px 5px;border-radius:3px;">⭐ 9.1</span>
+            </div>
+            <div style="display:flex;gap:5px;position:relative;">
+              <div style="background:#E50914;border-radius:4px;padding:4px 10px;font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;">▶ 재생</div>
+              <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:4px 10px;font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.7);">+ 저장</div>
+            </div>
+          </div>
+          <!-- today for you -->
+          <div style="padding:8px 10px 4px;flex-shrink:0;">
+            <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;margin-bottom:5px;">Today for You</div>
+            <div style="display:flex;gap:4px;overflow:hidden;">
+              <div style="background:linear-gradient(135deg,#1a0030,#2a1050);border-radius:5px;width:38px;height:54px;flex-shrink:0;border-top:2px solid #9b6dff;"></div>
+              <div style="background:linear-gradient(135deg,#1a0010,#300010);border-radius:5px;width:38px;height:54px;flex-shrink:0;border-top:2px solid #E50914;"></div>
+              <div style="background:linear-gradient(135deg,#0d1a0d,#102010);border-radius:5px;width:38px;height:54px;flex-shrink:0;border-top:2px solid #19c37d;"></div>
+              <div style="background:linear-gradient(135deg,#1a1400,#2a2000);border-radius:5px;width:38px;height:54px;flex-shrink:0;border-top:2px solid #f4c430;"></div>
+            </div>
+          </div>
+          <!-- quickpick banner -->
+          <div style="margin:5px 8px;background:linear-gradient(90deg,rgba(229,9,20,.15),rgba(155,109,255,.1));border:1px solid rgba(155,109,255,.25);border-radius:6px;padding:6px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+            <div>
+              <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#9b6dff;">⚡ 30초 QuickPick</div>
+              <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;color:rgba(255,255,255,.4);margin-top:1px;">기분에 맞는 콘텐츠 즉시 추천</div>
+            </div>
+            <div style="font-size:8px;color:#9b6dff;">→</div>
+          </div>
+        </div>
+      </div>
+      <div class="wflbl">01 — Home</div>
+    </div>
+
+    <!-- 02 MOOD SELECTION -->
+    <div class="wfitem">
+      <div class="wfbody">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;background:#0a0a0a;">
+          <!-- status bar -->
+          <div style="height:20px;background:#050505;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex-shrink:0;">
+            <span style="font-size:9px;color:rgba(255,255,255,.6);font-family:'Space Mono',monospace;">9:41</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.4);">●●●</span>
+          </div>
+          <!-- header -->
+          <div style="background:linear-gradient(180deg,#1a0030,#0a0a0a);padding:14px 12px 10px;flex-shrink:0;">
+            <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(155,109,255,.7);margin-bottom:4px;letter-spacing:.06em;">STEP 1 / 3 · QUICKPICK</div>
+            <div style="font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:2px;">오늘의 기분은?</div>
+            <div style="font-family:'Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.4);">선택하면 즉시 추천해드려요</div>
+          </div>
+          <!-- mood grid -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:6px 10px;flex:1;">
+            <div style="background:rgba(155,109,255,.12);border:1.5px solid #9b6dff;border-radius:10px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <span style="font-size:20px;">😊</span>
+              <span style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#9b6dff;">가볍게</span>
+              <span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.4);">코미디 · 힐링</span>
+              <div style="width:16px;height:16px;background:#9b6dff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">✓</div>
+            </div>
+            <div style="background:rgba(229,9,20,.08);border:1.5px solid rgba(229,9,20,.3);border-radius:10px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <span style="font-size:20px;">😰</span>
+              <span style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:rgba(229,9,20,.8);">긴장감</span>
+              <span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.4);">스릴러 · 액션</span>
+            </div>
+            <div style="background:#111;border:1.5px solid #222;border-radius:10px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <span style="font-size:20px;">💕</span>
+              <span style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.6);">로맨스</span>
+              <span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.3);">멜로 · 드라마</span>
+            </div>
+            <div style="background:#111;border:1.5px solid #222;border-radius:10px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <span style="font-size:20px;">😂</span>
+              <span style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.6);">웃음</span>
+              <span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.3);">코미디 · 버라이어티</span>
+            </div>
+          </div>
+          <!-- next btn -->
+          <div style="padding:6px 10px 10px;flex-shrink:0;">
+            <div style="background:linear-gradient(90deg,#9b6dff,#E50914);border-radius:8px;padding:9px;font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#fff;text-align:center;">다음 →</div>
+          </div>
+        </div>
+      </div>
+      <div class="wflbl">02 — Mood 선택</div>
+    </div>
+
   </div>
   <div class="wfbottom rv d2">
-    <div class="wfb"><div class="wfph" style="font-size:12px;">30초 Quick Pick</div></div>
-    <div class="wfb"><div class="wfph" style="font-size:12px;">Personalized Feed</div></div>
-    <div class="wfb"><div class="wfph" style="font-size:12px;">Content Detail</div></div>
+
+    <!-- 03 QUICKPICK -->
+    <div class="wfb" style="background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0a0a0a;padding:8px;">
+        <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#9b6dff;font-weight:700;margin-bottom:4px;">⚡ 30초 Quick Pick</div>
+        <!-- progress -->
+        <div style="display:flex;gap:3px;margin-bottom:6px;">
+          <div style="flex:1;height:3px;background:#9b6dff;border-radius:2px;"></div>
+          <div style="flex:1;height:3px;background:#9b6dff;border-radius:2px;"></div>
+          <div style="flex:1;height:3px;background:#222;border-radius:2px;"></div>
+        </div>
+        <div style="font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:700;color:#fff;margin-bottom:5px;">시청 시간은?</div>
+        <div style="display:flex;flex-direction:column;gap:3px;flex:1;">
+          <div style="background:rgba(155,109,255,.12);border:1px solid #9b6dff;border-radius:4px;padding:4px 8px;font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#9b6dff;">⏱ 30분 이내</div>
+          <div style="background:#111;border:1px solid #222;border-radius:4px;padding:4px 8px;font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.5);">⏱ 1~2시간</div>
+          <div style="background:#111;border:1px solid #222;border-radius:4px;padding:4px 8px;font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.5);">⏱ 마음껏</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 PERSONALIZED FEED -->
+    <div class="wfb" style="background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0a0a0a;padding:8px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+          <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;">😊 가볍게 · 1시간</div>
+          <div style="font-size:7px;color:#9b6dff;">3개 추천</div>
+        </div>
+        <div style="display:flex;gap:4px;flex:1;">
+          <div style="flex:1;background:linear-gradient(160deg,#1a1430,#100d20);border-radius:5px;border:1px solid rgba(155,109,255,.2);padding:6px 5px;display:flex;flex-direction:column;justify-content:flex-end;">
+            <div style="width:16px;height:16px;background:#E50914;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-bottom:3px;">▶</div>
+            <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;font-weight:700;color:#fff;line-height:1.3;">기생충</div>
+            <div style="font-size:6px;color:rgba(155,109,255,.7);margin-top:1px;">97% 일치</div>
+          </div>
+          <div style="flex:1;background:linear-gradient(160deg,#1a0010,#100008);border-radius:5px;border:1px solid rgba(229,9,20,.2);padding:6px 5px;display:flex;flex-direction:column;justify-content:flex-end;">
+            <div style="width:16px;height:16px;background:#9b6dff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-bottom:3px;">▶</div>
+            <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;font-weight:700;color:#fff;line-height:1.3;">어벤져스</div>
+            <div style="font-size:6px;color:rgba(229,9,20,.7);margin-top:1px;">89% 일치</div>
+          </div>
+          <div style="flex:1;background:linear-gradient(160deg,#0d150d,#080f08);border-radius:5px;border:1px solid rgba(25,195,125,.2);padding:6px 5px;display:flex;flex-direction:column;justify-content:flex-end;">
+            <div style="width:16px;height:16px;background:#19c37d;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-bottom:3px;">▶</div>
+            <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;font-weight:700;color:#fff;line-height:1.3;">빅쇼트</div>
+            <div style="font-size:6px;color:rgba(25,195,125,.7);margin-top:1px;">82% 일치</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 CONTENT DETAIL -->
+    <div class="wfb" style="background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0a0a0a;padding:8px;">
+        <div style="background:linear-gradient(135deg,#1a0030,#0d0020);border-radius:5px;height:40px;margin-bottom:5px;display:flex;align-items:flex-end;padding:4px 6px;position:relative;">
+          <div style="position:absolute;top:4px;right:4px;background:#E50914;border-radius:50%;width:14px;height:14px;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;">▶</div>
+          <div>
+            <div style="font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:700;color:#fff;">기생충</div>
+            <div style="font-size:6px;color:rgba(255,255,255,.5);">2019 · 드라마 · 132분</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:4px;margin-bottom:4px;">
+          <span style="font-size:7px;background:rgba(229,9,20,.2);color:#E50914;padding:1px 5px;border-radius:3px;">드라마</span>
+          <span style="font-size:7px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);padding:1px 5px;border-radius:3px;">⭐ 8.6</span>
+          <span style="font-size:7px;background:rgba(155,109,255,.15);color:#9b6dff;padding:1px 5px;border-radius:3px;">97% 일치</span>
+        </div>
+        <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;color:rgba(255,255,255,.4);line-height:1.5;flex:1;">전원 백수인 기택 가족이 박 사장 가족에게 하나씩 침투하기 시작하면서…</div>
+        <div style="background:#E50914;border-radius:4px;padding:4px;font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;text-align:center;flex-shrink:0;">▶ 지금 시청하기</div>
+      </div>
+    </div>
+
   </div>
-  <p style="margin-top:14px;font-size:12px;letter-spacing:.1em;color:var(--mid);text-align:center;" class="rv d3">★ wfbody 안에 &lt;img&gt; 삽입으로 실제 화면 교체</p>
+  <div style="margin-top:20px;text-align:center;" class="rv d3">
+    <a href="https://cinepick-sigma.vercel.app/" target="_blank" style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:14px 28px;border:1px solid rgba(155,109,255,.4);color:var(--acc);text-decoration:none;transition:all .3s;" onmouseover="this.style.background='rgba(155,109,255,.06)'" onmouseout="this.style.background=''">
+      <span>라이브 사이트 방문</span><span style="display:inline-block;width:24px;height:1px;background:var(--acc);"></span><span>↗</span>
+    </a>
+  </div>
 </section>
 
 <section class="sec">
