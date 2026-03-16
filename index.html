@@ -301,7 +301,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <!-- 02 VALORANT -->
     <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-2/">
       <div class="ct">
-        <div class="ctbg"></div>
+        <div class="ctbg" style="background-image:url(images/thunmb-02.png); background-size:cover; background-position:center;"></div>
         <div class="ctnum">02</div>
         <div class="ctlabel">Game · Info · UI</div>
       </div>
@@ -318,7 +318,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <!-- 03 CLASS CARE -->
     <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-3/">
       <div class="ct">
-        <div class="ctbg"></div>
+        <div class="ctbg" style="background-image:url(images/thunmb-03.png); background-size:cover; background-position:center;"></div>
         <div class="ctnum">03</div>
         <div class="ctlabel">Education · App · AI</div>
       </div>
@@ -369,7 +369,30 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <!-- 06 HOSPITAL -->
     <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-6/">
       <div class="ct">
-        <div class="ctbg"></div>
+        <div class="ctbg" style="background:linear-gradient(135deg,#001a20 0%,#003a45 50%,#006070 100%);"></div>
+        <!-- mini phone mockup inside card -->
+        <div style="position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;gap:14px;pointer-events:none;">
+          <div style="width:68px;height:110px;background:#111;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.5);overflow:hidden;border:1.5px solid #222;display:flex;flex-direction:column;">
+            <div style="background:linear-gradient(135deg,#003a45,#00bcd4);height:32px;display:flex;align-items:flex-end;padding:4px 7px;"><span style="font-size:9px;color:#fff;font-family:'Noto Sans KR',sans-serif;font-weight:700;">증상 선택</span></div>
+            <div style="flex:1;background:#f8f9fb;padding:5px;display:grid;grid-template-columns:1fr 1fr;gap:3px;">
+              <div style="background:#e0f9fb;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid #00bcd4;">🤕</div>
+              <div style="background:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid #e8eaed;">🤢</div>
+              <div style="background:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid #e8eaed;">🤧</div>
+              <div style="background:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid #e8eaed;">🦷</div>
+            </div>
+            <div style="background:#00bcd4;height:18px;display:flex;align-items:center;justify-content:center;"><span style="font-size:8px;font-weight:700;color:#fff;font-family:'Noto Sans KR',sans-serif;">예약하기</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+            <div style="width:1px;height:20px;background:rgba(0,188,212,.4);"></div>
+            <span style="font-size:12px;color:rgba(0,188,212,.7);">→</span>
+            <div style="width:1px;height:20px;background:rgba(0,188,212,.4);"></div>
+          </div>
+          <div style="width:68px;height:110px;background:#002831;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.5);overflow:hidden;border:1.5px solid rgba(0,188,212,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+            <div style="width:32px;height:32px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;border:1px solid rgba(255,255,255,.2);">✅</div>
+            <span style="font-size:8px;font-weight:700;color:#fff;font-family:'Noto Sans KR',sans-serif;">예약 완료</span>
+            <span style="font-family:'Space Mono',monospace;font-size:7px;color:rgba(255,255,255,.6);">MDB-2817</span>
+          </div>
+        </div>
         <div class="ctnum">06</div>
         <div class="ctlabel">Medical · Mobile · UX</div>
       </div>
@@ -414,13 +437,20 @@ document.querySelectorAll('a,button,.wc').forEach(el=>{el.addEventListener('mous
 
 /* ── LOADER ── */
 const LDN=document.getElementById('LDN'),LF=document.getElementById('LF');
-let pct=0;
-const LI=setInterval(()=>{
-  pct+=Math.random()*2.8+.6;
-  if(pct>=100){pct=100;clearInterval(LI);setTimeout(()=>{document.getElementById('LD').classList.add('out');setTimeout(initCanvas,600);},300);}
-  LDN.textContent=String(Math.floor(pct)).padStart(3,'0');
-  LF.style.width=pct+'%';
-},40);
+const LD=document.getElementById('LD');
+if(sessionStorage.getItem('visited')){
+  LD.style.display='none';
+  initCanvas();
+}else{
+  sessionStorage.setItem('visited','1');
+  let pct=0;
+  const LI=setInterval(()=>{
+    pct+=Math.random()*2.8+.6;
+    if(pct>=100){pct=100;clearInterval(LI);setTimeout(()=>{LD.classList.add('out');setTimeout(initCanvas,600);},300);}
+    LDN.textContent=String(Math.floor(pct)).padStart(3,'0');
+    LF.style.width=pct+'%';
+  },40);
+}
 
 /* ── CANVAS PARTICLE ── */
 function initCanvas(){

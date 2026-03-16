@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>증상 기반 병원 예약 — Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#020202;--fg:#f0ece4;--acc:#00bcd4;--bdr:#1e1e1e;--mid:#666;
+  --phone-w:390px;--phone-h:780px;
+  --app-bg:#f8f9fb;--app-fg:#111;--app-acc:#00b4cc;--app-acc2:#0097a7;
+  --app-card:#fff;--app-mid:#888;--app-bdr:#e8eaed;
+  --red:#ff3b3b;--green:#00c07a;--orange:#ff8c00;
+}
+html{background:var(--bg);overflow-x:hidden;}
+body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;min-height:100vh;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:16px 40px;background:rgba(2,2,2,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
+.nb{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .3s;}
+.nb:hover{color:var(--acc);}
+.nt{font-family:'Bebas Neue';font-size:15px;letter-spacing:.18em;color:var(--acc);}
+.npill{font-size:10px;letter-spacing:.16em;background:rgba(0,188,212,.12);border:1px solid rgba(0,188,212,.25);color:var(--acc);padding:5px 12px;text-transform:uppercase;}
+
+/* STAGE */
+.stage{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:80px 20px 40px;gap:64px;flex-wrap:wrap;}
+
+/* PHONE SHELL */
+.phone-shell{position:relative;width:var(--phone-w);height:var(--phone-h);background:#111;border-radius:54px;box-shadow:0 0 0 1px #222,0 0 0 10px #0a0a0a,0 40px 100px rgba(0,188,212,.08),0 80px 160px rgba(0,0,0,.6);overflow:hidden;flex-shrink:0;}
+.phone-shell::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:34px;background:#0a0a0a;border-radius:0 0 22px 22px;z-index:100;}
+.phone-screen{position:absolute;inset:0;overflow:hidden;background:var(--app-bg);border-radius:54px;}
+
+/* STATUS BAR */
+.status-bar{position:absolute;top:0;left:0;right:0;height:50px;z-index:50;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;background:var(--app-bg);font-family:'Noto Sans KR';font-size:12px;font-weight:500;color:var(--app-fg);}
+.sb-time{font-weight:700;}
+.sb-icons{display:flex;gap:6px;align-items:center;}
+.sb-icon{width:16px;height:10px;background:var(--app-fg);border-radius:2px;opacity:.8;}
+.sb-bat{width:22px;height:11px;border:1.5px solid var(--app-fg);border-radius:3px;padding:1.5px;opacity:.8;}
+.sb-bat::after{content:'';display:block;height:100%;background:var(--app-fg);border-radius:1px;width:70%;}
+
+/* SCREENS WRAPPER */
+.screens{position:absolute;inset:0;top:50px;}
+.screen{position:absolute;inset:0;background:var(--app-bg);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .42s cubic-bezier(.32,0,.16,1);pointer-events:none;overflow:hidden;}
+.screen.active{transform:translateX(0);pointer-events:all;}
+.screen.prev{transform:translateX(-30%);}
+
+/* APP HEADER */
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;background:#fff;border-bottom:1px solid var(--app-bdr);}
+.ah-back{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--app-bg);border-radius:10px;font-size:18px;cursor:pointer;color:var(--app-fg);}
+.ah-title{font-family:'Noto Sans KR';font-size:16px;font-weight:700;color:var(--app-fg);}
+.ah-action{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(0,180,204,.1);border-radius:10px;font-size:16px;cursor:pointer;}
+
+/* SCROLL AREA */
+.scroll-area{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.scroll-area::-webkit-scrollbar{display:none;}
+
+/* ── SCREEN 0: SPLASH/HOME ── */
+#sc0{background:linear-gradient(160deg,#003a45 0%,#00bcd4 60%,#00e5ff 100%);}
+.sp-logo{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:40px 30px;gap:20px;}
+.sp-icon{width:88px;height:88px;background:rgba(255,255,255,.15);border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:44px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);}
+.sp-name{font-family:'Noto Sans KR';font-size:28px;font-weight:700;color:#fff;letter-spacing:-.02em;}
+.sp-sub{font-family:'Noto Sans KR';font-size:14px;color:rgba(255,255,255,.7);font-weight:300;}
+.sp-features{display:flex;gap:12px;margin-top:10px;}
+.sp-feat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 14px;font-family:'Noto Sans KR';font-size:12px;color:rgba(255,255,255,.9);}
+.sp-btn{margin:0 30px 50px;background:#fff;border:none;border-radius:16px;padding:18px;font-family:'Noto Sans KR';font-size:16px;font-weight:700;color:var(--app-acc);cursor:pointer;transition:all .2s;box-shadow:0 8px 24px rgba(0,0,0,.15);}
+.sp-btn:active{transform:scale(.98);}
+
+/* ── SCREEN 1: SYMPTOM ── */
+#sc1{background:var(--app-bg);}
+.s1-top{background:#fff;padding:20px 20px 16px;}
+.s1-step{display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+.step-dot{width:8px;height:8px;border-radius:50%;background:var(--app-bdr);}
+.step-dot.done{background:var(--app-acc);}
+.step-dot.active{background:var(--app-acc);box-shadow:0 0 0 3px rgba(0,180,204,.2);}
+.step-label{font-family:'Noto Sans KR';font-size:11px;color:var(--app-mid);margin-left:4px;}
+.s1-heading{font-family:'Noto Sans KR';font-size:20px;font-weight:700;color:var(--app-fg);margin-bottom:4px;}
+.s1-sub{font-family:'Noto Sans KR';font-size:13px;color:var(--app-mid);font-weight:300;}
+.section-label{font-family:'Noto Sans KR';font-size:12px;font-weight:500;color:var(--app-mid);padding:16px 20px 8px;text-transform:uppercase;letter-spacing:.06em;}
+.symp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 16px;}
+.symp-card{background:#fff;border:2px solid var(--app-bdr);border-radius:16px;padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
+.symp-card::before{content:'';position:absolute;inset:0;background:rgba(0,180,204,.06);opacity:0;transition:opacity .22s;}
+.symp-card:active::before{opacity:1;}
+.symp-card.selected{border-color:var(--app-acc);background:#f0fbfd;}
+.symp-card.selected .sc-icon{background:rgba(0,180,204,.12);}
+.sc-icon{width:52px;height:52px;background:#f3f4f6;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;transition:all .22s;}
+.sc-name{font-family:'Noto Sans KR';font-size:14px;font-weight:500;color:var(--app-fg);}
+.sc-dept{font-family:'Noto Sans KR';font-size:11px;color:var(--app-mid);font-weight:300;}
+.sc-check{position:absolute;top:10px;right:10px;width:20px;height:20px;background:var(--app-acc);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;opacity:0;transition:opacity .22s;}
+.symp-card.selected .sc-check{opacity:1;}
+.bottom-bar{padding:14px 20px 20px;background:#fff;border-top:1px solid var(--app-bdr);}
+.main-btn{width:100%;background:var(--app-acc);border:none;border-radius:14px;padding:16px;font-family:'Noto Sans KR';font-size:16px;font-weight:700;color:#fff;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.main-btn:active{transform:scale(.98);background:var(--app-acc2);}
+.main-btn:disabled{background:#ccc;cursor:default;}
+.main-btn.secondary{background:#f3f4f6;color:var(--app-fg);}
+
+/* ── SCREEN 2: LOCATION ── */
+#sc2 .map-preview{height:200px;background:linear-gradient(135deg,#e8f5e9 0%,#e3f2fd 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);background-size:28px 28px;}
+.map-pin{position:absolute;width:36px;height:36px;background:var(--app-acc);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 12px rgba(0,180,204,.4);animation:pin-pulse 2s ease-in-out infinite;}
+@keyframes pin-pulse{0%,100%{box-shadow:0 4px 12px rgba(0,180,204,.4),0 0 0 0 rgba(0,180,204,.3)}50%{box-shadow:0 4px 12px rgba(0,180,204,.4),0 0 0 12px rgba(0,180,204,.0)}}
+.map-road-h{position:absolute;height:2px;background:rgba(255,255,255,.7);left:0;right:0;}
+.map-road-v{position:absolute;width:2px;background:rgba(255,255,255,.7);top:0;bottom:0;}
+.loc-info{padding:14px 20px;background:#fff;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--app-bdr);}
+.loc-icon{width:36px;height:36px;background:rgba(0,180,204,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.loc-text{flex:1;}
+.loc-addr{font-family:'Noto Sans KR';font-size:13px;font-weight:500;color:var(--app-fg);}
+.loc-dist{font-family:'Noto Sans KR';font-size:11px;color:var(--app-mid);}
+.loc-change{font-family:'Noto Sans KR';font-size:12px;color:var(--app-acc);font-weight:500;cursor:pointer;}
+.symp-selected-display{padding:12px 20px;background:#e8f9fb;border-bottom:1px solid rgba(0,180,204,.2);display:flex;align-items:center;gap:8px;}
+.ssd-label{font-family:'Noto Sans KR';font-size:12px;color:var(--app-mid);}
+.ssd-val{font-family:'Noto Sans KR';font-size:13px;font-weight:600;color:var(--app-acc);}
+
+/* ── SCREEN 3: HOSPITAL LIST ── */
+.filter-bar{padding:12px 16px;background:#fff;border-bottom:1px solid var(--app-bdr);display:flex;gap:8px;overflow-x:auto;}
+.filter-bar::-webkit-scrollbar{display:none;}
+.filter-pill{padding:7px 14px;border:1.5px solid var(--app-bdr);border-radius:20px;font-family:'Noto Sans KR';font-size:12px;color:var(--app-mid);white-space:nowrap;cursor:pointer;transition:all .2s;flex-shrink:0;}
+.filter-pill.on{border-color:var(--app-acc);background:rgba(0,180,204,.08);color:var(--app-acc);font-weight:500;}
+.hosp-card{background:#fff;margin:10px 16px 0;border-radius:16px;overflow:hidden;border:1px solid var(--app-bdr);cursor:pointer;transition:all .22s;}
+.hosp-card:active{transform:scale(.99);}
+.hosp-top{padding:16px 16px 12px;}
+.hosp-row1{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+.hosp-name-wrap{display:flex;align-items:center;gap:8px;}
+.hosp-name{font-family:'Noto Sans KR';font-size:16px;font-weight:700;color:var(--app-fg);}
+.hosp-open{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;}
+.hosp-open.open{background:#e8f5e9;color:#2e7d32;}
+.hosp-open.busy{background:#fff3e0;color:#e65100;}
+.hosp-open.closed{background:#ffebee;color:#c62828;}
+.hosp-bookmark{width:32px;height:32px;background:var(--app-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.hosp-meta{display:flex;align-items:center;gap:12px;font-family:'Noto Sans KR';font-size:12px;color:var(--app-mid);}
+.hm-item{display:flex;align-items:center;gap:4px;}
+.hosp-tags{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 12px;}
+.hosp-tag{font-family:'Noto Sans KR';font-size:11px;background:var(--app-bg);border-radius:6px;padding:4px 9px;color:var(--app-mid);}
+.hosp-tag.hl{background:rgba(0,180,204,.08);color:var(--app-acc);}
+.hosp-divider{height:1px;background:var(--app-bdr);}
+.hosp-bottom{padding:10px 16px;display:flex;align-items:center;justify-content:space-between;}
+.hosp-wait{font-family:'Noto Sans KR';font-size:12px;color:var(--app-mid);}
+.hosp-wait span{font-weight:600;color:var(--orange);}
+.hosp-btn{background:var(--app-acc);border:none;border-radius:10px;padding:9px 16px;font-family:'Noto Sans KR';font-size:13px;font-weight:700;color:#fff;cursor:pointer;}
+.ai-rec{margin:12px 16px 0;background:linear-gradient(120deg,rgba(0,180,204,.08),rgba(0,229,255,.05));border:1px solid rgba(0,180,204,.2);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.ai-rec-icon{font-size:22px;flex-shrink:0;}
+.ai-rec-text{font-family:'Noto Sans KR';font-size:12px;line-height:1.65;color:var(--app-fg);}
+.ai-rec-text strong{color:var(--app-acc);}
+
+/* ── SCREEN 4: HOSPITAL DETAIL ── */
+.hosp-hero{height:160px;background:linear-gradient(135deg,#004d5a 0%,#00bcd4 100%);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:20px;}
+.hh-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:24px 24px;}
+.hh-name{font-family:'Noto Sans KR';font-size:22px;font-weight:700;color:#fff;position:relative;z-index:1;}
+.hh-dept{font-family:'Noto Sans KR';font-size:13px;color:rgba(255,255,255,.7);position:relative;z-index:1;margin-top:4px;}
+.detail-info{background:#fff;margin:12px 16px;border-radius:16px;overflow:hidden;border:1px solid var(--app-bdr);}
+.di-row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--app-bdr);}
+.di-row:last-child{border-bottom:none;}
+.di-icon{width:36px;height:36px;background:rgba(0,180,204,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.di-label{font-family:'Noto Sans KR';font-size:11px;color:var(--app-mid);margin-bottom:3px;}
+.di-value{font-family:'Noto Sans KR';font-size:13px;font-weight:500;color:var(--app-fg);}
+.di-value.acc{color:var(--app-acc);}
+.di-value.green{color:var(--green);}
+.sec-title2{font-family:'Noto Sans KR';font-size:15px;font-weight:700;color:var(--app-fg);padding:16px 16px 10px;}
+.date-strip{display:flex;gap:8px;padding:0 16px 14px;overflow-x:auto;}
+.date-strip::-webkit-scrollbar{display:none;}
+.date-btn{display:flex;flex-direction:column;align-items:center;padding:12px 14px;border:2px solid var(--app-bdr);border-radius:14px;cursor:pointer;transition:all .22s;flex-shrink:0;min-width:54px;}
+.date-btn.on{border-color:var(--app-acc);background:rgba(0,180,204,.06);}
+.date-btn.on .db-d,.date-btn.on .db-n{color:var(--app-acc);}
+.db-d{font-family:'Noto Sans KR';font-size:11px;color:var(--app-mid);margin-bottom:5px;}
+.db-n{font-family:'Noto Sans KR';font-size:18px;font-weight:700;color:var(--app-fg);}
+.time-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 16px 16px;}
+.time-btn{padding:11px 8px;border:1.5px solid var(--app-bdr);border-radius:12px;font-family:'Noto Sans KR';font-size:13px;font-weight:500;color:var(--app-fg);cursor:pointer;transition:all .22s;text-align:center;}
+.time-btn.on{border-color:var(--app-acc);background:rgba(0,180,204,.08);color:var(--app-acc);}
+.time-btn.full{background:#f9f9f9;color:#ccc;border-color:#eee;cursor:default;}
+.time-btn.full::after{content:'마감';display:block;font-size:9px;color:#ccc;margin-top:2px;}
+
+/* ── SCREEN 5: CONFIRM ── */
+.confirm-card{background:#fff;margin:12px 16px 0;border-radius:16px;overflow:hidden;border:1px solid var(--app-bdr);}
+.cc-header{background:linear-gradient(120deg,#004d5a,#00bcd4);padding:20px 20px 16px;}
+.cc-title{font-family:'Noto Sans KR';font-size:13px;color:rgba(255,255,255,.7);margin-bottom:5px;}
+.cc-hosp{font-family:'Noto Sans KR';font-size:19px;font-weight:700;color:#fff;}
+.cc-row{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--app-bdr);}
+.cc-label{font-family:'Noto Sans KR';font-size:12px;color:var(--app-mid);}
+.cc-val{font-family:'Noto Sans KR';font-size:13px;font-weight:600;color:var(--app-fg);}
+.cc-val.acc{color:var(--app-acc);}
+.patient-form{background:#fff;margin:12px 16px 0;border-radius:16px;overflow:hidden;border:1px solid var(--app-bdr);padding:16px 20px;}
+.pf-title{font-family:'Noto Sans KR';font-size:15px;font-weight:700;color:var(--app-fg);margin-bottom:16px;}
+.pf-label{font-family:'Noto Sans KR';font-size:12px;color:var(--app-mid);margin-bottom:6px;}
+.pf-input{width:100%;border:1.5px solid var(--app-bdr);border-radius:10px;padding:12px 14px;font-family:'Noto Sans KR';font-size:14px;color:var(--app-fg);background:var(--app-bg);margin-bottom:14px;outline:none;transition:border-color .2s;}
+.pf-input:focus{border-color:var(--app-acc);}
+.pf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.notice-box{margin:12px 16px 0;padding:14px 16px;background:#e8f9fb;border-radius:12px;border:1px solid rgba(0,180,204,.2);}
+.nb-title{font-family:'Noto Sans KR';font-size:12px;font-weight:600;color:var(--app-acc);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.nb-text{font-family:'Noto Sans KR';font-size:12px;color:#444;line-height:1.65;}
+
+/* ── SCREEN 6: COMPLETE ── */
+#sc6{background:linear-gradient(160deg,#002831 0%,#00576a 50%,#00bcd4 100%);}
+.complete-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;}
+.check-circle{width:100px;height:100px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:50px;margin-bottom:24px;animation:check-pop .5s cubic-bezier(.36,2,.6,1) .2s both;border:2px solid rgba(255,255,255,.25);}
+@keyframes check-pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.comp-title{font-family:'Noto Sans KR';font-size:24px;font-weight:700;color:#fff;margin-bottom:10px;text-align:center;}
+.comp-sub{font-family:'Noto Sans KR';font-size:14px;color:rgba(255,255,255,.7);text-align:center;line-height:1.7;}
+.comp-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:20px;width:100%;margin:28px 0;backdrop-filter:blur(10px);}
+.comp-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+.comp-row:last-child{border-bottom:none;}
+.comp-k{font-family:'Noto Sans KR';font-size:12px;color:rgba(255,255,255,.6);}
+.comp-v{font-family:'Noto Sans KR';font-size:13px;font-weight:600;color:#fff;}
+.comp-num{font-family:'Space Mono';font-size:22px;font-weight:700;color:#fff;text-align:center;letter-spacing:.1em;padding:8px 0;}
+.comp-num-label{font-family:'Noto Sans KR';font-size:11px;color:rgba(255,255,255,.55);text-align:center;margin-bottom:20px;}
+.comp-btns{display:flex;flex-direction:column;gap:10px;width:100%;}
+.comp-btn{border:none;border-radius:14px;padding:15px;font-family:'Noto Sans KR';font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;text-align:center;}
+.comp-btn.primary{background:#fff;color:var(--app-acc);}
+.comp-btn.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);}
+
+/* ── SIDE PANEL ── */
+.side-panel{max-width:400px;color:var(--fg);}
+.sp-tag{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);margin-bottom:16px;}
+.sp-title{font-family:'Bebas Neue';font-size:clamp(42px,4.5vw,60px);line-height:.92;margin-bottom:20px;}
+.sp-title em{color:var(--acc);font-style:normal;}
+.sp-desc{font-family:'Noto Sans KR';font-size:13px;line-height:2;font-weight:300;color:rgba(240,236,228,.5);margin-bottom:32px;}
+.flow-list{display:flex;flex-direction:column;gap:0;}
+.fl-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--bdr);position:relative;}
+.fl-item:first-child{border-top:1px solid var(--bdr);}
+.fl-num{font-family:'Bebas Neue';font-size:28px;color:var(--acc);line-height:1;min-width:36px;}
+.fl-info{}
+.fl-name{font-size:13px;letter-spacing:.04em;color:var(--fg);margin-bottom:4px;font-weight:700;}
+.fl-desc{font-family:'Noto Sans KR';font-size:12px;color:rgba(240,236,228,.4);font-weight:300;}
+.fl-active{color:var(--acc)!important;}
+.fl-active .fl-name{color:var(--acc);}
+.sp-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:28px;}
+.sp-stat{padding:18px 16px;background:#0a0a0a;border:1px solid var(--bdr);}
+.ss-num{font-family:'Bebas Neue';font-size:34px;color:var(--acc);}
+.ss-label{font-family:'Noto Sans KR';font-size:11px;color:var(--mid);font-weight:300;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .stage{flex-direction:column;align-items:center;gap:40px;}
+  .side-panel{max-width:390px;}
+  .sp-stats{grid-template-columns:repeat(4,1fr);}
+}
+@media(max-width:440px){
+  :root{--phone-w:calc(100vw - 24px);--phone-h:calc((100vw - 24px) * 2);}
+  nav{padding:14px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nb" href="index.html">← Case Study</a>
+  <span class="nt">PROTOTYPE</span>
+  <span class="npill">Interactive Demo</span>
+</nav>
+
+<div class="stage">
+
+  <!-- ── PHONE ── -->
+  <div class="phone-shell">
+    <div class="phone-screen">
+      <div class="status-bar">
+        <span class="sb-time" id="sb-time">9:41</span>
+        <div class="sb-icons">
+          <div class="sb-icon" style="width:14px;height:10px;background:none;border:1.5px solid currentColor;border-radius:2px;position:relative;"><div style="position:absolute;inset:2px;background:currentColor;border-radius:1px;width:65%;"></div></div>
+          <svg width="14" height="11" viewBox="0 0 14 11" fill="currentColor" style="opacity:.8"><rect x="0" y="4" width="2" height="7" rx="1"/><rect x="4" y="2.5" width="2" height="8.5" rx="1"/><rect x="8" y="1" width="2" height="10" rx="1"/><rect x="12" y="0" width="2" height="11" rx="1"/></svg>
+          <svg width="16" height="12" viewBox="0 0 24 16" fill="currentColor" style="opacity:.8"><path d="M12 3C8.6 3 5.5 4.4 3.3 6.6L1 4.3C3.8 1.6 7.7 0 12 0s8.2 1.6 11 4.3l-2.3 2.3C18.5 4.4 15.4 3 12 3zm0 5.5c-2 0-3.7.8-5 2.1L5 8.6C6.7 6.8 9.2 5.7 12 5.7s5.3 1.1 7 2.9l-2 2.1c-1.3-1.3-3-2.2-5-2.2zm0 5.5c-.9 0-1.8.4-2.4 1L12 18l2.4-3c-.6-.6-1.5-1-2.4-1z"/></svg>
+        </div>
+      </div>
+
+      <div class="screens">
+
+        <!-- SC0: SPLASH -->
+        <div class="screen active" id="sc0">
+          <div class="sp-logo">
+            <div class="sp-icon">🏥</div>
+            <div class="sp-name">메디북</div>
+            <div class="sp-sub">증상 선택 기반 병원 예약 서비스</div>
+            <div class="sp-features">
+              <span class="sp-feat">📍 위치 기반</span>
+              <span class="sp-feat">⚡ 3단계 예약</span>
+              <span class="sp-feat">🤖 AI 추천</span>
+            </div>
+          </div>
+          <button class="sp-btn" onclick="goTo(1)">시작하기 →</button>
+        </div>
+
+        <!-- SC1: 증상 선택 -->
+        <div class="screen" id="sc1">
+          <div class="app-header">
+            <div class="ah-back" onclick="goTo(0)">←</div>
+            <span class="ah-title">증상 선택</span>
+            <div class="ah-action">🔍</div>
+          </div>
+          <div class="scroll-area">
+            <div class="s1-top">
+              <div class="s1-step">
+                <div class="step-dot active" title="증상"></div>
+                <div class="step-dot" title="병원"></div>
+                <div class="step-dot" title="예약"></div>
+                <span class="step-label">Step 1 / 3</span>
+              </div>
+              <div class="s1-heading">어디가 불편하신가요?</div>
+              <div class="s1-sub">증상을 선택하면 적합한 병원을 찾아드려요</div>
+            </div>
+            <div class="section-label">주요 증상</div>
+            <div class="symp-grid">
+              <div class="symp-card" data-symp="두통" data-dept="신경과 · 내과" onclick="selectSymp(this)">
+                <div class="sc-icon">🤕</div>
+                <div class="sc-name">두통</div>
+                <div class="sc-dept">신경과 · 내과</div>
+                <div class="sc-check">✓</div>
+              </div>
+              <div class="symp-card" data-symp="복통" data-dept="내과 · 소화기내과" onclick="selectSymp(this)">
+                <div class="sc-icon">🤢</div>
+                <div class="sc-name">복통</div>
+                <div class="sc-dept">내과 · 소화기내과</div>
+                <div class="sc-check">✓</div>
+              </div>
+              <div class="symp-card" data-symp="감기 · 발열" data-dept="내과 · 이비인후과" onclick="selectSymp(this)">
+                <div class="sc-icon">🤧</div>
+                <div class="sc-name">감기 · 발열</div>
+                <div class="sc-dept">내과 · 이비인후과</div>
+                <div class="sc-check">✓</div>
+              </div>
+              <div class="symp-card" data-symp="치통" data-dept="치과" onclick="selectSymp(this)">
+                <div class="sc-icon">🦷</div>
+                <div class="sc-name">치통</div>
+                <div class="sc-dept">치과</div>
+                <div class="sc-check">✓</div>
+              </div>
+              <div class="symp-card" data-symp="눈 불편" data-dept="안과" onclick="selectSymp(this)">
+                <div class="sc-icon">👁️</div>
+                <div class="sc-name">눈 불편</div>
+                <div class="sc-dept">안과</div>
+                <div class="sc-check">✓</div>
+              </div>
+              <div class="symp-card" data-symp="관절 · 근육통" data-dept="정형외과" onclick="selectSymp(this)">
+                <div class="sc-icon">🦴</div>
+                <div class="sc-name">관절 · 근육통</div>
+                <div class="sc-dept">정형외과</div>
+                <div class="sc-check">✓</div>
+              </div>
+              <div class="symp-card" data-symp="호흡기" data-dept="호흡기내과" onclick="selectSymp(this)">
+                <div class="sc-icon">🫁</div>
+                <div class="sc-name">호흡기</div>
+                <div class="sc-dept">호흡기내과</div>
+                <div class="sc-check">✓</div>
+              </div>
+              <div class="symp-card" data-symp="피부" data-dept="피부과" onclick="selectSymp(this)">
+                <div class="sc-icon">🩹</div>
+                <div class="sc-name">피부</div>
+                <div class="sc-dept">피부과</div>
+                <div class="sc-check">✓</div>
+              </div>
+            </div>
+            <div style="height:10px;"></div>
+          </div>
+          <div class="bottom-bar">
+            <button class="main-btn" id="symp-next-btn" disabled onclick="goTo(2)">
+              <span id="symp-btn-text">증상을 선택해주세요</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SC2: 위치 확인 -->
+        <div class="screen" id="sc2">
+          <div class="app-header">
+            <div class="ah-back" onclick="goTo(1)">←</div>
+            <span class="ah-title">위치 확인</span>
+            <div class="ah-action"></div>
+          </div>
+          <div class="scroll-area">
+            <div class="map-preview">
+              <div class="map-grid"></div>
+              <div class="map-road-h" style="top:42%;"></div>
+              <div class="map-road-h" style="top:68%;"></div>
+              <div class="map-road-v" style="left:35%;"></div>
+              <div class="map-road-v" style="left:62%;"></div>
+              <div class="map-pin">📍</div>
+            </div>
+            <div class="loc-info">
+              <div class="loc-icon">📍</div>
+              <div class="loc-text">
+                <div class="loc-addr">서울시 마포구 서교동 354-12</div>
+                <div class="loc-dist">현재 위치 · GPS 기반</div>
+              </div>
+              <div class="loc-change">변경</div>
+            </div>
+            <div class="symp-selected-display">
+              <span class="ssd-label">선택 증상</span>
+              <span class="ssd-val" id="ssd-val">두통</span>
+              <span style="font-family:'Noto Sans KR';font-size:11px;color:var(--app-mid);margin-left:auto;" id="ssd-dept">신경과 · 내과 추천</span>
+            </div>
+            <div class="section-label" style="padding-top:20px;">주변 추천 병원</div>
+            <div style="padding:0 16px 8px;font-family:'Noto Sans KR';font-size:12px;color:var(--app-mid);">반경 2km 이내 <strong style="color:var(--app-acc);">3개 병원</strong> 발견</div>
+          </div>
+          <div class="bottom-bar">
+            <button class="main-btn" onclick="goTo(3)">병원 목록 보기 →</button>
+          </div>
+        </div>
+
+        <!-- SC3: 병원 목록 -->
+        <div class="screen" id="sc3">
+          <div class="app-header">
+            <div class="ah-back" onclick="goTo(2)">←</div>
+            <span class="ah-title">추천 병원</span>
+            <div class="ah-action">⚙️</div>
+          </div>
+          <div class="scroll-area">
+            <div class="symp-selected-display">
+              <span class="ssd-label">증상</span>
+              <span class="ssd-val" id="ssd-val2">두통</span>
+              <span style="font-family:'Noto Sans KR';font-size:11px;color:var(--app-mid);margin-left:auto;" id="ssd-dept2">신경과 · 내과</span>
+            </div>
+            <div class="filter-bar">
+              <div class="filter-pill on">거리순</div>
+              <div class="filter-pill">대기 적은 순</div>
+              <div class="filter-pill">평점순</div>
+              <div class="filter-pill">영업 중</div>
+            </div>
+
+            <!-- AI 추천 배너 -->
+            <div class="ai-rec">
+              <div class="ai-rec-icon">🤖</div>
+              <div class="ai-rec-text">
+                <strong>AI 분석:</strong> 선택하신 <strong>두통</strong> 증상에는 <strong>신촌연세내과</strong>가 가장 적합합니다. 대기 시간이 짧고 해당 증상 전문 진료를 제공합니다.
+              </div>
+            </div>
+
+            <!-- Hospital 1 -->
+            <div class="hosp-card" onclick="selectHosp(0)">
+              <div class="hosp-top">
+                <div class="hosp-row1">
+                  <div class="hosp-name-wrap">
+                    <div class="hosp-name">신촌연세내과</div>
+                    <span class="hosp-open open">영업 중</span>
+                  </div>
+                  <div class="hosp-bookmark">🔖</div>
+                </div>
+                <div class="hosp-meta">
+                  <div class="hm-item">📍 <span>0.3km</span></div>
+                  <div class="hm-item">⭐ <span>4.8</span></div>
+                  <div class="hm-item">💬 <span>리뷰 312</span></div>
+                </div>
+              </div>
+              <div class="hosp-tags">
+                <span class="hosp-tag hl">내과</span>
+                <span class="hosp-tag hl">신경과</span>
+                <span class="hosp-tag">일반진료</span>
+                <span class="hosp-tag">주차 가능</span>
+              </div>
+              <div class="hosp-divider"></div>
+              <div class="hosp-bottom">
+                <div class="hosp-wait">현재 대기 <span>약 5분</span></div>
+                <button class="hosp-btn">예약하기</button>
+              </div>
+            </div>
+
+            <!-- Hospital 2 -->
+            <div class="hosp-card" onclick="selectHosp(1)">
+              <div class="hosp-top">
+                <div class="hosp-row1">
+                  <div class="hosp-name-wrap">
+                    <div class="hosp-name">마포서울신경과</div>
+                    <span class="hosp-open busy">혼잡</span>
+                  </div>
+                  <div class="hosp-bookmark">🔖</div>
+                </div>
+                <div class="hosp-meta">
+                  <div class="hm-item">📍 <span>0.7km</span></div>
+                  <div class="hm-item">⭐ <span>4.6</span></div>
+                  <div class="hm-item">💬 <span>리뷰 187</span></div>
+                </div>
+              </div>
+              <div class="hosp-tags">
+                <span class="hosp-tag hl">신경과</span>
+                <span class="hosp-tag">두통 전문</span>
+                <span class="hosp-tag">야간진료</span>
+              </div>
+              <div class="hosp-divider"></div>
+              <div class="hosp-bottom">
+                <div class="hosp-wait">현재 대기 <span>약 25분</span></div>
+                <button class="hosp-btn">예약하기</button>
+              </div>
+            </div>
+
+            <!-- Hospital 3 -->
+            <div class="hosp-card" onclick="selectHosp(2)">
+              <div class="hosp-top">
+                <div class="hosp-row1">
+                  <div class="hosp-name-wrap">
+                    <div class="hosp-name">홍대365내과의원</div>
+                    <span class="hosp-open open">영업 중</span>
+                  </div>
+                  <div class="hosp-bookmark">🔖</div>
+                </div>
+                <div class="hosp-meta">
+                  <div class="hm-item">📍 <span>1.2km</span></div>
+                  <div class="hm-item">⭐ <span>4.5</span></div>
+                  <div class="hm-item">💬 <span>리뷰 94</span></div>
+                </div>
+              </div>
+              <div class="hosp-tags">
+                <span class="hosp-tag hl">내과</span>
+                <span class="hosp-tag">365일 운영</span>
+                <span class="hosp-tag">야간진료</span>
+              </div>
+              <div class="hosp-divider"></div>
+              <div class="hosp-bottom">
+                <div class="hosp-wait">현재 대기 <span>약 10분</span></div>
+                <button class="hosp-btn">예약하기</button>
+              </div>
+            </div>
+            <div style="height:16px;"></div>
+          </div>
+        </div>
+
+        <!-- SC4: 병원 상세 + 시간 선택 -->
+        <div class="screen" id="sc4">
+          <div class="app-header">
+            <div class="ah-back" onclick="goTo(3)">←</div>
+            <span class="ah-title" id="hosp-title">병원 상세</span>
+            <div class="ah-action">📤</div>
+          </div>
+          <div class="scroll-area">
+            <div class="hosp-hero">
+              <div class="hh-grid"></div>
+              <div>
+                <div class="hh-name" id="detail-hosp-name">신촌연세내과</div>
+                <div class="hh-dept" id="detail-hosp-dept">내과 · 신경과</div>
+              </div>
+            </div>
+            <div class="detail-info">
+              <div class="di-row"><div class="di-icon">📍</div><div><div class="di-label">주소</div><div class="di-value" id="detail-addr">서울 마포구 서교동 355 연세빌딩 2F</div></div></div>
+              <div class="di-row"><div class="di-icon">🕐</div><div><div class="di-label">운영 시간</div><div class="di-value green" id="detail-hours">평일 09:00 – 18:00 · 영업 중</div></div></div>
+              <div class="di-row"><div class="di-icon">📞</div><div><div class="di-label">전화번호</div><div class="di-value acc">02-123-4567</div></div></div>
+              <div class="di-row"><div class="di-icon">⏱️</div><div><div class="di-label">현재 대기</div><div class="di-value" id="detail-wait"><span style="color:var(--green);font-weight:700;">약 5분</span> (3명 대기)</div></div></div>
+            </div>
+            <div class="sec-title2">날짜 선택</div>
+            <div class="date-strip" id="date-strip"></div>
+            <div class="sec-title2">시간 선택</div>
+            <div class="time-grid" id="time-grid"></div>
+            <div style="height:10px;"></div>
+          </div>
+          <div class="bottom-bar">
+            <button class="main-btn" id="time-next-btn" disabled onclick="goTo(5)">시간을 선택해주세요</button>
+          </div>
+        </div>
+
+        <!-- SC5: 예약 확인 -->
+        <div class="screen" id="sc5">
+          <div class="app-header">
+            <div class="ah-back" onclick="goTo(4)">←</div>
+            <span class="ah-title">예약 확인</span>
+            <div class="ah-action"></div>
+          </div>
+          <div class="scroll-area">
+            <div class="confirm-card">
+              <div class="cc-header">
+                <div class="cc-title">예약 정보</div>
+                <div class="cc-hosp" id="conf-hosp">신촌연세내과</div>
+              </div>
+              <div class="cc-row"><span class="cc-label">증상</span><span class="cc-val acc" id="conf-symp">두통</span></div>
+              <div class="cc-row"><span class="cc-label">진료과</span><span class="cc-val" id="conf-dept">내과 · 신경과</span></div>
+              <div class="cc-row"><span class="cc-label">날짜</span><span class="cc-val" id="conf-date">—</span></div>
+              <div class="cc-row"><span class="cc-label">시간</span><span class="cc-val acc" id="conf-time">—</span></div>
+              <div class="cc-row" style="border-bottom:none;"><span class="cc-label">주소</span><span class="cc-val" style="font-size:12px;" id="conf-addr">서울 마포구 서교동 355</span></div>
+            </div>
+            <div class="patient-form">
+              <div class="pf-title">환자 정보</div>
+              <div class="pf-label">이름</div>
+              <input class="pf-input" type="text" placeholder="홍길동" id="inp-name">
+              <div class="pf-row">
+                <div>
+                  <div class="pf-label">생년월일</div>
+                  <input class="pf-input" type="text" placeholder="19900101">
+                </div>
+                <div>
+                  <div class="pf-label">연락처</div>
+                  <input class="pf-input" type="text" placeholder="010-0000-0000">
+                </div>
+              </div>
+              <div class="pf-label">증상 메모 (선택)</div>
+              <input class="pf-input" type="text" placeholder="두통이 3일째 지속됩니다...">
+            </div>
+            <div class="notice-box">
+              <div class="nb-title">ℹ️ 예약 안내</div>
+              <div class="nb-text">· 예약 시간 10분 전까지 취소 가능<br>· 당일 취소 시 페널티가 적용될 수 있습니다<br>· 초진의 경우 신분증을 지참해주세요</div>
+            </div>
+            <div style="height:10px;"></div>
+          </div>
+          <div class="bottom-bar">
+            <button class="main-btn" onclick="completeBooking()">예약 확정하기 ✓</button>
+          </div>
+        </div>
+
+        <!-- SC6: 예약 완료 -->
+        <div class="screen" id="sc6">
+          <div class="complete-wrap">
+            <div class="check-circle">✅</div>
+            <div class="comp-title">예약 완료!</div>
+            <div class="comp-sub">예약이 성공적으로 접수되었습니다.<br>방문 전 알림을 보내드릴게요.</div>
+            <div class="comp-card">
+              <div class="comp-num" id="comp-num">MDB-2817</div>
+              <div class="comp-num-label">예약 번호</div>
+              <div class="comp-row"><span class="comp-k">병원</span><span class="comp-v" id="comp-hosp">신촌연세내과</span></div>
+              <div class="comp-row"><span class="comp-k">증상</span><span class="comp-v" id="comp-symp">두통</span></div>
+              <div class="comp-row"><span class="comp-k">일시</span><span class="comp-v" id="comp-datetime">3월 18일 오전 10:30</span></div>
+              <div class="comp-row" style="border:none;"><span class="comp-k">예상 대기</span><span class="comp-v">약 5분</span></div>
+            </div>
+            <div class="comp-btns">
+              <button class="comp-btn primary" onclick="goTo(0)">홈으로 돌아가기</button>
+              <button class="comp-btn secondary">예약 내역 보기</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /screens -->
+    </div><!-- /phone-screen -->
+  </div><!-- /phone-shell -->
+
+  <!-- SIDE INFO -->
+  <div class="side-panel">
+    <div class="sp-tag">— Interactive Prototype / Project 06</div>
+    <div class="sp-title">HOSPITAL<br><em>BOOKING</em><br>UX</div>
+    <p class="sp-desc">증상 선택 기반으로 병원 예약 프로세스를 단순화한 인터랙티브 프로토타입입니다. 좌측 화면을 직접 조작해보세요.</p>
+
+    <div class="flow-list">
+      <div class="fl-item" id="fl-0">
+        <div class="fl-num">00</div>
+        <div class="fl-info">
+          <div class="fl-name">스플래시 · 홈</div>
+          <div class="fl-desc">앱 진입 화면</div>
+        </div>
+      </div>
+      <div class="fl-item" id="fl-1">
+        <div class="fl-num">01</div>
+        <div class="fl-info">
+          <div class="fl-name">증상 선택</div>
+          <div class="fl-desc">8개 주요 증상 카테고리 → 진료과 자동 매핑</div>
+        </div>
+      </div>
+      <div class="fl-item" id="fl-2">
+        <div class="fl-num">02</div>
+        <div class="fl-info">
+          <div class="fl-name">위치 확인</div>
+          <div class="fl-desc">GPS 기반 현재 위치 · 반경 2km 병원 탐색</div>
+        </div>
+      </div>
+      <div class="fl-item" id="fl-3">
+        <div class="fl-num">03</div>
+        <div class="fl-info">
+          <div class="fl-name">병원 추천 목록</div>
+          <div class="fl-desc">AI 추천 · 거리·대기·평점 필터링</div>
+        </div>
+      </div>
+      <div class="fl-item" id="fl-4">
+        <div class="fl-num">04</div>
+        <div class="fl-info">
+          <div class="fl-name">날짜 · 시간 선택</div>
+          <div class="fl-desc">실시간 잔여 슬롯 표시 · 만석 표시</div>
+        </div>
+      </div>
+      <div class="fl-item" id="fl-5">
+        <div class="fl-num">05</div>
+        <div class="fl-info">
+          <div class="fl-name">예약 확인 · 완료</div>
+          <div class="fl-desc">환자 정보 입력 → 예약 번호 발급</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-stats">
+      <div class="sp-stat"><div class="ss-num">3</div><div class="ss-label">예약 단계 (AS-IS: 5)</div></div>
+      <div class="sp-stat"><div class="ss-num">↓60%</div><div class="ss-label">소요 시간 단축</div></div>
+      <div class="sp-stat"><div class="ss-num">8</div><div class="ss-label">증상 카테고리</div></div>
+      <div class="sp-stat"><div class="ss-num">100%</div><div class="ss-label">Mobile First</div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── STATE ──
+let state = {
+  currentScreen: 0,
+  prevScreen: -1,
+  selectedSymp: '',
+  selectedDept: '',
+  selectedHospIdx: 0,
+  selectedDate: '',
+  selectedTime: '',
+};
+
+const HOSPS = [
+  {name:'신촌연세내과', dept:'내과 · 신경과', addr:'서울 마포구 서교동 355 연세빌딩 2F', hours:'평일 09:00 – 18:00 · 영업 중', wait:'약 5분', waitColor:'var(--green)'},
+  {name:'마포서울신경과', dept:'신경과 전문', addr:'서울 마포구 합정동 120 메디타워 3F', hours:'평일 09:00 – 20:00 · 영업 중', wait:'약 25분', waitColor:'var(--orange)'},
+  {name:'홍대365내과의원', dept:'내과 · 가정의학과', addr:'서울 마포구 동교동 165-2 1F', hours:'연중무휴 07:00 – 23:00 · 영업 중', wait:'약 10분', waitColor:'var(--app-acc)'},
+];
+
+// ── CLOCK ──
+function updateClock(){
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('sb-time').textContent = h+':'+m;
+}
+updateClock(); setInterval(updateClock, 10000);
+
+// ── SCREEN NAV ──
+function goTo(n){
+  const screens = document.querySelectorAll('.screen');
+  const prev = state.currentScreen;
+  screens[prev].classList.remove('active');
+  screens[prev].classList.add('prev');
+  setTimeout(()=>screens[prev].classList.remove('prev'), 500);
+  screens[n].classList.add('active');
+  state.prevScreen = prev;
+  state.currentScreen = n;
+  updateFlowHighlight(n);
+  // sync data
+  if(n===2){ syncLocScreen(); }
+  if(n===3){ syncHospList(); }
+  if(n===4){ buildDateGrid(); buildTimeGrid(); }
+  if(n===5){ syncConfirm(); }
+  if(n===6){ syncComplete(); }
+}
+
+// ── FLOW HIGHLIGHT ──
+function updateFlowHighlight(n){
+  for(let i=0;i<=5;i++){
+    const el = document.getElementById('fl-'+i);
+    if(!el) continue;
+    el.querySelector('.fl-num').style.color = (i===n||i===n-1&&n>3) ? 'var(--acc)' : 'var(--acc)';
+    el.style.opacity = i<=n ? '1' : '.35';
+  }
+}
+
+// ── SYMPTOM SELECT ──
+function selectSymp(el){
+  document.querySelectorAll('.symp-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.selectedSymp = el.dataset.symp;
+  state.selectedDept = el.dataset.dept;
+  const btn = document.getElementById('symp-next-btn');
+  btn.disabled = false;
+  document.getElementById('symp-btn-text').textContent = state.selectedSymp + ' 증상으로 병원 찾기 →';
+}
+
+function syncLocScreen(){
+  document.getElementById('ssd-val').textContent = state.selectedSymp || '두통';
+  document.getElementById('ssd-dept').textContent = (state.selectedDept||'신경과 · 내과') + ' 추천';
+}
+function syncHospList(){
+  document.getElementById('ssd-val2').textContent = state.selectedSymp || '두통';
+  document.getElementById('ssd-dept2').textContent = state.selectedDept || '신경과 · 내과';
+}
+
+// ── HOSPITAL SELECT ──
+function selectHosp(idx){
+  state.selectedHospIdx = idx;
+  const h = HOSPS[idx];
+  document.getElementById('hosp-title').textContent = h.name;
+  document.getElementById('detail-hosp-name').textContent = h.name;
+  document.getElementById('detail-hosp-dept').textContent = h.dept;
+  document.getElementById('detail-addr').textContent = h.addr;
+  document.getElementById('detail-hours').textContent = h.hours;
+  document.getElementById('detail-wait').innerHTML = `<span style="color:${h.waitColor};font-weight:700;">${h.wait}</span>`;
+  goTo(4);
+}
+
+// ── DATE GRID ──
+function buildDateGrid(){
+  const strip = document.getElementById('date-strip');
+  strip.innerHTML = '';
+  const days = ['일','월','화','수','목','금','토'];
+  const today = new Date();
+  for(let i=0;i<7;i++){
+    const d = new Date(today);
+    d.setDate(today.getDate()+i);
+    const btn = document.createElement('div');
+    btn.className = 'date-btn' + (i===0?' on':'');
+    btn.innerHTML = `<div class="db-d">${days[d.getDay()]}</div><div class="db-n">${d.getDate()}</div>`;
+    const dateStr = `${d.getMonth()+1}월 ${d.getDate()}일 (${days[d.getDay()]})`;
+    if(i===0) state.selectedDate = dateStr;
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.date-btn').forEach(b=>b.classList.remove('on'));
+      btn.classList.add('on');
+      state.selectedDate = dateStr;
+    });
+    strip.appendChild(btn);
+  }
+}
+
+// ── TIME GRID ──
+function buildTimeGrid(){
+  const grid = document.getElementById('time-grid');
+  grid.innerHTML = '';
+  const SLOTS = ['09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30'];
+  const FULL = [0,1,5];
+  state.selectedTime = '';
+  document.getElementById('time-next-btn').disabled = true;
+  document.getElementById('time-next-btn').textContent = '시간을 선택해주세요';
+  SLOTS.forEach((t,i)=>{
+    const btn = document.createElement('div');
+    btn.className = 'time-btn' + (FULL.includes(i)?' full':'');
+    btn.textContent = t;
+    if(!FULL.includes(i)){
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.time-btn:not(.full)').forEach(b=>b.classList.remove('on'));
+        btn.classList.add('on');
+        state.selectedTime = t;
+        const nb = document.getElementById('time-next-btn');
+        nb.disabled = false;
+        nb.textContent = t + ' 예약하기 →';
+      });
+    }
+    grid.appendChild(btn);
+  });
+}
+
+// ── CONFIRM SCREEN ──
+function syncConfirm(){
+  const h = HOSPS[state.selectedHospIdx];
+  document.getElementById('conf-hosp').textContent = h.name;
+  document.getElementById('conf-symp').textContent = state.selectedSymp || '두통';
+  document.getElementById('conf-dept').textContent = h.dept;
+  document.getElementById('conf-date').textContent = state.selectedDate || '3월 18일 (화)';
+  document.getElementById('conf-time').textContent = state.selectedTime || '10:30';
+  document.getElementById('conf-addr').textContent = h.addr;
+}
+
+// ── COMPLETE ──
+function completeBooking(){
+  const num = 'MDB-' + (Math.floor(Math.random()*9000)+1000);
+  document.getElementById('comp-num').textContent = num;
+  const h = HOSPS[state.selectedHospIdx];
+  document.getElementById('comp-hosp').textContent = h.name;
+  document.getElementById('comp-symp').textContent = state.selectedSymp || '두통';
+  document.getElementById('comp-datetime').textContent = (state.selectedDate||'3월 18일') + ' ' + (state.selectedTime||'10:30');
+  goTo(6);
+}
+
+function syncComplete(){}
+
+// ── FILTER PILLS TOGGLE ──
+document.querySelectorAll('.filter-pill').forEach(p=>{
+  p.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-pill').forEach(x=>x.classList.remove('on'));
+    p.classList.add('on');
+  });
+});
+
+// ── INIT ──
+updateFlowHighlight(0);
+</script>
+</body>
+</html>
