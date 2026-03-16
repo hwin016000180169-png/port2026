@@ -195,6 +195,41 @@ body.hov #CU{width:22px;height:22px;}
 /* footer */
 footer{position:relative;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:22px 52px;border-top:1px solid var(--bdr);}
 .ft{font-size:8px;letter-spacing:.2em;color:var(--mid);text-transform:uppercase;}
+
+/* ════════════════ S5 — ARCHIVE ════════════════ */
+#S5{position:relative;z-index:10;padding:120px 52px;background:var(--bg);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;border-top:1px solid var(--bdr);}
+.ar-eyebrow{font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:var(--mid);margin-bottom:20px;}
+.ar-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid rgba(240,236,228,.1);margin-bottom:32px;background:rgba(240,236,228,.02);}
+.ar-badge-dot{width:5px;height:5px;border-radius:50%;background:rgba(240,236,228,.3);}
+.ar-badge-txt{font-size:8px;letter-spacing:.32em;text-transform:uppercase;color:rgba(240,236,228,.28);}
+.ar-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,7.5vw,108px);line-height:.88;letter-spacing:.01em;margin-bottom:28px;color:var(--fg);}
+.ar-title em{display:block;font-style:normal;color:rgba(240,236,228,.13);}
+.ar-div{width:36px;height:1px;background:var(--bdr);margin-bottom:24px;}
+.ar-desc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:2.1;font-weight:300;color:rgba(240,236,228,.42);margin-bottom:40px;}
+.ar-desc strong{color:rgba(240,236,228,.72);font-weight:700;}
+.ar-btn{display:inline-flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,236,228,.5);text-decoration:none;border:1px solid var(--bdr);padding:14px 26px;transition:color .3s,border-color .3s;}
+.ar-btn:hover{color:var(--fg);border-color:rgba(240,236,228,.28);}
+.ar-btn-arr{font-size:15px;display:inline-block;transition:transform .3s;}
+.ar-btn:hover .ar-btn-arr{transform:translate(3px,-3px);}
+/* browser mockup */
+.arbrowser{border:1px solid var(--bdr);border-radius:7px;overflow:hidden;box-shadow:0 28px 80px rgba(0,0,0,.7);transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s;}
+.arbrowser:hover{transform:translateY(-5px);box-shadow:0 40px 100px rgba(0,0,0,.85);}
+.arbrow{background:#080808;border-bottom:1px solid var(--bdr);padding:11px 16px;display:flex;align-items:center;gap:12px;}
+.arbdots{display:flex;gap:6px;}
+.arbdots span{width:9px;height:9px;border-radius:50%;display:block;background:#232323;}
+.arburl{flex:1;background:rgba(255,255,255,.025);border:1px solid var(--bdr);border-radius:3px;padding:5px 12px;font-size:9px;letter-spacing:.05em;color:rgba(240,236,228,.18);font-family:'Space Mono',monospace;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.arscreen{aspect-ratio:16/9;background:#060606;position:relative;overflow:hidden;}
+.arscreen-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.02) 39px,rgba(255,255,255,.02) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.02) 39px,rgba(255,255,255,.02) 40px);}
+.arscreen-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
+.arscreen-yr{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,100px);color:rgba(240,236,228,.05);letter-spacing:.04em;line-height:1;}
+.arscreen-line{width:40px;height:1px;background:rgba(240,236,228,.1);}
+.arscreen-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(14px,2vw,26px);color:rgba(240,236,228,.18);letter-spacing:.14em;}
+.arscreen-tag{font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(240,236,228,.1);}
+.arscreen-ov{position:absolute;inset:0;background:rgba(2,2,2,0);transition:background .4s;display:flex;align-items:center;justify-content:center;}
+.arbrowser:hover .arscreen-ov{background:rgba(2,2,2,.55);}
+.arscreen-cta{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--fg);opacity:0;transform:translateY(8px);transition:opacity .38s,transform .38s;}
+.arbrowser:hover .arscreen-cta{opacity:1;transform:translateY(0);}
+.arscreen-cta-line{width:22px;height:1px;background:rgba(240,236,228,.4);}
 </style>
 </head>
 <body>
@@ -483,6 +518,42 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <a class="clink" href="#" target="_blank"><div class="clinfo"><span class="clk">Instagram</span><span class="clv">_rlaehdgnl</span></div><span class="carrow">↗</span></a>
   </div>
 </section>
+<!-- ─── S5 ARCHIVE ─── -->
+<section id="S5">
+  <div class="rv">
+    <div class="ar-eyebrow">— Archive</div>
+    <div class="ar-badge"><span class="ar-badge-dot"></span><span class="ar-badge-txt">Before AI · 2025</span></div>
+    <div class="ar-title">2025<em>PORT<br>FOLIO</em></div>
+    <div class="ar-div"></div>
+    <p class="ar-desc">AI 협업 이전, 기획부터 디자인,<br>퍼블리싱까지 <strong>혼자 제작</strong>한<br>2025년도 포트폴리오입니다.</p>
+    <a href="https://hwin016000180169-png.github.io/pop/" target="_blank" class="ar-btn">
+      포트폴리오 방문하기 <span class="ar-btn-arr">↗</span>
+    </a>
+  </div>
+  <div class="rv d2">
+    <a href="https://hwin016000180169-png.github.io/pop/" target="_blank" style="display:block;text-decoration:none;">
+      <div class="arbrowser">
+        <div class="arbrow">
+          <div class="arbdots"><span></span><span></span><span></span></div>
+          <div class="arburl">hwin016000180169-png.github.io/pop/</div>
+        </div>
+        <div class="arscreen">
+          <div class="arscreen-grid"></div>
+          <div class="arscreen-content">
+            <div class="arscreen-yr">2025</div>
+            <div class="arscreen-line"></div>
+            <div class="arscreen-name">KIM DONG HWI</div>
+            <div class="arscreen-tag">No AI · Self-made Portfolio</div>
+          </div>
+          <div class="arscreen-ov">
+            <div class="arscreen-cta"><span class="arscreen-cta-line"></span>Visit Portfolio</div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
 <footer>
   <span class="ft">© 2026 Kim Dong Hwi</span>
   <span class="ft">UI/UX Design · Web Publishing · AI Collaboration</span>
@@ -612,7 +683,7 @@ window.addEventListener('scroll',()=>{
   document.getElementById('PB').style.width=(max>0?scrollY/max*100:0)+'%';
   /* section index */
   const IDX=document.getElementById('SIDX');
-  const secs=[{id:'S1',t:'001 / INTRO'},{id:'S2',t:'002 / ABOUT'},{id:'S3',t:'003 / WORKS'},{id:'S4',t:'004 / CONTACT'}];
+  const secs=[{id:'S1',t:'001 / INTRO'},{id:'S2',t:'002 / ABOUT'},{id:'S3',t:'003 / WORKS'},{id:'S4',t:'004 / CONTACT'},{id:'S5',t:'005 / ARCHIVE'}];
   let cur='001 / INTRO';
   secs.forEach(s=>{const el=document.getElementById(s.id);if(el&&el.getBoundingClientRect().top<=innerHeight*.55)cur=s.t;});
   IDX.textContent=cur.replace('/','\u00a0/\u00a0');
