@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Command Center — KDH Portfolio</title>
+<title>AI Command Center ??KDH Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{--bg:#000;--fg:#e0ffe0;--acc:#00ff41;--bdr:#0a1a0a;--mid:#2a5a2a;--card:#040d04;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
+body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Noto Sans KR',sans-serif;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent 0px,transparent 2px,rgba(0,255,65,.01) 2px,rgba(0,255,65,.01) 4px);pointer-events:none;z-index:1;}
 #CU{position:fixed;width:3px;height:16px;background:var(--acc);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);animation:blink .8s step-end infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
@@ -20,7 +21,7 @@ a{text-decoration:none;color:inherit;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(0,0,0,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
 .nb{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
 .nb:hover{color:var(--acc);}
-.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
+.nt{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
 .nn{font-size:12px;letter-spacing:.22em;color:var(--mid);}
 
 /* HERO TERMINAL */
@@ -31,7 +32,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .tdot.r{background:#ff5f57;}.tdot.y{background:#febc2e;}.tdot.g{background:var(--acc);}
 .ttitle{font-size:12px;letter-spacing:.12em;color:var(--mid);margin-left:10px;}
 .termbody{background:var(--card);border:1px solid var(--bdr);padding:36px;min-height:300px;}
-.tline{font-size:13px;line-height:2;margin-bottom:2px;}
+.tline{font-size:14px;line-height:2;margin-bottom:2px;}
 .tprompt{color:var(--mid);}
 .tcmd{color:var(--acc);font-weight:700;}
 .tout{color:rgba(224,255,224,.55);}
@@ -41,14 +42,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hmeta{display:flex;gap:40px;margin-top:28px;padding-top:22px;border-top:1px solid var(--bdr);}
 .hmi{display:flex;flex-direction:column;gap:4px;}
 .hmik{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--mid);}
-.hmiv{font-size:13px;color:rgba(224,255,224,.5);}
+.hmiv{font-size:14px;color:rgba(224,255,224,.5);}
 .hmiv.g{color:var(--acc);}
 
 /* SHARED */
 .sec{padding:88px 52px;border-top:1px solid var(--bdr);position:relative;z-index:2;}
 .sec-prefix{font-size:12px;letter-spacing:.28em;color:var(--mid);margin-bottom:10px;text-transform:uppercase;}
 .sec-prefix::before{content:'// ';color:var(--bdr);}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,68px);letter-spacing:.02em;margin-bottom:48px;line-height:.95;}
+.sec-title{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(44px,5.5vw,68px);letter-spacing:.02em;margin-bottom:48px;line-height:.95;}
 .sec-title em{font-style:normal;color:var(--acc);}
 
 /* ARCH */
@@ -62,7 +63,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .archnode.out{border-color:rgba(0,255,65,.2);}
 .archlbl{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);}
 .archname{font-size:14px;letter-spacing:.08em;color:#e0ffe0;font-weight:700;}
-.archdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(224,255,224,.32);font-weight:300;margin-top:4px;}
+.archdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;color:rgba(224,255,224,.32);font-weight:300;margin-top:4px;}
 .archarrow{text-align:center;padding:6px 0;color:var(--mid);font-size:12px;letter-spacing:.18em;}
 .aagents{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
 .aagent{padding:28px 24px;background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;transition:border-color .3s;}
@@ -73,10 +74,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .aagent.gem::before{background:#4285f4;}
 .aagrole{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
 .aagname{font-size:15px;letter-spacing:.1em;color:#e0ffe0;margin-bottom:12px;font-weight:700;}
-.aagtask{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(224,255,224,.38);font-weight:300;padding:3px 0 3px 10px;border-left:1px solid var(--bdr);}
+.aagtask{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;color:rgba(224,255,224,.38);font-weight:300;padding:3px 0 3px 10px;border-left:1px solid var(--bdr);}
 
 /* IA TREE */
-.iatermbox{background:var(--card);border:1px solid var(--bdr);padding:36px;font-family:'Space Mono',monospace;font-size:13px;line-height:2.1;}
+.iatermbox{background:var(--card);border:1px solid var(--bdr);padding:36px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:2.1;}
 .iatermbox .c1{color:var(--acc);}
 .iatermbox .c2{color:#4285f4;}
 .iatermbox .c3{color:#d97b36;}
@@ -107,13 +108,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .aibadge{width:8px;height:8px;border-radius:50%;}
 .aibadge.gpt{background:#19c37d;}.aibadge.cla{background:#d97b36;}.aibadge.gem{background:#4285f4;}
 .ptrain{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);}
-.ptruse{font-size:13px;color:#e0ffe0;font-weight:700;}
+.ptruse{font-size:14px;color:#e0ffe0;font-weight:700;}
 .ptrbody{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:22px;}
 .pqlbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:8px;}
-.pptext{font-size:13px;line-height:1.7;color:rgba(224,255,224,.42);padding:12px 16px;background:rgba(0,255,65,.02);border:1px solid var(--bdr);}
+.pptext{font-size:14px;line-height:1.7;color:rgba(224,255,224,.42);padding:12px 16px;background:rgba(0,255,65,.02);border:1px solid var(--bdr);}
 .pptext::before{content:'$ ';color:var(--mid);}
 .prlbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#19c37d;margin-bottom:8px;}
-.prresult{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.65;color:rgba(224,255,224,.38);font-weight:300;}
+.prresult{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;color:rgba(224,255,224,.38);font-weight:300;}
 
 /* TIMELINE */
 .tltermrows{display:flex;flex-direction:column;}
@@ -122,21 +123,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .ttrcont{padding-left:24px;border-left:1px solid var(--bdr);}
 .ttrcmd{font-size:14px;color:#e0ffe0;margin-bottom:6px;font-weight:700;}
 .ttrcmd::before{content:'> ';color:var(--acc);}
-.ttrout{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(224,255,224,.35);font-weight:300;line-height:1.65;}
+.ttrout{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;color:rgba(224,255,224,.35);font-weight:300;line-height:1.65;}
 
 /* RESULTS */
 .resgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
 .rg{padding:36px 24px;background:var(--card);border:1px solid var(--bdr);text-align:center;transition:border-color .35s;}
 .rg:hover{border-color:var(--acc);}
 .rg.v .rgnum{text-shadow:0 0 22px rgba(0,255,65,.4);}
-.rgnum{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--acc);line-height:1;margin-bottom:6px;}
+.rgnum{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:52px;color:var(--acc);line-height:1;margin-bottom:6px;}
 .rglbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
-.rgdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(224,255,224,.35);font-weight:300;line-height:1.55;}
+.rgdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;color:rgba(224,255,224,.35);font-weight:300;line-height:1.55;}
 
 .pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);position:relative;z-index:2;}
 .pnl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
 .pnl:hover{color:var(--acc);}
-.pnc{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
+.pnc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
 
 .rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
 .rv.v{opacity:1;transform:none;}
@@ -147,7 +148,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 <canvas id="MX"></canvas>
 <div id="CU"></div><div id="PB"></div>
 <nav>
-  <a class="nb" href="../../../../../../index.html">← Portfolio</a>
+  <a class="nb" href="../../../../../../index.html">??Portfolio</a>
   <span class="nt">AI COMMAND CENTER</span>
   <span class="nn">04 / 06</span>
 </nav>
@@ -162,15 +163,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
       <div class="tline"><span class="tprompt">kdh@portfolio:~$ </span><span class="tcmd">cat project_info.txt</span></div>
       <div class="tgap"></div>
       <div class="tline"><span class="tout">PROJECT  : </span><span class="thl">AI Command Center</span></div>
-      <div class="tline"><span class="tout">TYPE     : </span><span class="tout">다중 AI 모델 통합 시스템 / Dashboard Design</span></div>
-      <div class="tline"><span class="tout">STATUS   : </span><span class="tcmd">Prototype Complete ✓</span></div>
-      <div class="tline"><span class="tout">ROLE     : </span><span class="tcmd">Design 100% · Build 100%</span></div>
+      <div class="tline"><span class="tout">TYPE     : </span><span class="tout">?ㅼ쨷 AI 紐⑤뜽 ?듯빀 ?쒖뒪??/ Dashboard Design</span></div>
+      <div class="tline"><span class="tout">STATUS   : </span><span class="tcmd">Prototype Complete ??/span></div>
+      <div class="tline"><span class="tout">ROLE     : </span><span class="tcmd">Design 100% 쨌 Build 100%</span></div>
       <div class="tgap"></div>
       <div class="tline"><span class="tprompt">kdh@portfolio:~$ </span><span class="tcmd">describe --purpose</span></div>
       <div class="tgap"></div>
-      <div class="tline"><span class="tout">GPT · Claude · Gemini를 하나의 인터페이스에서</span></div>
-      <div class="tline"><span class="tout">통합 운영하는 AI 협업 플랫폼. 각 AI의 강점을</span></div>
-      <div class="tline"><span class="tout">결합해 업무 자동화와 생산성 향상을 목표로 설계.</span></div>
+      <div class="tline"><span class="tout">GPT 쨌 Claude 쨌 Gemini瑜??섎굹???명꽣?섏씠?ㅼ뿉??/span></div>
+      <div class="tline"><span class="tout">?듯빀 ?댁쁺?섎뒗 AI ?묒뾽 ?뚮옯?? 媛?AI??媛뺤젏??/span></div>
+      <div class="tline"><span class="tout">寃고빀???낅Т ?먮룞?붿? ?앹궛???μ긽??紐⑺몴濡??ㅺ퀎.</span></div>
       <div class="tgap"></div>
       <div class="tline"><span class="tprompt">kdh@portfolio:~$ </span><span class="tcursor"></span></div>
     </div>
@@ -179,11 +180,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
     <div class="hmi"><span class="hmik">Year</span><span class="hmiv">2025</span></div>
     <div class="hmi"><span class="hmik">Type</span><span class="hmiv">AI Platform Design</span></div>
     <div class="hmi"><span class="hmik">Stack</span><span class="hmiv">UI + AI Integration</span></div>
-    <div class="hmi"><span class="hmik">Status</span><span class="hmiv g">Prototype ✓</span></div>
-    <div class="hmi"><span class="hmik">AI Used</span><span class="hmiv">GPT · Gemini · Claude</span></div>
+    <div class="hmi"><span class="hmik">Status</span><span class="hmiv g">Prototype ??/span></div>
+    <div class="hmi"><span class="hmik">AI Used</span><span class="hmiv">GPT 쨌 Gemini 쨌 Claude</span></div>
   </div>
   <div style="display:flex;gap:10px;margin-top:28px;" class="rv d2">
-    <a href="prototype.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border:1px solid var(--acc);background:rgba(0,255,65,.06);color:var(--acc);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:all .3s;">Prototype ↗</a>
+    <a href="prototype.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border:1px solid var(--acc);background:rgba(0,255,65,.06);color:var(--acc);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:all .3s;">Prototype ??/a>
   </div>
 </section>
 
@@ -191,20 +192,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <div class="sec-prefix rv">System Architecture</div>
   <div class="sec-title rv d1">AI WORKFLOW <em>DESIGN</em></div>
   <div class="archdiag rv d2">
-    <div class="archrow r1"><div class="archnode input"><span class="archlbl">Input Layer</span><span class="archname">Task Input</span><span class="archdesc">사용자 작업 명령 — 콘텐츠 제작·코드 작성·문서 분석 등</span></div></div>
-    <div class="archarrow">↓ AI Processing Pipeline ↓</div>
+    <div class="archrow r1"><div class="archnode input"><span class="archlbl">Input Layer</span><span class="archname">Task Input</span><span class="archdesc">?ъ슜???묒뾽 紐낅졊 ??肄섑뀗痢??쒖옉쨌肄붾뱶 ?묒꽦쨌臾몄꽌 遺꾩꽍 ??/span></div></div>
+    <div class="archarrow">??AI Processing Pipeline ??/div>
     <div class="archrow r3">
-      <div class="archnode"><span class="archlbl">Agent A — Primary</span><span class="archname" style="color:#19c37d">GPT</span><span class="archdesc">작업 수행 · 콘텐츠 생성 · 다양한 태스크 처리</span></div>
-      <div class="archnode"><span class="archlbl">Agent B — Review</span><span class="archname" style="color:#d97b36">Claude</span><span class="archdesc">코드 검수 · 문서 분석 · 품질 및 논리 검토</span></div>
-      <div class="archnode"><span class="archlbl">Agent C — Enhance</span><span class="archname" style="color:#4285f4">Gemini</span><span class="archdesc">데이터 분석 · 최신 검색 보완 · 결과 강화</span></div>
+      <div class="archnode"><span class="archlbl">Agent A ??Primary</span><span class="archname" style="color:#19c37d">GPT</span><span class="archdesc">?묒뾽 ?섑뻾 쨌 肄섑뀗痢??앹꽦 쨌 ?ㅼ뼇???쒖뒪??泥섎━</span></div>
+      <div class="archnode"><span class="archlbl">Agent B ??Review</span><span class="archname" style="color:#d97b36">Claude</span><span class="archdesc">肄붾뱶 寃??쨌 臾몄꽌 遺꾩꽍 쨌 ?덉쭏 諛??쇰━ 寃??/span></div>
+      <div class="archnode"><span class="archlbl">Agent C ??Enhance</span><span class="archname" style="color:#4285f4">Gemini</span><span class="archdesc">?곗씠??遺꾩꽍 쨌 理쒖떊 寃??蹂댁셿 쨌 寃곌낵 媛뺥솕</span></div>
     </div>
-    <div class="archarrow">↓ Final Verification ↓</div>
-    <div class="archrow r1"><div class="archnode out"><span class="archlbl">Output Layer</span><span class="archname">Final Output</span><span class="archdesc">3개 AI 검증을 거친 최종 결과물 — 높은 정확도와 완성도</span></div></div>
+    <div class="archarrow">??Final Verification ??/div>
+    <div class="archrow r1"><div class="archnode out"><span class="archlbl">Output Layer</span><span class="archname">Final Output</span><span class="archdesc">3媛?AI 寃利앹쓣 嫄곗튇 理쒖쥌 寃곌낵臾????믪? ?뺥솗?꾩? ?꾩꽦??/span></div></div>
   </div>
   <div class="aagents rv d3">
-    <div class="aagent gpt"><div class="aagrole">Primary Worker</div><div class="aagname">ChatGPT</div><div class="aagtask">콘텐츠 제작 및 아이디어 생성</div><div class="aagtask">다양한 포맷 작업 처리</div><div class="aagtask">초안 작성 및 기획 보조</div></div>
-    <div class="aagent cla"><div class="aagrole">Quality Control</div><div class="aagname">Claude</div><div class="aagtask">코드 분석 및 검수</div><div class="aagtask">문서 정확도 검증</div><div class="aagtask">논리 구조 검토</div></div>
-    <div class="aagent gem"><div class="aagrole">Data Enhancer</div><div class="aagname">Gemini</div><div class="aagtask">데이터 분석 및 검색</div><div class="aagtask">최신 정보 보완</div><div class="aagtask">결과 품질 향상</div></div>
+    <div class="aagent gpt"><div class="aagrole">Primary Worker</div><div class="aagname">ChatGPT</div><div class="aagtask">肄섑뀗痢??쒖옉 諛??꾩씠?붿뼱 ?앹꽦</div><div class="aagtask">?ㅼ뼇???щ㎎ ?묒뾽 泥섎━</div><div class="aagtask">珥덉븞 ?묒꽦 諛?湲고쉷 蹂댁“</div></div>
+    <div class="aagent cla"><div class="aagrole">Quality Control</div><div class="aagname">Claude</div><div class="aagtask">肄붾뱶 遺꾩꽍 諛?寃??/div><div class="aagtask">臾몄꽌 ?뺥솗??寃利?/div><div class="aagtask">?쇰━ 援ъ“ 寃??/div></div>
+    <div class="aagent gem"><div class="aagrole">Data Enhancer</div><div class="aagname">Gemini</div><div class="aagtask">?곗씠??遺꾩꽍 諛?寃??/div><div class="aagtask">理쒖떊 ?뺣낫 蹂댁셿</div><div class="aagtask">寃곌낵 ?덉쭏 ?μ긽</div></div>
   </div>
 </section>
 
@@ -214,59 +215,59 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <div class="iatermbox rv d2">
     <div><span class="c1">SYSTEM</span> :: <span class="c4">AI_COMMAND_CENTER_v1.0</span></div>
     <div style="margin-top:10px;">
-      <div class="ind c2">┌─ DASHBOARD</div>
-      <div class="ind2 cn">├─ AI 작업 현황 모니터</div>
-      <div class="ind2 cn">└─ 실시간 결과 스트림</div>
-      <div class="ind c3">├─ TASK INPUT PANEL</div>
-      <div class="ind2 cn">├─ 작업 유형 선택</div>
-      <div class="ind2 cn">└─ AI 파이프라인 설정</div>
-      <div class="ind c1">├─ AI AGENT MANAGER</div>
-      <div class="ind2 cn">├─ GPT / Claude / Gemini 패널</div>
-      <div class="ind2 cn">└─ 상태 모니터링</div>
-      <div class="ind c4">└─ OUTPUT CENTER</div>
-      <div class="ind2 cn">├─ 결과 비교 뷰</div>
-      <div class="ind2 cn">└─ 히스토리 관리</div>
+      <div class="ind c2">?뚢? DASHBOARD</div>
+      <div class="ind2 cn">?쒋? AI ?묒뾽 ?꾪솴 紐⑤땲??/div>
+      <div class="ind2 cn">?붴? ?ㅼ떆媛?寃곌낵 ?ㅽ듃由?/div>
+      <div class="ind c3">?쒋? TASK INPUT PANEL</div>
+      <div class="ind2 cn">?쒋? ?묒뾽 ?좏삎 ?좏깮</div>
+      <div class="ind2 cn">?붴? AI ?뚯씠?꾨씪???ㅼ젙</div>
+      <div class="ind c1">?쒋? AI AGENT MANAGER</div>
+      <div class="ind2 cn">?쒋? GPT / Claude / Gemini ?⑤꼸</div>
+      <div class="ind2 cn">?붴? ?곹깭 紐⑤땲?곕쭅</div>
+      <div class="ind c4">?붴? OUTPUT CENTER</div>
+      <div class="ind2 cn">?쒋? 寃곌낵 鍮꾧탳 酉?/div>
+      <div class="ind2 cn">?붴? ?덉뒪?좊━ 愿由?/div>
     </div>
   </div>
 </section>
 
 <section class="sec">
   <div class="sec-prefix rv">Visual Design</div>
-  <div class="sec-title rv d1">화면 <em>목업</em></div>
+  <div class="sec-title rv d1">?붾㈃ <em>紐⑹뾽</em></div>
   <div class="scterm rv d1">
 
     <!-- Screen 01: Main Dashboard -->
     <div class="sct">
       <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">dashboard.exe</span></div>
       <div class="sctbody">
-        <div style="position:absolute;inset:0;display:flex;background:#000;font-family:'Space Mono',monospace;overflow:hidden;">
+        <div style="position:absolute;inset:0;display:flex;background:#000;font-family:'Pretendard','Noto Sans KR',sans-serif;overflow:hidden;">
           <!-- mini sidebar -->
           <div style="width:42px;background:#040d04;border-right:1px solid #0d1f0d;display:flex;flex-direction:column;align-items:center;padding:10px 0;gap:10px;">
-            <div style="font-size:9px;color:#00ff41;font-weight:700;">⌘</div>
+            <div style="font-size:9px;color:#00ff41;font-weight:700;">??/div>
             <div style="width:20px;height:1px;background:#0d1f0d;margin:4px 0;"></div>
-            <div style="font-size:10px;color:#00ff41;">◈</div>
-            <div style="font-size:10px;color:#2a5a2a;">✦</div>
-            <div style="font-size:10px;color:#2a5a2a;">≡</div>
-            <div style="font-size:10px;color:#2a5a2a;">⚙</div>
+            <div style="font-size:10px;color:#00ff41;">??/div>
+            <div style="font-size:10px;color:#2a5a2a;">??/div>
+            <div style="font-size:10px;color:#2a5a2a;">??/div>
+            <div style="font-size:10px;color:#2a5a2a;">??/div>
           </div>
           <!-- main content -->
           <div style="flex:1;display:flex;flex-direction:column;padding:10px;gap:6px;">
             <!-- stats row -->
             <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
               <div style="background:#040d04;border:1px solid #0d1f0d;padding:6px;">
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#00ff41;line-height:1;">24</div>
+                <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:18px;color:#00ff41;line-height:1;">24</div>
                 <div style="font-size:7px;letter-spacing:.1em;color:#2a5a2a;text-transform:uppercase;">Tasks</div>
               </div>
               <div style="background:#040d04;border:1px solid #0d1f0d;padding:6px;">
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#00ff41;line-height:1;">21</div>
+                <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:18px;color:#00ff41;line-height:1;">21</div>
                 <div style="font-size:7px;letter-spacing:.1em;color:#2a5a2a;text-transform:uppercase;">Done</div>
               </div>
               <div style="background:#040d04;border:1px solid #0d1f0d;padding:6px;">
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#00ff41;line-height:1;">4.2s</div>
+                <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:18px;color:#00ff41;line-height:1;">4.2s</div>
                 <div style="font-size:7px;letter-spacing:.1em;color:#2a5a2a;text-transform:uppercase;">Avg</div>
               </div>
               <div style="background:#040d04;border:1px solid #0d1f0d;padding:6px;">
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#19c37d;line-height:1;">3</div>
+                <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:18px;color:#19c37d;line-height:1;">3</div>
                 <div style="font-size:7px;letter-spacing:.1em;color:#2a5a2a;text-transform:uppercase;">Active</div>
               </div>
             </div>
@@ -274,20 +275,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
             <div style="display:flex;flex-direction:column;gap:1px;flex:1;">
               <div style="font-size:7px;letter-spacing:.2em;color:#2a5a2a;text-transform:uppercase;padding:4px 0;border-bottom:1px solid #0d1f0d;">//&nbsp;Recent Tasks</div>
               <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 6px;background:#040d04;border:1px solid #0d1f0d;">
-                <span style="font-size:8px;color:#e0ffe0;font-family:'Noto Sans KR',sans-serif;">소셜미디어 카피 제작</span>
+                <span style="font-size:8px;color:#e0ffe0;font-family:'Pretendard','Noto Sans KR',sans-serif;">?뚯뀥誘몃뵒??移댄뵾 ?쒖옉</span>
                 <span style="font-size:7px;color:#00ff41;border:1px solid rgba(0,255,65,.3);padding:1px 5px;">DONE</span>
               </div>
               <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 6px;background:#040d04;border:1px solid #0d1f0d;">
-                <span style="font-size:8px;color:#e0ffe0;font-family:'Noto Sans KR',sans-serif;">React 코드 리뷰</span>
+                <span style="font-size:8px;color:#e0ffe0;font-family:'Pretendard','Noto Sans KR',sans-serif;">React 肄붾뱶 由щ럭</span>
                 <span style="font-size:7px;color:#00ff41;border:1px solid rgba(0,255,65,.3);padding:1px 5px;">DONE</span>
               </div>
               <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 6px;background:#040d04;border:1px solid #0d1f0d;">
-                <span style="font-size:8px;color:#e0ffe0;font-family:'Noto Sans KR',sans-serif;">마케팅 전략 분석</span>
+                <span style="font-size:8px;color:#e0ffe0;font-family:'Pretendard','Noto Sans KR',sans-serif;">留덉????꾨왂 遺꾩꽍</span>
                 <span style="font-size:7px;color:#00ff41;border:1px solid rgba(0,255,65,.3);padding:1px 5px;">DONE</span>
               </div>
             </div>
             <!-- button -->
-            <div style="padding:6px;border:1px solid rgba(0,255,65,.4);background:rgba(0,255,65,.05);text-align:center;font-size:7px;letter-spacing:.18em;color:#00ff41;text-transform:uppercase;">✦ New Task</div>
+            <div style="padding:6px;border:1px solid rgba(0,255,65,.4);background:rgba(0,255,65,.05);text-align:center;font-size:7px;letter-spacing:.18em;color:#00ff41;text-transform:uppercase;">??New Task</div>
           </div>
         </div>
       </div>
@@ -297,36 +298,36 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
     <div class="sct">
       <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">task_input.exe</span></div>
       <div class="sctbody">
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#000;font-family:'Space Mono',monospace;padding:10px;gap:6px;overflow:hidden;">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#000;font-family:'Pretendard','Noto Sans KR',sans-serif;padding:10px;gap:6px;overflow:hidden;">
           <div style="font-size:7px;letter-spacing:.2em;color:#2a5a2a;text-transform:uppercase;border-bottom:1px solid #0d1f0d;padding-bottom:5px;">//&nbsp;New Task</div>
           <!-- task type -->
           <div>
             <div style="font-size:7px;letter-spacing:.18em;color:#2a5a2a;text-transform:uppercase;margin-bottom:4px;">Task Type</div>
             <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
-              <div style="padding:5px 3px;border:1px solid rgba(0,255,65,.4);background:rgba(0,255,65,.06);text-align:center;font-size:7px;color:#00ff41;">✍ Content</div>
-              <div style="padding:5px 3px;border:1px solid #0d1f0d;text-align:center;font-size:7px;color:#2a5a2a;">⌨ Code</div>
-              <div style="padding:5px 3px;border:1px solid #0d1f0d;text-align:center;font-size:7px;color:#2a5a2a;">◎ Analysis</div>
-              <div style="padding:5px 3px;border:1px solid #0d1f0d;text-align:center;font-size:7px;color:#2a5a2a;">◈ Research</div>
+              <div style="padding:5px 3px;border:1px solid rgba(0,255,65,.4);background:rgba(0,255,65,.06);text-align:center;font-size:7px;color:#00ff41;">??Content</div>
+              <div style="padding:5px 3px;border:1px solid #0d1f0d;text-align:center;font-size:7px;color:#2a5a2a;">??Code</div>
+              <div style="padding:5px 3px;border:1px solid #0d1f0d;text-align:center;font-size:7px;color:#2a5a2a;">??Analysis</div>
+              <div style="padding:5px 3px;border:1px solid #0d1f0d;text-align:center;font-size:7px;color:#2a5a2a;">??Research</div>
             </div>
           </div>
           <!-- prompt area -->
           <div style="flex:1;background:#040d04;border:1px solid #0d1f0d;padding:8px;">
-            <div style="font-size:8px;color:rgba(224,255,224,.5);line-height:1.6;font-family:'Noto Sans KR',sans-serif;font-weight:300;">소셜미디어용 신제품 출시 콘텐츠 초안을 작성해줘. 감성적이고 임팩트 있는 카피 3가지...</div>
+            <div style="font-size:8px;color:rgba(224,255,224,.5);line-height:1.6;font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:300;">?뚯뀥誘몃뵒?댁슜 ?좎젣??異쒖떆 肄섑뀗痢?珥덉븞???묒꽦?댁쨾. 媛먯꽦?곸씠怨??꾪뙥???덈뒗 移댄뵾 3媛吏...</div>
           </div>
           <!-- AI routing -->
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
             <div style="padding:5px 6px;border:1px solid rgba(25,195,125,.4);background:rgba(25,195,125,.04);display:flex;align-items:center;gap:4px;">
-              <span style="font-size:8px;color:#19c37d;">✓</span><span style="font-size:7px;color:#19c37d;letter-spacing:.05em;">GPT</span>
+              <span style="font-size:8px;color:#19c37d;">??/span><span style="font-size:7px;color:#19c37d;letter-spacing:.05em;">GPT</span>
             </div>
             <div style="padding:5px 6px;border:1px solid rgba(217,123,54,.4);background:rgba(217,123,54,.04);display:flex;align-items:center;gap:4px;">
-              <span style="font-size:8px;color:#d97b36;">✓</span><span style="font-size:7px;color:#d97b36;letter-spacing:.05em;">Claude</span>
+              <span style="font-size:8px;color:#d97b36;">??/span><span style="font-size:7px;color:#d97b36;letter-spacing:.05em;">Claude</span>
             </div>
             <div style="padding:5px 6px;border:1px solid rgba(66,133,244,.4);background:rgba(66,133,244,.04);display:flex;align-items:center;gap:4px;">
-              <span style="font-size:8px;color:#4285f4;">✓</span><span style="font-size:7px;color:#4285f4;letter-spacing:.05em;">Gemini</span>
+              <span style="font-size:8px;color:#4285f4;">??/span><span style="font-size:7px;color:#4285f4;letter-spacing:.05em;">Gemini</span>
             </div>
           </div>
           <!-- run btn -->
-          <div style="padding:7px;border:1px solid rgba(0,255,65,.5);background:rgba(0,255,65,.07);text-align:center;font-size:7px;letter-spacing:.2em;color:#00ff41;text-transform:uppercase;">▶ EXECUTE TASK</div>
+          <div style="padding:7px;border:1px solid rgba(0,255,65,.5);background:rgba(0,255,65,.07);text-align:center;font-size:7px;letter-spacing:.2em;color:#00ff41;text-transform:uppercase;">??EXECUTE TASK</div>
         </div>
       </div>
     </div>
@@ -335,10 +336,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
     <div class="sct">
       <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">agent_mgr.exe</span></div>
       <div class="sctbody">
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#000;font-family:'Space Mono',monospace;padding:10px;gap:6px;overflow:hidden;">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#000;font-family:'Pretendard','Noto Sans KR',sans-serif;padding:10px;gap:6px;overflow:hidden;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <div style="font-size:7px;letter-spacing:.2em;color:#2a5a2a;text-transform:uppercase;">//&nbsp;Processing #T-025</div>
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:#00ff41;">68%</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:20px;color:#00ff41;">68%</div>
           </div>
           <!-- overall bar -->
           <div style="height:2px;background:#0d1f0d;"><div style="height:100%;width:68%;background:#00ff41;box-shadow:0 0 6px rgba(0,255,65,.5);"></div></div>
@@ -346,20 +347,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
           <div style="display:flex;flex-direction:column;gap:4px;flex:1;">
             <div style="background:#040d04;border:1px solid rgba(25,195,125,.4);padding:8px;position:relative;">
               <div style="position:absolute;top:0;left:0;right:0;height:1px;background:#19c37d;"></div>
-              <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;font-weight:700;color:#19c37d;">ChatGPT</span><span style="font-size:7px;color:#19c37d;">✓ Done</span></div>
-              <div style="font-size:7px;color:#2a5a2a;margin-top:2px;">결과 포맷팅 완료</div>
+              <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;font-weight:700;color:#19c37d;">ChatGPT</span><span style="font-size:7px;color:#19c37d;">??Done</span></div>
+              <div style="font-size:7px;color:#2a5a2a;margin-top:2px;">寃곌낵 ?щ㎎???꾨즺</div>
               <div style="height:2px;background:#0d1f0d;margin-top:5px;"><div style="height:100%;width:100%;background:#19c37d;"></div></div>
             </div>
             <div style="background:#040d04;border:1px solid rgba(217,123,54,.3);padding:8px;position:relative;">
               <div style="position:absolute;top:0;left:0;right:0;height:1px;background:#d97b36;"></div>
               <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;font-weight:700;color:#d97b36;">Claude</span><span style="font-size:7px;color:#d97b36;">78%</span></div>
-              <div style="font-size:7px;color:#2a5a2a;margin-top:2px;">표현 정확도 검토 중...</div>
+              <div style="font-size:7px;color:#2a5a2a;margin-top:2px;">?쒗쁽 ?뺥솗??寃??以?..</div>
               <div style="height:2px;background:#0d1f0d;margin-top:5px;"><div style="height:100%;width:78%;background:#d97b36;"></div></div>
             </div>
             <div style="background:#040d04;border:1px solid rgba(66,133,244,.3);padding:8px;position:relative;">
               <div style="position:absolute;top:0;left:0;right:0;height:1px;background:#4285f4;"></div>
               <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;font-weight:700;color:#4285f4;">Gemini</span><span style="font-size:7px;color:#4285f4;">55%</span></div>
-              <div style="font-size:7px;color:#2a5a2a;margin-top:2px;">시장 데이터 조회 중...</div>
+              <div style="font-size:7px;color:#2a5a2a;margin-top:2px;">?쒖옣 ?곗씠??議고쉶 以?..</div>
               <div style="height:2px;background:#0d1f0d;margin-top:5px;"><div style="height:100%;width:55%;background:#4285f4;"></div></div>
             </div>
           </div>
@@ -371,13 +372,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 
   <!-- Screen 04: Output Center (Wide) -->
   <div class="sctwide rv d2">
-    <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">output_center.exe — Full Width</span></div>
+    <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">output_center.exe ??Full Width</span></div>
     <div class="sctbody" style="aspect-ratio:21/9;">
-      <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#000;font-family:'Space Mono',monospace;padding:12px;gap:8px;overflow:hidden;">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#000;font-family:'Pretendard','Noto Sans KR',sans-serif;padding:12px;gap:8px;overflow:hidden;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div style="font-size:8px;letter-spacing:.2em;color:#2a5a2a;text-transform:uppercase;">//&nbsp;Task #T-025 — Results</div>
+          <div style="font-size:8px;letter-spacing:.2em;color:#2a5a2a;text-transform:uppercase;">//&nbsp;Task #T-025 ??Results</div>
           <div style="display:flex;gap:5px;">
-            <div style="padding:4px 10px;border:1px solid #0d1f0d;font-size:7px;letter-spacing:.12em;color:#2a5a2a;">↓ Export</div>
+            <div style="padding:4px 10px;border:1px solid #0d1f0d;font-size:7px;letter-spacing:.12em;color:#2a5a2a;">??Export</div>
             <div style="padding:4px 10px;border:1px solid rgba(0,255,65,.4);font-size:7px;letter-spacing:.12em;color:#00ff41;">+ New Task</div>
           </div>
         </div>
@@ -387,15 +388,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
             <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#19c37d;"></div>
             <div style="padding:8px 10px;border-bottom:1px solid #0d1f0d;display:flex;justify-content:space-between;align-items:center;">
               <span style="font-size:10px;font-weight:700;color:#19c37d;">ChatGPT</span>
-              <span style="font-size:8px;color:#2a5a2a;">2.3s · 387 tokens</span>
+              <span style="font-size:8px;color:#2a5a2a;">2.3s 쨌 387 tokens</span>
             </div>
-            <div style="padding:10px;flex:1;font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:300;color:rgba(224,255,224,.6);line-height:1.6;">
-              <strong style="color:#19c37d;font-family:'Space Mono',monospace;font-size:8px;">COPY 01</strong><br>
-              "당신의 하루가 달라집니다."<br>
-              아침을 여는 순간부터, 오늘이 특별해지는 이유.<br><br>
-              <strong style="color:#19c37d;font-family:'Space Mono',monospace;font-size:8px;">COPY 02</strong><br>
-              "기다렸던 그것, 드디어 출시."<br>
-              더 이상 타협하지 마세요.
+            <div style="padding:10px;flex:1;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;font-weight:300;color:rgba(224,255,224,.6);line-height:1.6;">
+              <strong style="color:#19c37d;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 01</strong><br>
+              "?뱀떊???섎（媛 ?щ씪吏묐땲??"<br>
+              ?꾩묠???щ뒗 ?쒓컙遺?? ?ㅻ뒛???밸퀎?댁????댁쑀.<br><br>
+              <strong style="color:#19c37d;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 02</strong><br>
+              "湲곕떎?몃뜕 洹멸쾬, ?쒕뵒??異쒖떆."<br>
+              ???댁긽 ??묓븯吏 留덉꽭??
             </div>
             <div style="padding:6px 10px;border-top:1px solid #0d1f0d;display:flex;gap:4px;">
               <span style="font-size:7px;color:#2a5a2a;border:1px solid #0d1f0d;padding:2px 5px;">Content</span>
@@ -407,15 +408,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
             <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#d97b36;"></div>
             <div style="padding:8px 10px;border-bottom:1px solid #0d1f0d;display:flex;justify-content:space-between;align-items:center;">
               <span style="font-size:10px;font-weight:700;color:#d97b36;">Claude</span>
-              <span style="font-size:8px;color:#2a5a2a;">3.1s · 412 tokens</span>
+              <span style="font-size:8px;color:#2a5a2a;">3.1s 쨌 412 tokens</span>
             </div>
-            <div style="padding:10px;flex:1;font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:300;color:rgba(224,255,224,.6);line-height:1.6;">
-              <strong style="color:#d97b36;font-family:'Space Mono',monospace;font-size:8px;">COPY 01</strong><br>
-              "완벽함을 만드는 단 하나의 선택."<br>
-              우리는 오랫동안 이 순간을 준비했습니다.<br><br>
-              <strong style="color:#d97b36;font-family:'Space Mono',monospace;font-size:8px;">COPY 02</strong><br>
-              "모두가 원했던, 아무도 없었던."<br>
-              시장의 빈자리를 채우는 제품.
+            <div style="padding:10px;flex:1;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;font-weight:300;color:rgba(224,255,224,.6);line-height:1.6;">
+              <strong style="color:#d97b36;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 01</strong><br>
+              "?꾨꼍?⑥쓣 留뚮뱶?????섎굹???좏깮."<br>
+              ?곕━???ㅻ옯?숈븞 ???쒓컙??以鍮꾪뻽?듬땲??<br><br>
+              <strong style="color:#d97b36;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 02</strong><br>
+              "紐⑤몢媛 ?먰뻽?? ?꾨Т???놁뿀??"<br>
+              ?쒖옣??鍮덉옄由щ? 梨꾩슦???쒗뭹.
             </div>
             <div style="padding:6px 10px;border-top:1px solid #0d1f0d;display:flex;gap:4px;">
               <span style="font-size:7px;color:#2a5a2a;border:1px solid #0d1f0d;padding:2px 5px;">Brand</span>
@@ -427,15 +428,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
             <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#4285f4;"></div>
             <div style="padding:8px 10px;border-bottom:1px solid #0d1f0d;display:flex;justify-content:space-between;align-items:center;">
               <span style="font-size:10px;font-weight:700;color:#4285f4;">Gemini</span>
-              <span style="font-size:8px;color:#2a5a2a;">2.8s · 356 tokens</span>
+              <span style="font-size:8px;color:#2a5a2a;">2.8s 쨌 356 tokens</span>
             </div>
-            <div style="padding:10px;flex:1;font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:300;color:rgba(224,255,224,.6);line-height:1.6;">
-              <strong style="color:#4285f4;font-family:'Space Mono',monospace;font-size:8px;">COPY 01</strong><br>
-              "2025년 가장 핫한 선택."<br>
-              SNS를 장악할 그 제품,<br><br>
-              <strong style="color:#4285f4;font-family:'Space Mono',monospace;font-size:8px;">COPY 02</strong><br>
-              "사용자 94%가 추천하는 단 하나."<br>
-              검증된 품질, 압도적인 만족도.
+            <div style="padding:10px;flex:1;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;font-weight:300;color:rgba(224,255,224,.6);line-height:1.6;">
+              <strong style="color:#4285f4;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 01</strong><br>
+              "2025??媛???ロ븳 ?좏깮."<br>
+              SNS瑜??μ븙??洹??쒗뭹,<br><br>
+              <strong style="color:#4285f4;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 02</strong><br>
+              "?ъ슜??94%媛 異붿쿇?섎뒗 ???섎굹."<br>
+              寃利앸맂 ?덉쭏, ?뺣룄?곸씤 留뚯”??
             </div>
             <div style="padding:6px 10px;border-top:1px solid #0d1f0d;display:flex;gap:4px;">
               <span style="font-size:7px;color:#2a5a2a;border:1px solid #0d1f0d;padding:2px 5px;">Trend</span>
@@ -445,15 +446,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
         </div>
         <!-- synthesis -->
         <div style="padding:8px 10px;background:#040d04;border:1px solid rgba(0,255,65,.2);">
-          <div style="font-size:8px;letter-spacing:.18em;color:#00ff41;text-transform:uppercase;margin-bottom:4px;">// AI Synthesis — Final Recommendation</div>
-          <div style="font-family:'Noto Sans KR',sans-serif;font-size:9px;color:rgba(224,255,224,.55);font-weight:300;">감성 스토리텔링(GPT) + 브랜드 철학(Claude) + 트렌드 데이터(Gemini) 조합이 최적. 골든아워 라이프스타일 컷을 기본으로 설정 권장.</div>
+          <div style="font-size:8px;letter-spacing:.18em;color:#00ff41;text-transform:uppercase;margin-bottom:4px;">// AI Synthesis ??Final Recommendation</div>
+          <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;color:rgba(224,255,224,.55);font-weight:300;">媛먯꽦 ?ㅽ넗由ы뀛留?GPT) + 釉뚮옖??泥좏븰(Claude) + ?몃젋???곗씠??Gemini) 議고빀??理쒖쟻. 怨⑤뱺?꾩썙 ?쇱씠?꾩뒪???而룹쓣 湲곕낯?쇰줈 ?ㅼ젙 沅뚯옣.</div>
         </div>
       </div>
     </div>
   </div>
 
   <div style="margin-top:18px;text-align:center;" class="rv d3">
-    <a href="prototype.html" target="_blank" style="font-size:12px;letter-spacing:.16em;color:var(--mid);text-decoration:none;border:1px solid var(--bdr);padding:10px 24px;transition:all .3s;display:inline-block;">직접 체험하기 ↗</a>
+    <a href="prototype.html" target="_blank" style="font-size:12px;letter-spacing:.16em;color:var(--mid);text-decoration:none;border:1px solid var(--bdr);padding:10px 24px;transition:all .3s;display:inline-block;">吏곸젒 泥댄뿕?섍린 ??/a>
   </div>
 </section>
 
@@ -462,24 +463,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <div class="sec-title rv d1">PROMPT <em>LOG</em></div>
   <div class="ptlist rv d1">
     <div class="ptrow">
-      <div class="ptrh"><div class="ptrhl"><div class="aibadge gpt"></div><span class="ptrain">ChatGPT</span></div><span class="ptruse">시스템 기획 &amp; 구조</span></div>
+      <div class="ptrh"><div class="ptrhl"><div class="aibadge gpt"></div><span class="ptrain">ChatGPT</span></div><span class="ptruse">?쒖뒪??湲고쉷 &amp; 援ъ“</span></div>
       <div class="ptrbody">
-        <div><div class="pqlbl">$ prompt</div><div class="pptext">여러 AI를 하나의 인터페이스에서 통합 운영하는 Command Center의 UI 구조를 설계해줘. 작업 입력 → AI 자동 분배 흐름으로.</div></div>
-        <div><div class="prlbl">→ output</div><div class="prresult">Task Input → Routing → Parallel Processing → Review → Output 구조 도출. 4패널 대시보드 레이아웃 제안</div></div>
+        <div><div class="pqlbl">$ prompt</div><div class="pptext">?щ윭 AI瑜??섎굹???명꽣?섏씠?ㅼ뿉???듯빀 ?댁쁺?섎뒗 Command Center??UI 援ъ“瑜??ㅺ퀎?댁쨾. ?묒뾽 ?낅젰 ??AI ?먮룞 遺꾨같 ?먮쫫?쇰줈.</div></div>
+        <div><div class="prlbl">??output</div><div class="prresult">Task Input ??Routing ??Parallel Processing ??Review ??Output 援ъ“ ?꾩텧. 4?⑤꼸 ??쒕낫???덉씠?꾩썐 ?쒖븞</div></div>
       </div>
     </div>
     <div class="ptrow">
-      <div class="ptrh"><div class="ptrhl"><div class="aibadge cla"></div><span class="ptrain">Claude</span></div><span class="ptruse">UI 컴포넌트 설계</span></div>
+      <div class="ptrh"><div class="ptrhl"><div class="aibadge cla"></div><span class="ptrain">Claude</span></div><span class="ptruse">UI 而댄룷?뚰듃 ?ㅺ퀎</span></div>
       <div class="ptrbody">
-        <div><div class="pqlbl">$ prompt</div><div class="pptext">각 AI(GPT·Claude·Gemini)의 작업 상태·진행률·결과를 실시간으로 보여주는 에이전트 패널 컴포넌트. 터미널 스타일 다크 테마.</div></div>
-        <div><div class="prlbl">→ output</div><div class="prresult">에이전트 카드 + 진행 상태 바 + 실시간 로그 스트림 UI + 터미널 헤더 구현</div></div>
+        <div><div class="pqlbl">$ prompt</div><div class="pptext">媛?AI(GPT쨌Claude쨌Gemini)???묒뾽 ?곹깭쨌吏꾪뻾瑜졖룰껐怨쇰? ?ㅼ떆媛꾩쑝濡?蹂댁뿬二쇰뒗 ?먯씠?꾪듃 ?⑤꼸 而댄룷?뚰듃. ?곕????ㅽ????ㅽ겕 ?뚮쭏.</div></div>
+        <div><div class="prlbl">??output</div><div class="prresult">?먯씠?꾪듃 移대뱶 + 吏꾪뻾 ?곹깭 諛?+ ?ㅼ떆媛?濡쒓렇 ?ㅽ듃由?UI + ?곕????ㅻ뜑 援ы쁽</div></div>
       </div>
     </div>
     <div class="ptrow">
-      <div class="ptrh"><div class="ptrhl"><div class="aibadge gem"></div><span class="ptrain">Gemini</span></div><span class="ptruse">자동화 시나리오 검토</span></div>
+      <div class="ptrh"><div class="ptrhl"><div class="aibadge gem"></div><span class="ptrain">Gemini</span></div><span class="ptruse">?먮룞???쒕굹由ъ삤 寃??/span></div>
       <div class="ptrbody">
-        <div><div class="pqlbl">$ prompt</div><div class="pptext">1인 기업에서 AI를 가상 직원처럼 활용하는 자동화 시나리오를 검토해줘. 기획·분석·검수 AI 역할 분담 구조 효율성 분석.</div></div>
-        <div><div class="prlbl">→ output</div><div class="prresult">역할 분담 시나리오 3가지, 병렬/순차 처리 효율 비교, 자동화 가능 업무 목록 생성</div></div>
+        <div><div class="pqlbl">$ prompt</div><div class="pptext">1??湲곗뾽?먯꽌 AI瑜?媛??吏곸썝泥섎읆 ?쒖슜?섎뒗 ?먮룞???쒕굹由ъ삤瑜?寃?좏빐以? 湲고쉷쨌遺꾩꽍쨌寃??AI ??븷 遺꾨떞 援ъ“ ?⑥쑉??遺꾩꽍.</div></div>
+        <div><div class="prlbl">??output</div><div class="prresult">??븷 遺꾨떞 ?쒕굹由ъ삤 3媛吏, 蹂묐젹/?쒖감 泥섎━ ?⑥쑉 鍮꾧탳, ?먮룞??媛???낅Т 紐⑸줉 ?앹꽦</div></div>
       </div>
     </div>
   </div>
@@ -489,11 +490,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <div class="sec-prefix rv">Build Log</div>
   <div class="sec-title rv d1">PRODUCTION <em>TIMELINE</em></div>
   <div class="tltermrows rv d1">
-    <div class="ttr"><span class="ttrphase">Phase 01</span><div class="ttrcont"><div class="ttrcmd">concept_research.sh</div><div class="ttrout">다중 AI 협업 모델 리서치 · 각 AI 강점 분석 · 통합 UX 방향 정의</div></div></div>
-    <div class="ttr"><span class="ttrphase">Phase 02</span><div class="ttrcont"><div class="ttrcmd">ia_design.sh</div><div class="ttrout">시스템 아키텍처 설계 · 에이전트 역할 정의 · 정보 구조도 작성</div></div></div>
-    <div class="ttr"><span class="ttrphase">Phase 03</span><div class="ttrcont"><div class="ttrcmd">ui_build.sh --theme=terminal</div><div class="ttrout">터미널 스타일 UI 시스템 · 컴포넌트 설계 · 그린 모노크롬 컬러</div></div></div>
-    <div class="ttr"><span class="ttrphase">Phase 04</span><div class="ttrcont"><div class="ttrcmd">prototype.sh --ai=claude</div><div class="ttrout">Claude 활용 프로토타입 제작 · 인터랙션 구현 · 대시보드 완성</div></div></div>
-    <div class="ttr"><span class="ttrphase">Phase 05</span><div class="ttrcont"><div class="ttrcmd">qa.sh && deploy.sh</div><div class="ttrout">기능 검증 · UX 플로우 테스트 · 최종 프로토타입 완성</div></div></div>
+    <div class="ttr"><span class="ttrphase">Phase 01</span><div class="ttrcont"><div class="ttrcmd">concept_research.sh</div><div class="ttrout">?ㅼ쨷 AI ?묒뾽 紐⑤뜽 由ъ꽌移?쨌 媛?AI 媛뺤젏 遺꾩꽍 쨌 ?듯빀 UX 諛⑺뼢 ?뺤쓽</div></div></div>
+    <div class="ttr"><span class="ttrphase">Phase 02</span><div class="ttrcont"><div class="ttrcmd">ia_design.sh</div><div class="ttrout">?쒖뒪???꾪궎?띿쿂 ?ㅺ퀎 쨌 ?먯씠?꾪듃 ??븷 ?뺤쓽 쨌 ?뺣낫 援ъ“???묒꽦</div></div></div>
+    <div class="ttr"><span class="ttrphase">Phase 03</span><div class="ttrcont"><div class="ttrcmd">ui_build.sh --theme=terminal</div><div class="ttrout">?곕????ㅽ???UI ?쒖뒪??쨌 而댄룷?뚰듃 ?ㅺ퀎 쨌 洹몃┛ 紐⑤끂?щ＼ 而щ윭</div></div></div>
+    <div class="ttr"><span class="ttrphase">Phase 04</span><div class="ttrcont"><div class="ttrcmd">prototype.sh --ai=claude</div><div class="ttrout">Claude ?쒖슜 ?꾨줈?좏????쒖옉 쨌 ?명꽣?숈뀡 援ы쁽 쨌 ??쒕낫???꾩꽦</div></div></div>
+    <div class="ttr"><span class="ttrphase">Phase 05</span><div class="ttrcont"><div class="ttrcmd">qa.sh && deploy.sh</div><div class="ttrout">湲곕뒫 寃利?쨌 UX ?뚮줈???뚯뒪??쨌 理쒖쥌 ?꾨줈?좏????꾩꽦</div></div></div>
   </div>
 </section>
 
@@ -501,17 +502,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <div class="sec-prefix rv">Expected Results</div>
   <div class="sec-title rv d1">SYSTEM <em>OUTPUT</em></div>
   <div class="resgrid rv d1">
-    <div class="rg"><div class="rgnum">3×</div><div class="rglbl">Processing Power</div><div class="rgdesc">3개 AI 병렬 처리로 단일 AI 대비 결과 품질 향상</div></div>
-    <div class="rg"><div class="rgnum">↓70%</div><div class="rglbl">Manual Work</div><div class="rgdesc">반복 작업 자동화로 수동 처리 시간 감소</div></div>
-    <div class="rg"><div class="rgnum">1×</div><div class="rglbl">Unified UI</div><div class="rgdesc">3개 AI를 하나의 인터페이스로 통합 운영</div></div>
-    <div class="rg"><div class="rgnum">∞</div><div class="rglbl">Scalability</div><div class="rgdesc">새로운 AI 모델 추가 및 워크플로우 확장 가능</div></div>
+    <div class="rg"><div class="rgnum">3횞</div><div class="rglbl">Processing Power</div><div class="rgdesc">3媛?AI 蹂묐젹 泥섎━濡??⑥씪 AI ?鍮?寃곌낵 ?덉쭏 ?μ긽</div></div>
+    <div class="rg"><div class="rgnum">??0%</div><div class="rglbl">Manual Work</div><div class="rgdesc">諛섎났 ?묒뾽 ?먮룞?붾줈 ?섎룞 泥섎━ ?쒓컙 媛먯냼</div></div>
+    <div class="rg"><div class="rgnum">1횞</div><div class="rglbl">Unified UI</div><div class="rgdesc">3媛?AI瑜??섎굹???명꽣?섏씠?ㅻ줈 ?듯빀 ?댁쁺</div></div>
+    <div class="rg"><div class="rgnum">??/div><div class="rglbl">Scalability</div><div class="rgdesc">?덈줈??AI 紐⑤뜽 異붽? 諛??뚰겕?뚮줈???뺤옣 媛??/div></div>
   </div>
 </section>
 
 <div class="pnav-bottom">
-  <a class="pnl" href="../project-3/">← Class Care</a>
+  <a class="pnl" href="../project-3/">??Class Care</a>
   <span class="pnc">KDH PORTFOLIO</span>
-  <a class="pnl" href="../project-5/">Next: OTT UX →</a>
+  <a class="pnl" href="../project-5/">Next: OTT UX ??/a>
 </div>
 
 <script>
@@ -520,8 +521,8 @@ const cv=document.getElementById('MX'),ctx=cv.getContext('2d');
 function resize(){cv.width=innerWidth;cv.height=innerHeight;}
 resize();window.addEventListener('resize',resize);
 const cols=Math.floor(cv.width/16),drops=Array.from({length:cols},()=>Math.random()*cv.height/16);
-const chars='01アイウエオ∑∂∆αβ{}[]<>/:#@!?'.split('');
-setInterval(()=>{ctx.fillStyle='rgba(0,0,0,.06)';ctx.fillRect(0,0,cv.width,cv.height);ctx.fillStyle='#00ff41';ctx.font='12px Space Mono,monospace';drops.forEach((y,i)=>{ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,y*16);if(y*16>cv.height&&Math.random()>.97)drops[i]=0;drops[i]+=.5;});},55);
+const chars='01?㏂궎?╉궓?も닊?귘늽慣棺{}[]<>/:#@!?'.split('');
+setInterval(()=>{ctx.fillStyle='rgba(0,0,0,.06)';ctx.fillRect(0,0,cv.width,cv.height);ctx.fillStyle='#00ff41';ctx.font='12px Pretendard, Noto Sans KR, sans-serif';drops.forEach((y,i)=>{ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,y*16);if(y*16>cv.height&&Math.random()>.97)drops[i]=0;drops[i]+=.5;});},55);
 // cursor
 const CU=document.getElementById('CU');
 document.addEventListener('mousemove',e=>{CU.style.left=e.clientX+'px';CU.style.top=e.clientY+'px';});
@@ -531,3 +532,4 @@ document.querySelectorAll('.rv,.rg').forEach(el=>IO.observe(el));
 </script>
 </body>
 </html>
+

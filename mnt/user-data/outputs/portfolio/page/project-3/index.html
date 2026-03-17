@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class Care — KDH Portfolio</title>
+<title>Class Care ??KDH Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{--bg:#020202;--fg:#f0ece4;--acc:#00d68f;--bdr:#1e1e1e;--mid:#666;--card:#0a0a0a;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
+body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Noto Sans KR',sans-serif;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
 #CU{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
 #CR{position:fixed;width:34px;height:34px;border:1px solid rgba(0,214,143,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
 #PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:200;width:0%;}
@@ -18,7 +19,7 @@ a{text-decoration:none;color:inherit;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(2,2,2,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
 .nb{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
 .nb:hover{color:var(--acc);}
-.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
+.nt{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
 .nn{font-size:12px;letter-spacing:.22em;color:var(--mid);}
 
 /* LAYOUT */
@@ -26,7 +27,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 aside{position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;border-right:1px solid var(--bdr);background:var(--card);padding:32px 24px;scrollbar-width:none;display:flex;flex-direction:column;}
 aside::-webkit-scrollbar{display:none;}
 .sbpn{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);margin-bottom:7px;}
-.sbtitle{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;margin-bottom:4px;}
+.sbtitle{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:28px;line-height:1;margin-bottom:4px;}
 .sbtitle span{color:var(--acc);}
 .sbsub{font-size:12px;letter-spacing:.1em;color:var(--mid);margin-bottom:24px;}
 .sbdiv{height:1px;background:var(--bdr);margin-bottom:20px;}
@@ -38,7 +39,7 @@ aside::-webkit-scrollbar{display:none;}
 .sbmeta{margin-top:auto;padding-top:20px;border-top:1px solid var(--bdr);display:flex;flex-direction:column;gap:12px;}
 .sbmi{display:flex;flex-direction:column;gap:4px;}
 .sbmik{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);}
-.sbmiv{font-size:13px;color:rgba(240,236,228,.55);}
+.sbmiv{font-size:14px;color:rgba(240,236,228,.55);}
 .sbmiv.g{color:var(--acc);}
 .sbtags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
 .sbtag{font-size:11px;letter-spacing:.12em;padding:3px 8px;border:1px solid var(--bdr);color:var(--mid);}
@@ -49,9 +50,9 @@ main{padding:0;}
 .chero{padding:56px 56px 72px;border-bottom:1px solid var(--bdr);position:relative;overflow:hidden;}
 .chero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(0,214,143,.04) 0%,transparent 60%);}
 .cetag{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);margin-bottom:18px;}
-.cetitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,6.5vw,84px);line-height:.9;letter-spacing:.02em;margin-bottom:20px;}
+.cetitle{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(52px,6.5vw,84px);line-height:.9;letter-spacing:.02em;margin-bottom:20px;}
 .cetitle em{color:var(--acc);font-style:normal;}
-.cedesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.52);max-width:600px;margin-bottom:32px;}
+.cedesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.52);max-width:600px;margin-bottom:32px;}
 .cebtns{display:flex;gap:14px;}
 .cebtn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:12px 24px;transition:all .3s;cursor:none;}
 .cebtn.p{background:var(--acc);color:#000;font-weight:700;}.cebtn.p:hover{background:#00f0a0;}
@@ -59,16 +60,16 @@ main{padding:0;}
 
 .csec{padding:52px 56px;border-bottom:1px solid var(--bdr);}
 .sec-label{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,62px);letter-spacing:.02em;margin-bottom:40px;line-height:.95;}
+.sec-title{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(40px,5vw,62px);letter-spacing:.02em;margin-bottom:40px;line-height:.95;}
 .sec-title em{font-style:normal;color:var(--acc);}
 
 /* ROLE BARS */
 .twocol{display:grid;grid-template-columns:1fr 1fr;gap:36px;}
 .prob-items{display:flex;flex-direction:column;gap:10px;}
 .probitem{padding:16px 18px;background:var(--card);border-left:2px solid rgba(255,60,46,.5);}
-.probitem p{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.7;color:rgba(240,236,228,.52);font-weight:300;}
+.probitem p{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.7;color:rgba(240,236,228,.52);font-weight:300;}
 .rrow{display:grid;grid-template-columns:130px 1fr 44px;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--bdr);}
-.rlabel{font-size:13px;letter-spacing:.05em;color:rgba(240,236,228,.55);}
+.rlabel{font-size:14px;letter-spacing:.05em;color:rgba(240,236,228,.55);}
 .rbg{height:2px;background:var(--bdr);position:relative;}
 .rfill{position:absolute;top:0;left:0;height:100%;width:0%;transition:width 1.2s cubic-bezier(.22,1,.36,1);}
 .rfill.g{background:var(--acc);}
@@ -79,12 +80,12 @@ main{padding:0;}
 .featgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
 .featitem{background:var(--card);padding:28px 24px;border:1px solid var(--bdr);transition:border-color .3s;}
 .featitem:hover{border-color:rgba(0,214,143,.2);}
-.featnum{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--acc);line-height:1;margin-bottom:12px;}
+.featnum{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:30px;color:var(--acc);line-height:1;margin-bottom:12px;}
 .feattitle{font-size:14px;letter-spacing:.05em;color:var(--fg);margin-bottom:8px;font-weight:700;}
-.featdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.4);}
+.featdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.4);}
 
 /* IA TERMINAL */
-.iaterminal{background:var(--card);border:1px solid var(--bdr);padding:36px;font-family:'Space Mono',monospace;font-size:13px;line-height:2.1;}
+.iaterminal{background:var(--card);border:1px solid var(--bdr);padding:36px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:2.1;}
 .iaterminal .c1{color:var(--acc);}
 .iaterminal .c2{color:#4285f4;}
 .iaterminal .c3{color:#d97b36;}
@@ -113,12 +114,12 @@ main{padding:0;}
 .aibadge{width:8px;height:8px;border-radius:50%;}
 .aibadge.gem{background:#4285f4;}.aibadge.cla{background:#d97b36;}
 .apchai{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);}
-.apchuse{font-size:13px;color:var(--fg);font-weight:700;}
+.apchuse{font-size:14px;color:var(--fg);font-weight:700;}
 .apcbody{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:22px;}
 .apqlbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:8px;}
-.apprompt{font-size:13px;line-height:1.7;color:rgba(240,236,228,.42);padding:14px;background:rgba(0,214,143,.025);border:1px solid var(--bdr);}
+.apprompt{font-size:14px;line-height:1.7;color:rgba(240,236,228,.42);padding:14px;background:rgba(0,214,143,.025);border:1px solid var(--bdr);}
 .aprlbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#19c37d;margin-bottom:8px;}
-.apresult{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.65;color:rgba(240,236,228,.38);font-weight:300;}
+.apresult{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;color:rgba(240,236,228,.38);font-weight:300;}
 
 /* TIMELINE */
 .tlcards{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
@@ -127,19 +128,19 @@ main{padding:0;}
 .tlcard.v::after{transform:scaleX(1);}
 .tlcw{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
 .tlct{font-size:14px;color:var(--fg);margin-bottom:8px;font-weight:700;}
-.tlci{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(240,236,228,.38);font-weight:300;padding:4px 0 4px 10px;border-left:1px solid var(--bdr);}
+.tlci{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;color:rgba(240,236,228,.38);font-weight:300;padding:4px 0 4px 10px;border-left:1px solid var(--bdr);}
 
 /* RESULTS TABLE */
 .etable{width:100%;border-collapse:collapse;}
 .etable th{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);padding:14px 18px;border-bottom:1px solid var(--bdr);text-align:left;}
-.etable td{font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:14px 18px;border-bottom:1px solid var(--bdr);color:rgba(240,236,228,.52);font-weight:300;}
+.etable td{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;padding:14px 18px;border-bottom:1px solid var(--bdr);color:rgba(240,236,228,.52);font-weight:300;}
 .etable td.bad{color:rgba(255,60,46,.55);}
 .etable td.good{color:rgba(0,214,143,.65);}
 
 .pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 56px;border-top:1px solid var(--bdr);}
 .pnl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
 .pnl:hover{color:var(--acc);}
-.pnc{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
+.pnc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
 
 .rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
 .rv.v{opacity:1;transform:none;}
@@ -149,7 +150,7 @@ main{padding:0;}
 <body>
 <div id="CU"></div><div id="CR"></div><div id="PB"></div>
 <nav>
-  <a class="nb" href="../../../../../../index.html">← Portfolio</a>
+  <a class="nb" href="../../../../../../index.html">??Portfolio</a>
   <span class="nt">CLASS CARE</span>
   <span class="nn">03 / 06</span>
 </nav>
@@ -158,7 +159,7 @@ main{padding:0;}
   <aside>
     <div class="sbpn">Project 03</div>
     <div class="sbtitle">CLASS<br><span>CARE</span></div>
-    <div class="sbsub">교육용 커뮤니케이션 플랫폼</div>
+    <div class="sbsub">援먯쑁??而ㅻ??덉??댁뀡 ?뚮옯??/div>
     <div class="sbdiv"></div>
     <nav class="sbnav">
       <a class="sblink active" href="#overview"><span class="sbdot"></span>Overview</a>
@@ -171,9 +172,9 @@ main{padding:0;}
     </nav>
     <div class="sbmeta">
       <div class="sbmi"><span class="sbmik">Type</span><span class="sbmiv">Application UI/UX</span></div>
-      <div class="sbmi"><span class="sbmik">Status</span><span class="sbmiv g">실제 학원 운영 중 ✓</span></div>
-      <div class="sbmi"><span class="sbmik">Role</span><span class="sbmiv">Design 100% · Plan 50%</span></div>
-      <div class="sbmi"><span class="sbmik">AI</span><span class="sbmiv">Gemini API · Claude</span></div>
+      <div class="sbmi"><span class="sbmik">Status</span><span class="sbmiv g">?ㅼ젣 ?숈썝 ?댁쁺 以???/span></div>
+      <div class="sbmi"><span class="sbmik">Role</span><span class="sbmiv">Design 100% 쨌 Plan 50%</span></div>
+      <div class="sbmi"><span class="sbmik">AI</span><span class="sbmiv">Gemini API 쨌 Claude</span></div>
       <div class="sbmi">
         <span class="sbmik">Skills</span>
         <div class="sbtags"><span class="sbtag ac">UI Design</span><span class="sbtag ac">UX Planning</span><span class="sbtag">Prototype</span><span class="sbtag">Gemini API</span></div>
@@ -183,74 +184,74 @@ main{padding:0;}
 
   <main>
     <div class="chero" id="overview">
-      <div class="cetag">Education App · UI/UX Design · AI Integration · Live Service</div>
+      <div class="cetag">Education App 쨌 UI/UX Design 쨌 AI Integration 쨌 Live Service</div>
       <div class="cetitle">CLASS<br><em>CARE</em></div>
-      <p class="cedesc">학원 및 학교 환경에서 학생·교사 간 수업 관리와 커뮤니케이션을 효율적으로 지원하는 교육용 플랫폼. 파일 공유·모의 시험·Gemini AI 오답 노트를 하나의 시스템으로 통합. 실제 학원에서 운영 중.</p>
+      <p class="cedesc">?숈썝 諛??숆탳 ?섍꼍?먯꽌 ?숈깮쨌援먯궗 媛??섏뾽 愿由ъ? 而ㅻ??덉??댁뀡???⑥쑉?곸쑝濡?吏?먰븯??援먯쑁???뚮옯?? ?뚯씪 怨듭쑀쨌紐⑥쓽 ?쒗뿕쨌Gemini AI ?ㅻ떟 ?명듃瑜??섎굹???쒖뒪?쒖쑝濡??듯빀. ?ㅼ젣 ?숈썝?먯꽌 ?댁쁺 以?</p>
       <div class="cebtns">
-        <a class="cebtn p" href="#">Live Demo ↗</a>
+        <a class="cebtn p" href="#">Live Demo ??/a>
         <a class="cebtn s" href="#">GitHub</a>
       </div>
     </div>
 
     <div class="csec" id="problem-role">
-      <div class="sec-label rv">— Problem &amp; Role</div>
-      <div class="sec-title rv d1">프로젝트 배경 &amp; <em>담당 역할</em></div>
+      <div class="sec-label rv">??Problem &amp; Role</div>
+      <div class="sec-title rv d1">?꾨줈?앺듃 諛곌꼍 &amp; <em>?대떦 ??븷</em></div>
       <div class="twocol">
         <div class="rv d1">
-          <p style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;">기존 문제점</p>
+          <p style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;">湲곗〈 臾몄젣??/p>
           <div class="prob-items">
-            <div class="probitem"><p>USB·메신저·이메일 혼용으로 파일 전송 불편</p></div>
-            <div class="probitem"><p>질문·피드백·공지의 실시간 전달 불가</p></div>
-            <div class="probitem"><p>시험 배포·제출·오답 정리 과정의 비효율</p></div>
+            <div class="probitem"><p>USB쨌硫붿떊?쨌?대찓???쇱슜?쇰줈 ?뚯씪 ?꾩넚 遺덊렪</p></div>
+            <div class="probitem"><p>吏덈Ц쨌?쇰뱶諛굿룰났吏???ㅼ떆媛??꾨떖 遺덇?</p></div>
+            <div class="probitem"><p>?쒗뿕 諛고룷쨌?쒖텧쨌?ㅻ떟 ?뺣━ 怨쇱젙??鍮꾪슚??/p></div>
           </div>
         </div>
         <div class="rv d2">
-          <p style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;">담당 역할</p>
-          <div class="rrow"><span class="rlabel">디자인</span><div class="rbg"><div class="rfill g" data-w="100"></div></div><span class="rpct">100%</span></div>
-          <div class="rrow"><span class="rlabel">기획</span><div class="rbg"><div class="rfill g" data-w="50"></div></div><span class="rpct">50%</span></div>
-          <div class="rrow"><span class="rlabel">프로토타입</span><div class="rbg"><div class="rfill d" data-w="50"></div></div><span class="rpct">50%</span></div>
-          <div class="rrow"><span class="rlabel">AI 활용</span><div class="rbg"><div class="rfill g" data-w="80"></div></div><span class="rpct">80%</span></div>
+          <p style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;">?대떦 ??븷</p>
+          <div class="rrow"><span class="rlabel">?붿옄??/span><div class="rbg"><div class="rfill g" data-w="100"></div></div><span class="rpct">100%</span></div>
+          <div class="rrow"><span class="rlabel">湲고쉷</span><div class="rbg"><div class="rfill g" data-w="50"></div></div><span class="rpct">50%</span></div>
+          <div class="rrow"><span class="rlabel">?꾨줈?좏???/span><div class="rbg"><div class="rfill d" data-w="50"></div></div><span class="rpct">50%</span></div>
+          <div class="rrow"><span class="rlabel">AI ?쒖슜</span><div class="rbg"><div class="rfill g" data-w="80"></div></div><span class="rpct">80%</span></div>
         </div>
       </div>
     </div>
 
     <div class="csec" id="features">
-      <div class="sec-label rv">— Key Features</div>
-      <div class="sec-title rv d1">핵심 <em>기능</em></div>
+      <div class="sec-label rv">??Key Features</div>
+      <div class="sec-title rv d1">?듭떖 <em>湲곕뒫</em></div>
       <div class="featgrid rv d2">
-        <div class="featitem"><div class="featnum">01</div><div class="feattitle">파일 전송 시스템</div><div class="featdesc">교사→학생 전체 자료 배포, 학생→교사 과제 제출. 1:다수 / 다수:1 방식 지원</div></div>
-        <div class="featitem"><div class="featnum">02</div><div class="feattitle">실시간 커뮤니케이션</div><div class="featdesc">수업 중 질문·메모·공지를 플랫폼 내에서 실시간 전달. 교사-학생 직접 소통</div></div>
-        <div class="featitem"><div class="featnum">03</div><div class="feattitle">모의 시험 시스템</div><div class="featdesc">시험 배포 → 학생 응답 제출 → 결과 자동 분석. 통합 관리로 시험 효율화</div></div>
-        <div class="featitem"><div class="featnum">04</div><div class="feattitle">AI 오답 노트 (Gemini)</div><div class="featdesc">Gemini API로 시험 결과 분석. 틀린 문제 유형 분류 → 자동 오답 노트 생성</div></div>
+        <div class="featitem"><div class="featnum">01</div><div class="feattitle">?뚯씪 ?꾩넚 ?쒖뒪??/div><div class="featdesc">援먯궗?믫븰???꾩껜 ?먮즺 諛고룷, ?숈깮?믨탳??怨쇱젣 ?쒖텧. 1:?ㅼ닔 / ?ㅼ닔:1 諛⑹떇 吏??/div></div>
+        <div class="featitem"><div class="featnum">02</div><div class="feattitle">?ㅼ떆媛?而ㅻ??덉??댁뀡</div><div class="featdesc">?섏뾽 以?吏덈Ц쨌硫붾え쨌怨듭?瑜??뚮옯???댁뿉???ㅼ떆媛??꾨떖. 援먯궗-?숈깮 吏곸젒 ?뚰넻</div></div>
+        <div class="featitem"><div class="featnum">03</div><div class="feattitle">紐⑥쓽 ?쒗뿕 ?쒖뒪??/div><div class="featdesc">?쒗뿕 諛고룷 ???숈깮 ?묐떟 ?쒖텧 ??寃곌낵 ?먮룞 遺꾩꽍. ?듯빀 愿由щ줈 ?쒗뿕 ?⑥쑉??/div></div>
+        <div class="featitem"><div class="featnum">04</div><div class="feattitle">AI ?ㅻ떟 ?명듃 (Gemini)</div><div class="featdesc">Gemini API濡??쒗뿕 寃곌낵 遺꾩꽍. ?由?臾몄젣 ?좏삎 遺꾨쪟 ???먮룞 ?ㅻ떟 ?명듃 ?앹꽦</div></div>
       </div>
     </div>
 
     <div class="csec" id="ia">
-      <div class="sec-label rv">— Information Architecture</div>
-      <div class="sec-title rv d1">정보 <em>구조도</em></div>
+      <div class="sec-label rv">??Information Architecture</div>
+      <div class="sec-title rv d1">?뺣낫 <em>援ъ“??/em></div>
       <div class="iaterminal rv d2">
         <div><span class="c1">SYSTEM</span> :: <span class="c4">CLASS_CARE_v1.0</span></div>
         <div style="margin-top:10px;">
-          <div class="ind c2">┌─ 👩‍🏫 교사 화면 (Teacher)</div>
-          <div class="ind2 cn">├─ 파일 전송 (1:N 배포)</div>
-          <div class="ind2 cn">├─ 시험 출제 및 배포</div>
-          <div class="ind2 cn">├─ 결과 분석 대시보드</div>
-          <div class="ind2 cn">└─ 공지 &amp; 커뮤니케이션</div>
-          <div class="ind c3">├─ 🎓 학생 화면 (Student)</div>
-          <div class="ind2 cn">├─ 파일 수신 &amp; 제출</div>
-          <div class="ind2 cn">├─ 시험 응시</div>
-          <div class="ind2 cn">├─ AI 오답 노트 확인</div>
-          <div class="ind2 cn">└─ 질문 &amp; 피드백</div>
-          <div class="ind c1">└─ 🤖 AI Engine (Gemini API)</div>
-          <div class="ind2 cn">├─ 시험 결과 분석</div>
-          <div class="ind2 cn">└─ 오답 노트 자동 생성</div>
+          <div class="ind c2">?뚢? ?뫆?랅윆?援먯궗 ?붾㈃ (Teacher)</div>
+          <div class="ind2 cn">?쒋? ?뚯씪 ?꾩넚 (1:N 諛고룷)</div>
+          <div class="ind2 cn">?쒋? ?쒗뿕 異쒖젣 諛?諛고룷</div>
+          <div class="ind2 cn">?쒋? 寃곌낵 遺꾩꽍 ??쒕낫??/div>
+          <div class="ind2 cn">?붴? 怨듭? &amp; 而ㅻ??덉??댁뀡</div>
+          <div class="ind c3">?쒋? ?럳 ?숈깮 ?붾㈃ (Student)</div>
+          <div class="ind2 cn">?쒋? ?뚯씪 ?섏떊 &amp; ?쒖텧</div>
+          <div class="ind2 cn">?쒋? ?쒗뿕 ?묒떆</div>
+          <div class="ind2 cn">?쒋? AI ?ㅻ떟 ?명듃 ?뺤씤</div>
+          <div class="ind2 cn">?붴? 吏덈Ц &amp; ?쇰뱶諛?/div>
+          <div class="ind c1">?붴? ?쨼 AI Engine (Gemini API)</div>
+          <div class="ind2 cn">?쒋? ?쒗뿕 寃곌낵 遺꾩꽍</div>
+          <div class="ind2 cn">?붴? ?ㅻ떟 ?명듃 ?먮룞 ?앹꽦</div>
         </div>
       </div>
     </div>
 
     <div class="csec" id="screens">
-      <div class="sec-label rv">— Visual Design</div>
-      <div class="sec-title rv d1">화면 <em>목업</em></div>
+      <div class="sec-label rv">??Visual Design</div>
+      <div class="sec-title rv d1">?붾㈃ <em>紐⑹뾽</em></div>
       <div class="scgrid rv d1">
         <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">teacher_dashboard</span></div><div class="scbody"><div class="scph">Teacher Dashboard</div></div></div>
         <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">student_dashboard</span></div><div class="scbody"><div class="scph">Student Dashboard</div></div></div>
@@ -258,62 +259,62 @@ main{padding:0;}
       </div>
       <div class="scgrid rv d2" style="margin-top:3px;">
         <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">exam_system</span></div><div class="scbody"><div class="scph">Exam System</div></div></div>
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">ai_answer_sheet</span></div><div class="scbody"><div class="scph">AI 오답 노트</div></div></div>
+        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">ai_answer_sheet</span></div><div class="scbody"><div class="scph">AI ?ㅻ떟 ?명듃</div></div></div>
         <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">result_analysis</span></div><div class="scbody"><div class="scph">Result Analysis</div></div></div>
       </div>
-      <p style="margin-top:14px;font-size:12px;letter-spacing:.1em;color:var(--mid);text-align:center;" class="rv d3">★ scbody 안에 &lt;img&gt; 삽입으로 실제 화면 교체</p>
+      <p style="margin-top:14px;font-size:12px;letter-spacing:.1em;color:var(--mid);text-align:center;" class="rv d3">??scbody ?덉뿉 &lt;img&gt; ?쎌엯?쇰줈 ?ㅼ젣 ?붾㈃ 援먯껜</p>
     </div>
 
     <div class="csec" id="ai">
-      <div class="sec-label rv">— AI Collaboration</div>
-      <div class="sec-title rv d1">AI 프롬프트 <em>예시</em></div>
+      <div class="sec-label rv">??AI Collaboration</div>
+      <div class="sec-title rv d1">AI ?꾨＼?꾪듃 <em>?덉떆</em></div>
       <div class="apstack rv d1">
         <div class="apc">
-          <div class="apch"><div class="apchl"><div class="aibadge gem"></div><span class="apchai">Gemini API</span></div><span class="apchuse">AI 오답 노트 기능</span></div>
+          <div class="apch"><div class="apchl"><div class="aibadge gem"></div><span class="apchai">Gemini API</span></div><span class="apchuse">AI ?ㅻ떟 ?명듃 湲곕뒫</span></div>
           <div class="apcbody">
-            <div><div class="apqlbl">$ prompt</div><div class="apprompt">"학생의 시험 결과 JSON 데이터를 분석해서 틀린 문제 유형을 분류하고, 각 문제에 대한 오답 이유와 보완 학습 방향을 자동으로 생성해줘."</div></div>
-            <div><div class="aprlbl">→ output</div><div class="apresult">문제 유형별 분류, 오답 원인 분석, 반복 학습 포인트 자동 생성. 실제 Gemini API 연동 구현</div></div>
+            <div><div class="apqlbl">$ prompt</div><div class="apprompt">"?숈깮???쒗뿕 寃곌낵 JSON ?곗씠?곕? 遺꾩꽍?댁꽌 ?由?臾몄젣 ?좏삎??遺꾨쪟?섍퀬, 媛?臾몄젣??????ㅻ떟 ?댁쑀? 蹂댁셿 ?숈뒿 諛⑺뼢???먮룞?쇰줈 ?앹꽦?댁쨾."</div></div>
+            <div><div class="aprlbl">??output</div><div class="apresult">臾몄젣 ?좏삎蹂?遺꾨쪟, ?ㅻ떟 ?먯씤 遺꾩꽍, 諛섎났 ?숈뒿 ?ъ씤???먮룞 ?앹꽦. ?ㅼ젣 Gemini API ?곕룞 援ы쁽</div></div>
           </div>
         </div>
         <div class="apc">
-          <div class="apch"><div class="apchl"><div class="aibadge cla"></div><span class="apchai">Claude</span></div><span class="apchuse">UI 프로토타입 제작</span></div>
+          <div class="apch"><div class="apchl"><div class="aibadge cla"></div><span class="apchai">Claude</span></div><span class="apchuse">UI ?꾨줈?좏????쒖옉</span></div>
           <div class="apcbody">
-            <div><div class="apqlbl">$ prompt</div><div class="apprompt">"교사와 학생이 각각 다른 권한으로 접속하는 대시보드 UI를 만들어줘. 역할 기반 뷰 분리, 교육 앱 스타일."</div></div>
-            <div><div class="aprlbl">→ output</div><div class="apresult">역할 기반 대시보드 레이아웃, 사이드바 네비게이션, 컴포넌트 구조 설계 완성</div></div>
+            <div><div class="apqlbl">$ prompt</div><div class="apprompt">"援먯궗? ?숈깮??媛곴컖 ?ㅻⅨ 沅뚰븳?쇰줈 ?묒냽?섎뒗 ??쒕낫??UI瑜?留뚮뱾?댁쨾. ??븷 湲곕컲 酉?遺꾨━, 援먯쑁 ???ㅽ???"</div></div>
+            <div><div class="aprlbl">??output</div><div class="apresult">??븷 湲곕컲 ??쒕낫???덉씠?꾩썐, ?ъ씠?쒕컮 ?ㅻ퉬寃뚯씠?? 而댄룷?뚰듃 援ъ“ ?ㅺ퀎 ?꾩꽦</div></div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="csec" id="process">
-      <div class="sec-label rv">— Timeline</div>
-      <div class="sec-title rv d1">제작 과정 <em>타임라인</em></div>
+      <div class="sec-label rv">??Timeline</div>
+      <div class="sec-title rv d1">?쒖옉 怨쇱젙 <em>??꾨씪??/em></div>
       <div class="tlcards rv d1">
-        <div class="tlcard"><div class="tlcw">Phase 01</div><div class="tlct">기획 &amp; 리서치</div><div class="tlci">교육 환경 문제 분석</div><div class="tlci">팀 요구사항 수집</div><div class="tlci">경쟁 서비스 분석</div></div>
-        <div class="tlcard"><div class="tlcw">Phase 02</div><div class="tlct">IA &amp; 설계</div><div class="tlci">사용자 플로우 정의</div><div class="tlci">화면 목록 도출</div><div class="tlci">권한 구조 설계</div></div>
-        <div class="tlcard"><div class="tlcw">Phase 03</div><div class="tlct">UI 디자인</div><div class="tlci">컴포넌트 시스템</div><div class="tlci">교사/학생 화면</div><div class="tlci">AI 기능 UI</div></div>
-        <div class="tlcard"><div class="tlcw">Phase 04</div><div class="tlct">프로토타입 &amp; 배포</div><div class="tlci">Claude 활용 제작</div><div class="tlci">Gemini API 연동</div><div class="tlci">실제 학원 배포</div></div>
+        <div class="tlcard"><div class="tlcw">Phase 01</div><div class="tlct">湲고쉷 &amp; 由ъ꽌移?/div><div class="tlci">援먯쑁 ?섍꼍 臾몄젣 遺꾩꽍</div><div class="tlci">? ?붽뎄?ы빆 ?섏쭛</div><div class="tlci">寃쎌웳 ?쒕퉬??遺꾩꽍</div></div>
+        <div class="tlcard"><div class="tlcw">Phase 02</div><div class="tlct">IA &amp; ?ㅺ퀎</div><div class="tlci">?ъ슜???뚮줈???뺤쓽</div><div class="tlci">?붾㈃ 紐⑸줉 ?꾩텧</div><div class="tlci">沅뚰븳 援ъ“ ?ㅺ퀎</div></div>
+        <div class="tlcard"><div class="tlcw">Phase 03</div><div class="tlct">UI ?붿옄??/div><div class="tlci">而댄룷?뚰듃 ?쒖뒪??/div><div class="tlci">援먯궗/?숈깮 ?붾㈃</div><div class="tlci">AI 湲곕뒫 UI</div></div>
+        <div class="tlcard"><div class="tlcw">Phase 04</div><div class="tlct">?꾨줈?좏???&amp; 諛고룷</div><div class="tlci">Claude ?쒖슜 ?쒖옉</div><div class="tlci">Gemini API ?곕룞</div><div class="tlci">?ㅼ젣 ?숈썝 諛고룷</div></div>
       </div>
     </div>
 
     <div class="csec" id="result">
-      <div class="sec-label rv">— Results</div>
-      <div class="sec-title rv d1">개선 <em>효과</em></div>
+      <div class="sec-label rv">??Results</div>
+      <div class="sec-title rv d1">媛쒖꽑 <em>?④낵</em></div>
       <table class="etable rv d2">
-        <thead><tr><th>항목</th><th>기존 문제</th><th>개선 후</th></tr></thead>
+        <thead><tr><th>??ぉ</th><th>湲곗〈 臾몄젣</th><th>媛쒖꽑 ??/th></tr></thead>
         <tbody>
-          <tr><td>파일 공유</td><td class="bad">USB / 메신저 혼용</td><td class="good">통합 파일 전송 시스템</td></tr>
-          <tr><td>시험 관리</td><td class="bad">수동 배포 &amp; 채점</td><td class="good">자동화된 시험 플로우</td></tr>
-          <tr><td>학생 질문</td><td class="bad">수업 중 실시간 불가</td><td class="good">실시간 커뮤니케이션</td></tr>
-          <tr><td>오답 분석</td><td class="bad">교사 수동 작성</td><td class="good">Gemini AI 자동 생성</td></tr>
+          <tr><td>?뚯씪 怨듭쑀</td><td class="bad">USB / 硫붿떊? ?쇱슜</td><td class="good">?듯빀 ?뚯씪 ?꾩넚 ?쒖뒪??/td></tr>
+          <tr><td>?쒗뿕 愿由?/td><td class="bad">?섎룞 諛고룷 &amp; 梨꾩젏</td><td class="good">?먮룞?붾맂 ?쒗뿕 ?뚮줈??/td></tr>
+          <tr><td>?숈깮 吏덈Ц</td><td class="bad">?섏뾽 以??ㅼ떆媛?遺덇?</td><td class="good">?ㅼ떆媛?而ㅻ??덉??댁뀡</td></tr>
+          <tr><td>?ㅻ떟 遺꾩꽍</td><td class="bad">援먯궗 ?섎룞 ?묒꽦</td><td class="good">Gemini AI ?먮룞 ?앹꽦</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="pnav-bottom">
-      <a class="pnl" href="../project-2/">← VALORANT Guide</a>
+      <a class="pnl" href="../project-2/">??VALORANT Guide</a>
       <span class="pnc">KDH PORTFOLIO</span>
-      <a class="pnl" href="../project-4/">Next: AI Command Center →</a>
+      <a class="pnl" href="../project-4/">Next: AI Command Center ??/a>
     </div>
   </main>
 </div>
@@ -332,3 +333,4 @@ window.addEventListener('scroll',()=>{let cur='overview';secs.forEach(id=>{const
 </script>
 </body>
 </html>
+

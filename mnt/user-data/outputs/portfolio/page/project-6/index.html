@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hospital Booking UX — KDH Portfolio</title>
+<title>Hospital Booking UX ??KDH Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{--bg:#020202;--fg:#f0ece4;--acc:#00bcd4;--bdr:#1e1e1e;--mid:#666;--card:#0a0a0a;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
+body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Noto Sans KR',sans-serif;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
 #CU{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
 #CR{position:fixed;width:34px;height:34px;border:1px solid rgba(0,188,212,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
 #PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:200;width:0%;}
@@ -18,7 +19,7 @@ a{text-decoration:none;color:inherit;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(2,2,2,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
 .nb{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
 .nb:hover{color:var(--acc);}
-.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
+.nt{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
 .nn{font-size:12px;letter-spacing:.22em;color:var(--mid);}
 
 /* HERO */
@@ -27,9 +28,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hleft{background:var(--card);display:flex;flex-direction:column;justify-content:flex-end;padding:64px 52px;position:relative;overflow:hidden;}
 .hleft::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 80%,rgba(0,188,212,.05) 0%,transparent 60%);}
 .htag{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--acc);margin-bottom:18px;position:relative;z-index:1;}
-.htitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7.5vw,96px);line-height:.9;letter-spacing:.02em;margin-bottom:20px;position:relative;z-index:1;}
+.htitle{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(52px,7.5vw,96px);line-height:.9;letter-spacing:.02em;margin-bottom:20px;position:relative;z-index:1;}
 .htitle em{display:block;color:var(--acc);font-style:normal;}
-.hdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.5);margin-bottom:32px;position:relative;z-index:1;max-width:420px;}
+.hdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.5);margin-bottom:32px;position:relative;z-index:1;max-width:420px;}
 .hbtns{display:flex;gap:14px;position:relative;z-index:1;}
 .hbtn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:13px 26px;transition:all .3s;cursor:none;}
 .hbtn.p{background:var(--acc);color:#000;font-weight:700;}.hbtn.p:hover{background:#0097a7;color:#fff;}
@@ -37,29 +38,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hright{background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:64px 52px;}
 .hstatrow{display:flex;align-items:center;padding:20px 0;border-bottom:1px solid var(--bdr);}
 .hstatrow:first-child{border-top:1px solid var(--bdr);}
-.hstat-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--acc);line-height:1;min-width:120px;}
+.hstat-num{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:48px;color:var(--acc);line-height:1;min-width:120px;}
 .hstat-info{display:flex;flex-direction:column;gap:5px;}
 .hstat-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);}
-.hstat-sub{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(240,236,228,.42);font-weight:300;}
+.hstat-sub{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;color:rgba(240,236,228,.42);font-weight:300;}
 .hmetarow{display:flex;gap:24px;margin-top:24px;padding-top:20px;border-top:1px solid var(--bdr);}
 .hmi{display:flex;flex-direction:column;gap:4px;}
 .hmik{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
-.hmiv{font-size:13px;color:rgba(240,236,228,.55);}
+.hmiv{font-size:14px;color:rgba(240,236,228,.55);}
 .hmiv.t{color:var(--acc);}
 
 /* SHARED */
 .sec{padding:96px 52px;border-top:1px solid var(--bdr);}
 .sec-label{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,70px);letter-spacing:.02em;margin-bottom:52px;line-height:.95;}
+.sec-title{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(44px,5.5vw,70px);letter-spacing:.02em;margin-bottom:52px;line-height:.95;}
 .sec-title em{font-style:normal;color:var(--acc);}
 
 /* PROBLEMS */
 .probgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
 .pgcard{padding:30px 26px;background:var(--card);border:1px solid var(--bdr);transition:border-color .3s;}
 .pgcard:hover{border-color:rgba(0,188,212,.25);}
-.pgnum{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--acc);line-height:1;margin-bottom:12px;}
+.pgnum{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:30px;color:var(--acc);line-height:1;margin-bottom:12px;}
 .pgtitle{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:8px;font-weight:700;}
-.pgdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.4);}
+.pgdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.4);}
 
 /* FLOW COMPARE */
 .flowcompare{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;align-items:start;}
@@ -69,28 +70,28 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .flowlbl{font-size:12px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:18px;}
 .flowbox.before .flowlbl{color:rgba(255,60,46,.6);}
 .flowbox.after .flowlbl{color:var(--acc);}
-.flowstep{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bdr);font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:300;color:rgba(240,236,228,.55);}
+.flowstep{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bdr);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;font-weight:300;color:rgba(240,236,228,.55);}
 .flowstep:last-child{border-bottom:none;}
-.fn{font-family:'Space Mono',monospace;font-size:12px;color:var(--mid);min-width:24px;}
+.fn{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:12px;color:var(--mid);min-width:24px;}
 .flowstep.hi{color:var(--acc);}
 .flowstep.hi .fn{color:var(--acc);}
-.flownote{margin-top:16px;font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.7;font-weight:300;}
+.flownote{margin-top:16px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.7;font-weight:300;}
 .flowbox.before .flownote{color:rgba(255,60,46,.5);}
 .flowbox.after .flownote{color:rgba(0,188,212,.6);}
-.flowarrow{display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--bdr);padding-top:80px;}
+.flowarrow{display:flex;align-items:center;justify-content:center;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:28px;color:var(--bdr);padding-top:80px;}
 
 /* SYMPTOM BOX */
 .symptombox{background:var(--card);border:1px solid rgba(0,188,212,.15);padding:40px;}
 .symptomtitle{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:24px;}
 .sympgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;}
-.sympitem{padding:16px 12px;background:var(--bg);border:1px solid var(--bdr);text-align:center;font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(240,236,228,.55);font-weight:300;transition:all .3s;cursor:none;}
+.sympitem{padding:16px 12px;background:var(--bg);border:1px solid var(--bdr);text-align:center;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;color:rgba(240,236,228,.55);font-weight:300;transition:all .3s;cursor:none;}
 .sympitem:hover,.sympitem.on{border-color:var(--acc);color:var(--acc);}
 .sympicon{font-size:22px;display:block;margin-bottom:6px;}
 .sympresult{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;}
 .hospcards{display:flex;gap:10px;}
 .hospcard{flex:1;padding:14px 16px;background:var(--bg);border:1px solid rgba(0,188,212,.2);}
-.hospname{font-size:13px;letter-spacing:.04em;color:var(--fg);margin-bottom:4px;font-weight:700;}
-.hospdist{font-family:'Noto Sans KR',sans-serif;font-size:12px;color:var(--mid);}
+.hospname{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:4px;font-weight:700;}
+.hospdist{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:12px;color:var(--mid);}
 .hospbtn{margin-top:10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;background:var(--acc);color:#000;display:inline-block;font-weight:700;cursor:none;}
 
 /* SCREENS */
@@ -110,13 +111,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .aibadge{width:8px;height:8px;border-radius:50%;}
 .aibadge.gpt{background:#19c37d;}.aibadge.cla{background:#d97b36;}
 .apainame{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);}
-.appurpose{font-size:13px;color:var(--fg);font-weight:700;}
+.appurpose{font-size:14px;color:var(--fg);font-weight:700;}
 .apmid{padding:22px 26px;border-right:1px solid var(--bdr);}
 .apqlbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:8px;}
-.apprompt{font-size:13px;line-height:1.7;color:rgba(240,236,228,.42);}
+.apprompt{font-size:14px;line-height:1.7;color:rgba(240,236,228,.42);}
 .apright{padding:22px 26px;}
 .aprlbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#19c37d;margin-bottom:8px;}
-.apresult{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.65;color:rgba(240,236,228,.38);font-weight:300;}
+.apresult{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;color:rgba(240,236,228,.38);font-weight:300;}
 
 /* IMPACT */
 .impactgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
@@ -124,14 +125,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .impitem:hover{border-color:rgba(0,188,212,.3);}
 .impitem::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .8s ease;}
 .impitem.v::after{transform:scaleX(1);}
-.impnum{font-family:'Bebas Neue',sans-serif;font-size:58px;color:var(--acc);line-height:1;margin-bottom:8px;}
+.impnum{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:58px;color:var(--acc);line-height:1;margin-bottom:8px;}
 .implbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;}
-.impdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.65;font-weight:300;color:rgba(240,236,228,.42);}
+.impdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;font-weight:300;color:rgba(240,236,228,.42);}
 
 .pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);}
 .pnl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
 .pnl:hover{color:var(--acc);}
-.pnc{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
+.pnc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
 
 .rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
 .rv.v{opacity:1;transform:none;}
@@ -141,306 +142,306 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 <body>
 <div id="CU"></div><div id="CR"></div><div id="PB"></div>
 <nav>
-  <a class="nb" href="../../../../../../index.html">← Portfolio</a>
+  <a class="nb" href="../../../../../../index.html">??Portfolio</a>
   <span class="nt">HOSPITAL BOOKING UX</span>
   <span class="nn">06 / 06</span>
 </nav>
 
 <section id="hero">
   <div class="hleft">
-    <div class="htag">Mobile UX · Healthcare · UX Research · Figma</div>
+    <div class="htag">Mobile UX 쨌 Healthcare 쨌 UX Research 쨌 Figma</div>
     <div class="htitle">HOSPITAL<br><em>BOOKING UX</em></div>
-    <p class="hdesc">복잡한 병원 예약 프로세스를 증상 선택 기반으로 단순화. 굿닥·똑닥 분석 기반 모바일 UX 개선 프로젝트.</p>
+    <p class="hdesc">蹂듭옟??蹂묒썝 ?덉빟 ?꾨줈?몄뒪瑜?利앹긽 ?좏깮 湲곕컲?쇰줈 ?⑥닚?? 援용떏쨌?묐떏 遺꾩꽍 湲곕컲 紐⑤컮??UX 媛쒖꽑 ?꾨줈?앺듃.</p>
     <div class="hbtns">
-      <a class="hbtn p" href="prototype.html">Prototype ↗</a>
+      <a class="hbtn p" href="prototype.html">Prototype ??/a>
       <a class="hbtn s" href="#">Case Study</a>
     </div>
   </div>
   <div class="hdiv"></div>
   <div class="hright">
-    <div class="hstatrow rv"><div class="hstat-num">5→3</div><div class="hstat-info"><span class="hstat-label">예약 단계 감소</span><span class="hstat-sub">병원 찾기부터 예약까지 단계 축소</span></div></div>
-    <div class="hstatrow rv"><div class="hstat-num">60%↓</div><div class="hstat-info"><span class="hstat-label">예약 소요 시간</span><span class="hstat-sub">증상 선택 기반 즉시 병원 추천</span></div></div>
-    <div class="hstatrow rv"><div class="hstat-num">2</div><div class="hstat-info"><span class="hstat-label">분석 대상 서비스</span><span class="hstat-sub">굿닥 · 똑닥 UX 비교 분석</span></div></div>
-    <div class="hstatrow rv"><div class="hstat-num">100%</div><div class="hstat-info"><span class="hstat-label">Mobile First</span><span class="hstat-sub">모바일 퍼스트 UX 설계</span></div></div>
+    <div class="hstatrow rv"><div class="hstat-num">5??</div><div class="hstat-info"><span class="hstat-label">?덉빟 ?④퀎 媛먯냼</span><span class="hstat-sub">蹂묒썝 李얘린遺???덉빟源뚯? ?④퀎 異뺤냼</span></div></div>
+    <div class="hstatrow rv"><div class="hstat-num">60%??/div><div class="hstat-info"><span class="hstat-label">?덉빟 ?뚯슂 ?쒓컙</span><span class="hstat-sub">利앹긽 ?좏깮 湲곕컲 利됱떆 蹂묒썝 異붿쿇</span></div></div>
+    <div class="hstatrow rv"><div class="hstat-num">2</div><div class="hstat-info"><span class="hstat-label">遺꾩꽍 ????쒕퉬??/span><span class="hstat-sub">援용떏 쨌 ?묐떏 UX 鍮꾧탳 遺꾩꽍</span></div></div>
+    <div class="hstatrow rv"><div class="hstat-num">100%</div><div class="hstat-info"><span class="hstat-label">Mobile First</span><span class="hstat-sub">紐⑤컮???쇱뒪??UX ?ㅺ퀎</span></div></div>
     <div class="hmetarow rv">
       <div class="hmi"><span class="hmik">Year</span><span class="hmiv">2025</span></div>
       <div class="hmi"><span class="hmik">Type</span><span class="hmiv">Mobile UX Research</span></div>
-      <div class="hmi"><span class="hmik">Role</span><span class="hmiv t">UX Research · Design</span></div>
-      <div class="hmi"><span class="hmik">Tool</span><span class="hmiv">Figma · GPT · Claude</span></div>
+      <div class="hmi"><span class="hmik">Role</span><span class="hmiv t">UX Research 쨌 Design</span></div>
+      <div class="hmi"><span class="hmik">Tool</span><span class="hmiv">Figma 쨌 GPT 쨌 Claude</span></div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Problem Analysis</div>
-  <div class="sec-title rv d1">기존 서비스의 <em>UX 문제</em></div>
+  <div class="sec-label rv">??Problem Analysis</div>
+  <div class="sec-title rv d1">湲곗〈 ?쒕퉬?ㅼ쓽 <em>UX 臾몄젣</em></div>
   <div class="probgrid rv d2">
-    <div class="pgcard"><div class="pgnum">01</div><div class="pgtitle">예약 단계가 너무 많음</div><div class="pgdesc">병원 검색 → 진료과 선택 → 병원 선택 → 시간 선택 → 예약 확인. 단계가 많아 이탈률 높음</div></div>
-    <div class="pgcard"><div class="pgnum">02</div><div class="pgtitle">진료과 선택 어려움</div><div class="pgdesc">의학 지식이 없는 일반 사용자가 증상에 맞는 진료과를 직접 선택하기 어려운 구조</div></div>
-    <div class="pgcard"><div class="pgnum">03</div><div class="pgtitle">위치 기반 검색 불편</div><div class="pgdesc">현재 위치 기반 병원 검색이 직관적이지 않고 거리·영업 여부 파악이 한 화면에서 어려움</div></div>
-    <div class="pgcard"><div class="pgnum">04</div><div class="pgtitle">고령 사용자 접근성</div><div class="pgdesc">복잡한 UI 구조와 작은 텍스트로 인해 병원 앱 주요 사용자인 중장년층 이용에 어려움</div></div>
+    <div class="pgcard"><div class="pgnum">01</div><div class="pgtitle">?덉빟 ?④퀎媛 ?덈Т 留롮쓬</div><div class="pgdesc">蹂묒썝 寃????吏꾨즺怨??좏깮 ??蹂묒썝 ?좏깮 ???쒓컙 ?좏깮 ???덉빟 ?뺤씤. ?④퀎媛 留롮븘 ?댄깉瑜??믪쓬</div></div>
+    <div class="pgcard"><div class="pgnum">02</div><div class="pgtitle">吏꾨즺怨??좏깮 ?대젮?</div><div class="pgdesc">?섑븰 吏?앹씠 ?녿뒗 ?쇰컲 ?ъ슜?먭? 利앹긽??留욌뒗 吏꾨즺怨쇰? 吏곸젒 ?좏깮?섍린 ?대젮??援ъ“</div></div>
+    <div class="pgcard"><div class="pgnum">03</div><div class="pgtitle">?꾩튂 湲곕컲 寃??遺덊렪</div><div class="pgdesc">?꾩옱 ?꾩튂 湲곕컲 蹂묒썝 寃?됱씠 吏곴??곸씠吏 ?딄퀬 嫄곕━쨌?곸뾽 ?щ? ?뚯븙?????붾㈃?먯꽌 ?대젮?</div></div>
+    <div class="pgcard"><div class="pgnum">04</div><div class="pgtitle">怨좊졊 ?ъ슜???묎렐??/div><div class="pgdesc">蹂듭옟??UI 援ъ“? ?묒? ?띿뒪?몃줈 ?명빐 蹂묒썝 ??二쇱슂 ?ъ슜?먯씤 以묒옣?꾩링 ?댁슜???대젮?</div></div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— UX Redesign</div>
-  <div class="sec-title rv d1">예약 플로우 <em>개선안</em></div>
+  <div class="sec-label rv">??UX Redesign</div>
+  <div class="sec-title rv d1">?덉빟 ?뚮줈??<em>媛쒖꽑??/em></div>
   <div class="flowcompare rv d2">
     <div class="flowbox before">
-      <div class="flowlbl">기존 플로우 (AS-IS)</div>
-      <div class="flowstep"><span class="fn">01</span>병원 검색 (지역명 입력)</div>
-      <div class="flowstep"><span class="fn">02</span>진료과 직접 선택</div>
-      <div class="flowstep"><span class="fn">03</span>병원 목록 탐색</div>
-      <div class="flowstep"><span class="fn">04</span>병원 상세 → 예약</div>
-      <div class="flowstep"><span class="fn">05</span>시간 선택 → 완료</div>
-      <div class="flownote">⚠ 5단계 / 평균 7~10분 소요</div>
+      <div class="flowlbl">湲곗〈 ?뚮줈??(AS-IS)</div>
+      <div class="flowstep"><span class="fn">01</span>蹂묒썝 寃??(吏??챸 ?낅젰)</div>
+      <div class="flowstep"><span class="fn">02</span>吏꾨즺怨?吏곸젒 ?좏깮</div>
+      <div class="flowstep"><span class="fn">03</span>蹂묒썝 紐⑸줉 ?먯깋</div>
+      <div class="flowstep"><span class="fn">04</span>蹂묒썝 ?곸꽭 ???덉빟</div>
+      <div class="flowstep"><span class="fn">05</span>?쒓컙 ?좏깮 ???꾨즺</div>
+      <div class="flownote">??5?④퀎 / ?됯퇏 7~10遺??뚯슂</div>
     </div>
-    <div class="flowarrow">→</div>
+    <div class="flowarrow">??/div>
     <div class="flowbox after">
-      <div class="flowlbl">개선 플로우 (TO-BE)</div>
-      <div class="flowstep hi"><span class="fn">01</span>증상 선택 (두통·복통·감기…)</div>
-      <div class="flowstep hi"><span class="fn">02</span>추천 병원 목록 (가까운 순)</div>
-      <div class="flowstep hi"><span class="fn">03</span>즉시 예약 → 완료</div>
-      <div class="flownote">✓ 3단계 / 평균 2~3분 목표</div>
+      <div class="flowlbl">媛쒖꽑 ?뚮줈??(TO-BE)</div>
+      <div class="flowstep hi"><span class="fn">01</span>利앹긽 ?좏깮 (?먰넻쨌蹂듯넻쨌媛먭린??</div>
+      <div class="flowstep hi"><span class="fn">02</span>異붿쿇 蹂묒썝 紐⑸줉 (媛源뚯슫 ??</div>
+      <div class="flowstep hi"><span class="fn">03</span>利됱떆 ?덉빟 ???꾨즺</div>
+      <div class="flownote">??3?④퀎 / ?됯퇏 2~3遺?紐⑺몴</div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Key UX Feature</div>
-  <div class="sec-title rv d1">증상 선택 기반 <em>예약 UX</em></div>
+  <div class="sec-label rv">??Key UX Feature</div>
+  <div class="sec-title rv d1">利앹긽 ?좏깮 湲곕컲 <em>?덉빟 UX</em></div>
   <div class="symptombox rv d2">
-    <div class="symptomtitle">Step 01 — 증상을 선택하세요</div>
+    <div class="symptomtitle">Step 01 ??利앹긽???좏깮?섏꽭??/div>
     <div class="sympgrid">
-      <div class="sympitem on"><span class="sympicon">🤕</span>두통</div>
-      <div class="sympitem"><span class="sympicon">🤢</span>복통</div>
-      <div class="sympitem"><span class="sympicon">🤧</span>감기</div>
-      <div class="sympitem"><span class="sympicon">🦷</span>치통</div>
-      <div class="sympitem"><span class="sympicon">👁</span>눈</div>
-      <div class="sympitem"><span class="sympicon">🦴</span>관절</div>
-      <div class="sympitem"><span class="sympicon">🫁</span>호흡기</div>
-      <div class="sympitem"><span class="sympicon">💊</span>기타</div>
+      <div class="sympitem on"><span class="sympicon">?쨻</span>?먰넻</div>
+      <div class="sympitem"><span class="sympicon">?ㄲ</span>蹂듯넻</div>
+      <div class="sympitem"><span class="sympicon">?ㄷ</span>媛먭린</div>
+      <div class="sympitem"><span class="sympicon">?┠</span>移섑넻</div>
+      <div class="sympitem"><span class="sympicon">?몓</span>??/div>
+      <div class="sympitem"><span class="sympicon">?┫</span>愿??/div>
+      <div class="sympitem"><span class="sympicon">?쳛</span>?명씉湲?/div>
+      <div class="sympitem"><span class="sympicon">?뭻</span>湲고?</div>
     </div>
-    <div class="sympresult">→ 내과 / 신경과 추천 병원</div>
+    <div class="sympresult">???닿낵 / ?좉꼍怨?異붿쿇 蹂묒썝</div>
     <div class="hospcards">
-      <div class="hospcard"><div class="hospname">○○내과의원</div><div class="hospdist">현재 위치에서 0.3km · 영업 중</div><span class="hospbtn">예약하기</span></div>
-      <div class="hospcard"><div class="hospname">△△신경과</div><div class="hospdist">현재 위치에서 0.8km · 영업 중</div><span class="hospbtn">예약하기</span></div>
-      <div class="hospcard"><div class="hospname">□□의원</div><div class="hospdist">현재 위치에서 1.2km · 영업 중</div><span class="hospbtn">예약하기</span></div>
+      <div class="hospcard"><div class="hospname">?뗢뿃?닿낵?섏썝</div><div class="hospdist">?꾩옱 ?꾩튂?먯꽌 0.3km 쨌 ?곸뾽 以?/div><span class="hospbtn">?덉빟?섍린</span></div>
+      <div class="hospcard"><div class="hospname">?년뼰?좉꼍怨?/div><div class="hospdist">?꾩옱 ?꾩튂?먯꽌 0.8km 쨌 ?곸뾽 以?/div><span class="hospbtn">?덉빟?섍린</span></div>
+      <div class="hospcard"><div class="hospname">?△뼞?섏썝</div><div class="hospdist">?꾩옱 ?꾩튂?먯꽌 1.2km 쨌 ?곸뾽 以?/div><span class="hospbtn">?덉빟?섍린</span></div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Visual Design</div>
-  <div class="sec-title rv d1">화면 &amp; <em>목업</em></div>
+  <div class="sec-label rv">??Visual Design</div>
+  <div class="sec-title rv d1">?붾㈃ &amp; <em>紐⑹뾽</em></div>
   <div class="scgrid rv d1">
 
-    <!-- 01 증상 선택 -->
+    <!-- 01 利앹긽 ?좏깮 -->
     <div class="scitem">
       <div class="scbody">
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;background:#f4f6f8;">
           <!-- status bar -->
           <div style="background:#002d36;height:22px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex-shrink:0;">
-            <span style="font-size:9px;color:rgba(255,255,255,.7);font-family:'Space Mono',monospace;">9:41</span>
-            <span style="font-size:9px;color:rgba(255,255,255,.5);">●●●</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.7);font-family:'Pretendard','Noto Sans KR',sans-serif;">9:41</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.5);">?뤴뿈??/span>
           </div>
           <!-- top header -->
           <div style="background:linear-gradient(135deg,#003a45,#007b8f);padding:14px 12px 10px;flex-shrink:0;">
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;color:rgba(255,255,255,.6);margin-bottom:3px;letter-spacing:.05em;">STEP 1/3 · 증상 선택</div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:700;color:#fff;">어디가 불편하신가요?</div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.55);margin-top:2px;">증상 선택 → 병원 자동 추천</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:7px;color:rgba(255,255,255,.6);margin-bottom:3px;letter-spacing:.05em;">STEP 1/3 쨌 利앹긽 ?좏깮</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:12px;font-weight:700;color:#fff;">?대뵒媛 遺덊렪?섏떊媛??</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.55);margin-top:2px;">利앹긽 ?좏깮 ??蹂묒썝 ?먮룞 異붿쿇</div>
           </div>
           <!-- symptom grid -->
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;padding:8px;flex-shrink:0;">
             <div style="background:#d6f5f9;border:1.5px solid #00bcd4;border-radius:7px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <span style="font-size:16px;">🤕</span><span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#006070;">두통</span>
-              <div style="width:14px;height:14px;background:#00bcd4;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-top:1px;">✓</div>
+              <span style="font-size:16px;">?쨻</span><span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#006070;">?먰넻</span>
+              <div style="width:14px;height:14px;background:#00bcd4;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-top:1px;">??/div>
             </div>
             <div style="background:#fff;border:1.5px solid #e8eaed;border-radius:7px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <span style="font-size:16px;">🤢</span><span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;">복통</span>
+              <span style="font-size:16px;">?ㄲ</span><span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;">蹂듯넻</span>
             </div>
             <div style="background:#fff;border:1.5px solid #e8eaed;border-radius:7px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <span style="font-size:16px;">🤧</span><span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;">감기</span>
+              <span style="font-size:16px;">?ㄷ</span><span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;">媛먭린</span>
             </div>
             <div style="background:#fff;border:1.5px solid #e8eaed;border-radius:7px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <span style="font-size:16px;">🦷</span><span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;">치통</span>
+              <span style="font-size:16px;">?┠</span><span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;">移섑넻</span>
             </div>
             <div style="background:#fff;border:1.5px solid #e8eaed;border-radius:7px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <span style="font-size:16px;">👁️</span><span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;">눈</span>
+              <span style="font-size:16px;">?몓截?/span><span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;">??/span>
             </div>
             <div style="background:#fff;border:1.5px solid #e8eaed;border-radius:7px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <span style="font-size:16px;">🦴</span><span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;">관절</span>
+              <span style="font-size:16px;">?┫</span><span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;">愿??/span>
             </div>
             <div style="background:#fff;border:1.5px solid #e8eaed;border-radius:7px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <span style="font-size:16px;">🫁</span><span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;">호흡기</span>
+              <span style="font-size:16px;">?쳛</span><span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;">?명씉湲?/span>
             </div>
             <div style="background:#fff;border:1.5px solid #e8eaed;border-radius:7px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <span style="font-size:16px;">🩹</span><span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;">피부</span>
+              <span style="font-size:16px;">?㈈</span><span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;">?쇰?</span>
             </div>
           </div>
           <!-- AI hint -->
           <div style="margin:0 8px;background:#e8f9fb;border:1px solid rgba(0,188,212,.3);border-radius:8px;padding:7px 10px;flex-shrink:0;display:flex;gap:6px;align-items:center;">
-            <span style="font-size:13px;">🤖</span>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#005060;line-height:1.4;"><b>두통</b> 선택 → 신경과·내과 자동 추천</div>
+            <span style="font-size:14px;">?쨼</span>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#005060;line-height:1.4;"><b>?먰넻</b> ?좏깮 ???좉꼍怨셋룸궡怨??먮룞 異붿쿇</div>
           </div>
           <!-- bottom btn -->
           <div style="margin-top:auto;padding:8px;flex-shrink:0;">
-            <div style="background:#00bcd4;border-radius:8px;padding:9px 12px;font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#fff;text-align:center;">두통 증상으로 병원 찾기 →</div>
+            <div style="background:#00bcd4;border-radius:8px;padding:9px 12px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#fff;text-align:center;">?먰넻 利앹긽?쇰줈 蹂묒썝 李얘린 ??/div>
           </div>
         </div>
       </div>
-      <div class="sclbl">01 — 증상 선택</div>
+      <div class="sclbl">01 ??利앹긽 ?좏깮</div>
     </div>
 
-    <!-- 02 병원 목록 -->
+    <!-- 02 蹂묒썝 紐⑸줉 -->
     <div class="scitem">
       <div class="scbody">
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;background:#f4f6f8;">
           <!-- status bar -->
           <div style="background:#111;height:22px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex-shrink:0;">
-            <span style="font-size:9px;color:rgba(255,255,255,.7);font-family:'Space Mono',monospace;">9:41</span>
-            <span style="font-size:9px;color:rgba(255,255,255,.5);">●●●</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.7);font-family:'Pretendard','Noto Sans KR',sans-serif;">9:41</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.5);">?뤴뿈??/span>
           </div>
           <!-- nav header -->
           <div style="background:#fff;padding:10px 10px 8px;border-bottom:1px solid #e8eaed;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;">
-            <span style="font-size:12px;color:#888;">←</span>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:11px;font-weight:700;color:#111;">추천 병원</div>
-            <span style="font-size:10px;">⚙️</span>
+            <span style="font-size:12px;color:#888;">??/span>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:11px;font-weight:700;color:#111;">異붿쿇 蹂묒썝</div>
+            <span style="font-size:10px;">?숋툘</span>
           </div>
           <!-- symptom tag -->
           <div style="background:#e6f9fb;padding:6px 10px;border-bottom:1px solid rgba(0,188,212,.2);flex-shrink:0;display:flex;gap:6px;align-items:center;">
-            <span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;">증상</span>
-            <span style="font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:700;color:#00bcd4;">두통</span>
-            <span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;margin-left:auto;">신경과 · 내과</span>
+            <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;">利앹긽</span>
+            <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;font-weight:700;color:#00bcd4;">?먰넻</span>
+            <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;margin-left:auto;">?좉꼍怨?쨌 ?닿낵</span>
           </div>
           <!-- hospital cards -->
           <div style="display:flex;flex-direction:column;gap:4px;padding:6px;overflow:hidden;flex:1;">
             <!-- card 1 -->
             <div style="background:#fff;border:1px solid #e8eaed;border-radius:8px;padding:8px;border-left:3px solid #00bcd4;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                <div style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#111;">신촌연세내과</div>
-                <span style="font-size:8px;background:#e8f5e9;color:#2e7d32;padding:2px 5px;border-radius:4px;font-family:'Noto Sans KR',sans-serif;font-weight:600;">영업 중</span>
+                <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#111;">?좎큿?곗꽭?닿낵</div>
+                <span style="font-size:8px;background:#e8f5e9;color:#2e7d32;padding:2px 5px;border-radius:4px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:600;">?곸뾽 以?/span>
               </div>
-              <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;margin-bottom:5px;">📍 0.3km · ⭐ 4.8 · ⏱ <span style="color:#00a86b;font-weight:600;">대기 5분</span></div>
+              <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;margin-bottom:5px;">?뱧 0.3km 쨌 狩?4.8 쨌 ??<span style="color:#00a86b;font-weight:600;">?湲?5遺?/span></div>
               <div style="display:flex;gap:3px;margin-bottom:5px;">
-                <span style="font-size:8px;background:rgba(0,188,212,.1);color:#00bcd4;border-radius:4px;padding:2px 5px;font-family:'Noto Sans KR',sans-serif;">내과</span>
-                <span style="font-size:8px;background:rgba(0,188,212,.1);color:#00bcd4;border-radius:4px;padding:2px 5px;font-family:'Noto Sans KR',sans-serif;">신경과</span>
+                <span style="font-size:8px;background:rgba(0,188,212,.1);color:#00bcd4;border-radius:4px;padding:2px 5px;font-family:'Pretendard','Noto Sans KR',sans-serif;">?닿낵</span>
+                <span style="font-size:8px;background:rgba(0,188,212,.1);color:#00bcd4;border-radius:4px;padding:2px 5px;font-family:'Pretendard','Noto Sans KR',sans-serif;">?좉꼍怨?/span>
               </div>
-              <div style="background:#00bcd4;border-radius:5px;padding:4px;font-size:8px;font-weight:700;color:#fff;font-family:'Noto Sans KR',sans-serif;text-align:center;">예약하기</div>
+              <div style="background:#00bcd4;border-radius:5px;padding:4px;font-size:8px;font-weight:700;color:#fff;font-family:'Pretendard','Noto Sans KR',sans-serif;text-align:center;">?덉빟?섍린</div>
             </div>
             <!-- card 2 -->
             <div style="background:#fff;border:1px solid #e8eaed;border-radius:8px;padding:8px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                <div style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#111;">마포서울신경과</div>
-                <span style="font-size:8px;background:#fff3e0;color:#e65100;padding:2px 5px;border-radius:4px;font-family:'Noto Sans KR',sans-serif;font-weight:600;">혼잡</span>
+                <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#111;">留덊룷?쒖슱?좉꼍怨?/div>
+                <span style="font-size:8px;background:#fff3e0;color:#e65100;padding:2px 5px;border-radius:4px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:600;">?쇱옟</span>
               </div>
-              <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;margin-bottom:4px;">📍 0.7km · ⭐ 4.6 · ⏱ <span style="color:#e65100;font-weight:600;">대기 25분</span></div>
+              <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;margin-bottom:4px;">?뱧 0.7km 쨌 狩?4.6 쨌 ??<span style="color:#e65100;font-weight:600;">?湲?25遺?/span></div>
               <div style="display:flex;gap:3px;">
-                <span style="font-size:8px;background:#f3f4f6;color:#888;border-radius:4px;padding:2px 5px;font-family:'Noto Sans KR',sans-serif;">신경과</span>
-                <span style="font-size:8px;background:#f3f4f6;color:#888;border-radius:4px;padding:2px 5px;font-family:'Noto Sans KR',sans-serif;">두통전문</span>
+                <span style="font-size:8px;background:#f3f4f6;color:#888;border-radius:4px;padding:2px 5px;font-family:'Pretendard','Noto Sans KR',sans-serif;">?좉꼍怨?/span>
+                <span style="font-size:8px;background:#f3f4f6;color:#888;border-radius:4px;padding:2px 5px;font-family:'Pretendard','Noto Sans KR',sans-serif;">?먰넻?꾨Ц</span>
               </div>
             </div>
             <!-- card 3 -->
             <div style="background:#fff;border:1px solid #e8eaed;border-radius:8px;padding:8px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                <div style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#111;">홍대365내과</div>
-                <span style="font-size:8px;background:#e8f5e9;color:#2e7d32;padding:2px 5px;border-radius:4px;font-family:'Noto Sans KR',sans-serif;font-weight:600;">영업 중</span>
+                <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#111;">?띾?365?닿낵</div>
+                <span style="font-size:8px;background:#e8f5e9;color:#2e7d32;padding:2px 5px;border-radius:4px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:600;">?곸뾽 以?/span>
               </div>
-              <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#888;">📍 1.2km · ⭐ 4.5 · ⏱ <span style="color:#e07000;font-weight:600;">대기 10분</span></div>
+              <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#888;">?뱧 1.2km 쨌 狩?4.5 쨌 ??<span style="color:#e07000;font-weight:600;">?湲?10遺?/span></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="sclbl">02 — 병원 목록</div>
+      <div class="sclbl">02 ??蹂묒썝 紐⑸줉</div>
     </div>
 
-    <!-- 03 예약 완료 -->
+    <!-- 03 ?덉빟 ?꾨즺 -->
     <div class="scitem">
       <div class="scbody">
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(160deg,#001e26,#004d5a,#00a0b4);">
           <!-- status bar -->
           <div style="height:22px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex-shrink:0;">
-            <span style="font-size:9px;color:rgba(255,255,255,.6);font-family:'Space Mono',monospace;">9:41</span>
-            <span style="font-size:9px;color:rgba(255,255,255,.4);">●●●</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.6);font-family:'Pretendard','Noto Sans KR',sans-serif;">9:41</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.4);">?뤴뿈??/span>
           </div>
           <!-- main content -->
           <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 14px;">
-            <div style="width:56px;height:56px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:10px;border:1.5px solid rgba(255,255,255,.3);">✅</div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:3px;">예약 완료!</div>
-            <div style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.12em;margin-bottom:12px;">MDB-2817</div>
+            <div style="width:56px;height:56px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:10px;border:1.5px solid rgba(255,255,255,.3);">??/div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:3px;">?덉빟 ?꾨즺!</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.12em;margin-bottom:12px;">MDB-2817</div>
             <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 12px;width:100%;">
               <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.1);">
-                <span style="font-family:'Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.55);">병원</span>
-                <span style="font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:600;color:#fff;">신촌연세내과</span>
+                <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.55);">蹂묒썝</span>
+                <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;font-weight:600;color:#fff;">?좎큿?곗꽭?닿낵</span>
               </div>
               <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.1);">
-                <span style="font-family:'Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.55);">증상</span>
-                <span style="font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:600;color:#7ef9ff;">두통</span>
+                <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.55);">利앹긽</span>
+                <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;font-weight:600;color:#7ef9ff;">?먰넻</span>
               </div>
               <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.1);">
-                <span style="font-family:'Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.55);">일시</span>
-                <span style="font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:600;color:#fff;">3/18 오전 10:30</span>
+                <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.55);">?쇱떆</span>
+                <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;font-weight:600;color:#fff;">3/18 ?ㅼ쟾 10:30</span>
               </div>
               <div style="display:flex;justify-content:space-between;padding:5px 0;">
-                <span style="font-family:'Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.55);">예상 대기</span>
-                <span style="font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:600;color:#7ef9ff;">약 5분</span>
+                <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.55);">?덉긽 ?湲?/span>
+                <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;font-weight:600;color:#7ef9ff;">??5遺?/span>
               </div>
             </div>
           </div>
           <!-- bottom btns -->
           <div style="padding:0 12px 14px;display:flex;flex-direction:column;gap:5px;flex-shrink:0;">
-            <div style="background:#fff;border-radius:8px;padding:9px;font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#00bcd4;text-align:center;">홈으로 →</div>
-            <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px;font-family:'Noto Sans KR',sans-serif;font-size:10px;color:rgba(255,255,255,.8);text-align:center;">예약 내역 보기</div>
+            <div style="background:#fff;border-radius:8px;padding:9px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#00bcd4;text-align:center;">?덉쑝濡???/div>
+            <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;color:rgba(255,255,255,.8);text-align:center;">?덉빟 ?댁뿭 蹂닿린</div>
           </div>
         </div>
       </div>
-      <div class="sclbl">03 — 예약 완료</div>
+      <div class="sclbl">03 ???덉빟 ?꾨즺</div>
     </div>
 
   </div>
   <div style="margin-top:20px;text-align:center;" class="rv d2">
     <a href="prototype.html" style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:14px 28px;border:1px solid rgba(0,188,212,.4);color:var(--acc);text-decoration:none;transition:all .3s;" onmouseover="this.style.background='rgba(0,188,212,.06)'" onmouseout="this.style.background=''">
-      <span>직접 체험하기</span><span style="display:inline-block;width:24px;height:1px;background:var(--acc);"></span><span>↗</span>
+      <span>吏곸젒 泥댄뿕?섍린</span><span style="display:inline-block;width:24px;height:1px;background:var(--acc);"></span><span>??/span>
     </a>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— AI Collaboration</div>
-  <div class="sec-title rv d1">AI 프롬프트 <em>예시</em></div>
+  <div class="sec-label rv">??AI Collaboration</div>
+  <div class="sec-title rv d1">AI ?꾨＼?꾪듃 <em>?덉떆</em></div>
   <div class="aplist rv d1">
     <div class="aprow">
-      <div class="apleft"><div class="aibadge gpt"></div><span class="apainame">ChatGPT</span><span class="appurpose">서비스 분석</span></div>
-      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"굿닥·똑닥 병원 예약 앱의 UX 구조를 분석해줘. 예약 단계, 진료과 선택 방식, 검색 기능 비교. Jakob Nielsen 원칙 적용."</div></div>
-      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">두 서비스 UX 비교 분석표, 공통 문제점 4가지, Nielsen 원칙별 개선 필요 항목 도출</div></div>
+      <div class="apleft"><div class="aibadge gpt"></div><span class="apainame">ChatGPT</span><span class="appurpose">?쒕퉬??遺꾩꽍</span></div>
+      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"援용떏쨌?묐떏 蹂묒썝 ?덉빟 ?깆쓽 UX 援ъ“瑜?遺꾩꽍?댁쨾. ?덉빟 ?④퀎, 吏꾨즺怨??좏깮 諛⑹떇, 寃??湲곕뒫 鍮꾧탳. Jakob Nielsen ?먯튃 ?곸슜."</div></div>
+      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">???쒕퉬??UX 鍮꾧탳 遺꾩꽍?? 怨듯넻 臾몄젣??4媛吏, Nielsen ?먯튃蹂?媛쒖꽑 ?꾩슂 ??ぉ ?꾩텧</div></div>
     </div>
     <div class="aprow">
-      <div class="apleft"><div class="aibadge cla"></div><span class="apainame">Claude</span><span class="appurpose">플로우 설계</span></div>
-      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"병원 예약을 증상 선택 기반으로 단순화하는 UX 플로우를 설계해줘. 3단계 이하로 완료 가능. 모바일 퍼스트, 고령 사용자 고려."</div></div>
-      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">증상→추천→예약 3단계 플로우, 증상 분류 카테고리 8개, 접근성 고려 UI 가이드 제안</div></div>
+      <div class="apleft"><div class="aibadge cla"></div><span class="apainame">Claude</span><span class="appurpose">?뚮줈???ㅺ퀎</span></div>
+      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"蹂묒썝 ?덉빟??利앹긽 ?좏깮 湲곕컲?쇰줈 ?⑥닚?뷀븯??UX ?뚮줈?곕? ?ㅺ퀎?댁쨾. 3?④퀎 ?댄븯濡??꾨즺 媛?? 紐⑤컮???쇱뒪?? 怨좊졊 ?ъ슜??怨좊젮."</div></div>
+      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">利앹긽?믪텛泥쒋넂?덉빟 3?④퀎 ?뚮줈?? 利앹긽 遺꾨쪟 移댄뀒怨좊━ 8媛? ?묎렐??怨좊젮 UI 媛?대뱶 ?쒖븞</div></div>
     </div>
     <div class="aprow">
-      <div class="apleft"><div class="aibadge gpt"></div><span class="apainame">ChatGPT</span><span class="appurpose">UI 설계</span></div>
-      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"증상 선택 화면 UI 컴포넌트를 설계해줘. 이모지+텍스트 조합의 증상 카드 그리드. 탭 시 즉시 추천 병원 노출."</div></div>
-      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">증상 카드 컴포넌트, 선택 상태 스타일, 병원 추천 카드 레이아웃, 인터랙션 구조 완성</div></div>
+      <div class="apleft"><div class="aibadge gpt"></div><span class="apainame">ChatGPT</span><span class="appurpose">UI ?ㅺ퀎</span></div>
+      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"利앹긽 ?좏깮 ?붾㈃ UI 而댄룷?뚰듃瑜??ㅺ퀎?댁쨾. ?대え吏+?띿뒪??議고빀??利앹긽 移대뱶 洹몃━?? ????利됱떆 異붿쿇 蹂묒썝 ?몄텧."</div></div>
+      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">利앹긽 移대뱶 而댄룷?뚰듃, ?좏깮 ?곹깭 ?ㅽ??? 蹂묒썝 異붿쿇 移대뱶 ?덉씠?꾩썐, ?명꽣?숈뀡 援ъ“ ?꾩꽦</div></div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Expected Impact</div>
-  <div class="sec-title rv d1">개선 <em>효과</em></div>
+  <div class="sec-label rv">??Expected Impact</div>
+  <div class="sec-title rv d1">媛쒖꽑 <em>?④낵</em></div>
   <div class="impactgrid rv d1">
-    <div class="impitem"><div class="impnum">↓60%</div><div class="implbl">예약 소요 시간</div><div class="impdesc">기존 7~10분에서 2~3분으로 단축. 증상 선택 기반 즉시 추천</div></div>
-    <div class="impitem"><div class="impnum">5→3</div><div class="implbl">예약 단계 수</div><div class="impdesc">불필요한 단계 제거. 증상 선택 → 병원 추천 → 예약 3단계 완료</div></div>
-    <div class="impitem"><div class="impnum">↑</div><div class="implbl">접근성 향상</div><div class="impdesc">진료과 지식 없이도 예약 가능. 고령 사용자 포함 누구나 직관적 이용</div></div>
+    <div class="impitem"><div class="impnum">??0%</div><div class="implbl">?덉빟 ?뚯슂 ?쒓컙</div><div class="impdesc">湲곗〈 7~10遺꾩뿉??2~3遺꾩쑝濡??⑥텞. 利앹긽 ?좏깮 湲곕컲 利됱떆 異붿쿇</div></div>
+    <div class="impitem"><div class="impnum">5??</div><div class="implbl">?덉빟 ?④퀎 ??/div><div class="impdesc">遺덊븘?뷀븳 ?④퀎 ?쒓굅. 利앹긽 ?좏깮 ??蹂묒썝 異붿쿇 ???덉빟 3?④퀎 ?꾨즺</div></div>
+    <div class="impitem"><div class="impnum">??/div><div class="implbl">?묎렐???μ긽</div><div class="impdesc">吏꾨즺怨?吏???놁씠???덉빟 媛?? 怨좊졊 ?ъ슜???ы븿 ?꾧뎄??吏곴????댁슜</div></div>
   </div>
 </section>
 
 <div class="pnav-bottom">
-  <a class="pnl" href="../project-5/">← OTT UX Redesign</a>
+  <a class="pnl" href="../project-5/">??OTT UX Redesign</a>
   <span class="pnc">KDH PORTFOLIO</span>
-  <a class="pnl" href="../../index.html">Back to Portfolio →</a>
+  <a class="pnl" href="../../index.html">Back to Portfolio ??/a>
 </div>
 <script>
 const CU=document.getElementById('CU'),CR=document.getElementById('CR');
@@ -454,3 +455,4 @@ document.querySelectorAll('.sympitem').forEach(s=>{s.addEventListener('click',()
 </script>
 </body>
 </html>
+

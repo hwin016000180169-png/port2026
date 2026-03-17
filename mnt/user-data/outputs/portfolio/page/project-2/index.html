@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VALORANT Guide — KDH Portfolio</title>
+<title>VALORANT Guide ??KDH Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{--bg:#020202;--fg:#f0ece4;--acc:#ff4655;--cyan:#00e5ff;--bdr:#1e1e1e;--mid:#666;--card:#0d0d14;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
+body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Noto Sans KR',sans-serif;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
 #CU{position:fixed;width:8px;height:8px;background:var(--acc);border-radius:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
 #CR{position:fixed;width:34px;height:34px;border:1px solid rgba(255,70,85,.3);border-radius:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%) rotate(45deg);}
 #PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:200;width:0%;}
@@ -18,18 +19,18 @@ a{text-decoration:none;color:inherit;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(2,2,2,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
 .nb{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
 .nb:hover{color:var(--acc);}
-.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
+.nt{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
 .nn{font-size:12px;letter-spacing:.22em;color:var(--mid);}
 
 /* HERO SPLIT */
 #hero{width:100vw;height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:60px;}
 .hl{background:var(--card);border-right:2px solid var(--acc);display:flex;flex-direction:column;justify-content:flex-end;padding:64px 52px;position:relative;overflow:hidden;}
 .hl::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,70,85,.04) 0%,transparent 55%);}
-.hbigword{position:absolute;top:50%;right:-0.04em;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:22vw;line-height:1;color:rgba(255,70,85,.04);pointer-events:none;user-select:none;}
+.hbigword{position:absolute;top:50%;right:-0.04em;transform:translateY(-50%);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:22vw;line-height:1;color:rgba(255,70,85,.04);pointer-events:none;user-select:none;}
 .htag{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--acc);margin-bottom:20px;position:relative;z-index:1;}
-.htitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,8vw,100px);line-height:.88;letter-spacing:.02em;margin-bottom:22px;position:relative;z-index:1;}
+.htitle{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(56px,8vw,100px);line-height:.88;letter-spacing:.02em;margin-bottom:22px;position:relative;z-index:1;}
 .htitle span{display:block;-webkit-text-stroke:1.5px var(--cyan);color:transparent;}
-.hdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.5);margin-bottom:36px;position:relative;z-index:1;max-width:380px;}
+.hdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.5);margin-bottom:36px;position:relative;z-index:1;max-width:380px;}
 .hbtns{display:flex;gap:14px;position:relative;z-index:1;}
 .hbtn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:13px 26px;transition:all .3s;cursor:none;}
 .hbtn.p{background:var(--acc);color:#fff;font-weight:700;}.hbtn.p:hover{background:#ff1e30;}
@@ -39,37 +40,37 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .statitem{background:var(--card);padding:28px 24px;border:1px solid var(--bdr);position:relative;overflow:hidden;}
 .statitem::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--acc);transition:width .8s ease;}
 .statitem.v::after{width:100%;}
-.statnum{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--acc);line-height:1;margin-bottom:6px;}
+.statnum{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:48px;color:var(--acc);line-height:1;margin-bottom:6px;}
 .statlabel{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);}
-.statsub{font-family:'Noto Sans KR',sans-serif;font-size:13px;color:rgba(240,236,228,.38);margin-top:6px;font-weight:300;}
+.statsub{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;color:rgba(240,236,228,.38);margin-top:6px;font-weight:300;}
 
 /* SHARED */
 .sec{padding:96px 52px;border-top:1px solid var(--bdr);}
 .sec-label{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,70px);letter-spacing:.02em;margin-bottom:52px;line-height:.95;}
+.sec-title{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(44px,5.5vw,70px);letter-spacing:.02em;margin-bottom:52px;line-height:.95;}
 .sec-title em{font-style:normal;color:var(--cyan);}
 
 /* PROBLEM */
 .probgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
 .pgitem{padding:32px 26px;background:var(--card);border:1px solid var(--bdr);position:relative;transition:border-color .3s;}
 .pgitem:hover{border-color:rgba(255,70,85,.35);}
-.pgnum{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--acc);line-height:1;margin-bottom:16px;}
+.pgnum{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:28px;color:var(--acc);line-height:1;margin-bottom:16px;}
 .pgicon{font-size:24px;margin-bottom:12px;display:block;}
 .pgtitle{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:10px;font-weight:700;}
-.pgdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.42);}
+.pgdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.42);}
 
 /* IA TERMINAL */
 .ialayout{display:grid;grid-template-columns:380px 1fr;gap:52px;align-items:start;}
-.iadesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.5);margin-top:16px;}
+.iadesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.5);margin-top:16px;}
 .iaterm{background:var(--card);border:1px solid var(--bdr);padding:36px;position:relative;}
 .iaterm::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--acc),var(--cyan));}
-.iatree{font-family:'Space Mono',monospace;font-size:13px;line-height:2.1;color:rgba(0,229,255,.65);}
+.iatree{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:2.1;color:rgba(0,229,255,.65);}
 .iatree .root{color:var(--acc);font-size:14px;font-weight:700;}
 .iatree .l1{padding-left:22px;color:rgba(240,236,228,.6);}
-.iatree .l1::before{content:'├─ ';color:rgba(255,255,255,.15);}
-.iatree .l1:last-child::before{content:'└─ ';}
+.iatree .l1::before{content:'?쒋? ';color:rgba(255,255,255,.15);}
+.iatree .l1:last-child::before{content:'?붴? ';}
 .iatree .l2{padding-left:46px;font-size:12px;color:rgba(240,236,228,.3);}
-.iatree .l2::before{content:'└─ ';color:rgba(255,255,255,.12);}
+.iatree .l2::before{content:'?붴? ';color:rgba(255,255,255,.12);}
 .iatree .hl{color:var(--cyan);}
 
 /* MOCKUP */
@@ -92,13 +93,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .aibadge{width:8px;height:8px;border-radius:50%;}
 .aibadge.gpt{background:#19c37d;}.aibadge.cla{background:#d97b36;}.aibadge.gem{background:#4285f4;}
 .apainame{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);}
-.appurpose{font-size:13px;color:var(--fg);font-weight:700;}
+.appurpose{font-size:14px;color:var(--fg);font-weight:700;}
 .apmid{padding:24px 28px;border-right:1px solid var(--bdr);}
 .apqlbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:9px;}
-.apprompt{font-size:13px;line-height:1.7;color:rgba(240,236,228,.45);}
+.apprompt{font-size:14px;line-height:1.7;color:rgba(240,236,228,.45);}
 .apright{padding:24px 28px;}
 .aprlbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:9px;}
-.apresult{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.65;color:rgba(240,236,228,.42);font-weight:300;}
+.apresult{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;color:rgba(240,236,228,.42);font-weight:300;}
 
 /* TIMELINE */
 .trows{display:flex;flex-direction:column;}
@@ -110,13 +111,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .tlv{width:1px;flex:1;background:var(--bdr);min-height:18px;}
 .tcont{padding-left:24px;}
 .ttask{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:7px;font-weight:700;}
-.tsub{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.65;color:rgba(240,236,228,.38);font-weight:300;}
+.tsub{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;color:rgba(240,236,228,.38);font-weight:300;}
 
 /* NAV */
 .pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);}
 .pnl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
 .pnl:hover{color:var(--acc);}
-.pnc{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
+.pnc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
 
 .rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
 .rv.v{opacity:1;transform:none;}
@@ -126,7 +127,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 <body>
 <div id="CU"></div><div id="CR"></div><div id="PB"></div>
 <nav>
-  <a class="nb" href="../../../../../../index.html">← Portfolio</a>
+  <a class="nb" href="../../../../../../index.html">??Portfolio</a>
   <span class="nt">VALORANT GUIDE</span>
   <span class="nn">02 / 06</span>
 </nav>
@@ -134,55 +135,55 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 <section id="hero">
   <div class="hl">
     <div class="hbigword">V</div>
-    <div class="htag">Game Info Site · UI/UX Design · Web Publishing</div>
+    <div class="htag">Game Info Site 쨌 UI/UX Design 쨌 Web Publishing</div>
     <div class="htitle">VAL<span>ORANT</span><br>GUIDE</div>
-    <p class="hdesc">분산된 게임 정보를 하나의 인터페이스로 통합. 에이전트·맵·토너먼트를 빠르게 탐색할 수 있는 게임 가이드 사이트 설계 및 퍼블리싱.</p>
+    <p class="hdesc">遺꾩궛??寃뚯엫 ?뺣낫瑜??섎굹???명꽣?섏씠?ㅻ줈 ?듯빀. ?먯씠?꾪듃쨌留돠룻넗?덈㉫?몃? 鍮좊Ⅴ寃??먯깋?????덈뒗 寃뚯엫 媛?대뱶 ?ъ씠???ㅺ퀎 諛??쇰툝由ъ떛.</p>
     <div class="hbtns">
-      <a class="hbtn p" href="https://hwin016000180169-png.github.io/valorant2026/index.html" target="_blank">Live Site ↗</a>
+      <a class="hbtn p" href="https://hwin016000180169-png.github.io/valorant2026/index.html" target="_blank">Live Site ??/a>
       <!-- <a class="hbtn s" href="#" target="_blank">GitHub</a> -->
     </div>
   </div>
   <div class="hr">
     <div class="statgrid">
-      <div class="statitem rv"><div class="statnum">5+</div><div class="statlabel">Pages</div><div class="statsub">Index · Agents · Maps · Tournaments · Gallery</div></div>
-      <div class="statitem rv"><div class="statnum">20+</div><div class="statlabel">Agents</div><div class="statsub">캐릭터 스킬 · 역할 · 상세 정보</div></div>
-      <div class="statitem rv"><div class="statnum">3</div><div class="statlabel">AI Tools</div><div class="statsub">GPT · Gemini · Claude 활용</div></div>
-      <div class="statitem rv"><div class="statnum">Solo</div><div class="statlabel">Build</div><div class="statsub">기획 · 디자인 · 퍼블리싱 전담</div></div>
+      <div class="statitem rv"><div class="statnum">5+</div><div class="statlabel">Pages</div><div class="statsub">Index 쨌 Agents 쨌 Maps 쨌 Tournaments 쨌 Gallery</div></div>
+      <div class="statitem rv"><div class="statnum">20+</div><div class="statlabel">Agents</div><div class="statsub">罹먮┃???ㅽ궗 쨌 ??븷 쨌 ?곸꽭 ?뺣낫</div></div>
+      <div class="statitem rv"><div class="statnum">3</div><div class="statlabel">AI Tools</div><div class="statsub">GPT 쨌 Gemini 쨌 Claude ?쒖슜</div></div>
+      <div class="statitem rv"><div class="statnum">Solo</div><div class="statlabel">Build</div><div class="statsub">湲고쉷 쨌 ?붿옄??쨌 ?쇰툝由ъ떛 ?꾨떞</div></div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Problem Analysis</div>
-  <div class="sec-title rv d1">기존 서비스의 <em>문제점</em></div>
+  <div class="sec-label rv">??Problem Analysis</div>
+  <div class="sec-title rv d1">湲곗〈 ?쒕퉬?ㅼ쓽 <em>臾몄젣??/em></div>
   <div class="probgrid rv d2">
-    <div class="pgitem"><span class="pgicon">⚡</span><div class="pgnum">01</div><div class="pgtitle">정보 분산 문제</div><div class="pgdesc">공식 사이트·위키·커뮤니티·유튜브에 분산된 정보를 찾기 위해 여러 사이트를 이동해야 했음</div></div>
-    <div class="pgitem"><span class="pgicon">🎮</span><div class="pgnum">02</div><div class="pgtitle">직관적이지 않은 IA</div><div class="pgdesc">신규 유저 기준으로 에이전트 능력·맵 구조·전략 정보를 한 번에 이해하기 어려운 구조</div></div>
-    <div class="pgitem"><span class="pgicon">📱</span><div class="pgnum">03</div><div class="pgtitle">탐색 UX 불편</div><div class="pgdesc">긴 스크롤·복잡한 메뉴로 인한 모바일 탐색 불편 및 정보 접근성 저하</div></div>
+    <div class="pgitem"><span class="pgicon">??/span><div class="pgnum">01</div><div class="pgtitle">?뺣낫 遺꾩궛 臾몄젣</div><div class="pgdesc">怨듭떇 ?ъ씠?맞룹쐞?ㅒ룹빱裕ㅻ땲?걔룹쑀?쒕툕??遺꾩궛???뺣낫瑜?李얘린 ?꾪빐 ?щ윭 ?ъ씠?몃? ?대룞?댁빞 ?덉쓬</div></div>
+    <div class="pgitem"><span class="pgicon">?렜</span><div class="pgnum">02</div><div class="pgtitle">吏곴??곸씠吏 ?딆? IA</div><div class="pgdesc">?좉퇋 ?좎? 湲곗??쇰줈 ?먯씠?꾪듃 ?λ젰쨌留?援ъ“쨌?꾨왂 ?뺣낫瑜???踰덉뿉 ?댄빐?섍린 ?대젮??援ъ“</div></div>
+    <div class="pgitem"><span class="pgicon">?벑</span><div class="pgnum">03</div><div class="pgtitle">?먯깋 UX 遺덊렪</div><div class="pgdesc">湲??ㅽ겕濡ㅒ룸났?≫븳 硫붾돱濡??명븳 紐⑤컮???먯깋 遺덊렪 諛??뺣낫 ?묎렐?????/div></div>
   </div>
 </section>
 
 <section class="sec">
   <div class="ialayout">
     <div>
-      <div class="sec-label rv">— IA Diagram</div>
-      <div class="sec-title rv d1">정보 <em>구조도</em></div>
-      <p class="iadesc rv d2">기존 정보 구조를 분석하고 사용자 탐색 흐름을 중심으로 재설계. 에이전트를 중심 허브로 배치.</p>
+      <div class="sec-label rv">??IA Diagram</div>
+      <div class="sec-title rv d1">?뺣낫 <em>援ъ“??/em></div>
+      <p class="iadesc rv d2">湲곗〈 ?뺣낫 援ъ“瑜?遺꾩꽍?섍퀬 ?ъ슜???먯깋 ?먮쫫??以묒떖?쇰줈 ?ъ꽕怨? ?먯씠?꾪듃瑜?以묒떖 ?덈툕濡?諛곗튂.</p>
     </div>
     <div class="iaterm rv d1">
       <div class="iatree">
-        <div class="root">📁 VALORANT GUIDE</div>
+        <div class="root">?뱚 VALORANT GUIDE</div>
         <div style="padding-left:14px;margin-top:8px;">
           <div class="l1 hl">HOME (Index)</div>
-          <div class="l2">Hero · Featured · Updates</div>
+          <div class="l2">Hero 쨌 Featured 쨌 Updates</div>
           <div class="l1 hl">AGENTS</div>
-          <div class="l2">Grid → Agent Detail → 스킬·Role·배경</div>
+          <div class="l2">Grid ??Agent Detail ???ㅽ궗쨌Role쨌諛곌꼍</div>
           <div class="l1">MAPS</div>
-          <div class="l2">List → Map Detail → 구역·전략 포인트</div>
+          <div class="l2">List ??Map Detail ??援ъ뿭쨌?꾨왂 ?ъ씤??/div>
           <div class="l1">TOURNAMENTS</div>
-          <div class="l2">대회 정보 · 팀 · 일정</div>
+          <div class="l2">????뺣낫 쨌 ? 쨌 ?쇱젙</div>
           <div class="l1">GALLERY</div>
-          <div class="l2">아트워크 · 스크린샷</div>
+          <div class="l2">?꾪듃?뚰겕 쨌 ?ㅽ겕由곗꺑</div>
         </div>
       </div>
     </div>
@@ -190,12 +191,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Visual Design</div>
+  <div class="sec-label rv">??Visual Design</div>
   <div class="sec-title rv d1">SCREEN</em></div>
   <div class="mkgrid rv d1">
     <div class="mkmain">
       <img src="../../../../../../images/thunmb-02.png" alt=""><div class="mkph">Index Page</div>
-      <div class="mklbl">01 — INDEX</div>
+      <div class="mklbl">01 ??INDEX</div>
     </div>
     <div class="mkside">
       <div class="mks">
@@ -214,43 +215,43 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— AI Collaboration</div>
-  <div class="sec-title rv d1">AI 프롬프트 <em>예시</em></div>
+  <div class="sec-label rv">??AI Collaboration</div>
+  <div class="sec-title rv d1">AI ?꾨＼?꾪듃 <em>?덉떆</em></div>
   <div class="aplist rv d1">
     <div class="aprow">
-      <div class="apleft"><div class="aibadge gpt"></div><span class="apainame">ChatGPT</span><span class="appurpose">UX 구조 설계</span></div>
-      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"VALORANT 게임 가이드 사이트의 IA를 설계해줘. 신규 유저가 에이전트 정보를 빠르게 찾을 수 있는 구조. 페이지는 5개 이하."</div></div>
-      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">Index / Agents / Maps / Tournaments / Gallery 구조 도출, 에이전트 카드 그리드 레이아웃 제안</div></div>
+      <div class="apleft"><div class="aibadge gpt"></div><span class="apainame">ChatGPT</span><span class="appurpose">UX 援ъ“ ?ㅺ퀎</span></div>
+      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"VALORANT 寃뚯엫 媛?대뱶 ?ъ씠?몄쓽 IA瑜??ㅺ퀎?댁쨾. ?좉퇋 ?좎?媛 ?먯씠?꾪듃 ?뺣낫瑜?鍮좊Ⅴ寃?李얠쓣 ???덈뒗 援ъ“. ?섏씠吏??5媛??댄븯."</div></div>
+      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">Index / Agents / Maps / Tournaments / Gallery 援ъ“ ?꾩텧, ?먯씠?꾪듃 移대뱶 洹몃━???덉씠?꾩썐 ?쒖븞</div></div>
     </div>
     <div class="aprow">
-      <div class="apleft"><div class="aibadge cla"></div><span class="apainame">Claude</span><span class="appurpose">인터랙션 구현</span></div>
-      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"에이전트 카드 호버 시 스킬 영상 미리 보이는 인터랙션 구현. VALORANT 스타일 다크 테마."</div></div>
-      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">video preview hover 인터랙션 + CSS 애니메이션 + 모달 구조 구현 완성</div></div>
+      <div class="apleft"><div class="aibadge cla"></div><span class="apainame">Claude</span><span class="appurpose">?명꽣?숈뀡 援ы쁽</span></div>
+      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"?먯씠?꾪듃 移대뱶 ?몃쾭 ???ㅽ궗 ?곸긽 誘몃━ 蹂댁씠???명꽣?숈뀡 援ы쁽. VALORANT ?ㅽ????ㅽ겕 ?뚮쭏."</div></div>
+      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">video preview hover ?명꽣?숈뀡 + CSS ?좊땲硫붿씠??+ 紐⑤떖 援ъ“ 援ы쁽 ?꾩꽦</div></div>
     </div>
     <div class="aprow">
-      <div class="apleft"><div class="aibadge gem"></div><span class="apainame">Gemini</span><span class="appurpose">버그 디버깅</span></div>
-      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"서브폴더 구조에서 role 아이콘 이미지 경로가 깨져. agents/index.html에서 ../assets/images/ 방식이 작동 안 해."</div></div>
-      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">상대경로 → 루트 기준 /assets/images/ 수정, 네비게이션 active 상태 버그 함께 해결</div></div>
+      <div class="apleft"><div class="aibadge gem"></div><span class="apainame">Gemini</span><span class="appurpose">踰꾧렇 ?붾쾭源?/span></div>
+      <div class="apmid"><div class="apqlbl">Prompt</div><div class="apprompt">"?쒕툕?대뜑 援ъ“?먯꽌 role ?꾩씠肄??대?吏 寃쎈줈媛 源⑥졇. agents/index.html?먯꽌 ../assets/images/ 諛⑹떇???묐룞 ????"</div></div>
+      <div class="apright"><div class="aprlbl">Result</div><div class="apresult">?곷?寃쎈줈 ??猷⑦듃 湲곗? /assets/images/ ?섏젙, ?ㅻ퉬寃뚯씠??active ?곹깭 踰꾧렇 ?④퍡 ?닿껐</div></div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Production Process</div>
-  <div class="sec-title rv d1">제작 과정 <em>타임라인</em></div>
+  <div class="sec-label rv">??Production Process</div>
+  <div class="sec-title rv d1">?쒖옉 怨쇱젙 <em>??꾨씪??/em></div>
   <div class="trows rv d1">
-    <div class="trow"><span class="tweek">Week 01</span><div class="tdotcol"><div class="td done"></div><div class="tlv"></div></div><div class="tcont"><div class="ttask">리서치 &amp; IA 설계</div><div class="tsub">공식·위키·커뮤니티 분석 / 정보 구조 재설계 / 5페이지 구조 확정</div></div></div>
-    <div class="trow"><span class="tweek">Week 02</span><div class="tdotcol"><div class="td done"></div><div class="tlv"></div></div><div class="tcont"><div class="ttask">UI 디자인</div><div class="tsub">VALORANT 스타일 분석 / 다크 테마 + 레드·시안 컬러 시스템 / Figma 컴포넌트 설계</div></div></div>
-    <div class="trow"><span class="tweek">Week 03</span><div class="tdotcol"><div class="td done"></div><div class="tlv"></div></div><div class="tcont"><div class="ttask">HTML/CSS 퍼블리싱</div><div class="tsub">Index + Agents 페이지 / 카드 그리드 레이아웃 / 반응형 구조</div></div></div>
-    <div class="trow"><span class="tweek">Week 04</span><div class="tdotcol"><div class="td done"></div><div class="tlv"></div></div><div class="tcont"><div class="ttask">JS 인터랙션 &amp; 버그 수정</div><div class="tsub">호버 영상 프리뷰 / 모달 / 네비게이션 active / 이미지 경로 버그 수정</div></div></div>
-    <div class="trow"><span class="tweek">Week 05</span><div class="tdotcol"><div class="td done"></div></div><div class="tcont"><div class="ttask">추가 페이지 완성</div><div class="tsub">Maps / Tournaments / Gallery / 모달 포지셔닝 / 에이전트별 커스텀 배경</div></div></div>
+    <div class="trow"><span class="tweek">Week 01</span><div class="tdotcol"><div class="td done"></div><div class="tlv"></div></div><div class="tcont"><div class="ttask">由ъ꽌移?&amp; IA ?ㅺ퀎</div><div class="tsub">怨듭떇쨌?꾪궎쨌而ㅻ??덊떚 遺꾩꽍 / ?뺣낫 援ъ“ ?ъ꽕怨?/ 5?섏씠吏 援ъ“ ?뺤젙</div></div></div>
+    <div class="trow"><span class="tweek">Week 02</span><div class="tdotcol"><div class="td done"></div><div class="tlv"></div></div><div class="tcont"><div class="ttask">UI ?붿옄??/div><div class="tsub">VALORANT ?ㅽ???遺꾩꽍 / ?ㅽ겕 ?뚮쭏 + ?덈뱶쨌?쒖븞 而щ윭 ?쒖뒪??/ Figma 而댄룷?뚰듃 ?ㅺ퀎</div></div></div>
+    <div class="trow"><span class="tweek">Week 03</span><div class="tdotcol"><div class="td done"></div><div class="tlv"></div></div><div class="tcont"><div class="ttask">HTML/CSS ?쇰툝由ъ떛</div><div class="tsub">Index + Agents ?섏씠吏 / 移대뱶 洹몃━???덉씠?꾩썐 / 諛섏쓳??援ъ“</div></div></div>
+    <div class="trow"><span class="tweek">Week 04</span><div class="tdotcol"><div class="td done"></div><div class="tlv"></div></div><div class="tcont"><div class="ttask">JS ?명꽣?숈뀡 &amp; 踰꾧렇 ?섏젙</div><div class="tsub">?몃쾭 ?곸긽 ?꾨━酉?/ 紐⑤떖 / ?ㅻ퉬寃뚯씠??active / ?대?吏 寃쎈줈 踰꾧렇 ?섏젙</div></div></div>
+    <div class="trow"><span class="tweek">Week 05</span><div class="tdotcol"><div class="td done"></div></div><div class="tcont"><div class="ttask">異붽? ?섏씠吏 ?꾩꽦</div><div class="tsub">Maps / Tournaments / Gallery / 紐⑤떖 ?ъ??붾떇 / ?먯씠?꾪듃蹂?而ㅼ뒪? 諛곌꼍</div></div></div>
   </div>
 </section>
 
 <div class="pnav-bottom">
-  <a class="pnl" href="../project-1/">← NAVYBAY</a>
+  <a class="pnl" href="../project-1/">??NAVYBAY</a>
   <span class="pnc">KDH PORTFOLIO</span>
-  <a class="pnl" href="../project-3/">Next: Class Care →</a>
+  <a class="pnl" href="../project-3/">Next: Class Care ??/a>
 </div>
 <script>
 const CU=document.getElementById('CU'),CR=document.getElementById('CR');
@@ -263,3 +264,4 @@ document.querySelectorAll('.rv,.statitem').forEach(el=>IO.observe(el));
 </script>
 </body>
 </html>
+

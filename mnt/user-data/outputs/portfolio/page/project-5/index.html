@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OTT UX Redesign — KDH Portfolio</title>
+<title>OTT UX Redesign ??KDH Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{--bg:#020202;--fg:#f0ece4;--acc:#9b6dff;--acc2:#1a0a2a;--bdr:#1e1e1e;--mid:#666;--card:#0d0d0d;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
+body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Noto Sans KR',sans-serif;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
 #CU{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
 #CR{position:fixed;width:34px;height:34px;border:1px solid rgba(155,109,255,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
 #PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:200;width:0%;}
@@ -18,17 +19,17 @@ a{text-decoration:none;color:inherit;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(2,2,2,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
 .nb{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
 .nb:hover{color:var(--acc);}
-.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
+.nt{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
 .nn{font-size:12px;letter-spacing:.22em;color:var(--mid);}
 
 /* HERO */
 #hero{width:100vw;min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:88px 52px 64px;}
 #hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(155,109,255,.08) 0%,transparent 65%);}
-.hbigtext{position:absolute;right:-0.04em;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:22vw;line-height:1;color:rgba(155,109,255,.04);pointer-events:none;user-select:none;}
+.hbigtext{position:absolute;right:-0.04em;top:50%;transform:translateY(-50%);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:22vw;line-height:1;color:rgba(155,109,255,.04);pointer-events:none;user-select:none;}
 .htag{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);margin-bottom:18px;position:relative;z-index:1;}
-.htitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,9vw,118px);line-height:.9;letter-spacing:.02em;margin-bottom:22px;position:relative;z-index:1;}
+.htitle{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(60px,9vw,118px);line-height:.9;letter-spacing:.02em;margin-bottom:22px;position:relative;z-index:1;}
 .htitle em{display:block;color:var(--acc);font-style:normal;}
-.hdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.5);max-width:540px;margin-bottom:36px;position:relative;z-index:1;}
+.hdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.5);max-width:540px;margin-bottom:36px;position:relative;z-index:1;}
 .hbtns{display:flex;gap:16px;position:relative;z-index:1;}
 .hbtn{font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:13px 26px;transition:all .3s;cursor:none;}
 .hbtn.p{background:var(--acc);color:#fff;font-weight:700;}.hbtn.p:hover{background:#7b4de0;}
@@ -36,22 +37,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hmeta{display:flex;gap:40px;margin-top:36px;padding-top:28px;border-top:1px solid var(--bdr);position:relative;z-index:1;}
 .hmi{display:flex;flex-direction:column;gap:5px;}
 .hmik{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);}
-.hmiv{font-size:13px;color:rgba(240,236,228,.55);}
+.hmiv{font-size:14px;color:rgba(240,236,228,.55);}
 .hmiv.p{color:var(--acc);}
 
 /* SHARED */
 .sec{padding:96px 52px;border-top:1px solid var(--bdr);}
 .sec-label{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,70px);letter-spacing:.02em;margin-bottom:52px;line-height:.95;}
+.sec-title{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(44px,5.5vw,70px);letter-spacing:.02em;margin-bottom:52px;line-height:.95;}
 .sec-title em{font-style:normal;color:var(--acc);}
 
 /* CONTEXT CARDS */
 .ctxgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
 .ctxcard{padding:32px 26px;background:var(--card);border:1px solid var(--bdr);position:relative;transition:border-color .3s;overflow:hidden;}
 .ctxcard:hover{border-color:rgba(155,109,255,.3);}
-.ctxnum{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--acc);line-height:1;margin-bottom:14px;}
+.ctxnum{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:30px;color:var(--acc);line-height:1;margin-bottom:14px;}
 .ctxtitle{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:10px;font-weight:700;}
-.ctxdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.4);}
+.ctxdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.4);}
 
 /* BEFORE/AFTER */
 .compare{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;align-items:start;}
@@ -61,15 +62,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .complbl{font-size:12px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:18px;}
 .compbox.before .complbl{color:rgba(255,60,46,.6);}
 .compbox.after .complbl{color:var(--acc);}
-.compstep{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bdr);font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:300;color:rgba(240,236,228,.55);}
+.compstep{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bdr);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;font-weight:300;color:rgba(240,236,228,.55);}
 .compstep:last-child{border-bottom:none;}
-.csn{font-family:'Space Mono',monospace;font-size:12px;color:var(--mid);min-width:24px;}
+.csn{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:12px;color:var(--mid);min-width:24px;}
 .compstep.hi{color:var(--acc);}
 .compstep.hi .csn{color:var(--acc);}
-.compnote{margin-top:16px;font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.7;font-weight:300;}
+.compnote{margin-top:16px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.7;font-weight:300;}
 .compbox.before .compnote{color:rgba(255,60,46,.5);}
 .compbox.after .compnote{color:rgba(155,109,255,.6);}
-.comparrow{display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--bdr);padding-top:80px;}
+.comparrow{display:flex;align-items:center;justify-content:center;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:28px;color:var(--bdr);padding-top:80px;}
 
 /* UX FEATURES */
 .uxgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
@@ -77,9 +78,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .uxcard:hover{border-color:rgba(155,109,255,.3);}
 .uxcard::after{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--acc);transition:height .7s ease;}
 .uxcard.v::after{height:100%;}
-.uxnum{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--acc);line-height:1;margin-bottom:14px;}
+.uxnum{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:38px;color:var(--acc);line-height:1;margin-bottom:14px;}
 .uxtitle{font-size:14px;letter-spacing:.05em;color:var(--fg);margin-bottom:10px;font-weight:700;}
-.uxdesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
+.uxdesc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
 .uxtag{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(155,109,255,.3);color:rgba(155,109,255,.65);}
 
 /* MOCKUP */
@@ -101,21 +102,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .aibadge{width:8px;height:8px;border-radius:50%;}
 .aibadge.gpt{background:#19c37d;}.aibadge.gem{background:#4285f4;}
 .apailbl{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);}
-.aptitle{font-size:13px;letter-spacing:.04em;color:var(--fg);margin-bottom:12px;font-weight:700;}
-.aptext{font-size:13px;line-height:1.7;color:rgba(240,236,228,.42);padding:14px;background:rgba(0,0,0,.3);border-left:2px solid var(--acc);}
-.apresult{margin-top:12px;font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.65;color:rgba(240,236,228,.35);font-weight:300;padding-top:10px;border-top:1px solid var(--bdr);}
+.aptitle{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:12px;font-weight:700;}
+.aptext{font-size:14px;line-height:1.7;color:rgba(240,236,228,.42);padding:14px;background:rgba(0,0,0,.3);border-left:2px solid var(--acc);}
+.apresult{margin-top:12px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;color:rgba(240,236,228,.35);font-weight:300;padding-top:10px;border-top:1px solid var(--bdr);}
 
 /* TABLE */
 .mtable{width:100%;border-collapse:collapse;}
 .mtable th{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);padding:14px 18px;border-bottom:1px solid var(--bdr);text-align:left;}
-.mtable td{font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:14px 18px;border-bottom:1px solid var(--bdr);color:rgba(240,236,228,.5);font-weight:300;}
+.mtable td{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;padding:14px 18px;border-bottom:1px solid var(--bdr);color:rgba(240,236,228,.5);font-weight:300;}
 .mtable td.b{color:rgba(255,60,46,.55);}
 .mtable td.g{color:rgba(155,109,255,.7);}
 
 .pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);}
 .pnl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
 .pnl:hover{color:var(--acc);}
-.pnc{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
+.pnc{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--bdr);}
 
 .rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
 .rv.v{opacity:1;transform:none;}
@@ -125,7 +126,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 <body>
 <div id="CU"></div><div id="CR"></div><div id="PB"></div>
 <nav>
-  <a class="nb" href="../../../../../../index.html">← Portfolio</a>
+  <a class="nb" href="../../../../../../index.html">??Portfolio</a>
   <span class="nt">OTT UX REDESIGN</span>
   <span class="nn">05 / 06</span>
 </nav>
@@ -133,70 +134,70 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 <section id="hero">
   <div class="hbigtext">OTT</div>
   <div style="position:relative;z-index:1;max-width:720px;">
-    <div class="htag rv">OTT Platform · UX Research · UX Redesign · Prototype</div>
+    <div class="htag rv">OTT Platform 쨌 UX Research 쨌 UX Redesign 쨌 Prototype</div>
     <div class="htitle rv d1">OTT<br><em>UX REDESIGN</em></div>
-    <p class="hdesc rv d2">Netflix·Watcha 스타일 OTT 플랫폼의 콘텐츠 탐색 효율 개선 프로젝트. 선택 피로 해소를 위한 Mood 기반 30초 추천 UX 설계.</p>
+    <p class="hdesc rv d2">Netflix쨌Watcha ?ㅽ???OTT ?뚮옯?쇱쓽 肄섑뀗痢??먯깋 ?⑥쑉 媛쒖꽑 ?꾨줈?앺듃. ?좏깮 ?쇰줈 ?댁냼瑜??꾪븳 Mood 湲곕컲 30珥?異붿쿇 UX ?ㅺ퀎.</p>
     <div class="hbtns rv d3">
-      <a class="hbtn p" href="https://cinepick-sigma.vercel.app/" target="_blank">Live Site ↗</a>
+      <a class="hbtn p" href="https://cinepick-sigma.vercel.app/" target="_blank">Live Site ??/a>
       <a class="hbtn s" href="#">Case Study</a>
     </div>
     <div class="hmeta rv d3">
       <div class="hmi"><span class="hmik">Year</span><span class="hmiv">2025</span></div>
       <div class="hmi"><span class="hmik">Type</span><span class="hmiv">UX Research + Prototype</span></div>
-      <div class="hmi"><span class="hmik">Role</span><span class="hmiv p">UX Research · Design</span></div>
-      <div class="hmi"><span class="hmik">AI Used</span><span class="hmiv">GPT · Gemini</span></div>
+      <div class="hmi"><span class="hmik">Role</span><span class="hmiv p">UX Research 쨌 Design</span></div>
+      <div class="hmi"><span class="hmik">AI Used</span><span class="hmiv">GPT 쨌 Gemini</span></div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Problem Analysis</div>
-  <div class="sec-title rv d1">기존 OTT의 <em>UX 문제</em></div>
+  <div class="sec-label rv">??Problem Analysis</div>
+  <div class="sec-title rv d1">湲곗〈 OTT??<em>UX 臾몄젣</em></div>
   <div class="ctxgrid rv d2">
-    <div class="ctxcard"><div class="ctxnum">01</div><div class="ctxtitle">선택 피로 (Choice Overload)</div><div class="ctxdesc">추천 콘텐츠가 너무 많아 오히려 선택하지 못하고 스크롤만 반복하는 현상 발생</div></div>
-    <div class="ctxcard"><div class="ctxnum">02</div><div class="ctxtitle">직관적이지 않은 장르 필터</div><div class="ctxdesc">장르 분류 기준이 모호하고 사용자 취향 기반 탐색보다 카테고리 탐색 중심 구조</div></div>
-    <div class="ctxcard"><div class="ctxnum">03</div><div class="ctxtitle">긴 콘텐츠 선택 시간</div><div class="ctxdesc">콘텐츠 선택까지 평균 3~5분 소요. 모바일에서 탐색 동선이 불필요하게 긴 문제</div></div>
+    <div class="ctxcard"><div class="ctxnum">01</div><div class="ctxtitle">?좏깮 ?쇰줈 (Choice Overload)</div><div class="ctxdesc">異붿쿇 肄섑뀗痢좉? ?덈Т 留롮븘 ?ㅽ엳???좏깮?섏? 紐삵븯怨??ㅽ겕濡ㅻ쭔 諛섎났?섎뒗 ?꾩긽 諛쒖깮</div></div>
+    <div class="ctxcard"><div class="ctxnum">02</div><div class="ctxtitle">吏곴??곸씠吏 ?딆? ?λⅤ ?꾪꽣</div><div class="ctxdesc">?λⅤ 遺꾨쪟 湲곗???紐⑦샇?섍퀬 ?ъ슜??痍⑦뼢 湲곕컲 ?먯깋蹂대떎 移댄뀒怨좊━ ?먯깋 以묒떖 援ъ“</div></div>
+    <div class="ctxcard"><div class="ctxnum">03</div><div class="ctxtitle">湲?肄섑뀗痢??좏깮 ?쒓컙</div><div class="ctxdesc">肄섑뀗痢??좏깮源뚯? ?됯퇏 3~5遺??뚯슂. 紐⑤컮?쇱뿉???먯깋 ?숈꽑??遺덊븘?뷀븯寃?湲?臾몄젣</div></div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— UX Redesign</div>
-  <div class="sec-title rv d1">정보 구조 <em>개선안</em></div>
+  <div class="sec-label rv">??UX Redesign</div>
+  <div class="sec-title rv d1">?뺣낫 援ъ“ <em>媛쒖꽑??/em></div>
   <div class="compare rv d2">
     <div class="compbox before">
-      <div class="complbl">기존 구조 (AS-IS)</div>
-      <div class="compstep"><span class="csn">01</span>추천 콘텐츠 (많음)</div>
-      <div class="compstep"><span class="csn">02</span>인기 콘텐츠</div>
-      <div class="compstep"><span class="csn">03</span>장르 카테고리 탐색</div>
-      <div class="compstep"><span class="csn">04</span>계속 시청</div>
-      <div class="compnote">→ 선택 기준 없음<br>→ 사용자 취향 반영 부족</div>
+      <div class="complbl">湲곗〈 援ъ“ (AS-IS)</div>
+      <div class="compstep"><span class="csn">01</span>異붿쿇 肄섑뀗痢?(留롮쓬)</div>
+      <div class="compstep"><span class="csn">02</span>?멸린 肄섑뀗痢?/div>
+      <div class="compstep"><span class="csn">03</span>?λⅤ 移댄뀒怨좊━ ?먯깋</div>
+      <div class="compstep"><span class="csn">04</span>怨꾩냽 ?쒖껌</div>
+      <div class="compnote">???좏깮 湲곗? ?놁쓬<br>???ъ슜??痍⑦뼢 諛섏쁺 遺議?/div>
     </div>
-    <div class="comparrow">→</div>
+    <div class="comparrow">??/div>
     <div class="compbox after">
-      <div class="complbl">개선 구조 (TO-BE)</div>
-      <div class="compstep hi"><span class="csn">01</span>Today for You (맥락 기반)</div>
-      <div class="compstep hi"><span class="csn">02</span>Mood 기반 즉시 추천</div>
-      <div class="compstep hi"><span class="csn">03</span>30초 Quick Pick</div>
-      <div class="compstep"><span class="csn">04</span>장르 빠른 필터</div>
-      <div class="compnote">→ 사용자 맥락 중심<br>→ 취향 기반 즉시 추천</div>
+      <div class="complbl">媛쒖꽑 援ъ“ (TO-BE)</div>
+      <div class="compstep hi"><span class="csn">01</span>Today for You (留λ씫 湲곕컲)</div>
+      <div class="compstep hi"><span class="csn">02</span>Mood 湲곕컲 利됱떆 異붿쿇</div>
+      <div class="compstep hi"><span class="csn">03</span>30珥?Quick Pick</div>
+      <div class="compstep"><span class="csn">04</span>?λⅤ 鍮좊Ⅸ ?꾪꽣</div>
+      <div class="compnote">???ъ슜??留λ씫 以묒떖<br>??痍⑦뼢 湲곕컲 利됱떆 異붿쿇</div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Key UX Features</div>
-  <div class="sec-title rv d1">핵심 UX <em>개선안</em></div>
+  <div class="sec-label rv">??Key UX Features</div>
+  <div class="sec-title rv d1">?듭떖 UX <em>媛쒖꽑??/em></div>
   <div class="uxgrid rv d2">
-    <div class="uxcard"><div class="uxnum">01</div><div class="uxtitle">Mood 기반 콘텐츠 탐색</div><div class="uxdesc">오늘의 기분(가볍게·긴장감·로맨스·영화 등)을 선택하면 해당 분위기의 콘텐츠를 즉시 추천. 장르 카테고리보다 직관적.</div><span class="uxtag">Mood Filter</span></div>
-    <div class="uxcard"><div class="uxnum">02</div><div class="uxtitle">30초 콘텐츠 선택 UX</div><div class="uxdesc">3개 질문(오늘 기분은? / 시청 시간은? / 장르는?)에 답하면 즉시 추천. 기존 3~5분 탐색을 30초로 단축.</div><span class="uxtag">Quick Pick</span></div>
-    <div class="uxcard"><div class="uxnum">03</div><div class="uxtitle">스크롤 탐색 최소화</div><div class="uxdesc">선택 기반 탐색 구조로 무한 스크롤을 줄이고 원하는 콘텐츠에 빠르게 도달할 수 있는 네비게이션 설계.</div><span class="uxtag">Focused Nav</span></div>
-    <div class="uxcard"><div class="uxnum">04</div><div class="uxtitle">경쟁 서비스 분석 기반</div><div class="uxdesc">Netflix·Watcha·Disney+ 탐색 구조·추천 방식을 Jakob Nielsen UX 원칙 적용하여 비교 분석 후 개선안 도출.</div><span class="uxtag">Competitive Analysis</span></div>
+    <div class="uxcard"><div class="uxnum">01</div><div class="uxtitle">Mood 湲곕컲 肄섑뀗痢??먯깋</div><div class="uxdesc">?ㅻ뒛??湲곕텇(媛蹂띻쾶쨌湲댁옣媛먃룸줈留⑥뒪쨌?곹솕 ?????좏깮?섎㈃ ?대떦 遺꾩쐞湲곗쓽 肄섑뀗痢좊? 利됱떆 異붿쿇. ?λⅤ 移댄뀒怨좊━蹂대떎 吏곴???</div><span class="uxtag">Mood Filter</span></div>
+    <div class="uxcard"><div class="uxnum">02</div><div class="uxtitle">30珥?肄섑뀗痢??좏깮 UX</div><div class="uxdesc">3媛?吏덈Ц(?ㅻ뒛 湲곕텇?? / ?쒖껌 ?쒓컙?? / ?λⅤ??)???듯븯硫?利됱떆 異붿쿇. 湲곗〈 3~5遺??먯깋??30珥덈줈 ?⑥텞.</div><span class="uxtag">Quick Pick</span></div>
+    <div class="uxcard"><div class="uxnum">03</div><div class="uxtitle">?ㅽ겕濡??먯깋 理쒖냼??/div><div class="uxdesc">?좏깮 湲곕컲 ?먯깋 援ъ“濡?臾댄븳 ?ㅽ겕濡ㅼ쓣 以꾩씠怨??먰븯??肄섑뀗痢좎뿉 鍮좊Ⅴ寃??꾨떖?????덈뒗 ?ㅻ퉬寃뚯씠???ㅺ퀎.</div><span class="uxtag">Focused Nav</span></div>
+    <div class="uxcard"><div class="uxnum">04</div><div class="uxtitle">寃쎌웳 ?쒕퉬??遺꾩꽍 湲곕컲</div><div class="uxdesc">Netflix쨌Watcha쨌Disney+ ?먯깋 援ъ“쨌異붿쿇 諛⑹떇??Jakob Nielsen UX ?먯튃 ?곸슜?섏뿬 鍮꾧탳 遺꾩꽍 ??媛쒖꽑???꾩텧.</div><span class="uxtag">Competitive Analysis</span></div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Visual Design</div>
-  <div class="sec-title rv d1">화면 &amp; <em>프로토타입</em></div>
+  <div class="sec-label rv">??Visual Design</div>
+  <div class="sec-title rv d1">?붾㈃ &amp; <em>?꾨줈?좏???/em></div>
   <div class="wfgrid rv d1">
 
     <!-- 01 HOME -->
@@ -205,36 +206,36 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;background:#0a0a0a;">
           <!-- status bar -->
           <div style="height:20px;background:#050505;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex-shrink:0;">
-            <span style="font-size:9px;color:rgba(255,255,255,.6);font-family:'Space Mono',monospace;">9:41</span>
-            <span style="font-size:9px;color:rgba(255,255,255,.4);">●●●</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.6);font-family:'Pretendard','Noto Sans KR',sans-serif;">9:41</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.4);">?뤴뿈??/span>
           </div>
           <!-- nav -->
           <div style="background:#111;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid #1a1a1a;">
-            <span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#E50914;letter-spacing:.06em;">CINEPICK</span>
+            <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;color:#E50914;letter-spacing:.06em;">CINEPICK</span>
             <div style="display:flex;gap:10px;">
-              <span style="font-size:9px;color:rgba(255,255,255,.5);">홈</span>
+              <span style="font-size:9px;color:rgba(255,255,255,.5);">??/span>
               <span style="font-size:9px;color:#9b6dff;font-weight:700;">QuickPick</span>
-              <span style="font-size:9px;color:rgba(255,255,255,.5);">장르</span>
+              <span style="font-size:9px;color:rgba(255,255,255,.5);">?λⅤ</span>
             </div>
           </div>
           <!-- hero banner -->
           <div style="background:linear-gradient(160deg,#1a0030,#0d0020);padding:12px;position:relative;flex-shrink:0;">
             <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(229,9,20,.08),rgba(155,109,255,.06));"></div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.5);margin-bottom:3px;position:relative;">오늘의 Pick</div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;position:relative;">인터스텔라</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.5);margin-bottom:3px;position:relative;">?ㅻ뒛??Pick</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;position:relative;">?명꽣?ㅽ뀛??/div>
             <div style="display:flex;gap:3px;margin-bottom:7px;position:relative;">
               <span style="font-size:7px;background:rgba(229,9,20,.2);color:#E50914;padding:1px 5px;border-radius:3px;">SF</span>
-              <span style="font-size:7px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:1px 5px;border-radius:3px;">169분</span>
-              <span style="font-size:7px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:1px 5px;border-radius:3px;">⭐ 9.1</span>
+              <span style="font-size:7px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:1px 5px;border-radius:3px;">169遺?/span>
+              <span style="font-size:7px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);padding:1px 5px;border-radius:3px;">狩?9.1</span>
             </div>
             <div style="display:flex;gap:5px;position:relative;">
-              <div style="background:#E50914;border-radius:4px;padding:4px 10px;font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;">▶ 재생</div>
-              <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:4px 10px;font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.7);">+ 저장</div>
+              <div style="background:#E50914;border-radius:4px;padding:4px 10px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;">???ъ깮</div>
+              <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:4px 10px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.7);">+ ???/div>
             </div>
           </div>
           <!-- today for you -->
           <div style="padding:8px 10px 4px;flex-shrink:0;">
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;margin-bottom:5px;">Today for You</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;margin-bottom:5px;">Today for You</div>
             <div style="display:flex;gap:4px;overflow:hidden;">
               <div style="background:linear-gradient(135deg,#1a0030,#2a1050);border-radius:5px;width:38px;height:54px;flex-shrink:0;border-top:2px solid #9b6dff;"></div>
               <div style="background:linear-gradient(135deg,#1a0010,#300010);border-radius:5px;width:38px;height:54px;flex-shrink:0;border-top:2px solid #E50914;"></div>
@@ -245,14 +246,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
           <!-- quickpick banner -->
           <div style="margin:5px 8px;background:linear-gradient(90deg,rgba(229,9,20,.15),rgba(155,109,255,.1));border:1px solid rgba(155,109,255,.25);border-radius:6px;padding:6px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
             <div>
-              <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#9b6dff;">⚡ 30초 QuickPick</div>
-              <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;color:rgba(255,255,255,.4);margin-top:1px;">기분에 맞는 콘텐츠 즉시 추천</div>
+              <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#9b6dff;">??30珥?QuickPick</div>
+              <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:7px;color:rgba(255,255,255,.4);margin-top:1px;">湲곕텇??留욌뒗 肄섑뀗痢?利됱떆 異붿쿇</div>
             </div>
-            <div style="font-size:8px;color:#9b6dff;">→</div>
+            <div style="font-size:8px;color:#9b6dff;">??/div>
           </div>
         </div>
       </div>
-      <div class="wflbl">01 — Home</div>
+      <div class="wflbl">01 ??Home</div>
     </div>
 
     <!-- 02 MOOD SELECTION -->
@@ -261,46 +262,46 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;background:#0a0a0a;">
           <!-- status bar -->
           <div style="height:20px;background:#050505;display:flex;align-items:center;justify-content:space-between;padding:0 12px;flex-shrink:0;">
-            <span style="font-size:9px;color:rgba(255,255,255,.6);font-family:'Space Mono',monospace;">9:41</span>
-            <span style="font-size:9px;color:rgba(255,255,255,.4);">●●●</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.6);font-family:'Pretendard','Noto Sans KR',sans-serif;">9:41</span>
+            <span style="font-size:9px;color:rgba(255,255,255,.4);">?뤴뿈??/span>
           </div>
           <!-- header -->
           <div style="background:linear-gradient(180deg,#1a0030,#0a0a0a);padding:14px 12px 10px;flex-shrink:0;">
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(155,109,255,.7);margin-bottom:4px;letter-spacing:.06em;">STEP 1 / 3 · QUICKPICK</div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:2px;">오늘의 기분은?</div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.4);">선택하면 즉시 추천해드려요</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:rgba(155,109,255,.7);margin-bottom:4px;letter-spacing:.06em;">STEP 1 / 3 쨌 QUICKPICK</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:2px;">?ㅻ뒛??湲곕텇??</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;color:rgba(255,255,255,.4);">?좏깮?섎㈃ 利됱떆 異붿쿇?대뱶?ㅼ슂</div>
           </div>
           <!-- mood grid -->
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:6px 10px;flex:1;">
             <div style="background:rgba(155,109,255,.12);border:1.5px solid #9b6dff;border-radius:10px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
-              <span style="font-size:20px;">😊</span>
-              <span style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#9b6dff;">가볍게</span>
-              <span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.4);">코미디 · 힐링</span>
-              <div style="width:16px;height:16px;background:#9b6dff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">✓</div>
+              <span style="font-size:20px;">?삃</span>
+              <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#9b6dff;">媛蹂띻쾶</span>
+              <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.4);">肄붾???쨌 ?먮쭅</span>
+              <div style="width:16px;height:16px;background:#9b6dff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">??/div>
             </div>
             <div style="background:rgba(229,9,20,.08);border:1.5px solid rgba(229,9,20,.3);border-radius:10px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
-              <span style="font-size:20px;">😰</span>
-              <span style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:rgba(229,9,20,.8);">긴장감</span>
-              <span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.4);">스릴러 · 액션</span>
+              <span style="font-size:20px;">?삹</span>
+              <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:rgba(229,9,20,.8);">湲댁옣媛?/span>
+              <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.4);">?ㅻ┫??쨌 ?≪뀡</span>
             </div>
             <div style="background:#111;border:1.5px solid #222;border-radius:10px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
-              <span style="font-size:20px;">💕</span>
-              <span style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.6);">로맨스</span>
-              <span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.3);">멜로 · 드라마</span>
+              <span style="font-size:20px;">?뮆</span>
+              <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.6);">濡쒕㎤??/span>
+              <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.3);">硫쒕줈 쨌 ?쒕씪留?/span>
             </div>
             <div style="background:#111;border:1.5px solid #222;border-radius:10px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;">
-              <span style="font-size:20px;">😂</span>
-              <span style="font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.6);">웃음</span>
-              <span style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.3);">코미디 · 버라이어티</span>
+              <span style="font-size:20px;">?쁻</span>
+              <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,.6);">?껋쓬</span>
+              <span style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.3);">肄붾???쨌 踰꾨씪?댁뼱??/span>
             </div>
           </div>
           <!-- next btn -->
           <div style="padding:6px 10px 10px;flex-shrink:0;">
-            <div style="background:linear-gradient(90deg,#9b6dff,#E50914);border-radius:8px;padding:9px;font-family:'Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#fff;text-align:center;">다음 →</div>
+            <div style="background:linear-gradient(90deg,#9b6dff,#E50914);border-radius:8px;padding:9px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:10px;font-weight:700;color:#fff;text-align:center;">?ㅼ쓬 ??/div>
           </div>
         </div>
       </div>
-      <div class="wflbl">02 — Mood 선택</div>
+      <div class="wflbl">02 ??Mood ?좏깮</div>
     </div>
 
   </div>
@@ -309,18 +310,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
     <!-- 03 QUICKPICK -->
     <div class="wfb" style="background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;">
       <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0a0a0a;padding:8px;">
-        <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#9b6dff;font-weight:700;margin-bottom:4px;">⚡ 30초 Quick Pick</div>
+        <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#9b6dff;font-weight:700;margin-bottom:4px;">??30珥?Quick Pick</div>
         <!-- progress -->
         <div style="display:flex;gap:3px;margin-bottom:6px;">
           <div style="flex:1;height:3px;background:#9b6dff;border-radius:2px;"></div>
           <div style="flex:1;height:3px;background:#9b6dff;border-radius:2px;"></div>
           <div style="flex:1;height:3px;background:#222;border-radius:2px;"></div>
         </div>
-        <div style="font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:700;color:#fff;margin-bottom:5px;">시청 시간은?</div>
+        <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;font-weight:700;color:#fff;margin-bottom:5px;">?쒖껌 ?쒓컙??</div>
         <div style="display:flex;flex-direction:column;gap:3px;flex:1;">
-          <div style="background:rgba(155,109,255,.12);border:1px solid #9b6dff;border-radius:4px;padding:4px 8px;font-family:'Noto Sans KR',sans-serif;font-size:8px;color:#9b6dff;">⏱ 30분 이내</div>
-          <div style="background:#111;border:1px solid #222;border-radius:4px;padding:4px 8px;font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.5);">⏱ 1~2시간</div>
-          <div style="background:#111;border:1px solid #222;border-radius:4px;padding:4px 8px;font-family:'Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.5);">⏱ 마음껏</div>
+          <div style="background:rgba(155,109,255,.12);border:1px solid #9b6dff;border-radius:4px;padding:4px 8px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:#9b6dff;">??30遺??대궡</div>
+          <div style="background:#111;border:1px solid #222;border-radius:4px;padding:4px 8px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.5);">??1~2?쒓컙</div>
+          <div style="background:#111;border:1px solid #222;border-radius:4px;padding:4px 8px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;color:rgba(255,255,255,.5);">??留덉쓬猿?/div>
         </div>
       </div>
     </div>
@@ -329,24 +330,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
     <div class="wfb" style="background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;">
       <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0a0a0a;padding:8px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
-          <div style="font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;">😊 가볍게 · 1시간</div>
-          <div style="font-size:7px;color:#9b6dff;">3개 추천</div>
+          <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;">?삃 媛蹂띻쾶 쨌 1?쒓컙</div>
+          <div style="font-size:7px;color:#9b6dff;">3媛?異붿쿇</div>
         </div>
         <div style="display:flex;gap:4px;flex:1;">
           <div style="flex:1;background:linear-gradient(160deg,#1a1430,#100d20);border-radius:5px;border:1px solid rgba(155,109,255,.2);padding:6px 5px;display:flex;flex-direction:column;justify-content:flex-end;">
-            <div style="width:16px;height:16px;background:#E50914;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-bottom:3px;">▶</div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;font-weight:700;color:#fff;line-height:1.3;">기생충</div>
-            <div style="font-size:6px;color:rgba(155,109,255,.7);margin-top:1px;">97% 일치</div>
+            <div style="width:16px;height:16px;background:#E50914;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-bottom:3px;">??/div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:7px;font-weight:700;color:#fff;line-height:1.3;">湲곗깮異?/div>
+            <div style="font-size:6px;color:rgba(155,109,255,.7);margin-top:1px;">97% ?쇱튂</div>
           </div>
           <div style="flex:1;background:linear-gradient(160deg,#1a0010,#100008);border-radius:5px;border:1px solid rgba(229,9,20,.2);padding:6px 5px;display:flex;flex-direction:column;justify-content:flex-end;">
-            <div style="width:16px;height:16px;background:#9b6dff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-bottom:3px;">▶</div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;font-weight:700;color:#fff;line-height:1.3;">어벤져스</div>
-            <div style="font-size:6px;color:rgba(229,9,20,.7);margin-top:1px;">89% 일치</div>
+            <div style="width:16px;height:16px;background:#9b6dff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-bottom:3px;">??/div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:7px;font-weight:700;color:#fff;line-height:1.3;">?대깽?몄뒪</div>
+            <div style="font-size:6px;color:rgba(229,9,20,.7);margin-top:1px;">89% ?쇱튂</div>
           </div>
           <div style="flex:1;background:linear-gradient(160deg,#0d150d,#080f08);border-radius:5px;border:1px solid rgba(25,195,125,.2);padding:6px 5px;display:flex;flex-direction:column;justify-content:flex-end;">
-            <div style="width:16px;height:16px;background:#19c37d;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-bottom:3px;">▶</div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;font-weight:700;color:#fff;line-height:1.3;">빅쇼트</div>
-            <div style="font-size:6px;color:rgba(25,195,125,.7);margin-top:1px;">82% 일치</div>
+            <div style="width:16px;height:16px;background:#19c37d;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;margin-bottom:3px;">??/div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:7px;font-weight:700;color:#fff;line-height:1.3;">鍮낆눥??/div>
+            <div style="font-size:6px;color:rgba(25,195,125,.7);margin-top:1px;">82% ?쇱튂</div>
           </div>
         </div>
       </div>
@@ -356,79 +357,79 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
     <div class="wfb" style="background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;">
       <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0a0a0a;padding:8px;">
         <div style="background:linear-gradient(135deg,#1a0030,#0d0020);border-radius:5px;height:40px;margin-bottom:5px;display:flex;align-items:flex-end;padding:4px 6px;position:relative;">
-          <div style="position:absolute;top:4px;right:4px;background:#E50914;border-radius:50%;width:14px;height:14px;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;">▶</div>
+          <div style="position:absolute;top:4px;right:4px;background:#E50914;border-radius:50%;width:14px;height:14px;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;">??/div>
           <div>
-            <div style="font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:700;color:#fff;">기생충</div>
-            <div style="font-size:6px;color:rgba(255,255,255,.5);">2019 · 드라마 · 132분</div>
+            <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:9px;font-weight:700;color:#fff;">湲곗깮異?/div>
+            <div style="font-size:6px;color:rgba(255,255,255,.5);">2019 쨌 ?쒕씪留?쨌 132遺?/div>
           </div>
         </div>
         <div style="display:flex;gap:4px;margin-bottom:4px;">
-          <span style="font-size:7px;background:rgba(229,9,20,.2);color:#E50914;padding:1px 5px;border-radius:3px;">드라마</span>
-          <span style="font-size:7px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);padding:1px 5px;border-radius:3px;">⭐ 8.6</span>
-          <span style="font-size:7px;background:rgba(155,109,255,.15);color:#9b6dff;padding:1px 5px;border-radius:3px;">97% 일치</span>
+          <span style="font-size:7px;background:rgba(229,9,20,.2);color:#E50914;padding:1px 5px;border-radius:3px;">?쒕씪留?/span>
+          <span style="font-size:7px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);padding:1px 5px;border-radius:3px;">狩?8.6</span>
+          <span style="font-size:7px;background:rgba(155,109,255,.15);color:#9b6dff;padding:1px 5px;border-radius:3px;">97% ?쇱튂</span>
         </div>
-        <div style="font-family:'Noto Sans KR',sans-serif;font-size:7px;color:rgba(255,255,255,.4);line-height:1.5;flex:1;">전원 백수인 기택 가족이 박 사장 가족에게 하나씩 침투하기 시작하면서…</div>
-        <div style="background:#E50914;border-radius:4px;padding:4px;font-family:'Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;text-align:center;flex-shrink:0;">▶ 지금 시청하기</div>
+        <div style="font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:7px;color:rgba(255,255,255,.4);line-height:1.5;flex:1;">?꾩썝 諛깆닔??湲고깮 媛議깆씠 諛??ъ옣 媛議깆뿉寃??섎굹??移⑦닾?섍린 ?쒖옉?섎㈃?쒋?/div>
+        <div style="background:#E50914;border-radius:4px;padding:4px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;font-weight:700;color:#fff;text-align:center;flex-shrink:0;">??吏湲??쒖껌?섍린</div>
       </div>
     </div>
 
   </div>
   <div style="margin-top:20px;text-align:center;" class="rv d3">
     <a href="https://cinepick-sigma.vercel.app/" target="_blank" style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:14px 28px;border:1px solid rgba(155,109,255,.4);color:var(--acc);text-decoration:none;transition:all .3s;" onmouseover="this.style.background='rgba(155,109,255,.06)'" onmouseout="this.style.background=''">
-      <span>라이브 사이트 방문</span><span style="display:inline-block;width:24px;height:1px;background:var(--acc);"></span><span>↗</span>
+      <span>?쇱씠釉??ъ씠??諛⑸Ц</span><span style="display:inline-block;width:24px;height:1px;background:var(--acc);"></span><span>??/span>
     </a>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— AI Collaboration</div>
-  <div class="sec-title rv d1">AI 프롬프트 <em>예시</em></div>
+  <div class="sec-label rv">??AI Collaboration</div>
+  <div class="sec-title rv d1">AI ?꾨＼?꾪듃 <em>?덉떆</em></div>
   <div class="apgrid rv d1">
     <div class="apcard">
-      <div class="apaitag"><div class="aibadge gpt"></div><span class="apailbl">ChatGPT — UX 분석</span></div>
-      <div class="aptitle">경쟁 서비스 UX 분석</div>
-      <div class="aptext">"Netflix·Watcha·Disney+의 콘텐츠 탐색 UX를 비교 분석해줘. 사용자가 콘텐츠를 발견하는 방식, 필터 기능, 추천 알고리즘 노출 방식 중심으로."</div>
-      <div class="apresult">→ 3개 서비스 탐색 구조 비교표, 공통 문제점 도출, UX 개선 방향 3가지 제안</div>
+      <div class="apaitag"><div class="aibadge gpt"></div><span class="apailbl">ChatGPT ??UX 遺꾩꽍</span></div>
+      <div class="aptitle">寃쎌웳 ?쒕퉬??UX 遺꾩꽍</div>
+      <div class="aptext">"Netflix쨌Watcha쨌Disney+??肄섑뀗痢??먯깋 UX瑜?鍮꾧탳 遺꾩꽍?댁쨾. ?ъ슜?먭? 肄섑뀗痢좊? 諛쒓껄?섎뒗 諛⑹떇, ?꾪꽣 湲곕뒫, 異붿쿇 ?뚭퀬由ъ쬁 ?몄텧 諛⑹떇 以묒떖?쇰줈."</div>
+      <div class="apresult">??3媛??쒕퉬???먯깋 援ъ“ 鍮꾧탳?? 怨듯넻 臾몄젣???꾩텧, UX 媛쒖꽑 諛⑺뼢 3媛吏 ?쒖븞</div>
     </div>
     <div class="apcard">
-      <div class="apaitag"><div class="aibadge gem"></div><span class="apailbl">Gemini — UX 설계</span></div>
-      <div class="aptitle">Mood 기반 추천 UX 설계</div>
-      <div class="aptext">"사용자 기분 기반으로 콘텐츠를 추천하는 UI 플로우를 설계해줘. 3개 이하의 선택으로 즉시 추천이 나오는 구조. 모바일 퍼스트."</div>
-      <div class="apresult">→ Mood → Genre → Time 3단계 Quick Pick 플로우, UI 컴포넌트 구조 완성</div>
+      <div class="apaitag"><div class="aibadge gem"></div><span class="apailbl">Gemini ??UX ?ㅺ퀎</span></div>
+      <div class="aptitle">Mood 湲곕컲 異붿쿇 UX ?ㅺ퀎</div>
+      <div class="aptext">"?ъ슜??湲곕텇 湲곕컲?쇰줈 肄섑뀗痢좊? 異붿쿇?섎뒗 UI ?뚮줈?곕? ?ㅺ퀎?댁쨾. 3媛??댄븯???좏깮?쇰줈 利됱떆 異붿쿇???섏삤??援ъ“. 紐⑤컮???쇱뒪??"</div>
+      <div class="apresult">??Mood ??Genre ??Time 3?④퀎 Quick Pick ?뚮줈?? UI 而댄룷?뚰듃 援ъ“ ?꾩꽦</div>
     </div>
     <div class="apcard">
-      <div class="apaitag"><div class="aibadge gpt"></div><span class="apailbl">ChatGPT — 리서치</span></div>
-      <div class="aptitle">사용자 행동 패턴 분석</div>
-      <div class="aptext">"OTT 서비스 이용 시 콘텐츠 선택에 걸리는 시간과 이유에 대한 리서치 데이터를 찾아줘. 선택 피로 관련 UX 리서치 포함."</div>
-      <div class="apresult">→ 평균 탐색 시간 데이터, 선택 피로 관련 연구, 개선 사례 정리</div>
+      <div class="apaitag"><div class="aibadge gpt"></div><span class="apailbl">ChatGPT ??由ъ꽌移?/span></div>
+      <div class="aptitle">?ъ슜???됰룞 ?⑦꽩 遺꾩꽍</div>
+      <div class="aptext">"OTT ?쒕퉬???댁슜 ??肄섑뀗痢??좏깮??嫄몃━???쒓컙怨??댁쑀?????由ъ꽌移??곗씠?곕? 李얠븘以? ?좏깮 ?쇰줈 愿??UX 由ъ꽌移??ы븿."</div>
+      <div class="apresult">???됯퇏 ?먯깋 ?쒓컙 ?곗씠?? ?좏깮 ?쇰줈 愿???곌뎄, 媛쒖꽑 ?щ? ?뺣━</div>
     </div>
     <div class="apcard">
-      <div class="apaitag"><div class="aibadge gem"></div><span class="apailbl">Gemini — 검증</span></div>
-      <div class="aptitle">UX 휴리스틱 평가</div>
-      <div class="aptext">"제안된 OTT UX 개선안을 Jakob Nielsen의 10가지 사용성 원칙으로 평가해줘. 문제점과 개선 방향 포함."</div>
-      <div class="apresult">→ 10개 원칙별 평가, 개선 필요 항목 3가지, 최종 UX 구조 검증</div>
+      <div class="apaitag"><div class="aibadge gem"></div><span class="apailbl">Gemini ??寃利?/span></div>
+      <div class="aptitle">UX ?대━?ㅽ떛 ?됯?</div>
+      <div class="aptext">"?쒖븞??OTT UX 媛쒖꽑?덉쓣 Jakob Nielsen??10媛吏 ?ъ슜???먯튃?쇰줈 ?됯??댁쨾. 臾몄젣?먭낵 媛쒖꽑 諛⑺뼢 ?ы븿."</div>
+      <div class="apresult">??10媛??먯튃蹂??됯?, 媛쒖꽑 ?꾩슂 ??ぉ 3媛吏, 理쒖쥌 UX 援ъ“ 寃利?/div>
     </div>
   </div>
 </section>
 
 <section class="sec">
-  <div class="sec-label rv">— Expected Results</div>
-  <div class="sec-title rv d1">개선 <em>효과</em></div>
+  <div class="sec-label rv">??Expected Results</div>
+  <div class="sec-title rv d1">媛쒖꽑 <em>?④낵</em></div>
   <table class="mtable rv d2">
-    <thead><tr><th>항목</th><th>기존</th><th>개선 후</th></tr></thead>
+    <thead><tr><th>??ぉ</th><th>湲곗〈</th><th>媛쒖꽑 ??/th></tr></thead>
     <tbody>
-      <tr><td>콘텐츠 선택 시간</td><td class="b">3~5분</td><td class="g">약 30초</td></tr>
-      <tr><td>탐색 스크롤</td><td class="b">많음 (무한 스크롤)</td><td class="g">최소화 (선택 기반)</td></tr>
-      <tr><td>개인화 추천</td><td class="b">알고리즘 중심</td><td class="g">Mood 기반 즉시 추천</td></tr>
-      <tr><td>사용자 만족도</td><td class="b">선택 피로 발생</td><td class="g">직관적 탐색 경험</td></tr>
+      <tr><td>肄섑뀗痢??좏깮 ?쒓컙</td><td class="b">3~5遺?/td><td class="g">??30珥?/td></tr>
+      <tr><td>?먯깋 ?ㅽ겕濡?/td><td class="b">留롮쓬 (臾댄븳 ?ㅽ겕濡?</td><td class="g">理쒖냼??(?좏깮 湲곕컲)</td></tr>
+      <tr><td>媛쒖씤??異붿쿇</td><td class="b">?뚭퀬由ъ쬁 以묒떖</td><td class="g">Mood 湲곕컲 利됱떆 異붿쿇</td></tr>
+      <tr><td>?ъ슜??留뚯”??/td><td class="b">?좏깮 ?쇰줈 諛쒖깮</td><td class="g">吏곴????먯깋 寃쏀뿕</td></tr>
     </tbody>
   </table>
 </section>
 
 <div class="pnav-bottom">
-  <a class="pnl" href="../project-4/">← AI Command Center</a>
+  <a class="pnl" href="../project-4/">??AI Command Center</a>
   <span class="pnc">KDH PORTFOLIO</span>
-  <a class="pnl" href="../project-6/">Next: Hospital UX →</a>
+  <a class="pnl" href="../project-6/">Next: Hospital UX ??/a>
 </div>
 <script>
 const CU=document.getElementById('CU'),CR=document.getElementById('CR');
@@ -441,3 +442,4 @@ document.querySelectorAll('.rv,.uxcard').forEach(el=>IO.observe(el));
 </script>
 </body>
 </html>
+
