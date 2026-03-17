@@ -87,12 +87,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .wfgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:3px;}
 .wfitem{background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;}
 .wfitem::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--acc);}
-.wfbody{aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;position:relative;}
-.wfbody img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.wfbody{display:block;position:relative;}
+.wfbody img{display:block;width:100%;height:auto;}
 .wfph{font-size:14px;letter-spacing:.14em;color:rgba(240,236,228,.1);text-transform:uppercase;}
-.wflbl{position:absolute;bottom:14px;left:18px;font-size:14px;letter-spacing:.2em;color:rgba(155,109,255,.5);text-transform:uppercase;}
+.wflbl{padding:10px 18px;font-size:14px;letter-spacing:.2em;color:rgba(155,109,255,.5);text-transform:uppercase;}
 .wfbottom{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
-.wfb{aspect-ratio:9/16;background:var(--card);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;}
+.wfb{background:var(--card);border:1px solid var(--bdr);overflow:hidden;}
 
 /* AI PROMPTS */
 .apgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
@@ -220,18 +220,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <div class="wfbottom rv d2">
 
     <!-- 03 QUICKPICK -->
-    <div class="wfb" style="background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;">
-      <img src="../../../../../../images/ott_3.png" alt="Screen 03 QuickPick" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+    <div class="wfb">
+      <img src="../../../../../../images/ott_3.png" alt="Screen 03 QuickPick" style="display:block;width:100%;height:auto;">
     </div>
 
     <!-- 04 PERSONALIZED FEED -->
-    <div class="wfb" style="background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;">
-      <img src="../../../../../../images/ott_4.png" alt="Screen 04 Feed" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+    <div class="wfb">
+      <img src="../../../../../../images/ott_4.png" alt="Screen 04 Feed" style="display:block;width:100%;height:auto;">
     </div>
 
     <!-- 05 CONTENT DETAIL -->
-    <div class="wfb" style="background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;">
-      <img src="../../../../../../images/ott_5.png" alt="Screen 05 Detail" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+    <div class="wfb">
+      <img src="../../../../../../images/ott_5.png" alt="Screen 05 Detail" style="display:block;width:100%;height:auto;">
     </div>
 
   </div>
