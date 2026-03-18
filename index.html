@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KIM DONG HWI — UI/UX Portfolio</title>
+<meta name="description" content="AI와 협업하는 UI/UX 디자이너 김동휘의 포트폴리오. GPT·Claude·Gemini 활용 기획·디자인·퍼블리싱.">
+<meta property="og:title" content="KIM DONG HWI — UI/UX Portfolio">
+<meta property="og:description" content="AI와 협업하는 UI/UX 디자이너 김동휘의 포트폴리오. 기획부터 디자인, 퍼블리싱까지.">
+<meta property="og:image" content="https://hwin016000180169-png.github.io/port2026/images/thunmb-01.png">
+<meta property="og:url" content="https://hwin016000180169-png.github.io/port2026/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -120,6 +127,9 @@ body.hov #CU{width:22px;height:22px;}
 .skf.ac{background:var(--acc);}
 .skf.wh{background:rgba(240,236,228,.5);}
 .skp{font-size:14px;color:var(--mid);min-width:30px;text-align:right;}
+.sktags{display:flex;flex-wrap:wrap;gap:7px;}
+.skt{font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--bdr);color:rgba(240,236,228,.45);transition:color .3s,border-color .3s;}
+.skt.ac{border-color:rgba(255,60,46,.35);color:rgba(255,60,46,.65);}
 
 /* ════════════════ S3 — WORKS ════════════════ */
 #S3{position:relative;z-index:10;padding:120px 52px 140px;background:var(--bg);}
@@ -230,6 +240,88 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
 .arscreen-cta{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--fg);opacity:0;transform:translateY(8px);transition:opacity .38s,transform .38s;}
 .arbrowser:hover .arscreen-cta{opacity:1;transform:translateY(0);}
 .arscreen-cta-line{width:22px;height:1px;background:rgba(240,236,228,.4);}
+
+/* ════════════════ MOBILE HERO — GLITCH ════════════════ */
+#MHero{display:none;position:absolute;inset:0;z-index:5;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;gap:0;}
+.mh-line{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,21vw,130px);line-height:.88;letter-spacing:.02em;color:var(--fg);position:relative;text-align:center;}
+.mh-line::before,.mh-line::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;}
+.mh-line::before{color:var(--acc);animation:gltop 4s infinite;will-change:clip-path,transform;}
+.mh-line::after{color:#00e5ff;animation:glbot 4s infinite;will-change:clip-path,transform;}
+
+/* 평소엔 숨어있다가 간헐적으로 글리치 발생 */
+@keyframes gltop{
+  0%,88%,100%{clip-path:inset(0 0 100% 0);transform:none;}
+  89%{clip-path:inset(8% 0 55% 0);transform:translate(-5px,-1px);}
+  91%{clip-path:inset(45% 0 28% 0);transform:translate(5px,0);}
+  93%{clip-path:inset(72% 0 8% 0);transform:translate(-4px,1px);}
+  95%{clip-path:inset(18% 0 65% 0);transform:translate(3px,-2px);}
+  97%{clip-path:inset(0 0 100% 0);transform:none;}
+}
+@keyframes glbot{
+  0%,89%,100%{clip-path:inset(0 0 100% 0);transform:none;}
+  90%{clip-path:inset(55% 0 18% 0);transform:translate(5px,2px);}
+  92%{clip-path:inset(22% 0 58% 0);transform:translate(-4px,0);}
+  94%{clip-path:inset(80% 0 4% 0);transform:translate(4px,-2px);}
+  96%{clip-path:inset(5% 0 82% 0);transform:translate(-3px,1px);}
+  98%{clip-path:inset(0 0 100% 0);transform:none;}
+}
+
+/* 텍스트 아래 서브 레이블 */
+.mh-sub{font-size:9px;letter-spacing:.45em;text-transform:uppercase;color:var(--mid);margin-top:24px;text-align:center;}
+/* 노이즈 스캔라인 오버레이 */
+.mh-noise{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,0,0,.18) 3px,rgba(0,0,0,.18) 4px);pointer-events:none;}
+
+/* ════════════════ MOBILE RESPONSIVE ════════════════ */
+@media(max-width:768px){
+  /* cursor 숨김 */
+  #CU,#CR{display:none;}
+  body{cursor:auto;}
+
+  /* 캔버스 아트 → 모바일 히어로로 교체 */
+  #CW{display:none;}
+  #MHero{display:flex;}
+
+  /* intro */
+  .itl,.itr{padding:22px 20px;}
+  .itr{display:none;}
+  .ibl{padding:0 20px 32px;}
+  .hrule{margin-bottom:18px;}
+  .roles{gap:4px;}
+  .rl{font-size:11px;}
+  .ebtn{font-size:9px;}
+
+  /* section index */
+  #SIDX{display:none;}
+
+  /* about — 1컬럼 */
+  #S2{grid-template-columns:1fr;}
+  .a-left{min-height:60vw;border-right:none;border-bottom:1px solid var(--bdr);padding:0;}
+  .phwrap{min-height:60vw;}
+  .a-right{padding:48px 20px;}
+  .aname{font-size:clamp(44px,13vw,72px);}
+  .abio{font-size:14px;}
+
+  /* works */
+  #S3{padding:72px 16px 80px;}
+  .wgrid{grid-template-columns:1fr;}
+  .wc:nth-child(1),.wc:nth-child(5){grid-column:span 1;}
+  .wht{font-size:clamp(40px,11vw,64px);}
+  .whead{margin-bottom:36px;}
+  .ciname{font-size:clamp(16px,5vw,22px);}
+  .cidesc{font-size:13px;}
+
+  /* archive */
+  #S5{grid-template-columns:1fr;gap:40px;padding:72px 20px;}
+  .ar-title{font-size:clamp(52px,14vw,88px);}
+
+  /* contact */
+  #S4{grid-template-columns:1fr;gap:48px;padding:72px 20px;}
+  .cr{padding-left:0;border-left:none;border-top:1px solid var(--bdr);padding-top:40px;}
+  .ch{font-size:clamp(40px,12vw,72px);}
+
+  /* footer */
+  footer{flex-direction:column;gap:8px;padding:18px 20px;text-align:center;}
+}
 </style>
 </head>
 <body>
@@ -248,6 +340,15 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
 
 <!-- ─── S1 INTRO ─── -->
 <section id="S1">
+
+  <!-- 모바일 전용 글리치 히어로 -->
+  <div id="MHero">
+    <div class="mh-noise"></div>
+    <div class="mh-line" data-text="KIM">KIM</div>
+    <div class="mh-line" data-text="DONG HWI">DONG HWI</div>
+    <div class="mh-sub">UI / UX · Publisher · AI Collaborator</div>
+  </div>
+
   <div class="itl rv">
     <span class="lbl">Based in</span><span class="lbv">Seoul, Korea</span>
     <span class="lbl" style="margin-top:14px">Discipline</span><span class="lbv">UI/UX · Publishing</span>
@@ -294,11 +395,17 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
       <div class="ii"><span class="ik">Status</span><span class="iv on">Available · 2026</span></div>
     </div>
     <div class="rv d5">
-      <div class="sklbl">— Skills</div>
-      <div class="skrow"><span class="skn">UI / UX Design</span><div class="skbg"><div class="skf ac" data-w="92"></div></div><span class="skp">92%</span></div>
-      <div class="skrow"><span class="skn">Web Publishing</span><div class="skbg"><div class="skf wh" data-w="85"></div></div><span class="skp">85%</span></div>
-      <div class="skrow"><span class="skn">AI Prompting</span><div class="skbg"><div class="skf ac" data-w="88"></div></div><span class="skp">88%</span></div>
-      <div class="skrow"><span class="skn">Figma</span><div class="skbg"><div class="skf wh" data-w="80"></div></div><span class="skp">80%</span></div>
+      <div class="sklbl">— Skills &amp; Tools</div>
+      <div class="sktags">
+        <span class="skt ac">UI / UX Design</span>
+        <span class="skt">Web Publishing</span>
+        <span class="skt ac">AI Prompting</span>
+        <span class="skt">Figma</span>
+        <span class="skt">HTML · CSS · JS</span>
+        <span class="skt">Prototyping</span>
+        <span class="skt ac">GPT · Claude · Gemini</span>
+        <span class="skt">Responsive Design</span>
+      </div>
     </div>
   </div>
 </section>
@@ -316,7 +423,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
   <div class="wgrid">
 
     <!-- 01 NAVYBAY -->
-    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-1/">
+    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-1/">
       <div class="ct">
        <div class="ctbg" style="background-image:url(images/thunmb-01.png); background-size:cover; background-position:center;"></div>
         <!-- <img src="images/thumb-01.jpg"> -->
@@ -334,7 +441,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     </div>
 
     <!-- 02 VALORANT -->
-    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-2/">
+    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-2/">
       <div class="ct">
         <div class="ctbg" style="background-image:url(images/thunmb-02.png); background-size:cover; background-position:center;"></div>
         <div class="ctnum">02</div>
@@ -351,7 +458,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     </div>
 
     <!-- 03 CLASS CARE -->
-    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-3/">
+    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-3/">
       <div class="ct">
         <div class="ctbg" style="background-image:url(images/thunmb-03.png); background-size:cover; background-position:center;"></div>
         <div class="ctnum">03</div>
@@ -368,7 +475,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     </div>
 
     <!-- 04 AI COMMAND CENTER -->
-    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-4/">
+    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-4/">
       <div class="ct">
         <div class="ctbg" style="background-image:url(images/thunmb-04.png); background-size:100% 100%; background-position:center;"></div>
         <div class="ctnum">04</div>
@@ -385,7 +492,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     </div>
 
     <!-- 05 OTT -->
-    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-5/">
+    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-5/">
       <div class="ct">
         <div class="ctbg" style="background-image:url(images/thunmb-05.png); background-size:100% 100%; background-position:center;"></div>
         <div class="ctnum">05</div>
@@ -402,7 +509,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     </div>
 
     <!-- 06 HOSPITAL -->
-    <div class="wc" data-href="mnt\user-data\outputs\portfolio/page/project-6/">
+    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-6/">
       <div class="ct">
         <div class="ctbg" style="background:linear-gradient(135deg,#001018 0%,#002535 60%,#001a26 100%);"></div>
         <!-- Medibook — brand text -->
@@ -415,7 +522,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
       <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
       <div class="ci">
         <div class="cimeta"><span class="cino">Project 06</span><span class="ciy">2026</span></div>
-        <div class="ciname">Hospital Booking UX</div>
+        <div class="ciname">Medibook — Hospital Booking UX</div>
         <div class="cidesc">복잡한 병원 예약 프로세스를 증상 선택 기반으로 단순화. 굿닥·똑닥 분석 기반 모바일 UX 개선.</div>
         <div class="citags"><span class="tag ac">Mobile UX</span><span class="tag">Healthcare</span><span class="tag">Figma</span></div>
         <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
@@ -468,9 +575,9 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <p class="cs">새로운 프로젝트, 협업 제안,<br>또는 궁금한 점이 있으시면<br>언제든지 연락해 주세요.</p>
   </div>
   <div class="cr rv d2">
-    <a class="clink" href="#"><div class="clinfo"><span class="clk">Email</span><span class="clv">rlaehdgnldls@naver.com</span></div><span class="carrow">↗</span></a>
-    <a class="clink" href="#" target="_blank"><div class="clinfo"><span class="clk">GitHub</span><span class="clv">github.com/hwin016000180169-png</span></div><span class="carrow">↗</span></a>
-    <a class="clink" href="#" target="_blank"><div class="clinfo"><span class="clk">Instagram</span><span class="clv">_rlaehdgnl</span></div><span class="carrow">↗</span></a>
+    <a class="clink" href="mailto:rlaehdgnldls@naver.com"><div class="clinfo"><span class="clk">Email</span><span class="clv">rlaehdgnldls@naver.com</span></div><span class="carrow">↗</span></a>
+    <a class="clink" href="https://github.com/hwin016000180169-png" target="_blank"><div class="clinfo"><span class="clk">GitHub</span><span class="clv">github.com/hwin016000180169-png</span></div><span class="carrow">↗</span></a>
+    <a class="clink" href="https://instagram.com/_rlaehdgnl" target="_blank"><div class="clinfo"><span class="clk">Instagram</span><span class="clv">_rlaehdgnl</span></div><span class="carrow">↗</span></a>
   </div>
 </section>
 
@@ -631,6 +738,12 @@ document.querySelectorAll('.rv,.wc').forEach(el=>IO.observe(el));
 
 /* ── CARD CLICK ── */
 document.querySelectorAll('.wc').forEach(c=>c.addEventListener('click',()=>{if(c.dataset.href)location.href=c.dataset.href;}));
+
+/* ── THUMBNAIL IMG LOADED ── */
+document.querySelectorAll('.ct img').forEach(img=>{
+  if(img.complete)img.classList.add('loaded');
+  else img.addEventListener('load',()=>img.classList.add('loaded'));
+});
 </script>
 </body>
 </html>
