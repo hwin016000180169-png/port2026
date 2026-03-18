@@ -137,6 +137,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
 .rv.v{opacity:1;transform:none;}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.25s}
+
+/* TECH STACK */
+.stackrow{display:flex;flex-wrap:wrap;gap:8px;}
+.stackbadge{display:flex;align-items:center;gap:10px;padding:14px 20px;border:1px solid var(--bdr);background:rgba(0,188,212,.03);transition:border-color .3s;}
+.stackbadge:hover{border-color:rgba(0,188,212,.3);}
+.sbnm{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);}
+.sbcat{font-size:9px;letter-spacing:.12em;color:var(--mid);margin-top:2px;}
+.sbi{font-size:18px;line-height:1;}
 </style>
 </head>
 <body>
@@ -435,6 +443,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
     <div class="impitem"><div class="impnum">↓60%</div><div class="implbl">예약 소요 시간</div><div class="impdesc">기존 7~10분에서 2~3분으로 단축. 증상 선택 기반 즉시 추천</div></div>
     <div class="impitem"><div class="impnum">5→3</div><div class="implbl">예약 단계 수</div><div class="impdesc">불필요한 단계 제거. 증상 선택 → 병원 추천 → 예약 3단계 완료</div></div>
     <div class="impitem"><div class="impnum">↑</div><div class="implbl">접근성 향상</div><div class="impdesc">진료과 지식 없이도 예약 가능. 고령 사용자 포함 누구나 직관적 이용</div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— Tech Stack</div>
+  <div class="sec-title rv d1">TOOLS <em>&amp; STACK</em></div>
+  <div class="stackrow rv d2">
+    <div class="stackbadge"><span class="sbi">🎨</span><div><div class="sbnm">Figma</div><div class="sbcat">모바일 UX 설계</div></div></div>
+    <div class="stackbadge"><span class="sbi">🤖</span><div><div class="sbnm">ChatGPT</div><div class="sbcat">UX 리서치 분석</div></div></div>
+    <div class="stackbadge"><span class="sbi">🧠</span><div><div class="sbnm">Claude</div><div class="sbcat">플로우 구조 설계</div></div></div>
+    <div class="stackbadge"><span class="sbi">📱</span><div><div class="sbnm">Mobile First</div><div class="sbcat">모바일 퍼스트 설계</div></div></div>
+    <div class="stackbadge"><span class="sbi">🔍</span><div><div class="sbnm">UX Research</div><div class="sbcat">굿닥 · 똑닥 분석</div></div></div>
   </div>
 </section>
 

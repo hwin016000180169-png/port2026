@@ -134,14 +134,18 @@ body.hov #CU{width:22px;height:22px;}
 /* timeline */
 .tl{display:flex;flex-direction:column;gap:0;margin-top:4px;}
 .tli{display:flex;gap:18px;position:relative;}
-.tli+.tli::before{content:'';position:absolute;left:3px;top:-14px;width:1px;height:14px;background:var(--bdr);}
-.tldot{width:7px;height:7px;border-radius:50%;background:var(--bdr);margin-top:6px;flex-shrink:0;transition:background .3s;}
-.tli.ac .tldot{background:var(--acc);}
-.tlbody{padding-bottom:18px;}
-.tldate{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);margin-bottom:3px;}
+.tli+.tli::before{content:'';position:absolute;left:3px;top:-18px;width:1px;height:18px;background:var(--bdr);}
+.tli.ac+.tli::before{background:linear-gradient(to bottom,rgba(255,60,46,.3),var(--bdr));}
+.tldot{width:7px;height:7px;border-radius:50%;background:var(--bdr);margin-top:6px;flex-shrink:0;transition:background .3s,box-shadow .3s;}
+.tli.ac .tldot{background:var(--acc);box-shadow:0 0 6px rgba(255,60,46,.4);}
+.tli.now .tldot{background:var(--acc);box-shadow:0 0 0 3px rgba(255,60,46,.15),0 0 8px rgba(255,60,46,.3);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(255,60,46,.15),0 0 8px rgba(255,60,46,.3);}50%{box-shadow:0 0 0 5px rgba(255,60,46,.08),0 0 14px rgba(255,60,46,.2);}}
+.tlbody{padding-bottom:20px;}
+.tldate{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+.tlnow{font-size:8px;letter-spacing:.2em;text-transform:uppercase;padding:2px 7px;border:1px solid rgba(255,60,46,.35);color:rgba(255,60,46,.65);}
 .tltxt{font-size:13px;letter-spacing:.05em;color:rgba(240,236,228,.7);}
 .tltxt strong{color:var(--fg);}
-.tli.ac .tltxt{color:rgba(240,236,228,.85);}
+.tli.ac .tltxt,.tli.now .tltxt{color:rgba(240,236,228,.85);}
 /* cert badges */
 .certs{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
 .cert{font-size:9px;letter-spacing:.22em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(255,60,46,.35);color:rgba(255,60,46,.65);}
@@ -412,32 +416,39 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <div class="rv d4">
       <div class="sklbl">— Career &amp; Credentials</div>
       <div class="tl">
+        <div class="tli now">
+          <div class="tldot"></div>
+          <div class="tlbody">
+            <div class="tldate">2026.03 <span class="tlnow">NOW</span></div>
+            <div class="tltxt"><strong>포트폴리오 구축 · 취업 준비</strong> — AI 협업 기반 6개 프로젝트 완성, 실무 지원 중</div>
+          </div>
+        </div>
         <div class="tli ac">
           <div class="tldot"></div>
           <div class="tlbody">
             <div class="tldate">2025.10 — 2026.01</div>
-            <div class="tltxt"><strong>네이비베이 e커머스팀</strong> — 랜딩페이지 기획·디자인·퍼블리싱 전담 납품</div>
+            <div class="tltxt"><strong>네이비베이 e커머스팀</strong> — 랜딩페이지 기획·디자인·퍼블리싱 전담 납품 (navybay.com 운영 중)</div>
           </div>
         </div>
         <div class="tli ac">
           <div class="tldot"></div>
           <div class="tlbody">
-            <div class="tldate">2025.09</div>
-            <div class="tltxt"><strong>웹디자인개발기능사</strong> 취득 · 그린컴퓨터아카데미 UI/UX 정규과정 수료</div>
+            <div class="tldate">2025.07 — 현재 <span class="tlnow">진행 중</span></div>
+            <div class="tltxt"><strong>CrownyClass (팀 프로젝트)</strong> — UI/UX 디자인 전담 · 실사용 테스트 · QA 진행 중 · 학원생 약 60명 사용</div>
+          </div>
+        </div>
+        <div class="tli ac">
+          <div class="tldot"></div>
+          <div class="tlbody">
+            <div class="tldate">2025.05 — 2025.09</div>
+            <div class="tltxt"><strong>웹디자인개발기능사</strong> 취득 · 그린컴퓨터아카데미 UI/UX 반응형웹 정규과정 수료</div>
           </div>
         </div>
         <div class="tli">
           <div class="tldot"></div>
           <div class="tlbody">
-            <div class="tldate">2025.07 — 현재</div>
-            <div class="tltxt"><strong>CrownyClass</strong> — 팀 프로젝트, 실사용 테스트 · QA 진행 중</div>
-          </div>
-        </div>
-        <div class="tli">
-          <div class="tldot"></div>
-          <div class="tlbody">
-            <div class="tldate">2025.05</div>
-            <div class="tltxt"><strong>GTQ 1급 · GTQi 1급</strong> 취득 · 하이미디어아카데미 그래픽디자인 수료</div>
+            <div class="tldate">2025.03 — 2025.05</div>
+            <div class="tltxt"><strong>GTQ 1급 · GTQi 1급</strong> 취득 · 하이미디어아카데미 그래픽디자인(포토샵·일러스트) 수료</div>
           </div>
         </div>
       </div>

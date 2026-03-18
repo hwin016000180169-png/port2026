@@ -146,13 +146,21 @@ main{padding:0;}
 .rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
 .rv.v{opacity:1;transform:none;}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* TECH STACK */
+.stackrow{display:flex;flex-wrap:wrap;gap:8px;}
+.stackbadge{display:flex;align-items:center;gap:10px;padding:14px 20px;border:1px solid var(--bdr);background:var(--card);transition:border-color .3s;}
+.stackbadge:hover{border-color:rgba(255,60,46,.3);}
+.sbnm{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);}
+.sbcat{font-size:9px;letter-spacing:.12em;color:var(--mid);margin-top:2px;}
+.sbi{font-size:18px;line-height:1;}
 </style>
 </head>
 <body>
 <div id="CU"></div><div id="CR"></div><div id="PB"></div>
 <nav>
   <a class="nb" href="../../../../../../index.html">← Portfolio</a>
-  <span class="nt">CLASS CARE</span>
+  <span class="nt">CROWNY CLASS</span>
   <span class="nn">03 / 06</span>
 </nav>
 
@@ -309,6 +317,18 @@ main{padding:0;}
           <tr><td>오답 분석</td><td class="bad">교사 수동 작성</td><td class="good">Gemini AI 자동 생성</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="csec" id="techstack">
+      <div class="sec-label rv">— Tech Stack</div>
+      <div class="sec-title rv d1">TOOLS <em>&amp; STACK</em></div>
+      <div class="stackrow rv d2">
+        <div class="stackbadge"><span class="sbi">🎨</span><div><div class="sbnm">Figma</div><div class="sbcat">UI/UX 디자인</div></div></div>
+        <div class="stackbadge"><span class="sbi">💎</span><div><div class="sbnm">Gemini API</div><div class="sbcat">AI 기능 통합</div></div></div>
+        <div class="stackbadge"><span class="sbi">🧠</span><div><div class="sbnm">Claude</div><div class="sbcat">기획 보조</div></div></div>
+        <div class="stackbadge"><span class="sbi">👥</span><div><div class="sbnm">Team Project</div><div class="sbcat">기획 50% · 디자인 100%</div></div></div>
+        <div class="stackbadge"><span class="sbi">📱</span><div><div class="sbnm">Mobile App</div><div class="sbcat">실사용 서비스</div></div></div>
+      </div>
     </div>
 
     <div class="pnav-bottom">

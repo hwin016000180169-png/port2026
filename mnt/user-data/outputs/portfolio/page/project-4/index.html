@@ -1,160 +1,216 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Command Center — KDH Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{--bg:#000;--fg:#e0ffe0;--acc:#00ff41;--bdr:#0a1a0a;--mid:#2a5a2a;--card:#040d04;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Noto Sans KR',sans-serif;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
-body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent 0px,transparent 2px,rgba(0,255,65,.01) 2px,rgba(0,255,65,.01) 4px);pointer-events:none;z-index:1;}
-#CU{position:fixed;width:3px;height:16px;background:var(--acc);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);animation:blink .8s step-end infinite;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+:root{
+  --bg:#0A0A0A;--bg2:#111111;--bg3:#161616;
+  --acc:#22C55E;--acc-dim:rgba(34,197,94,.1);--acc-bdr:rgba(34,197,94,.25);--acc-txt:#86EFAC;
+  --bdr:rgba(255,255,255,.08);--bdr-h:rgba(255,255,255,.15);
+  --fg:#FAFAFA;--fg2:#A3A3A3;--mid:#6B7280;
+}
+html{scroll-behavior:smooth;color-scheme:dark;}
+body{
+  background-color:var(--bg);
+  background-image:radial-gradient(circle,rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:32px 32px;
+  color:var(--fg);font-family:'Pretendard','Noto Sans KR',sans-serif;
+  cursor:none;overflow-x:hidden;font-size:15px;line-height:1.6;
+}
+#CU{position:fixed;width:8px;height:8px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 8px rgba(34,197,94,.5);}
 #PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);box-shadow:0 0 8px var(--acc);z-index:200;width:0%;}
 a{text-decoration:none;color:inherit;}
-#MX{position:fixed;inset:0;z-index:0;opacity:.05;pointer-events:none;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(0,0,0,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
-.nb{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
-.nb:hover{color:var(--acc);}
-.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
-.nn{font-size:14px;letter-spacing:.22em;color:var(--mid);}
 
-/* HERO TERMINAL */
-#hero{width:100vw;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 52px 60px;position:relative;z-index:2;}
-.termwin{max-width:900px;width:100%;}
-.termbar{background:#0a1a0a;padding:10px 16px;display:flex;align-items:center;gap:8px;border:1px solid var(--bdr);border-bottom:none;}
-.tdot{width:10px;height:10px;border-radius:50%;}
-.tdot.r{background:#ff5f57;}.tdot.y{background:#febc2e;}.tdot.g{background:var(--acc);}
-.ttitle{font-size:14px;letter-spacing:.12em;color:var(--mid);margin-left:10px;}
-.termbody{background:var(--card);border:1px solid var(--bdr);padding:36px;min-height:300px;}
-.tline{font-size:14px;line-height:2;margin-bottom:2px;}
-.tprompt{color:var(--mid);}
-.tcmd{color:var(--acc);font-weight:700;}
-.tout{color:rgba(224,255,224,.55);}
-.thl{color:#fff;font-weight:700;}
-.tgap{height:16px;}
-.tcursor{display:inline-block;width:8px;height:14px;background:var(--acc);vertical-align:middle;animation:blink .8s step-end infinite;}
-.hmeta{display:flex;gap:40px;margin-top:28px;padding-top:22px;border-top:1px solid var(--bdr);}
-.hmi{display:flex;flex-direction:column;gap:4px;}
-.hmik{font-size:14px;letter-spacing:.26em;text-transform:uppercase;color:var(--mid);}
-.hmiv{font-size:14px;color:rgba(224,255,224,.5);}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 52px;background:rgba(10,10,10,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);}
+.nb{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .25s;}
+.nb:hover{color:var(--fg);}
+.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.2em;color:var(--acc);}
+.nn{font-size:12px;letter-spacing:.22em;color:var(--mid);}
+
+/* HERO */
+#hero{width:100vw;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 52px 80px;position:relative;z-index:2;overflow:hidden;}
+#hero::before{content:'';position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse,rgba(34,197,94,.1) 0%,transparent 70%);pointer-events:none;z-index:0;}
+.h-inner{position:relative;z-index:1;max-width:800px;}
+.h-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 16px;background:var(--acc-dim);border:1px solid var(--acc-bdr);border-radius:9999px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-txt);margin-bottom:28px;}
+.h-badge::before{content:'';width:6px;height:6px;background:var(--acc);border-radius:50%;box-shadow:0 0 6px var(--acc);}
+.h-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,8vw,108px);line-height:.92;letter-spacing:-.01em;margin-bottom:28px;}
+.h-title em{font-style:normal;color:var(--acc);}
+.h-desc{font-size:17px;line-height:1.8;color:var(--fg2);max-width:540px;margin-bottom:40px;font-weight:300;}
+.h-ctas{display:flex;gap:12px;margin-bottom:48px;}
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:var(--acc);color:#000;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-radius:6px;transition:all .2s ease;box-shadow:0 0 24px rgba(34,197,94,.3);}
+.btn-p:hover{box-shadow:0 0 38px rgba(34,197,94,.5);transform:translateY(-2px);}
+.hmeta{display:flex;gap:40px;padding-top:32px;border-top:1px solid var(--bdr);}
+.hmi{display:flex;flex-direction:column;gap:5px;}
+.hmik{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
+.hmiv{font-size:14px;color:var(--fg2);}
 .hmiv.g{color:var(--acc);}
 
-/* SHARED */
-.sec{padding:88px 52px;border-top:1px solid var(--bdr);position:relative;z-index:2;}
-.sec-prefix{font-size:14px;letter-spacing:.28em;color:var(--mid);margin-bottom:10px;text-transform:uppercase;}
-.sec-prefix::before{content:'// ';color:var(--bdr);}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,68px);letter-spacing:.02em;margin-bottom:48px;line-height:.95;}
+/* FLOATING TERMINAL */
+.h-terminal{position:absolute;right:52px;top:50%;transform:translateY(-50%) perspective(1200px) rotateY(-8deg) rotateX(3deg);width:420px;background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;box-shadow:0 32px 64px rgba(0,0,0,.6),0 0 80px rgba(34,197,94,.04);z-index:1;}
+.termbar{background:#0D0D0D;padding:10px 16px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--bdr);}
+.tdot{width:10px;height:10px;border-radius:50%;}
+.tdot.r{background:#FF5F57;}.tdot.y{background:#FEBC2E;}.tdot.g{background:var(--acc);}
+.ttitle{font-size:12px;letter-spacing:.06em;color:var(--mid);margin-left:6px;}
+.termbody{padding:24px;font-family:'Pretendard',monospace;font-size:13px;line-height:2;}
+.tline{margin-bottom:1px;}
+.tprompt{color:var(--mid);}.tcmd{color:var(--acc);font-weight:600;}.tout{color:rgba(250,250,250,.4);}.thl{color:var(--fg);font-weight:600;}
+.tgap{height:10px;}
+.tcursor{display:inline-block;width:8px;height:13px;background:var(--acc);vertical-align:middle;animation:blink .9s step-end infinite;border-radius:1px;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* SECTIONS */
+.sec{padding:100px 52px;border-top:1px solid var(--bdr);position:relative;z-index:2;}
+.sec-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc-txt);margin-bottom:14px;}
+.sec-tag::before{content:'//';color:var(--mid);margin-right:4px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);letter-spacing:-.01em;line-height:.95;margin-bottom:52px;}
 .sec-title em{font-style:normal;color:var(--acc);}
 
 /* ARCH */
-.archdiag{display:flex;flex-direction:column;gap:3px;margin-bottom:36px;}
-.archrow{display:grid;gap:3px;}
+.archdiag{display:flex;flex-direction:column;gap:4px;margin-bottom:24px;}
+.archrow{display:grid;gap:4px;}
 .archrow.r1{grid-template-columns:1fr;}
 .archrow.r3{grid-template-columns:repeat(3,1fr);}
-.archnode{padding:24px 28px;background:var(--card);border:1px solid var(--bdr);display:flex;flex-direction:column;gap:8px;transition:border-color .3s;}
-.archnode:hover{border-color:var(--acc);}
-.archnode.input{border-color:rgba(255,60,46,.2);}
-.archnode.out{border-color:rgba(0,255,65,.2);}
-.archlbl{font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);}
-.archname{font-size:14px;letter-spacing:.08em;color:#e0ffe0;font-weight:700;}
-.archdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;color:rgba(224,255,224,.32);font-weight:300;margin-top:4px;}
-.archarrow{text-align:center;padding:6px 0;color:var(--mid);font-size:14px;letter-spacing:.18em;}
-.aagents{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
-.aagent{padding:28px 24px;background:var(--card);border:1px solid var(--bdr);position:relative;overflow:hidden;transition:border-color .3s;}
-.aagent:hover{border-color:var(--acc);}
+.archnode{padding:28px 32px;background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;display:flex;flex-direction:column;gap:8px;transition:border-color .25s,transform .25s;}
+.archnode:hover{border-color:var(--bdr-h);transform:translateY(-2px);}
+.archnode.input{border-color:rgba(255,60,46,.15);}
+.archnode.out{border-color:rgba(34,197,94,.15);}
+.archlbl{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
+.archname{font-size:16px;color:var(--fg);font-weight:600;}
+.archdesc{font-size:14px;color:var(--mid);margin-top:4px;line-height:1.6;}
+.archarrow{text-align:center;padding:8px 0;color:var(--mid);font-size:13px;letter-spacing:.18em;}
+.aagents{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
+.aagent{padding:32px 28px;background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s;}
+.aagent:hover{border-color:var(--bdr-h);transform:translateY(-2px);}
 .aagent::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.aagent.gpt::before{background:#19c37d;}
+.aagent.gpt::before{background:#22C55E;}
 .aagent.cla::before{background:#d97b36;}
 .aagent.gem::before{background:#4285f4;}
-.aagrole{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
-.aagname{font-size:15px;letter-spacing:.1em;color:#e0ffe0;margin-bottom:12px;font-weight:700;}
-.aagtask{font-family:'Noto Sans KR',sans-serif;font-size:14px;color:rgba(224,255,224,.38);font-weight:300;padding:3px 0 3px 10px;border-left:1px solid var(--bdr);}
+.aagrole{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.aagname{font-size:18px;color:var(--fg);margin-bottom:16px;font-weight:600;}
+.aagtask{font-size:13px;color:var(--mid);padding:6px 0 6px 14px;border-left:1px solid var(--bdr);margin-bottom:4px;line-height:1.5;}
 
-/* IA TREE */
-.iatermbox{background:var(--card);border:1px solid var(--bdr);padding:36px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;line-height:2.1;}
-.iatermbox .c1{color:var(--acc);}
-.iatermbox .c2{color:#4285f4;}
-.iatermbox .c3{color:#d97b36;}
-.iatermbox .c4{color:#19c37d;}
-.iatermbox .cn{color:rgba(224,255,224,.28);}
-.iatermbox .ind{padding-left:20px;}
-.iatermbox .ind2{padding-left:40px;}
+/* IA TERMINAL */
+.iatermbox{background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;}
+.iatermbar{background:#0D0D0D;padding:10px 16px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--bdr);}
+.iatermcontent{padding:36px;font-family:'Pretendard',monospace;font-size:14px;line-height:2.1;}
+.iatermcontent .c1{color:var(--acc);}
+.iatermcontent .c2{color:#60A5FA;}
+.iatermcontent .c3{color:#d97b36;}
+.iatermcontent .c4{color:#22C55E;}
+.iatermcontent .cn{color:var(--mid);}
+.iatermcontent .ind{padding-left:24px;}
+.iatermcontent .ind2{padding-left:48px;}
 
 /* SCREENS */
-.scterm{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:3px;}
-.sct{background:var(--card);border:1px solid var(--bdr);}
-.sctbar{background:#0a1a0a;padding:8px 12px;display:flex;align-items:center;gap:5px;border-bottom:1px solid var(--bdr);}
-.sctdot{width:8px;height:8px;border-radius:50%;background:var(--bdr);}
+.scgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:4px;}
+.sct{background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .25s;}
+.sct:hover{border-color:var(--bdr-h);}
+.sctbar{background:#0D0D0D;padding:9px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--bdr);}
+.sctdot{width:8px;height:8px;border-radius:50%;background:var(--bg3);}
 .sctdot.g{background:var(--acc);}
-.scttitle{font-size:14px;letter-spacing:.1em;color:var(--mid);margin-left:6px;}
-.sctbody{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;}
+.scttitle{font-size:11px;letter-spacing:.08em;color:var(--mid);margin-left:4px;}
+.sctbody{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .sctbody img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-.sctph{font-size:14px;letter-spacing:.12em;color:rgba(224,255,224,.1);text-transform:uppercase;}
-.sctwide{background:var(--card);border:1px solid var(--bdr);}
+.sctwide{background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .25s;}
+.sctwide:hover{border-color:var(--bdr-h);}
 .sctwide .sctbody{aspect-ratio:21/9;}
 
-/* PROMPTS */
-.ptlist{display:flex;flex-direction:column;gap:3px;}
-.ptrow{background:var(--card);border:1px solid var(--bdr);overflow:hidden;transition:border-color .3s;}
-.ptrow:hover{border-color:rgba(0,255,65,.2);}
-.ptrh{background:#0a1a0a;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--bdr);}
-.ptrhl{display:flex;align-items:center;gap:8px;}
+/* PROMPT LOG */
+.ptlist{display:flex;flex-direction:column;gap:4px;}
+.ptrow{background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .25s;}
+.ptrow:hover{border-color:var(--bdr-h);}
+.ptrh{background:#0D0D0D;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--bdr);}
+.ptrhl{display:flex;align-items:center;gap:10px;}
 .aibadge{width:8px;height:8px;border-radius:50%;}
-.aibadge.gpt{background:#19c37d;}.aibadge.cla{background:#d97b36;}.aibadge.gem{background:#4285f4;}
-.ptrain{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);}
-.ptruse{font-size:14px;color:#e0ffe0;font-weight:700;}
-.ptrbody{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:22px;}
-.pqlbl{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:8px;}
-.pptext{font-size:14px;line-height:1.7;color:rgba(224,255,224,.42);padding:12px 16px;background:rgba(0,255,65,.02);border:1px solid var(--bdr);}
-.pptext::before{content:'$ ';color:var(--mid);}
-.prlbl{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#19c37d;margin-bottom:8px;}
-.prresult{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;color:rgba(224,255,224,.38);font-weight:300;}
+.aibadge.gpt{background:#22C55E;}.aibadge.cla{background:#d97b36;}.aibadge.gem{background:#4285f4;}
+.ptrain{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);}
+.ptruse{font-size:14px;color:var(--fg);font-weight:600;}
+.ptrbody{padding:28px 32px;display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.pqlbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:10px;}
+.pptext{font-size:14px;line-height:1.75;color:var(--mid);padding:14px 18px;background:rgba(34,197,94,.03);border:1px solid var(--bdr);border-radius:6px;}
+.pptext::before{content:'$ ';color:var(--acc-txt);}
+.prlbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#22C55E;margin-bottom:10px;}
+.prresult{font-size:14px;line-height:1.7;color:var(--mid);}
 
 /* TIMELINE */
 .tltermrows{display:flex;flex-direction:column;}
-.ttr{display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid var(--bdr);padding:20px 0;}
-.ttrphase{font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);padding-top:2px;}
-.ttrcont{padding-left:24px;border-left:1px solid var(--bdr);}
-.ttrcmd{font-size:14px;color:#e0ffe0;margin-bottom:6px;font-weight:700;}
+.ttr{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--bdr);padding:24px 0;}
+.ttrphase{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);padding-top:3px;}
+.ttrcont{padding-left:28px;border-left:1px solid var(--bdr);}
+.ttrcmd{font-size:15px;color:var(--fg);margin-bottom:8px;font-weight:600;}
 .ttrcmd::before{content:'> ';color:var(--acc);}
-.ttrout{font-family:'Noto Sans KR',sans-serif;font-size:14px;color:rgba(224,255,224,.35);font-weight:300;line-height:1.65;}
+.ttrout{font-size:14px;color:var(--mid);line-height:1.65;}
 
 /* RESULTS */
-.resgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
-.rg{padding:36px 24px;background:var(--card);border:1px solid var(--bdr);text-align:center;transition:border-color .35s;}
-.rg:hover{border-color:var(--acc);}
-.rg.v .rgnum{text-shadow:0 0 22px rgba(0,255,65,.4);}
-.rgnum{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--acc);line-height:1;margin-bottom:6px;}
-.rglbl{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
-.rgdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;color:rgba(224,255,224,.35);font-weight:300;line-height:1.55;}
+.resgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;}
+.rg{padding:40px 28px;background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;text-align:center;transition:border-color .3s,transform .3s;}
+.rg:hover{border-color:var(--bdr-h);transform:translateY(-4px);}
+.rgnum{font-family:'Bebas Neue',sans-serif;font-size:58px;color:var(--acc);line-height:1;margin-bottom:8px;text-shadow:0 0 30px rgba(34,197,94,.3);}
+.rglbl{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
+.rgdesc{font-size:13px;color:var(--mid);line-height:1.6;}
 
-.pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);position:relative;z-index:2;}
-.pnl{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
-.pnl:hover{color:var(--acc);}
-.pnc{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.2em;color:var(--bdr);}
+/* TECH STACK */
+.stackrow{display:flex;flex-wrap:wrap;gap:8px;}
+.stackbadge{display:flex;align-items:center;gap:10px;padding:14px 20px;border:1px solid var(--bdr);background:var(--bg2);transition:border-color .25s,transform .25s;border-radius:7px;}
+.stackbadge:hover{border-color:var(--bdr-h);transform:translateY(-2px);}
+.sbnm{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);}
+.sbcat{font-size:9px;letter-spacing:.12em;color:var(--mid);margin-top:2px;}
+.sbi{font-size:18px;line-height:1;}
 
-.rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
+/* BOTTOM NAV */
+.pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:32px 52px;border-top:1px solid var(--bdr);position:relative;z-index:2;}
+.pnl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .25s;}
+.pnl:hover{color:var(--fg);}
+.pnc{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.22em;color:rgba(255,255,255,.1);}
+
+/* VIEW PROTO */
+.view-proto{margin-top:20px;text-align:center;}
+.view-proto a{font-size:13px;letter-spacing:.16em;color:var(--mid);border:1px solid var(--bdr);padding:11px 28px;border-radius:6px;display:inline-block;transition:all .25s;}
+.view-proto a:hover{border-color:var(--bdr-h);color:var(--fg);}
+
+/* ANIMATIONS */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
 .rv.v{opacity:1;transform:none;}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.25s}
 </style>
 </head>
 <body>
-<canvas id="MX"></canvas>
-<div id="CU"></div><div id="PB"></div>
+<div id="CU"></div>
+<div id="PB"></div>
+
 <nav>
   <a class="nb" href="../../../../../../index.html">← Portfolio</a>
   <span class="nt">AI COMMAND CENTER</span>
   <span class="nn">04 / 06</span>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
-  <div class="termwin rv">
+  <div class="h-inner">
+    <div class="h-badge rv">AI Platform Design · 2025</div>
+    <h1 class="h-title rv d1">AI<br>COMMAND<br><em>CENTER</em></h1>
+    <p class="h-desc rv d2">GPT · Claude · Gemini를 하나의 인터페이스에서 통합 운영하는 AI 협업 플랫폼. 각 AI의 강점을 결합해 업무 자동화와 생산성 향상을 목표로 설계.</p>
+    <div class="h-ctas rv d3">
+      <a class="btn-p" href="prototype.html" target="_blank">Prototype ↗</a>
+    </div>
+    <div class="hmeta rv d3">
+      <div class="hmi"><span class="hmik">Year</span><span class="hmiv">2025</span></div>
+      <div class="hmi"><span class="hmik">Type</span><span class="hmiv">AI Platform Design</span></div>
+      <div class="hmi"><span class="hmik">Role</span><span class="hmiv g">Design · Build · 100%</span></div>
+      <div class="hmi"><span class="hmik">Build</span><span class="hmiv">Solo · 기획·디자인·프로토타입 전담</span></div>
+      <div class="hmi"><span class="hmik">Status</span><span class="hmiv g">Prototype ✓</span></div>
+      <div class="hmi"><span class="hmik">AI Used</span><span class="hmiv">GPT · Claude · Gemini</span></div>
+    </div>
+  </div>
+
+  <!-- floating terminal -->
+  <div class="h-terminal rv d2">
     <div class="termbar">
       <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
       <span class="ttitle">kdh@portfolio ~ ai-command-center</span>
@@ -163,303 +219,257 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
       <div class="tline"><span class="tprompt">kdh@portfolio:~$ </span><span class="tcmd">cat project_info.txt</span></div>
       <div class="tgap"></div>
       <div class="tline"><span class="tout">PROJECT  : </span><span class="thl">AI Command Center</span></div>
-      <div class="tline"><span class="tout">TYPE     : </span><span class="tout">다중 AI 모델 통합 시스템 / Dashboard Design</span></div>
+      <div class="tline"><span class="tout">TYPE     : </span><span class="tout">Multi-AI Integration Dashboard</span></div>
       <div class="tline"><span class="tout">STATUS   : </span><span class="tcmd">Prototype Complete ✓</span></div>
       <div class="tline"><span class="tout">ROLE     : </span><span class="tcmd">Design 100% · Build 100%</span></div>
       <div class="tgap"></div>
-      <div class="tline"><span class="tprompt">kdh@portfolio:~$ </span><span class="tcmd">describe --purpose</span></div>
+      <div class="tline"><span class="tprompt">kdh@portfolio:~$ </span><span class="tcmd">run --agents=all</span></div>
       <div class="tgap"></div>
-      <div class="tline"><span class="tout">GPT · Claude · Gemini를 하나의 인터페이스에서</span></div>
-      <div class="tline"><span class="tout">통합 운영하는 AI 협업 플랫폼. 각 AI의 강점을</span></div>
-      <div class="tline"><span class="tout">결합해 업무 자동화와 생산성 향상을 목표로 설계.</span></div>
+      <div class="tline"><span class="tout">[GPT]    </span><span class="tcmd">✓ Primary worker ready</span></div>
+      <div class="tline"><span class="tout">[Claude] </span><span style="color:#d97b36;">✓ QC agent ready</span></div>
+      <div class="tline"><span class="tout">[Gemini] </span><span style="color:#4285f4;">✓ Data enhancer ready</span></div>
       <div class="tgap"></div>
       <div class="tline"><span class="tprompt">kdh@portfolio:~$ </span><span class="tcursor"></span></div>
     </div>
   </div>
-  <div class="hmeta rv d1">
-    <div class="hmi"><span class="hmik">Year</span><span class="hmiv">2025</span></div>
-    <div class="hmi"><span class="hmik">Type</span><span class="hmiv">AI Platform Design</span></div>
-    <div class="hmi"><span class="hmik">Stack</span><span class="hmiv">UI + AI Integration</span></div>
-    <div class="hmi"><span class="hmik">Status</span><span class="hmiv g">Prototype ✓</span></div>
-    <div class="hmi"><span class="hmik">AI Used</span><span class="hmiv">GPT · Gemini · Claude</span></div>
-  </div>
-  <div style="display:flex;gap:10px;margin-top:28px;" class="rv d2">
-    <a href="prototype.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border:1px solid var(--acc);background:rgba(0,255,65,.06);color:var(--acc);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:all .3s;">Prototype ↗</a>
-  </div>
 </section>
 
+<!-- ARCH -->
 <section class="sec">
-  <div class="sec-prefix rv">System Architecture</div>
+  <div class="sec-tag rv">System Architecture</div>
   <div class="sec-title rv d1">AI WORKFLOW <em>DESIGN</em></div>
   <div class="archdiag rv d2">
-    <div class="archrow r1"><div class="archnode input"><span class="archlbl">Input Layer</span><span class="archname">Task Input</span><span class="archdesc">사용자 작업 명령 — 콘텐츠 제작·코드 작성·문서 분석 등</span></div></div>
+    <div class="archrow r1">
+      <div class="archnode input">
+        <span class="archlbl">Input Layer</span>
+        <span class="archname">Task Input</span>
+        <span class="archdesc">사용자 작업 명령 — 콘텐츠 제작·코드 작성·문서 분석 등</span>
+      </div>
+    </div>
     <div class="archarrow">↓ AI Processing Pipeline ↓</div>
     <div class="archrow r3">
-      <div class="archnode"><span class="archlbl">Agent A — Primary</span><span class="archname" style="color:#19c37d">GPT</span><span class="archdesc">작업 수행 · 콘텐츠 생성 · 다양한 태스크 처리</span></div>
-      <div class="archnode"><span class="archlbl">Agent B — Review</span><span class="archname" style="color:#d97b36">Claude</span><span class="archdesc">코드 검수 · 문서 분석 · 품질 및 논리 검토</span></div>
-      <div class="archnode"><span class="archlbl">Agent C — Enhance</span><span class="archname" style="color:#4285f4">Gemini</span><span class="archdesc">데이터 분석 · 최신 검색 보완 · 결과 강화</span></div>
+      <div class="archnode">
+        <span class="archlbl">Agent A — Primary</span>
+        <span class="archname" style="color:#22C55E;">ChatGPT</span>
+        <span class="archdesc">작업 수행 · 콘텐츠 생성 · 다양한 태스크 처리</span>
+      </div>
+      <div class="archnode">
+        <span class="archlbl">Agent B — Review</span>
+        <span class="archname" style="color:#d97b36;">Claude</span>
+        <span class="archdesc">코드 검수 · 문서 분석 · 품질 및 논리 검토</span>
+      </div>
+      <div class="archnode">
+        <span class="archlbl">Agent C — Enhance</span>
+        <span class="archname" style="color:#4285f4;">Gemini</span>
+        <span class="archdesc">데이터 분석 · 최신 검색 보완 · 결과 강화</span>
+      </div>
     </div>
     <div class="archarrow">↓ Final Verification ↓</div>
-    <div class="archrow r1"><div class="archnode out"><span class="archlbl">Output Layer</span><span class="archname">Final Output</span><span class="archdesc">3개 AI 검증을 거친 최종 결과물 — 높은 정확도와 완성도</span></div></div>
+    <div class="archrow r1">
+      <div class="archnode out">
+        <span class="archlbl">Output Layer</span>
+        <span class="archname">Final Output</span>
+        <span class="archdesc">3개 AI 검증을 거친 최종 결과물 — 높은 정확도와 완성도</span>
+      </div>
+    </div>
   </div>
   <div class="aagents rv d3">
-    <div class="aagent gpt"><div class="aagrole">Primary Worker</div><div class="aagname">ChatGPT</div><div class="aagtask">콘텐츠 제작 및 아이디어 생성</div><div class="aagtask">다양한 포맷 작업 처리</div><div class="aagtask">초안 작성 및 기획 보조</div></div>
-    <div class="aagent cla"><div class="aagrole">Quality Control</div><div class="aagname">Claude</div><div class="aagtask">코드 분석 및 검수</div><div class="aagtask">문서 정확도 검증</div><div class="aagtask">논리 구조 검토</div></div>
-    <div class="aagent gem"><div class="aagrole">Data Enhancer</div><div class="aagname">Gemini</div><div class="aagtask">데이터 분석 및 검색</div><div class="aagtask">최신 정보 보완</div><div class="aagtask">결과 품질 향상</div></div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="sec-prefix rv">Information Architecture</div>
-  <div class="sec-title rv d1">SYSTEM <em>STRUCTURE</em></div>
-  <div class="iatermbox rv d2">
-    <div><span class="c1">SYSTEM</span> :: <span class="c4">AI_COMMAND_CENTER_v1.0</span></div>
-    <div style="margin-top:10px;">
-      <div class="ind c2">┌─ DASHBOARD</div>
-      <div class="ind2 cn">├─ AI 작업 현황 모니터</div>
-      <div class="ind2 cn">└─ 실시간 결과 스트림</div>
-      <div class="ind c3">├─ TASK INPUT PANEL</div>
-      <div class="ind2 cn">├─ 작업 유형 선택</div>
-      <div class="ind2 cn">└─ AI 파이프라인 설정</div>
-      <div class="ind c1">├─ AI AGENT MANAGER</div>
-      <div class="ind2 cn">├─ GPT / Claude / Gemini 패널</div>
-      <div class="ind2 cn">└─ 상태 모니터링</div>
-      <div class="ind c4">└─ OUTPUT CENTER</div>
-      <div class="ind2 cn">├─ 결과 비교 뷰</div>
-      <div class="ind2 cn">└─ 히스토리 관리</div>
+    <div class="aagent gpt">
+      <div class="aagrole">Primary Worker</div><div class="aagname">ChatGPT</div>
+      <div class="aagtask">콘텐츠 제작 및 아이디어 생성</div>
+      <div class="aagtask">다양한 포맷 작업 처리</div>
+      <div class="aagtask">초안 작성 및 기획 보조</div>
+    </div>
+    <div class="aagent cla">
+      <div class="aagrole">Quality Control</div><div class="aagname">Claude</div>
+      <div class="aagtask">코드 분석 및 검수</div>
+      <div class="aagtask">문서 정확도 검증</div>
+      <div class="aagtask">논리 구조 검토</div>
+    </div>
+    <div class="aagent gem">
+      <div class="aagrole">Data Enhancer</div><div class="aagname">Gemini</div>
+      <div class="aagtask">데이터 분석 및 검색</div>
+      <div class="aagtask">최신 정보 보완</div>
+      <div class="aagtask">결과 품질 향상</div>
     </div>
   </div>
 </section>
 
+<!-- IA -->
 <section class="sec">
-  <div class="sec-prefix rv">Visual Design</div>
-  <div class="sec-title rv d1">화면 <em>목업</em></div>
-  <div class="scterm rv d1">
+  <div class="sec-tag rv">Information Architecture</div>
+  <div class="sec-title rv d1">SYSTEM <em>STRUCTURE</em></div>
+  <div class="iatermbox rv d2">
+    <div class="iatermbar">
+      <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+      <span class="ttitle">system_map.sh</span>
+    </div>
+    <div class="iatermcontent">
+      <div><span class="c1">SYSTEM</span> :: <span class="c4">AI_COMMAND_CENTER_v1.0</span></div>
+      <div style="margin-top:10px;">
+        <div class="ind c2">┌─ DASHBOARD</div>
+        <div class="ind2 cn">├─ AI 작업 현황 모니터</div>
+        <div class="ind2 cn">└─ 실시간 결과 스트림</div>
+        <div class="ind c3">├─ TASK INPUT PANEL</div>
+        <div class="ind2 cn">├─ 작업 유형 선택</div>
+        <div class="ind2 cn">└─ AI 파이프라인 설정</div>
+        <div class="ind c1">├─ AI AGENT MANAGER</div>
+        <div class="ind2 cn">├─ GPT / Claude / Gemini 패널</div>
+        <div class="ind2 cn">└─ 상태 모니터링</div>
+        <div class="ind c4">└─ OUTPUT CENTER</div>
+        <div class="ind2 cn">├─ 결과 비교 뷰</div>
+        <div class="ind2 cn">└─ 히스토리 관리</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Screen 01: Main Dashboard -->
+<!-- SCREENS -->
+<section class="sec">
+  <div class="sec-tag rv">Visual Design</div>
+  <div class="sec-title rv d1">화면 <em>목업</em></div>
+  <div class="scgrid rv d1">
+
+    <!-- Screen 01 -->
     <div class="sct">
       <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">dashboard.exe</span></div>
       <div class="sctbody">
-        <div style="position:absolute;inset:0;display:flex;background:#000;font-family:'Pretendard','Noto Sans KR',sans-serif;overflow:hidden;">
-          <!-- mini sidebar -->
-          <div style="width:42px;background:#040d04;border-right:1px solid #0d1f0d;display:flex;flex-direction:column;align-items:center;padding:10px 0;gap:10px;">
-            <div style="font-size:9px;color:#00ff41;font-weight:700;">⌘</div>
-            <div style="width:20px;height:1px;background:#0d1f0d;margin:4px 0;"></div>
-            <div style="font-size:10px;color:#00ff41;">◈</div>
-            <div style="font-size:10px;color:#2a5a2a;">✦</div>
-            <div style="font-size:10px;color:#2a5a2a;">≡</div>
-            <div style="font-size:10px;color:#2a5a2a;">⚙</div>
+        <div style="position:absolute;inset:0;display:flex;background:#0A0A0A;font-family:'Pretendard','Noto Sans KR',sans-serif;overflow:hidden;">
+          <div style="width:44px;background:#111;border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:12px;">
+            <div style="font-size:10px;color:#22C55E;font-weight:700;">⌘</div>
+            <div style="width:24px;height:1px;background:rgba(255,255,255,.06);"></div>
+            <div style="font-size:10px;color:#22C55E;">◈</div>
+            <div style="font-size:10px;color:#6B7280;">✦</div>
+            <div style="font-size:10px;color:#6B7280;">≡</div>
+            <div style="font-size:10px;color:#6B7280;">⚙</div>
           </div>
-          <!-- main content -->
           <div style="flex:1;display:flex;flex-direction:column;padding:10px;gap:6px;">
-            <!-- stats row -->
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
-              <div style="background:#040d04;border:1px solid #0d1f0d;padding:6px;">
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#00ff41;line-height:1;">24</div>
-                <div style="font-size:7px;letter-spacing:.1em;color:#2a5a2a;text-transform:uppercase;">Tasks</div>
-              </div>
-              <div style="background:#040d04;border:1px solid #0d1f0d;padding:6px;">
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#00ff41;line-height:1;">21</div>
-                <div style="font-size:7px;letter-spacing:.1em;color:#2a5a2a;text-transform:uppercase;">Done</div>
-              </div>
-              <div style="background:#040d04;border:1px solid #0d1f0d;padding:6px;">
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#00ff41;line-height:1;">4.2s</div>
-                <div style="font-size:7px;letter-spacing:.1em;color:#2a5a2a;text-transform:uppercase;">Avg</div>
-              </div>
-              <div style="background:#040d04;border:1px solid #0d1f0d;padding:6px;">
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#19c37d;line-height:1;">3</div>
-                <div style="font-size:7px;letter-spacing:.1em;color:#2a5a2a;text-transform:uppercase;">Active</div>
-              </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+              <div style="background:#111;border:1px solid rgba(255,255,255,.07);padding:7px;border-radius:4px;"><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:#22C55E;line-height:1;">24</div><div style="font-size:7px;letter-spacing:.1em;color:#6B7280;text-transform:uppercase;">Tasks</div></div>
+              <div style="background:#111;border:1px solid rgba(255,255,255,.07);padding:7px;border-radius:4px;"><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:#22C55E;line-height:1;">21</div><div style="font-size:7px;letter-spacing:.1em;color:#6B7280;text-transform:uppercase;">Done</div></div>
+              <div style="background:#111;border:1px solid rgba(255,255,255,.07);padding:7px;border-radius:4px;"><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:#22C55E;line-height:1;">4.2s</div><div style="font-size:7px;letter-spacing:.1em;color:#6B7280;text-transform:uppercase;">Avg</div></div>
+              <div style="background:#111;border:1px solid rgba(255,255,255,.07);padding:7px;border-radius:4px;"><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:#22C55E;line-height:1;">3</div><div style="font-size:7px;letter-spacing:.1em;color:#6B7280;text-transform:uppercase;">Active</div></div>
             </div>
-            <!-- task list -->
-            <div style="display:flex;flex-direction:column;gap:1px;flex:1;">
-              <div style="font-size:7px;letter-spacing:.2em;color:#2a5a2a;text-transform:uppercase;padding:4px 0;border-bottom:1px solid #0d1f0d;">//&nbsp;Recent Tasks</div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 6px;background:#040d04;border:1px solid #0d1f0d;">
-                <span style="font-size:8px;color:#e0ffe0;font-family:'Noto Sans KR',sans-serif;">소셜미디어 카피 제작</span>
-                <span style="font-size:7px;color:#00ff41;border:1px solid rgba(0,255,65,.3);padding:1px 5px;">DONE</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 6px;background:#040d04;border:1px solid #0d1f0d;">
-                <span style="font-size:8px;color:#e0ffe0;font-family:'Noto Sans KR',sans-serif;">React 코드 리뷰</span>
-                <span style="font-size:7px;color:#00ff41;border:1px solid rgba(0,255,65,.3);padding:1px 5px;">DONE</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 6px;background:#040d04;border:1px solid #0d1f0d;">
-                <span style="font-size:8px;color:#e0ffe0;font-family:'Noto Sans KR',sans-serif;">마케팅 전략 분석</span>
-                <span style="font-size:7px;color:#00ff41;border:1px solid rgba(0,255,65,.3);padding:1px 5px;">DONE</span>
-              </div>
+            <div style="display:flex;flex-direction:column;gap:2px;flex:1;">
+              <div style="font-size:7px;letter-spacing:.2em;color:#6B7280;text-transform:uppercase;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);">// Recent Tasks</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#111;border:1px solid rgba(255,255,255,.06);border-radius:3px;"><span style="font-size:8px;color:#FAFAFA;">소셜미디어 카피 제작</span><span style="font-size:7px;color:#22C55E;border:1px solid rgba(34,197,94,.3);padding:1px 5px;border-radius:2px;">DONE</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#111;border:1px solid rgba(255,255,255,.06);border-radius:3px;"><span style="font-size:8px;color:#FAFAFA;">React 코드 리뷰</span><span style="font-size:7px;color:#22C55E;border:1px solid rgba(34,197,94,.3);padding:1px 5px;border-radius:2px;">DONE</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#111;border:1px solid rgba(255,255,255,.06);border-radius:3px;"><span style="font-size:8px;color:#FAFAFA;">마케팅 전략 분석</span><span style="font-size:7px;color:#22C55E;border:1px solid rgba(34,197,94,.3);padding:1px 5px;border-radius:2px;">DONE</span></div>
             </div>
-            <!-- button -->
-            <div style="padding:6px;border:1px solid rgba(0,255,65,.4);background:rgba(0,255,65,.05);text-align:center;font-size:7px;letter-spacing:.18em;color:#00ff41;text-transform:uppercase;">✦ New Task</div>
+            <div style="padding:7px;border:1px solid rgba(34,197,94,.35);background:rgba(34,197,94,.06);text-align:center;font-size:7px;letter-spacing:.18em;color:#22C55E;text-transform:uppercase;border-radius:5px;">✦ New Task</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Screen 02: Task Input Panel -->
+    <!-- Screen 02 -->
     <div class="sct">
       <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">task_input.exe</span></div>
       <div class="sctbody">
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#000;font-family:'Pretendard','Noto Sans KR',sans-serif;padding:10px;gap:6px;overflow:hidden;">
-          <div style="font-size:7px;letter-spacing:.2em;color:#2a5a2a;text-transform:uppercase;border-bottom:1px solid #0d1f0d;padding-bottom:5px;">//&nbsp;New Task</div>
-          <!-- task type -->
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0A0A0A;font-family:'Pretendard','Noto Sans KR',sans-serif;padding:10px;gap:6px;overflow:hidden;">
+          <div style="font-size:7px;letter-spacing:.2em;color:#6B7280;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:6px;">// New Task</div>
           <div>
-            <div style="font-size:7px;letter-spacing:.18em;color:#2a5a2a;text-transform:uppercase;margin-bottom:4px;">Task Type</div>
+            <div style="font-size:7px;letter-spacing:.18em;color:#6B7280;text-transform:uppercase;margin-bottom:5px;">Task Type</div>
             <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
-              <div style="padding:5px 3px;border:1px solid rgba(0,255,65,.4);background:rgba(0,255,65,.06);text-align:center;font-size:7px;color:#00ff41;">✍ Content</div>
-              <div style="padding:5px 3px;border:1px solid #0d1f0d;text-align:center;font-size:7px;color:#2a5a2a;">⌨ Code</div>
-              <div style="padding:5px 3px;border:1px solid #0d1f0d;text-align:center;font-size:7px;color:#2a5a2a;">◎ Analysis</div>
-              <div style="padding:5px 3px;border:1px solid #0d1f0d;text-align:center;font-size:7px;color:#2a5a2a;">◈ Research</div>
+              <div style="padding:5px 3px;border:1px solid rgba(34,197,94,.4);background:rgba(34,197,94,.07);text-align:center;font-size:7px;color:#22C55E;border-radius:3px;">✍ Content</div>
+              <div style="padding:5px 3px;border:1px solid rgba(255,255,255,.07);text-align:center;font-size:7px;color:#6B7280;border-radius:3px;">⌨ Code</div>
+              <div style="padding:5px 3px;border:1px solid rgba(255,255,255,.07);text-align:center;font-size:7px;color:#6B7280;border-radius:3px;">◎ Analysis</div>
+              <div style="padding:5px 3px;border:1px solid rgba(255,255,255,.07);text-align:center;font-size:7px;color:#6B7280;border-radius:3px;">◈ Research</div>
             </div>
           </div>
-          <!-- prompt area -->
-          <div style="flex:1;background:#040d04;border:1px solid #0d1f0d;padding:8px;">
-            <div style="font-size:8px;color:rgba(224,255,224,.5);line-height:1.6;font-family:'Noto Sans KR',sans-serif;font-weight:300;">소셜미디어용 신제품 출시 콘텐츠 초안을 작성해줘. 감성적이고 임팩트 있는 카피 3가지...</div>
+          <div style="flex:1;background:#111;border:1px solid rgba(255,255,255,.07);padding:8px;border-radius:5px;">
+            <div style="font-size:8px;color:#A3A3A3;line-height:1.6;">소셜미디어용 신제품 출시 콘텐츠 초안을 작성해줘. 감성적이고 임팩트 있는 카피 3가지...</div>
           </div>
-          <!-- AI routing -->
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
-            <div style="padding:5px 6px;border:1px solid rgba(25,195,125,.4);background:rgba(25,195,125,.04);display:flex;align-items:center;gap:4px;">
-              <span style="font-size:8px;color:#19c37d;">✓</span><span style="font-size:7px;color:#19c37d;letter-spacing:.05em;">GPT</span>
-            </div>
-            <div style="padding:5px 6px;border:1px solid rgba(217,123,54,.4);background:rgba(217,123,54,.04);display:flex;align-items:center;gap:4px;">
-              <span style="font-size:8px;color:#d97b36;">✓</span><span style="font-size:7px;color:#d97b36;letter-spacing:.05em;">Claude</span>
-            </div>
-            <div style="padding:5px 6px;border:1px solid rgba(66,133,244,.4);background:rgba(66,133,244,.04);display:flex;align-items:center;gap:4px;">
-              <span style="font-size:8px;color:#4285f4;">✓</span><span style="font-size:7px;color:#4285f4;letter-spacing:.05em;">Gemini</span>
-            </div>
+            <div style="padding:5px 6px;border:1px solid rgba(34,197,94,.35);background:rgba(34,197,94,.05);display:flex;align-items:center;gap:4px;border-radius:3px;"><span style="font-size:8px;color:#22C55E;">✓</span><span style="font-size:7px;color:#22C55E;">GPT</span></div>
+            <div style="padding:5px 6px;border:1px solid rgba(217,123,54,.35);background:rgba(217,123,54,.05);display:flex;align-items:center;gap:4px;border-radius:3px;"><span style="font-size:8px;color:#d97b36;">✓</span><span style="font-size:7px;color:#d97b36;">Claude</span></div>
+            <div style="padding:5px 6px;border:1px solid rgba(66,133,244,.35);background:rgba(66,133,244,.05);display:flex;align-items:center;gap:4px;border-radius:3px;"><span style="font-size:8px;color:#4285f4;">✓</span><span style="font-size:7px;color:#4285f4;">Gemini</span></div>
           </div>
-          <!-- run btn -->
-          <div style="padding:7px;border:1px solid rgba(0,255,65,.5);background:rgba(0,255,65,.07);text-align:center;font-size:7px;letter-spacing:.2em;color:#00ff41;text-transform:uppercase;">▶ EXECUTE TASK</div>
+          <div style="padding:8px;border:1px solid rgba(34,197,94,.45);background:rgba(34,197,94,.08);text-align:center;font-size:7px;letter-spacing:.2em;color:#22C55E;text-transform:uppercase;border-radius:5px;">▶ EXECUTE TASK</div>
         </div>
       </div>
     </div>
 
-    <!-- Screen 03: AI Agent Manager (Processing) -->
+    <!-- Screen 03 -->
     <div class="sct">
       <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">agent_mgr.exe</span></div>
       <div class="sctbody">
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#000;font-family:'Pretendard','Noto Sans KR',sans-serif;padding:10px;gap:6px;overflow:hidden;">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0A0A0A;font-family:'Pretendard','Noto Sans KR',sans-serif;padding:10px;gap:6px;overflow:hidden;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div style="font-size:7px;letter-spacing:.2em;color:#2a5a2a;text-transform:uppercase;">//&nbsp;Processing #T-025</div>
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:#00ff41;">68%</div>
+            <div style="font-size:7px;letter-spacing:.2em;color:#6B7280;text-transform:uppercase;">// Processing #T-025</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#22C55E;">68%</div>
           </div>
-          <!-- overall bar -->
-          <div style="height:2px;background:#0d1f0d;"><div style="height:100%;width:68%;background:#00ff41;box-shadow:0 0 6px rgba(0,255,65,.5);"></div></div>
-          <!-- 3 agent cards -->
-          <div style="display:flex;flex-direction:column;gap:4px;flex:1;">
-            <div style="background:#040d04;border:1px solid rgba(25,195,125,.4);padding:8px;position:relative;">
-              <div style="position:absolute;top:0;left:0;right:0;height:1px;background:#19c37d;"></div>
-              <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;font-weight:700;color:#19c37d;">ChatGPT</span><span style="font-size:7px;color:#19c37d;">✓ Done</span></div>
-              <div style="font-size:7px;color:#2a5a2a;margin-top:2px;">결과 포맷팅 완료</div>
-              <div style="height:2px;background:#0d1f0d;margin-top:5px;"><div style="height:100%;width:100%;background:#19c37d;"></div></div>
+          <div style="height:2px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:68%;background:#22C55E;box-shadow:0 0 6px rgba(34,197,94,.5);border-radius:2px;"></div></div>
+          <div style="display:flex;flex-direction:column;gap:5px;flex:1;">
+            <div style="background:#111;border:1px solid rgba(34,197,94,.3);padding:9px;border-radius:6px;position:relative;overflow:hidden;">
+              <div style="position:absolute;top:0;left:0;right:0;height:1px;background:#22C55E;"></div>
+              <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;font-weight:700;color:#22C55E;">ChatGPT</span><span style="font-size:7px;color:#22C55E;">✓ Done</span></div>
+              <div style="font-size:7px;color:#6B7280;margin-top:3px;">결과 포맷팅 완료</div>
+              <div style="height:2px;background:rgba(255,255,255,.06);margin-top:6px;border-radius:2px;"><div style="height:100%;width:100%;background:#22C55E;border-radius:2px;"></div></div>
             </div>
-            <div style="background:#040d04;border:1px solid rgba(217,123,54,.3);padding:8px;position:relative;">
+            <div style="background:#111;border:1px solid rgba(217,123,54,.25);padding:9px;border-radius:6px;position:relative;overflow:hidden;">
               <div style="position:absolute;top:0;left:0;right:0;height:1px;background:#d97b36;"></div>
               <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;font-weight:700;color:#d97b36;">Claude</span><span style="font-size:7px;color:#d97b36;">78%</span></div>
-              <div style="font-size:7px;color:#2a5a2a;margin-top:2px;">표현 정확도 검토 중...</div>
-              <div style="height:2px;background:#0d1f0d;margin-top:5px;"><div style="height:100%;width:78%;background:#d97b36;"></div></div>
+              <div style="font-size:7px;color:#6B7280;margin-top:3px;">표현 정확도 검토 중...</div>
+              <div style="height:2px;background:rgba(255,255,255,.06);margin-top:6px;border-radius:2px;"><div style="height:100%;width:78%;background:#d97b36;border-radius:2px;"></div></div>
             </div>
-            <div style="background:#040d04;border:1px solid rgba(66,133,244,.3);padding:8px;position:relative;">
+            <div style="background:#111;border:1px solid rgba(66,133,244,.25);padding:9px;border-radius:6px;position:relative;overflow:hidden;">
               <div style="position:absolute;top:0;left:0;right:0;height:1px;background:#4285f4;"></div>
               <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;font-weight:700;color:#4285f4;">Gemini</span><span style="font-size:7px;color:#4285f4;">55%</span></div>
-              <div style="font-size:7px;color:#2a5a2a;margin-top:2px;">시장 데이터 조회 중...</div>
-              <div style="height:2px;background:#0d1f0d;margin-top:5px;"><div style="height:100%;width:55%;background:#4285f4;"></div></div>
+              <div style="font-size:7px;color:#6B7280;margin-top:3px;">시장 데이터 조회 중...</div>
+              <div style="height:2px;background:rgba(255,255,255,.06);margin-top:6px;border-radius:2px;"><div style="height:100%;width:55%;background:#4285f4;border-radius:2px;"></div></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
-  <!-- Screen 04: Output Center (Wide) -->
+  <!-- Screen 04 Wide -->
   <div class="sctwide rv d2">
     <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">output_center.exe — Full Width</span></div>
     <div class="sctbody" style="aspect-ratio:21/9;">
-      <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#000;font-family:'Pretendard','Noto Sans KR',sans-serif;padding:12px;gap:8px;overflow:hidden;">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0A0A0A;font-family:'Pretendard','Noto Sans KR',sans-serif;padding:14px;gap:8px;overflow:hidden;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div style="font-size:8px;letter-spacing:.2em;color:#2a5a2a;text-transform:uppercase;">//&nbsp;Task #T-025 — Results</div>
-          <div style="display:flex;gap:5px;">
-            <div style="padding:4px 10px;border:1px solid #0d1f0d;font-size:7px;letter-spacing:.12em;color:#2a5a2a;">↓ Export</div>
-            <div style="padding:4px 10px;border:1px solid rgba(0,255,65,.4);font-size:7px;letter-spacing:.12em;color:#00ff41;">+ New Task</div>
+          <div style="font-size:8px;letter-spacing:.2em;color:#6B7280;text-transform:uppercase;">// Task #T-025 — Results</div>
+          <div style="display:flex;gap:6px;">
+            <div style="padding:4px 12px;border:1px solid rgba(255,255,255,.08);font-size:7px;letter-spacing:.12em;color:#6B7280;border-radius:4px;">↓ Export</div>
+            <div style="padding:4px 12px;border:1px solid rgba(34,197,94,.35);font-size:7px;letter-spacing:.12em;color:#22C55E;border-radius:4px;">+ New Task</div>
           </div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;flex:1;">
-          <!-- GPT result -->
-          <div style="background:#040d04;border:1px solid #0d1f0d;display:flex;flex-direction:column;position:relative;overflow:hidden;">
-            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#19c37d;"></div>
-            <div style="padding:8px 10px;border-bottom:1px solid #0d1f0d;display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:10px;font-weight:700;color:#19c37d;">ChatGPT</span>
-              <span style="font-size:8px;color:#2a5a2a;">2.3s · 387 tokens</span>
-            </div>
-            <div style="padding:10px;flex:1;font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:300;color:rgba(224,255,224,.6);line-height:1.6;">
-              <strong style="color:#19c37d;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 01</strong><br>
-              "당신의 하루가 달라집니다."<br>
-              아침을 여는 순간부터, 오늘이 특별해지는 이유.<br><br>
-              <strong style="color:#19c37d;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 02</strong><br>
-              "기다렸던 그것, 드디어 출시."<br>
-              더 이상 타협하지 마세요.
-            </div>
-            <div style="padding:6px 10px;border-top:1px solid #0d1f0d;display:flex;gap:4px;">
-              <span style="font-size:7px;color:#2a5a2a;border:1px solid #0d1f0d;padding:2px 5px;">Content</span>
-              <span style="font-size:7px;color:#2a5a2a;border:1px solid #0d1f0d;padding:2px 5px;">GPT-4o</span>
-            </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;flex:1;">
+          <div style="background:#111;border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;position:relative;overflow:hidden;border-radius:7px;">
+            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#22C55E;"></div>
+            <div style="padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;font-weight:700;color:#22C55E;">ChatGPT</span><span style="font-size:8px;color:#6B7280;">2.3s · 387 tokens</span></div>
+            <div style="padding:10px 12px;flex:1;font-size:9px;color:#A3A3A3;line-height:1.6;"><strong style="color:#22C55E;font-size:8px;">COPY 01</strong><br>"당신의 하루가 달라집니다."<br>아침을 여는 순간부터.<br><br><strong style="color:#22C55E;font-size:8px;">COPY 02</strong><br>"기다렸던 그것, 드디어 출시."</div>
           </div>
-          <!-- Claude result -->
-          <div style="background:#040d04;border:1px solid #0d1f0d;display:flex;flex-direction:column;position:relative;overflow:hidden;">
+          <div style="background:#111;border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;position:relative;overflow:hidden;border-radius:7px;">
             <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#d97b36;"></div>
-            <div style="padding:8px 10px;border-bottom:1px solid #0d1f0d;display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:10px;font-weight:700;color:#d97b36;">Claude</span>
-              <span style="font-size:8px;color:#2a5a2a;">3.1s · 412 tokens</span>
-            </div>
-            <div style="padding:10px;flex:1;font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:300;color:rgba(224,255,224,.6);line-height:1.6;">
-              <strong style="color:#d97b36;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 01</strong><br>
-              "완벽함을 만드는 단 하나의 선택."<br>
-              우리는 오랫동안 이 순간을 준비했습니다.<br><br>
-              <strong style="color:#d97b36;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 02</strong><br>
-              "모두가 원했던, 아무도 없었던."<br>
-              시장의 빈자리를 채우는 제품.
-            </div>
-            <div style="padding:6px 10px;border-top:1px solid #0d1f0d;display:flex;gap:4px;">
-              <span style="font-size:7px;color:#2a5a2a;border:1px solid #0d1f0d;padding:2px 5px;">Brand</span>
-              <span style="font-size:7px;color:#2a5a2a;border:1px solid #0d1f0d;padding:2px 5px;">Claude 3.5</span>
-            </div>
+            <div style="padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;font-weight:700;color:#d97b36;">Claude</span><span style="font-size:8px;color:#6B7280;">3.1s · 412 tokens</span></div>
+            <div style="padding:10px 12px;flex:1;font-size:9px;color:#A3A3A3;line-height:1.6;"><strong style="color:#d97b36;font-size:8px;">COPY 01</strong><br>"완벽함을 만드는 단 하나의 선택."<br>오랫동안 준비했습니다.<br><br><strong style="color:#d97b36;font-size:8px;">COPY 02</strong><br>"모두가 원했던, 아무도 없었던."</div>
           </div>
-          <!-- Gemini result -->
-          <div style="background:#040d04;border:1px solid #0d1f0d;display:flex;flex-direction:column;position:relative;overflow:hidden;">
+          <div style="background:#111;border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;position:relative;overflow:hidden;border-radius:7px;">
             <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#4285f4;"></div>
-            <div style="padding:8px 10px;border-bottom:1px solid #0d1f0d;display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:10px;font-weight:700;color:#4285f4;">Gemini</span>
-              <span style="font-size:8px;color:#2a5a2a;">2.8s · 356 tokens</span>
-            </div>
-            <div style="padding:10px;flex:1;font-family:'Noto Sans KR',sans-serif;font-size:9px;font-weight:300;color:rgba(224,255,224,.6);line-height:1.6;">
-              <strong style="color:#4285f4;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 01</strong><br>
-              "2025년 가장 핫한 선택."<br>
-              SNS를 장악할 그 제품,<br><br>
-              <strong style="color:#4285f4;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:8px;">COPY 02</strong><br>
-              "사용자 94%가 추천하는 단 하나."<br>
-              검증된 품질, 압도적인 만족도.
-            </div>
-            <div style="padding:6px 10px;border-top:1px solid #0d1f0d;display:flex;gap:4px;">
-              <span style="font-size:7px;color:#2a5a2a;border:1px solid #0d1f0d;padding:2px 5px;">Trend</span>
-              <span style="font-size:7px;color:#2a5a2a;border:1px solid #0d1f0d;padding:2px 5px;">Gemini Pro</span>
-            </div>
+            <div style="padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;font-weight:700;color:#4285f4;">Gemini</span><span style="font-size:8px;color:#6B7280;">2.8s · 356 tokens</span></div>
+            <div style="padding:10px 12px;flex:1;font-size:9px;color:#A3A3A3;line-height:1.6;"><strong style="color:#4285f4;font-size:8px;">COPY 01</strong><br>"2025년 가장 핫한 선택."<br>SNS를 장악할 그 제품.<br><br><strong style="color:#4285f4;font-size:8px;">COPY 02</strong><br>"사용자 94%가 추천하는."</div>
           </div>
         </div>
-        <!-- synthesis -->
-        <div style="padding:8px 10px;background:#040d04;border:1px solid rgba(0,255,65,.2);">
-          <div style="font-size:8px;letter-spacing:.18em;color:#00ff41;text-transform:uppercase;margin-bottom:4px;">// AI Synthesis — Final Recommendation</div>
-          <div style="font-family:'Noto Sans KR',sans-serif;font-size:9px;color:rgba(224,255,224,.55);font-weight:300;">감성 스토리텔링(GPT) + 브랜드 철학(Claude) + 트렌드 데이터(Gemini) 조합이 최적. 골든아워 라이프스타일 컷을 기본으로 설정 권장.</div>
+        <div style="padding:9px 12px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.15);border-radius:6px;">
+          <div style="font-size:8px;letter-spacing:.18em;color:#22C55E;text-transform:uppercase;margin-bottom:4px;">// AI Synthesis</div>
+          <div style="font-size:9px;color:#A3A3A3;">감성 스토리텔링(GPT) + 브랜드 철학(Claude) + 트렌드 데이터(Gemini) 조합이 최적. 골든아워 라이프스타일 컷을 기본으로 설정 권장.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div style="margin-top:18px;text-align:center;" class="rv d3">
-    <a href="prototype.html" target="_blank" style="font-size:14px;letter-spacing:.16em;color:var(--mid);text-decoration:none;border:1px solid var(--bdr);padding:10px 24px;transition:all .3s;display:inline-block;">직접 체험하기 ↗</a>
+  <div class="view-proto rv d3">
+    <a href="prototype.html" target="_blank">직접 체험하기 ↗</a>
   </div>
 </section>
 
+<!-- PROMPT LOG -->
 <section class="sec">
-  <div class="sec-prefix rv">AI Collaboration</div>
+  <div class="sec-tag rv">AI Collaboration</div>
   <div class="sec-title rv d1">PROMPT <em>LOG</em></div>
   <div class="ptlist rv d1">
     <div class="ptrow">
@@ -486,8 +496,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   </div>
 </section>
 
+<!-- TIMELINE -->
 <section class="sec">
-  <div class="sec-prefix rv">Build Log</div>
+  <div class="sec-tag rv">Build Log</div>
   <div class="sec-title rv d1">PRODUCTION <em>TIMELINE</em></div>
   <div class="tltermrows rv d1">
     <div class="ttr"><span class="ttrphase">Phase 01</span><div class="ttrcont"><div class="ttrcmd">concept_research.sh</div><div class="ttrout">다중 AI 협업 모델 리서치 · 각 AI 강점 분석 · 통합 UX 방향 정의</div></div></div>
@@ -498,8 +509,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   </div>
 </section>
 
+<!-- RESULTS -->
 <section class="sec">
-  <div class="sec-prefix rv">Expected Results</div>
+  <div class="sec-tag rv">Results</div>
   <div class="sec-title rv d1">SYSTEM <em>OUTPUT</em></div>
   <div class="resgrid rv d1">
     <div class="rg"><div class="rgnum">3×</div><div class="rglbl">Processing Power</div><div class="rgdesc">3개 AI 병렬 처리로 단일 AI 대비 결과 품질 향상</div></div>
@@ -509,25 +521,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   </div>
 </section>
 
+<section class="sec">
+  <div class="sec-tag rv">Tech Stack</div>
+  <div class="sec-title rv d1">TOOLS <em>&amp; STACK</em></div>
+  <div class="stackrow rv d2">
+    <div class="stackbadge"><span class="sbi">🌐</span><div><div class="sbnm">HTML · CSS · JS</div><div class="sbcat">프로토타입 퍼블리싱</div></div></div>
+    <div class="stackbadge"><span class="sbi">🎨</span><div><div class="sbnm">Figma</div><div class="sbcat">UI 시스템 설계</div></div></div>
+    <div class="stackbadge"><span class="sbi">🤖</span><div><div class="sbnm">ChatGPT</div><div class="sbcat">Primary Worker AI</div></div></div>
+    <div class="stackbadge"><span class="sbi">🧠</span><div><div class="sbnm">Claude</div><div class="sbcat">QC · 코드 구현</div></div></div>
+    <div class="stackbadge"><span class="sbi">💎</span><div><div class="sbnm">Gemini</div><div class="sbcat">데이터 분석 보완</div></div></div>
+  </div>
+</section>
+
 <div class="pnav-bottom">
-  <a class="pnl" href="../project-3/">← Class Care</a>
+  <a class="pnl" href="../project-3/">← CrownyClass</a>
   <span class="pnc">KDH PORTFOLIO</span>
   <a class="pnl" href="../project-5/">Next: OTT UX →</a>
 </div>
 
 <script>
-// matrix canvas
-const cv=document.getElementById('MX'),ctx=cv.getContext('2d');
-function resize(){cv.width=innerWidth;cv.height=innerHeight;}
-resize();window.addEventListener('resize',resize);
-const cols=Math.floor(cv.width/16),drops=Array.from({length:cols},()=>Math.random()*cv.height/16);
-const chars='01アイウエオ∑∂∆αβ{}[]<>/:#@!?'.split('');
-setInterval(()=>{ctx.fillStyle='rgba(0,0,0,.06)';ctx.fillRect(0,0,cv.width,cv.height);ctx.fillStyle='#00ff41';ctx.font='12px Space Mono,monospace';drops.forEach((y,i)=>{ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,y*16);if(y*16>cv.height&&Math.random()>.97)drops[i]=0;drops[i]+=.5;});},55);
-// cursor
 const CU=document.getElementById('CU');
 document.addEventListener('mousemove',e=>{CU.style.left=e.clientX+'px';CU.style.top=e.clientY+'px';});
 window.addEventListener('scroll',()=>{const m=document.body.scrollHeight-innerHeight;document.getElementById('PB').style.width=(m>0?scrollY/m*100:0)+'%';},{passive:true});
-const IO=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v');});},{threshold:.1});
+const IO=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v');});},{threshold:.08});
 document.querySelectorAll('.rv,.rg').forEach(el=>IO.observe(el));
 </script>
 </body>
