@@ -101,9 +101,10 @@ main{padding:0;}
 .scdot{width:7px;height:7px;border-radius:50%;background:var(--bdr);}
 .scdot.g{background:var(--acc);}
 .sctitle{font-size:14px;letter-spacing:.12em;color:var(--mid);margin-left:6px;}
-.scbody{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;}
-.scbody img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.scbody{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0a0a0a;}
+.scbody img{width:100%;height:100%;object-fit:contain;display:block;}
 .scph{font-size:14px;letter-spacing:.12em;color:rgba(240,236,228,.1);text-transform:uppercase;}
+.scgrid2{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
 
 /* AI PROMPTS */
 .apstack{display:flex;flex-direction:column;gap:3px;}
@@ -251,17 +252,17 @@ main{padding:0;}
     <div class="csec" id="screens">
       <div class="sec-label rv">— Visual Design</div>
       <div class="sec-title rv d1">화면 <em>목업</em></div>
+      <!-- 세로형 3컬럼 (class_01~03) -->
       <div class="scgrid rv d1">
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">teacher_dashboard</span></div><div class="scbody"><div class="scph">Teacher Dashboard</div></div></div>
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">student_dashboard</span></div><div class="scbody"><div class="scph">Student Dashboard</div></div></div>
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">file_transfer</span></div><div class="scbody"><div class="scph">File Transfer</div></div></div>
+        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">screen_01</span></div><div class="scbody" style="aspect-ratio:488/697;"><img src="../../../../../../images/class_01.png" alt="Screen 01"></div></div>
+        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">screen_02</span></div><div class="scbody" style="aspect-ratio:415/642;"><img src="../../../../../../images/class_02.png" alt="Screen 02"></div></div>
+        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">screen_03</span></div><div class="scbody" style="aspect-ratio:406/578;"><img src="../../../../../../images/class_03.png" alt="Screen 03"></div></div>
       </div>
-      <div class="scgrid rv d2" style="margin-top:3px;">
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">exam_system</span></div><div class="scbody"><div class="scph">Exam System</div></div></div>
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">ai_answer_sheet</span></div><div class="scbody"><div class="scph">AI 오답 노트</div></div></div>
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">result_analysis</span></div><div class="scbody"><div class="scph">Result Analysis</div></div></div>
+      <!-- 가로형 2컬럼 (class_04~05) -->
+      <div class="scgrid2 rv d2" style="margin-top:3px;">
+        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">screen_04</span></div><div class="scbody" style="aspect-ratio:1049/680;"><img src="../../../../../../images/class_04.png" alt="Screen 04"></div></div>
+        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">screen_05</span></div><div class="scbody" style="aspect-ratio:1175/785;"><img src="../../../../../../images/class_05.png" alt="Screen 05"></div></div>
       </div>
-      <p style="margin-top:14px;font-size:14px;letter-spacing:.1em;color:var(--mid);text-align:center;" class="rv d3">★ scbody 안에 &lt;img&gt; 삽입으로 실제 화면 교체</p>
     </div>
 
     <div class="csec" id="ai">
