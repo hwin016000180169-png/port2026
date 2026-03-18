@@ -568,6 +568,7 @@ document.querySelectorAll('a,button,.wc').forEach(el=>{el.addEventListener('mous
 /* ── LOADER ── */
 const LDN=document.getElementById('LDN'),LF=document.getElementById('LF');
 const LD=document.getElementById('LD');
+document.fonts.load("900 100px 'Bebas Neue'").then(()=>{
 if(sessionStorage.getItem('visited')){
   LD.style.display='none';
   initCanvas();
@@ -581,6 +582,7 @@ if(sessionStorage.getItem('visited')){
     LF.style.width=pct+'%';
   },40);
 }
+});
 
 /* ── CANVAS PARTICLE ── */
 function initCanvas(){
