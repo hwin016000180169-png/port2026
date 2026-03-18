@@ -113,6 +113,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .ttask{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:7px;font-weight:700;}
 .tsub{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;color:rgba(240,236,228,.38);font-weight:300;}
 
+/* RESULTS */
+.resgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.resitem{padding:40px 28px;background:rgba(255,25,36,.03);border:1px solid var(--bdr);text-align:center;transition:border-color .3s;}
+.resitem:hover{border-color:rgba(255,25,36,.3);}
+.resnum{font-family:'Bebas Neue',sans-serif;font-size:60px;color:var(--acc);line-height:1;margin-bottom:10px;}
+.reslabel{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;}
+.resdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;font-weight:300;color:rgba(240,236,228,.42);}
+
 /* NAV */
 .pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);}
 .pnl{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
@@ -248,10 +256,37 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   </div>
 </section>
 
+<section class="sec">
+  <div class="sec-label rv">— Outcome</div>
+  <div class="sec-title rv d1">PROJECT <em>RESULTS</em></div>
+  <div class="resgrid rv d1">
+    <div class="resitem">
+      <div class="resnum">5+</div>
+      <div class="reslabel">Pages Built</div>
+      <div class="resdesc">Index · Agents · Maps · Tournaments · Gallery 5개 페이지 완성 및 GitHub Pages 배포</div>
+    </div>
+    <div class="resitem">
+      <div class="resnum">20+</div>
+      <div class="reslabel">Agents Data</div>
+      <div class="resdesc">20개 이상 에이전트 정보 카드화, 스킬·역할·배경 스토리 구조화 완료</div>
+    </div>
+    <div class="resitem">
+      <div class="resnum">3</div>
+      <div class="reslabel">AI Tools</div>
+      <div class="resdesc">GPT · Claude · Gemini 협업 워크플로우 — IA 설계부터 버그 수정까지 AI 협업 구축</div>
+    </div>
+    <div class="resitem">
+      <div class="resnum">Solo</div>
+      <div class="reslabel">Full Build</div>
+      <div class="resdesc">기획 · 디자인 · 퍼블리싱 100% 단독 수행, 반응형 구조 완성</div>
+    </div>
+  </div>
+</section>
+
 <div class="pnav-bottom">
   <a class="pnl" href="../project-1/">← NAVYBAY</a>
   <span class="pnc">KDH PORTFOLIO</span>
-  <a class="pnl" href="../project-3/">Next: Class Care →</a>
+  <a class="pnl" href="../project-3/">Next: CrownyClass →</a>
 </div>
 <script>
 const CU=document.getElementById('CU'),CR=document.getElementById('CR');
