@@ -89,8 +89,9 @@ body.hov #CU{width:22px;height:22px;}
 /* ════════════════ S2 — ABOUT ════════════════ */
 #S2{position:relative;z-index:10;width:100vw;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--bg);}
 
-.a-left{border-right:1px solid var(--bdr);min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;padding:88px 52px;}
-.phwrap{flex:1;width:100%;position:relative;display:flex;align-items:center;justify-content:center;background:var(--card);overflow:hidden;}
+.a-left{border-right:1px solid var(--bdr);min-height:100vh;position:relative;display:flex;flex-direction:column;padding:88px 52px;gap:32px;}
+.phwrap{width:100%;height:420px;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;background:var(--card);overflow:hidden;}
+.a-skills{flex:1;}
 /* actual image — replace placeholder */
 .phwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(18%) contrast(1.08);transform:scale(1.04);transition:transform 10s ease;}
 .phwrap:hover img{transform:scale(1);}
@@ -314,8 +315,9 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
 
   /* about — 1컬럼 */
   #S2{grid-template-columns:1fr;}
-  .a-left{min-height:60vw;border-right:none;border-bottom:1px solid var(--bdr);padding:0;}
-  .phwrap{min-height:60vw;}
+  .a-left{min-height:unset;border-right:none;border-bottom:1px solid var(--bdr);padding:40px 20px;gap:24px;}
+  .phwrap{height:60vw;flex-shrink:0;}
+  .a-skills{padding:0;}
   .a-right{padding:48px 20px;}
   .aname{font-size:clamp(44px,13vw,72px);}
   .abio{font-size:14px;}
@@ -401,6 +403,19 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
         <span class="lbv">UI/UX · Publisher</span>
       </div>
     </div>
+    <div class="a-skills rv d5">
+      <div class="sklbl">— Skills &amp; Tools</div>
+      <div class="sktags">
+        <span class="skt ac">UI / UX Design</span>
+        <span class="skt">Web Publishing</span>
+        <span class="skt ac">AI Prompting</span>
+        <span class="skt">Figma</span>
+        <span class="skt">HTML · CSS · JS</span>
+        <span class="skt">Prototyping</span>
+        <span class="skt ac">GPT · Claude · Gemini</span>
+        <span class="skt">Responsive Design</span>
+      </div>
+    </div>
   </div>
   <div class="a-right">
     <div class="snum rv">— 002 / About Me</div>
@@ -456,19 +471,6 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
         <span class="cert">GTQ 1급</span>
         <span class="cert">GTQi 1급</span>
         <span class="cert">웹디자인개발기능사</span>
-      </div>
-    </div>
-    <div class="rv d5" style="margin-top:28px;">
-      <div class="sklbl">— Skills &amp; Tools</div>
-      <div class="sktags">
-        <span class="skt ac">UI / UX Design</span>
-        <span class="skt">Web Publishing</span>
-        <span class="skt ac">AI Prompting</span>
-        <span class="skt">Figma</span>
-        <span class="skt">HTML · CSS · JS</span>
-        <span class="skt">Prototyping</span>
-        <span class="skt ac">GPT · Claude · Gemini</span>
-        <span class="skt">Responsive Design</span>
       </div>
     </div>
   </div>
