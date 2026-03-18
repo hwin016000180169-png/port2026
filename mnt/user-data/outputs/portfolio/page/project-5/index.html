@@ -124,11 +124,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 
 /* TECH STACK */
 .stackrow{display:flex;flex-wrap:wrap;gap:8px;}
-.stackbadge{display:flex;align-items:center;gap:10px;padding:14px 20px;border:1px solid var(--bdr);background:rgba(229,9,20,.03);transition:border-color .3s;}
+.stackbadge{display:flex;align-items:center;gap:12px;padding:16px 22px;border:1px solid var(--bdr);background:rgba(229,9,20,.03);transition:border-color .3s;}
 .stackbadge:hover{border-color:rgba(229,9,20,.3);}
-.sbnm{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);}
-.sbcat{font-size:9px;letter-spacing:.12em;color:var(--mid);margin-top:2px;}
-.sbi{font-size:18px;line-height:1;}
+.sbnm{font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);}
+.sbcat{font-size:14px;letter-spacing:.08em;color:var(--mid);margin-top:3px;}
+.sbi{font-size:32px;line-height:1;}
+.sbi-img{width:40px;height:40px;object-fit:contain;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -300,8 +301,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <div class="sec-title rv d1">TOOLS <em>&amp; STACK</em></div>
   <div class="stackrow rv d2">
     <div class="stackbadge"><span class="sbi">🎨</span><div><div class="sbnm">Figma</div><div class="sbcat">UX 디자인 · 프로토타입</div></div></div>
-    <div class="stackbadge"><span class="sbi">🤖</span><div><div class="sbnm">ChatGPT</div><div class="sbcat">UX 구조 설계</div></div></div>
-    <div class="stackbadge"><span class="sbi">💎</span><div><div class="sbnm">Gemini</div><div class="sbcat">UX 분석 보조</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/gpt.png" alt="GPT"><div><div class="sbnm">ChatGPT</div><div class="sbcat">UX 구조 설계</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/gemini.png" alt="Gemini"><div><div class="sbnm">Gemini</div><div class="sbcat">UX 분석 보조</div></div></div>
     <div class="stackbadge"><span class="sbi">🚀</span><div><div class="sbnm">Vercel</div><div class="sbcat">프로토타입 배포</div></div></div>
     <div class="stackbadge"><span class="sbi">🔍</span><div><div class="sbnm">UX Research</div><div class="sbcat">휴리스틱 평가</div></div></div>
   </div>

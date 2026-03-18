@@ -157,11 +157,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 
 /* TECH STACK */
 .stackrow{display:flex;flex-wrap:wrap;gap:8px;}
-.stackbadge{display:flex;align-items:center;gap:10px;padding:14px 20px;border:1px solid var(--bdr);background:var(--bg2);transition:border-color .25s,transform .25s;border-radius:7px;}
+.stackbadge{display:flex;align-items:center;gap:12px;padding:16px 22px;border:1px solid var(--bdr);background:var(--bg2);transition:border-color .25s,transform .25s;border-radius:7px;}
 .stackbadge:hover{border-color:var(--bdr-h);transform:translateY(-2px);}
-.sbnm{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);}
-.sbcat{font-size:9px;letter-spacing:.12em;color:var(--mid);margin-top:2px;}
-.sbi{font-size:18px;line-height:1;}
+.sbnm{font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);}
+.sbcat{font-size:14px;letter-spacing:.08em;color:var(--mid);margin-top:3px;}
+.sbi{font-size:32px;line-height:1;}
+.sbi-img{width:40px;height:40px;object-fit:contain;flex-shrink:0;}
 
 /* BOTTOM NAV */
 .pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:32px 52px;border-top:1px solid var(--bdr);position:relative;z-index:2;}
@@ -425,40 +426,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
     </div>
   </div>
 
-  <!-- Screen 04 Wide -->
-  <div class="sctwide rv d2">
-    <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">output_center.exe — Full Width</span></div>
-    <div class="sctbody" style="aspect-ratio:21/9;">
-      <div style="position:absolute;inset:0;display:flex;flex-direction:column;background:#0A0A0A;font-family:'Pretendard','Noto Sans KR',sans-serif;padding:14px;gap:8px;overflow:hidden;">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div style="font-size:8px;letter-spacing:.2em;color:#6B7280;text-transform:uppercase;">// Task #T-025 — Results</div>
-          <div style="display:flex;gap:6px;">
-            <div style="padding:4px 12px;border:1px solid rgba(255,255,255,.08);font-size:7px;letter-spacing:.12em;color:#6B7280;border-radius:4px;">↓ Export</div>
-            <div style="padding:4px 12px;border:1px solid rgba(34,197,94,.35);font-size:7px;letter-spacing:.12em;color:#22C55E;border-radius:4px;">+ New Task</div>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;flex:1;">
-          <div style="background:#111;border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;position:relative;overflow:hidden;border-radius:7px;">
-            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#22C55E;"></div>
-            <div style="padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;font-weight:700;color:#22C55E;">ChatGPT</span><span style="font-size:8px;color:#6B7280;">2.3s · 387 tokens</span></div>
-            <div style="padding:10px 12px;flex:1;font-size:9px;color:#A3A3A3;line-height:1.6;"><strong style="color:#22C55E;font-size:8px;">COPY 01</strong><br>"당신의 하루가 달라집니다."<br>아침을 여는 순간부터.<br><br><strong style="color:#22C55E;font-size:8px;">COPY 02</strong><br>"기다렸던 그것, 드디어 출시."</div>
-          </div>
-          <div style="background:#111;border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;position:relative;overflow:hidden;border-radius:7px;">
-            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#d97b36;"></div>
-            <div style="padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;font-weight:700;color:#d97b36;">Claude</span><span style="font-size:8px;color:#6B7280;">3.1s · 412 tokens</span></div>
-            <div style="padding:10px 12px;flex:1;font-size:9px;color:#A3A3A3;line-height:1.6;"><strong style="color:#d97b36;font-size:8px;">COPY 01</strong><br>"완벽함을 만드는 단 하나의 선택."<br>오랫동안 준비했습니다.<br><br><strong style="color:#d97b36;font-size:8px;">COPY 02</strong><br>"모두가 원했던, 아무도 없었던."</div>
-          </div>
-          <div style="background:#111;border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;position:relative;overflow:hidden;border-radius:7px;">
-            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#4285f4;"></div>
-            <div style="padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;font-weight:700;color:#4285f4;">Gemini</span><span style="font-size:8px;color:#6B7280;">2.8s · 356 tokens</span></div>
-            <div style="padding:10px 12px;flex:1;font-size:9px;color:#A3A3A3;line-height:1.6;"><strong style="color:#4285f4;font-size:8px;">COPY 01</strong><br>"2025년 가장 핫한 선택."<br>SNS를 장악할 그 제품.<br><br><strong style="color:#4285f4;font-size:8px;">COPY 02</strong><br>"사용자 94%가 추천하는."</div>
-          </div>
-        </div>
-        <div style="padding:9px 12px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.15);border-radius:6px;">
-          <div style="font-size:8px;letter-spacing:.18em;color:#22C55E;text-transform:uppercase;margin-bottom:4px;">// AI Synthesis</div>
-          <div style="font-size:9px;color:#A3A3A3;">감성 스토리텔링(GPT) + 브랜드 철학(Claude) + 트렌드 데이터(Gemini) 조합이 최적. 골든아워 라이프스타일 컷을 기본으로 설정 권장.</div>
-        </div>
-      </div>
+  <!-- Screens 04-06: Real Screenshots -->
+  <div class="scgrid rv d2" style="margin-top:4px;">
+    <div class="sct">
+      <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">aic_01 — Dashboard</span></div>
+      <div class="sctbody"><img src="../../../../../../images/aic_01.png" alt="AI Command Center Dashboard" style="object-fit:cover;"></div>
+    </div>
+    <div class="sct">
+      <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">aic_02 — Task Input</span></div>
+      <div class="sctbody"><img src="../../../../../../images/aic_02.png" alt="Task Input" style="object-fit:cover;"></div>
+    </div>
+    <div class="sct">
+      <div class="sctbar"><div class="sctdot"></div><div class="sctdot"></div><div class="sctdot g"></div><span class="scttitle">aic_03 — Output Center</span></div>
+      <div class="sctbody"><img src="../../../../../../images/aic_03.png" alt="Output Center" style="object-fit:cover;"></div>
     </div>
   </div>
 
@@ -525,11 +505,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <div class="sec-tag rv">Tech Stack</div>
   <div class="sec-title rv d1">TOOLS <em>&amp; STACK</em></div>
   <div class="stackrow rv d2">
-    <div class="stackbadge"><span class="sbi">🌐</span><div><div class="sbnm">HTML · CSS · JS</div><div class="sbcat">프로토타입 퍼블리싱</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/html.png" alt="HTML"><div><div class="sbnm">HTML</div><div class="sbcat">마크업</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/css.png" alt="CSS"><div><div class="sbnm">CSS</div><div class="sbcat">스타일링</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/js.png" alt="JS"><div><div class="sbnm">JavaScript</div><div class="sbcat">프로토타입 구현</div></div></div>
     <div class="stackbadge"><span class="sbi">🎨</span><div><div class="sbnm">Figma</div><div class="sbcat">UI 시스템 설계</div></div></div>
-    <div class="stackbadge"><span class="sbi">🤖</span><div><div class="sbnm">ChatGPT</div><div class="sbcat">Primary Worker AI</div></div></div>
-    <div class="stackbadge"><span class="sbi">🧠</span><div><div class="sbnm">Claude</div><div class="sbcat">QC · 코드 구현</div></div></div>
-    <div class="stackbadge"><span class="sbi">💎</span><div><div class="sbnm">Gemini</div><div class="sbcat">데이터 분석 보완</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/gpt.png" alt="GPT"><div><div class="sbnm">ChatGPT</div><div class="sbcat">Primary Worker AI</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/claude.png" alt="Claude"><div><div class="sbnm">Claude</div><div class="sbcat">QC · 코드 구현</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/gemini.png" alt="Gemini"><div><div class="sbnm">Gemini</div><div class="sbcat">데이터 분석 보완</div></div></div>
   </div>
 </section>
 

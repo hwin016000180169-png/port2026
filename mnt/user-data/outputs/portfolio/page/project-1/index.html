@@ -131,11 +131,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 
 /* TECH STACK */
 .stackrow{display:flex;flex-wrap:wrap;gap:8px;}
-.stackbadge{display:flex;align-items:center;gap:10px;padding:14px 20px;border:1px solid var(--bdr);background:var(--navy);transition:border-color .3s;}
+.stackbadge{display:flex;align-items:center;gap:12px;padding:16px 22px;border:1px solid var(--bdr);background:var(--navy);transition:border-color .3s;}
 .stackbadge:hover{border-color:rgba(201,168,76,.3);}
-.sbnm{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);}
-.sbcat{font-size:9px;letter-spacing:.12em;color:var(--mid);margin-top:2px;}
-.sbi{font-size:18px;line-height:1;}
+.sbnm{font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);}
+.sbcat{font-size:14px;letter-spacing:.08em;color:var(--mid);margin-top:3px;}
+.sbi{font-size:32px;line-height:1;}
+.sbi-img{width:40px;height:40px;object-fit:contain;flex-shrink:0;}
 
 /* BOTTOM NAV */
 .pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);}
@@ -301,12 +302,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <div class="sec-label rv">— Tech Stack</div>
   <div class="sec-title rv d1">TOOLS <em>&amp; STACK</em></div>
   <div class="stackrow rv d2">
-    <div class="stackbadge"><span class="sbi">🌐</span><div><div class="sbnm">HTML · CSS · JS</div><div class="sbcat">퍼블리싱</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/html.png" alt="HTML"><div><div class="sbnm">HTML</div><div class="sbcat">마크업</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/css.png" alt="CSS"><div><div class="sbnm">CSS</div><div class="sbcat">스타일링</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/js.png" alt="JS"><div><div class="sbnm">JavaScript</div><div class="sbcat">인터랙션</div></div></div>
     <div class="stackbadge"><span class="sbi">🎨</span><div><div class="sbnm">Figma</div><div class="sbcat">UI 디자인</div></div></div>
-    <div class="stackbadge"><span class="sbi">🤖</span><div><div class="sbnm">ChatGPT</div><div class="sbcat">기획 · 콘텐츠</div></div></div>
-    <div class="stackbadge"><span class="sbi">🧠</span><div><div class="sbnm">Claude</div><div class="sbcat">코드 · 구조</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/gpt.png" alt="GPT"><div><div class="sbnm">ChatGPT</div><div class="sbcat">기획 · 콘텐츠</div></div></div>
+    <div class="stackbadge"><img class="sbi-img" src="../../../../../../images/claude.png" alt="Claude"><div><div class="sbnm">Claude</div><div class="sbcat">코드 · 구조</div></div></div>
     <div class="stackbadge"><span class="sbi">📦</span><div><div class="sbnm">GitHub Pages</div><div class="sbcat">배포</div></div></div>
-    <div class="stackbadge"><span class="sbi">📱</span><div><div class="sbnm">Responsive</div><div class="sbcat">반응형 설계</div></div></div>
   </div>
 </section>
 
