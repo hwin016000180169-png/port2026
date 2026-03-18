@@ -131,6 +131,21 @@ body.hov #CU{width:22px;height:22px;}
 .skt{font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--bdr);color:rgba(240,236,228,.45);transition:color .3s,border-color .3s;}
 .skt.ac{border-color:rgba(255,60,46,.35);color:rgba(255,60,46,.65);}
 
+/* timeline */
+.tl{display:flex;flex-direction:column;gap:0;margin-top:4px;}
+.tli{display:flex;gap:18px;position:relative;}
+.tli+.tli::before{content:'';position:absolute;left:3px;top:-14px;width:1px;height:14px;background:var(--bdr);}
+.tldot{width:7px;height:7px;border-radius:50%;background:var(--bdr);margin-top:6px;flex-shrink:0;transition:background .3s;}
+.tli.ac .tldot{background:var(--acc);}
+.tlbody{padding-bottom:18px;}
+.tldate{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--mid);margin-bottom:3px;}
+.tltxt{font-size:13px;letter-spacing:.05em;color:rgba(240,236,228,.7);}
+.tltxt strong{color:var(--fg);}
+.tli.ac .tltxt{color:rgba(240,236,228,.85);}
+/* cert badges */
+.certs{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.cert{font-size:9px;letter-spacing:.22em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(255,60,46,.35);color:rgba(255,60,46,.65);}
+
 /* ════════════════ S3 — WORKS ════════════════ */
 #S3{position:relative;z-index:10;padding:120px 52px 140px;background:var(--bg);}
 .whead{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:26px;border-bottom:1px solid var(--bdr);margin-bottom:72px;}
@@ -394,7 +409,45 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
       <div class="ii"><span class="ik">E-mail</span><span class="iv"><a href="#" target="_blank">rlaehdgnldls@naver.com</a></span></div>
       <div class="ii"><span class="ik">Status</span><span class="iv on">Available · 2026</span></div>
     </div>
-    <div class="rv d5">
+    <div class="rv d4">
+      <div class="sklbl">— Career &amp; Credentials</div>
+      <div class="tl">
+        <div class="tli ac">
+          <div class="tldot"></div>
+          <div class="tlbody">
+            <div class="tldate">2025.10 — 2026.01</div>
+            <div class="tltxt"><strong>네이비베이 e커머스팀</strong> — 랜딩페이지 기획·디자인·퍼블리싱 전담 납품</div>
+          </div>
+        </div>
+        <div class="tli ac">
+          <div class="tldot"></div>
+          <div class="tlbody">
+            <div class="tldate">2025.09</div>
+            <div class="tltxt"><strong>웹디자인개발기능사</strong> 취득 · 그린컴퓨터아카데미 UI/UX 정규과정 수료</div>
+          </div>
+        </div>
+        <div class="tli">
+          <div class="tldot"></div>
+          <div class="tlbody">
+            <div class="tldate">2025.07 — 현재</div>
+            <div class="tltxt"><strong>CrownyClass</strong> — 팀 프로젝트, 실사용 테스트 · QA 진행 중</div>
+          </div>
+        </div>
+        <div class="tli">
+          <div class="tldot"></div>
+          <div class="tlbody">
+            <div class="tldate">2025.05</div>
+            <div class="tltxt"><strong>GTQ 1급 · GTQi 1급</strong> 취득 · 하이미디어아카데미 그래픽디자인 수료</div>
+          </div>
+        </div>
+      </div>
+      <div class="certs">
+        <span class="cert">GTQ 1급</span>
+        <span class="cert">GTQi 1급</span>
+        <span class="cert">웹디자인개발기능사</span>
+      </div>
+    </div>
+    <div class="rv d5" style="margin-top:28px;">
       <div class="sklbl">— Skills &amp; Tools</div>
       <div class="sktags">
         <span class="skt ac">UI / UX Design</span>
@@ -434,7 +487,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
       <div class="ci">
         <div class="cimeta"><span class="cino">Project 01</span><span class="ciy">2026</span></div>
         <div class="ciname">NAVYBAY Brand Landing Page</div>
-        <div class="cidesc">라이프스타일 브랜드 철학 전달을 위한 몰입형 스크롤 랜딩 페이지. 배너 · 로고 · 상세 페이지 작업 포함.</div>
+        <div class="cidesc">e커머스팀 재직 중 기획·디자인·퍼블리싱 전담 납품. 브랜드 철학 전달을 위한 몰입형 스크롤 랜딩 페이지. 배너 · 로고 · 상세 페이지 포함.</div>
         <div class="citags"><span class="tag ac">Brand</span><span class="tag">Landing Page</span><span class="tag">Publishing</span><span class="tag">Identity</span></div>
         <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
       </div>
@@ -467,7 +520,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
       <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
       <div class="ci">
         <div class="cimeta"><span class="cino">Project 03</span><span class="ciy">2026</span></div>
-        <div class="ciname">Class Care Education Platform</div>
+        <div class="ciname">CrownyClass Education Platform</div>
         <div class="cidesc">학원·학교 수업 관리 통합 앱. 파일 공유 · 모의 시험 · Gemini AI 오답 노트. 실제 학원 운영 중.</div>
         <div class="citags"><span class="tag ac">App UI</span><span class="tag">Gemini API</span><span class="tag">Live Service</span></div>
         <div class="ciai"><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
