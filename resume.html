@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김동휘 이력서 — KIM DONG HWI</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --acc:#ff3c2e;
+  --dark:#0d0d0d;
+  --mid:#888;
+  --bdr:#e2e2e2;
+  --light:#f8f8f8;
+  --sb:#0d0d0d;
+  --sb-fg:#f0ece4;
+  --sb-mid:#777;
+  --sb-bdr:#232323;
+}
+
+@page{size:A4;margin:0;}
+@media print{
+  html,body{width:210mm;height:297mm;}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#fff;padding:0;}
+  .no-print{display:none!important;}
+}
+
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  background:#d4d4d4;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:32px 0 64px;
+  min-height:100vh;
+}
+
+/* ── PRINT BUTTON ── */
+.print-btn{
+  margin-bottom:20px;
+  padding:13px 36px;
+  background:var(--acc);
+  color:#fff;
+  border:none;
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.06em;
+  cursor:pointer;
+}
+.print-btn:hover{background:#d42a1e;}
+@media print{.print-btn{display:none;}}
+
+/* ── PAGE ── */
+.page{
+  width:210mm;
+  min-height:297mm;
+  background:#fff;
+  display:grid;
+  grid-template-columns:196px 1fr;
+  box-shadow:0 8px 48px rgba(0,0,0,.22);
+}
+
+/* ══════════ SIDEBAR ══════════ */
+.sidebar{
+  background:var(--sb);
+  display:flex;
+  flex-direction:column;
+  min-height:297mm;
+}
+
+/* 사진 */
+.sb-photo{
+  width:100%;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  border-bottom:3px solid var(--acc);
+  flex-shrink:0;
+}
+.sb-photo img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+
+/* 이름 블록 */
+.sb-head{
+  padding:22px 22px 20px;
+  border-bottom:1px solid var(--sb-bdr);
+}
+.sb-name-ko{
+  font-size:26px;
+  font-weight:700;
+  color:var(--sb-fg);
+  letter-spacing:.04em;
+  margin-bottom:3px;
+}
+.sb-name-en{
+  font-family:'Space Mono',monospace;
+  font-size:10px;
+  color:var(--acc);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.sb-titles{display:flex;flex-direction:column;gap:4px;}
+.sb-title{
+  font-size:10px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:rgba(240,236,228,.45);
+}
+.sb-title.ac{color:rgba(240,236,228,.78);}
+
+/* 섹션 */
+.sb-sec{padding:18px 22px;border-bottom:1px solid var(--sb-bdr);}
+.sb-label{
+  font-size:9px;
+  letter-spacing:.36em;
+  text-transform:uppercase;
+  color:var(--sb-mid);
+  margin-bottom:13px;
+}
+
+/* 연락처 */
+.contact-item{margin-bottom:12px;}
+.contact-item:last-child{margin-bottom:0;}
+.contact-key{
+  font-size:8px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--sb-mid);
+  margin-bottom:3px;
+}
+.contact-val{
+  font-size:14px;
+  color:rgba(240,236,228,.72);
+  letter-spacing:.02em;
+  word-break:break-all;
+  line-height:1.4;
+}
+
+/* 자격증 */
+.cert-item{
+  display:flex;
+  align-items:center;
+  padding:8px 10px;
+  background:rgba(255,255,255,.04);
+  border-left:2px solid var(--acc);
+  margin-bottom:6px;
+}
+.cert-item:last-child{margin-bottom:0;}
+.cert-name{font-size:14px;color:var(--sb-fg);font-weight:500;flex:1;}
+.cert-year{font-size:9px;color:var(--sb-mid);white-space:nowrap;}
+
+/* 스킬 */
+.skill-row{
+  display:flex;align-items:center;
+  gap:9px;margin-bottom:9px;
+}
+.skill-row:last-child{margin-bottom:0;}
+.skill-dot{width:4px;height:4px;border-radius:50%;background:var(--sb-mid);flex-shrink:0;}
+.skill-dot.ac{background:var(--acc);}
+.skill-name{font-size:14px;color:rgba(240,236,228,.6);letter-spacing:.02em;}
+.skill-name.ac{color:rgba(240,236,228,.88);}
+
+/* 포트폴리오 */
+.sb-portfolio{
+  margin-top:auto;
+  padding:18px 22px;
+  border-top:1px solid var(--sb-bdr);
+}
+.portfolio-label{
+  font-size:8px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--sb-mid);margin-bottom:6px;
+}
+.portfolio-url{
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  color:var(--acc);
+  letter-spacing:.03em;
+  word-break:break-all;
+  line-height:1.5;
+}
+
+/* ══════════ MAIN ══════════ */
+.main{
+  padding:28px 32px 28px 28px;
+  background:#fff;
+}
+
+/* 섹션 헤더 */
+.sec{margin-bottom:24px;}
+.sec-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding-bottom:7px;
+  border-bottom:2px solid var(--acc);
+  margin-bottom:16px;
+}
+.sec-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;
+  letter-spacing:.1em;
+  color:var(--dark);
+}
+.sec-num{
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  color:var(--acc);
+  letter-spacing:.12em;
+}
+
+/* INTRO */
+.intro-text{
+  font-size:14px;
+  line-height:1.9;
+  color:#555;
+  font-weight:300;
+  padding:14px 16px;
+  border-left:3px solid var(--acc);
+  background:var(--light);
+}
+.intro-text strong{color:var(--dark);font-weight:700;}
+
+/* 경력 */
+.exp-item{margin-bottom:16px;}
+.exp-item:last-child{margin-bottom:0;}
+.exp-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:2px;
+}
+.exp-company{font-size:15px;font-weight:700;color:var(--dark);letter-spacing:.02em;}
+.exp-period{
+  font-family:'Space Mono',monospace;
+  font-size:10px;color:var(--mid);white-space:nowrap;
+}
+.exp-role{
+  font-size:14px;color:var(--acc);
+  letter-spacing:.04em;font-weight:500;
+  margin-bottom:8px;
+}
+.exp-duties{list-style:none;display:flex;flex-direction:column;gap:4px;}
+.exp-duties li{
+  font-size:14px;color:#555;font-weight:300;
+  line-height:1.65;padding-left:13px;position:relative;
+}
+.exp-duties li::before{
+  content:'·';position:absolute;left:2px;
+  color:var(--acc);font-weight:700;
+}
+
+/* 교육 */
+.edu-item{
+  padding:10px 0;
+  border-bottom:1px solid var(--bdr);
+}
+.edu-item:last-child{border-bottom:none;padding-bottom:0;}
+.edu-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;}
+.edu-school{font-size:14px;font-weight:700;color:var(--dark);}
+.edu-period{
+  font-family:'Space Mono',monospace;
+  font-size:10px;color:var(--mid);white-space:nowrap;
+}
+.edu-course{font-size:14px;color:#666;font-weight:300;}
+
+/* 프로젝트 */
+.proj-item{
+  padding:13px 14px;
+  border:1px solid var(--bdr);
+  margin-bottom:8px;
+}
+.proj-item:last-child{margin-bottom:0;}
+.proj-item.live{
+  border-color:rgba(255,60,46,.28);
+  background:rgba(255,60,46,.018);
+}
+
+/* LIVE 뱃지 — 이름 오른쪽에 인라인 배치 */
+.proj-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:4px;
+}
+.proj-name-wrap{display:flex;align-items:center;gap:8px;}
+.proj-name{font-size:14px;font-weight:700;color:var(--dark);}
+.live-badge{
+  font-size:8px;letter-spacing:.18em;text-transform:uppercase;
+  padding:2px 7px;background:var(--acc);color:#fff;font-weight:700;
+  flex-shrink:0;
+}
+.proj-period{
+  font-family:'Space Mono',monospace;
+  font-size:10px;color:var(--mid);white-space:nowrap;
+  flex-shrink:0;
+}
+.proj-desc{
+  font-size:14px;color:#666;font-weight:300;
+  line-height:1.7;margin-bottom:8px;
+}
+.proj-tags{display:flex;flex-wrap:wrap;gap:4px;}
+.tag{
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  padding:2px 8px;border:1px solid var(--bdr);color:var(--mid);
+}
+.tag.ac{border-color:rgba(255,60,46,.32);color:rgba(255,60,46,.75);}
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">
+  ⬇ PDF 저장 (Ctrl+P → PDF로 저장 → 배경 그래픽 체크)
+</button>
+
+<div class="page">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <!-- 사진 -->
+    <div class="sb-photo">
+      <img src="images/myphoto.png" alt="김동휘 프로필 사진">
+    </div>
+
+    <!-- 이름 -->
+    <div class="sb-head">
+      <div class="sb-name-ko">김동휘</div>
+      <div class="sb-name-en">KIM DONG HWI</div>
+      <div class="sb-titles">
+        <div class="sb-title ac">UI / UX Designer</div>
+        <div class="sb-title ac">Web Publisher</div>
+        <div class="sb-title">AI Collaborator</div>
+      </div>
+    </div>
+
+    <!-- 연락처 -->
+    <div class="sb-sec">
+      <div class="sb-label">Contact</div>
+      <div class="contact-item">
+        <div class="contact-key">Phone</div>
+        <div class="contact-val">010-8272-0169</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-key">Email</div>
+        <div class="contact-val">rlaehdgnldls@naver.com</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-key">GitHub</div>
+        <div class="contact-val">github.com/<br>hwin016000180169-png</div>
+      </div>
+    </div>
+
+    <!-- 자격증 -->
+    <div class="sb-sec">
+      <div class="sb-label">Certifications</div>
+      <div class="cert-item">
+        <div class="cert-name">GTQ 1급</div>
+        <div class="cert-year">2025.05</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-name">GTQi 1급</div>
+        <div class="cert-year">2025.05</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-name">웹디자인개발기능사</div>
+        <div class="cert-year">2025.09</div>
+      </div>
+    </div>
+
+    <!-- 스킬 -->
+    <div class="sb-sec">
+      <div class="sb-label">Skills &amp; Tools</div>
+      <div class="skill-row"><div class="skill-dot ac"></div><span class="skill-name ac">UI / UX Design</span></div>
+      <div class="skill-row"><div class="skill-dot ac"></div><span class="skill-name ac">Web Publishing</span></div>
+      <div class="skill-row"><div class="skill-dot ac"></div><span class="skill-name ac">AI Prompting</span></div>
+      <div class="skill-row"><div class="skill-dot"></div><span class="skill-name">Figma</span></div>
+      <div class="skill-row"><div class="skill-dot"></div><span class="skill-name">HTML · CSS · JavaScript</span></div>
+      <div class="skill-row"><div class="skill-dot"></div><span class="skill-name">Photoshop · Illustrator</span></div>
+      <div class="skill-row"><div class="skill-dot"></div><span class="skill-name">Responsive Design</span></div>
+      <div class="skill-row"><div class="skill-dot ac"></div><span class="skill-name ac">GPT · Claude · Gemini</span></div>
+    </div>
+
+    <!-- 포트폴리오 -->
+    <div class="sb-portfolio">
+      <div class="portfolio-label">Portfolio</div>
+      <div class="portfolio-url">port2026-omega.vercel.app</div>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- 인트로 -->
+    <div class="sec">
+      <p class="intro-text">
+        <strong>AI와 협업하는 UI/UX 디자이너 겸 웹 퍼블리셔.</strong><br>
+        ChatGPT · Claude · Gemini를 활용해 기획부터 디자인, 퍼블리싱까지 단독 수행 가능.
+        실제 운영 중인 서비스 2건 보유. 빠른 실행력과 완결형 업무 방식이 강점입니다.
+      </p>
+    </div>
+
+    <!-- 경력 -->
+    <div class="sec">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <span class="sec-title">경력사항</span>
+      </div>
+      <div class="exp-item">
+        <div class="exp-top">
+          <div class="exp-company">네이비베이 (NAVYBAY)</div>
+          <div class="exp-period">2025. 10 — 2026. 01</div>
+        </div>
+        <div class="exp-role">e커머스팀 · UI/UX 디자이너 / 웹 퍼블리셔</div>
+        <ul class="exp-duties">
+          <li>브랜드 랜딩페이지 기획·디자인·퍼블리싱 전담 납품 (navybay.com 실 운영 중)</li>
+          <li>배너, 로고, 상세 페이지 디자인 100% 단독 수행</li>
+          <li>AI 도구(GPT · Claude) 활용으로 작업 사이클 단축</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 교육 -->
+    <div class="sec">
+      <div class="sec-head">
+        <span class="sec-num">02</span>
+        <span class="sec-title">교육사항</span>
+      </div>
+      <div class="edu-item">
+        <div class="edu-top">
+          <div class="edu-school">그린컴퓨터아카데미 성남</div>
+          <div class="edu-period">2025. 05 — 2025. 09</div>
+        </div>
+        <div class="edu-course">UI/UX 반응형웹 디자인 &amp; 퍼블리셔 정규과정 수료</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-top">
+          <div class="edu-school">하이미디어아카데미 성남</div>
+          <div class="edu-period">2025. 03 — 2025. 04</div>
+        </div>
+        <div class="edu-course">포토샵 + 일러스트 그래픽디자인 (GTQ · GTQi 대비) 수료</div>
+      </div>
+    </div>
+
+    <!-- 프로젝트 -->
+    <div class="sec">
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <span class="sec-title">주요 프로젝트</span>
+      </div>
+
+      <div class="proj-item live">
+        <div class="proj-top">
+          <div class="proj-name-wrap">
+            <div class="proj-name">NAVYBAY Brand Landing Page</div>
+            <div class="live-badge">LIVE</div>
+          </div>
+          <div class="proj-period">2025. 10</div>
+        </div>
+        <div class="proj-desc">
+          e커머스팀 재직 중 기획·디자인·퍼블리싱 전담 납품. 라이프스타일 브랜드 몰입형 스크롤 랜딩 페이지. 배너·로고·상세 페이지 포함. 100% 단독 수행.
+        </div>
+        <div class="proj-tags">
+          <span class="tag ac">실무 납품</span>
+          <span class="tag ac">Brand</span>
+          <span class="tag">Landing Page</span>
+          <span class="tag">Publishing</span>
+        </div>
+      </div>
+
+      <div class="proj-item live">
+        <div class="proj-top">
+          <div class="proj-name-wrap">
+            <div class="proj-name">CrownyClass — 교육 플랫폼</div>
+            <div class="live-badge">LIVE</div>
+          </div>
+          <div class="proj-period">2025. 07 — 현재</div>
+        </div>
+        <div class="proj-desc">
+          학원생 약 60명이 실사용 중인 교육 커뮤니케이션 플랫폼 (crownyclass.com). 파일 공유·모의시험·Gemini AI 오답노트 통합. UI/UX 디자인 100% · 기획 50% 담당.
+        </div>
+        <div class="proj-tags">
+          <span class="tag ac">팀 프로젝트</span>
+          <span class="tag ac">실사용 60명+</span>
+          <span class="tag">App UI/UX</span>
+          <span class="tag">Gemini API</span>
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-top">
+          <div class="proj-name-wrap">
+            <div class="proj-name">AI Command Center</div>
+          </div>
+          <div class="proj-period">2026</div>
+        </div>
+        <div class="proj-desc">
+          GPT·Claude·Gemini 다중 AI 통합 운영 대시보드 기획·디자인·퍼블리싱. 업무 자동화 파이프라인 UI 설계. 100% 단독 수행.
+        </div>
+        <div class="proj-tags">
+          <span class="tag">AI Platform</span><span class="tag">Dashboard</span><span class="tag">UI Design</span>
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-top">
+          <div class="proj-name-wrap">
+            <div class="proj-name">OTT Platform UX Redesign</div>
+          </div>
+          <div class="proj-period">2026</div>
+        </div>
+        <div class="proj-desc">
+          Netflix·Watcha 콘텐츠 탐색 UX 개선 연구. Mood 기반 30초 추천 UX, 선택 피로 해소 설계. 기획·디자인 100% 단독 수행.
+        </div>
+        <div class="proj-tags">
+          <span class="tag">UX Research</span><span class="tag">OTT</span><span class="tag">Prototype</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
