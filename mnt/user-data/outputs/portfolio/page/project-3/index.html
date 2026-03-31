@@ -9,11 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{--bg:#020202;--fg:#f0ece4;--acc:#00d68f;--bdr:#1e1e1e;--mid:#666;--card:#0a0a0a;}
+:root{--bg:#020202;--fg:#f0ece4;--acc:#c855f7;--bdr:#1e1e1e;--mid:#666;--card:#0a0a0a;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Noto Sans KR',sans-serif;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
 #CU{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
-#CR{position:fixed;width:34px;height:34px;border:1px solid rgba(0,214,143,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+#CR{position:fixed;width:34px;height:34px;border:1px solid rgba(200,85,247,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
 #PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:200;width:0%;}
 a{text-decoration:none;color:inherit;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(2,2,2,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
@@ -43,19 +43,19 @@ aside::-webkit-scrollbar{display:none;}
 .sbmiv.g{color:var(--acc);}
 .sbtags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
 .sbtag{font-size:14px;letter-spacing:.12em;padding:3px 8px;border:1px solid var(--bdr);color:var(--mid);}
-.sbtag.ac{border-color:rgba(0,214,143,.3);color:rgba(0,214,143,.65);}
+.sbtag.ac{border-color:rgba(200,85,247,.3);color:rgba(200,85,247,.65);}
 
 /* CONTENT */
 main{padding:0;}
 .chero{padding:56px 56px 72px;border-bottom:1px solid var(--bdr);position:relative;overflow:hidden;}
-.chero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(0,214,143,.04) 0%,transparent 60%);}
+.chero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(200,85,247,.06) 0%,transparent 60%);}
 .cetag{font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);margin-bottom:18px;}
 .cetitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,6.5vw,84px);line-height:.9;letter-spacing:.02em;margin-bottom:20px;}
 .cetitle em{color:var(--acc);font-style:normal;}
 .cedesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.52);max-width:600px;margin-bottom:32px;}
 .cebtns{display:flex;gap:14px;}
 .cebtn{font-size:14px;letter-spacing:.18em;text-transform:uppercase;padding:12px 24px;transition:all .3s;cursor:none;}
-.cebtn.p{background:var(--acc);color:#000;font-weight:700;}.cebtn.p:hover{background:#00f0a0;}
+.cebtn.p{background:var(--acc);color:#fff;font-weight:700;}.cebtn.p:hover{background:#df7aff;}
 .cebtn.s{border:1px solid var(--bdr);color:var(--fg);}.cebtn.s:hover{border-color:var(--acc);color:var(--acc);}
 
 .csec{padding:52px 56px;border-bottom:1px solid var(--bdr);}
@@ -79,7 +79,7 @@ main{padding:0;}
 /* FEATURES */
 .featgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
 .featitem{background:var(--card);padding:28px 24px;border:1px solid var(--bdr);transition:border-color .3s;}
-.featitem:hover{border-color:rgba(0,214,143,.2);}
+.featitem:hover{border-color:rgba(200,85,247,.25);}
 .featnum{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--acc);line-height:1;margin-bottom:12px;}
 .feattitle{font-size:14px;letter-spacing:.05em;color:var(--fg);margin-bottom:8px;font-weight:700;}
 .featdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.4);}
@@ -94,17 +94,61 @@ main{padding:0;}
 .iaterminal .ind{padding-left:20px;}
 .iaterminal .ind2{padding-left:40px;}
 
-/* SCREENS */
-.scgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
-.scitem{background:var(--card);border:1px solid var(--bdr);}
-.scbar{background:#111;padding:7px 12px;display:flex;align-items:center;gap:5px;border-bottom:1px solid var(--bdr);}
-.scdot{width:7px;height:7px;border-radius:50%;background:var(--bdr);}
-.scdot.g{background:var(--acc);}
-.sctitle{font-size:14px;letter-spacing:.12em;color:var(--mid);margin-left:6px;}
-.scbody{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0a0a0a;}
-.scbody img{width:100%;height:100%;object-fit:contain;display:block;}
-.scph{font-size:14px;letter-spacing:.12em;color:rgba(240,236,228,.1);text-transform:uppercase;}
-.scgrid2{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+/* CROWNY CLASS SHOWCASE */
+.mockstage{margin:0 -56px -52px;position:relative;background:linear-gradient(180deg,#08000e 0%,#0d0015 100%);}
+.mockstage::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1200px;height:600px;background:radial-gradient(ellipse,rgba(200,85,247,.18) 0%,transparent 65%);pointer-events:none;z-index:0;}
+.crowny-wrap{position:relative;z-index:1;}
+.cs-hero{text-align:center;padding:80px 60px 60px;border-bottom:1px solid rgba(200,85,247,.12);}
+.cs-badge-top{display:inline-block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,85,247,.8);border:1px solid rgba(200,85,247,.3);padding:5px 16px;border-radius:20px;margin-bottom:28px;}
+.cs-crown{font-size:40px;display:block;margin-bottom:6px;}
+.cs-logo h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,88px);letter-spacing:.05em;line-height:1;background:linear-gradient(135deg,#c855f7 0%,#ec4899 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:18px;}
+.cs-logo h1 em{font-style:normal;}
+.cs-sub{font-size:15px;line-height:2;color:rgba(240,236,228,.5);margin-bottom:52px;}
+.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(200,85,247,.08);border:1px solid rgba(200,85,247,.1);max-width:860px;margin:0 auto;}
+.cs-meta>div{padding:18px 22px;background:#08000e;display:flex;flex-direction:column;gap:7px;}
+.cs-meta span{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,85,247,.55);}
+.cs-meta strong{font-size:12px;color:rgba(240,236,228,.75);font-weight:400;line-height:1.55;}
+.cs-sec{padding:68px 60px;border-bottom:1px solid rgba(200,85,247,.08);}
+.cs-lbl{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,85,247,.6);margin-bottom:16px;}
+.cs-sec h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,4.5vw,54px);line-height:1.05;letter-spacing:.02em;margin-bottom:44px;}
+.cs-cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.cs-card{background:#0e0018;border:1px solid rgba(200,85,247,.1);padding:26px 22px;transition:border-color .3s;}
+.cs-card:hover{border-color:rgba(200,85,247,.3);}
+.cs-card-acc{background:linear-gradient(135deg,rgba(200,85,247,.07) 0%,rgba(236,72,153,.04) 100%);}
+.cs-cicon{font-size:22px;margin-bottom:12px;}
+.cs-card h3{font-size:13px;letter-spacing:.04em;color:var(--fg);margin-bottom:9px;font-weight:700;}
+.cs-card p{font-size:12px;line-height:1.75;color:rgba(240,236,228,.42);}
+.cs-solution{margin-top:2px;background:linear-gradient(135deg,rgba(200,85,247,.14) 0%,rgba(236,72,153,.07) 100%);border:1px solid rgba(200,85,247,.22);padding:40px 48px;text-align:center;}
+.cs-sol-lbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,85,247,.7);margin-bottom:14px;}
+.cs-solution h3{font-size:18px;color:var(--fg);margin-bottom:13px;font-weight:600;letter-spacing:.01em;}
+.cs-solution p{font-size:13px;line-height:1.85;color:rgba(240,236,228,.48);max-width:620px;margin:0 auto;}
+.cs-feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.cs-feat{background:#0e0018;border:1px solid rgba(200,85,247,.1);padding:22px 20px;}
+.cs-feat-top{display:flex;align-items:center;gap:8px;margin-bottom:11px;flex-wrap:wrap;}
+.cs-ficon{font-size:17px;}
+.cs-fname{font-size:13px;font-weight:700;color:var(--fg);letter-spacing:.03em;}
+.cs-new{font-size:9px;letter-spacing:.12em;padding:2px 7px;background:rgba(200,85,247,.2);color:#c855f7;border:1px solid rgba(200,85,247,.35);}
+.cs-plan{font-size:9px;letter-spacing:.1em;padding:2px 7px;background:rgba(100,100,100,.1);color:var(--mid);border:1px solid var(--bdr);}
+.cs-fdesc{font-size:12px;line-height:1.72;color:rgba(240,236,228,.48);margin-bottom:9px;}
+.cs-fcase{font-size:11px;line-height:1.6;color:rgba(200,85,247,.5);border-top:1px solid rgba(200,85,247,.08);padding-top:9px;}
+.cs-feat-more{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:transparent;border:1px solid rgba(200,85,247,.1);padding:22px;}
+.cs-more-num{font-size:13px;color:rgba(200,85,247,.7);letter-spacing:.04em;}
+.cs-more-btn{font-size:11px;letter-spacing:.14em;padding:9px 20px;background:var(--acc);color:#fff;border:none;cursor:pointer;font-family:inherit;text-transform:uppercase;}
+.cs-empathy{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.cs-emp{background:#0e0018;border:1px solid rgba(200,85,247,.1);padding:34px 30px;}
+.cs-emp-hd{display:flex;align-items:flex-start;gap:14px;margin-bottom:26px;padding-bottom:18px;border-bottom:1px solid rgba(200,85,247,.08);}
+.cs-emp-ico{font-size:26px;}
+.cs-emp-hd h3{font-size:15px;font-weight:700;color:var(--fg);margin-bottom:5px;}
+.cs-emp-hd p{font-size:11px;color:rgba(200,85,247,.55);letter-spacing:.05em;}
+.cs-emp-list{display:flex;flex-direction:column;gap:16px;}
+.cs-emp-item{display:flex;gap:12px;align-items:flex-start;}
+.cs-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;background:var(--acc);}
+.cs-emp-item strong{font-size:13px;font-weight:700;color:var(--fg);display:block;margin-bottom:4px;}
+.cs-emp-item p{font-size:12px;line-height:1.7;color:rgba(240,236,228,.42);}
+.cs-quote{padding:56px 60px;text-align:center;border-top:1px solid rgba(200,85,247,.08);}
+.cs-quote p{font-size:15px;line-height:1.95;color:rgba(240,236,228,.65);font-style:italic;margin-bottom:12px;}
+.cs-quote span{font-size:11px;letter-spacing:.1em;color:rgba(200,85,247,.4);}
+.cs-foot{text-align:center;padding:16px 60px 40px;font-size:11px;letter-spacing:.1em;color:rgba(240,236,228,.18);}
 
 /* AI PROMPTS */
 .apstack{display:flex;flex-direction:column;gap:3px;}
@@ -259,18 +303,89 @@ main{padding:0;}
     </div>
 
     <div class="csec" id="screens">
-      <div class="sec-label rv">— Visual Design</div>
-      <div class="sec-title rv d1">화면 <em>목업</em></div>
-      <!-- 세로형 3컬럼 (class_01~03) -->
-      <div class="scgrid rv d1">
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">screen_01</span></div><div class="scbody" style="aspect-ratio:488/697;"><img src="../../../../../../images/class_01.png" alt="Screen 01"></div></div>
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">screen_02</span></div><div class="scbody" style="aspect-ratio:415/642;"><img src="../../../../../../images/class_02.png" alt="Screen 02"></div></div>
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">screen_03</span></div><div class="scbody" style="aspect-ratio:406/578;"><img src="../../../../../../images/class_03.png" alt="Screen 03"></div></div>
-      </div>
-      <!-- 가로형 2컬럼 (class_04~05) -->
-      <div class="scgrid2 rv d2" style="margin-top:3px;">
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">screen_04</span></div><div class="scbody" style="aspect-ratio:1049/680;"><img src="../../../../../../images/class_04.png" alt="Screen 04"></div></div>
-        <div class="scitem"><div class="scbar"><div class="scdot"></div><div class="scdot"></div><div class="scdot g"></div><span class="sctitle">screen_05</span></div><div class="scbody" style="aspect-ratio:1175/785;"><img src="../../../../../../images/class_05.png" alt="Screen 05"></div></div>
+      <div class="mockstage">
+        <div class="crowny-wrap">
+          <!-- HERO -->
+          <div class="cs-hero">
+            <div class="cs-badge-top">2026 Portfolio Project</div>
+            <div class="cs-logo">
+              <span class="cs-crown">👑</span>
+              <h1>Crowny <em>Class</em></h1>
+            </div>
+            <p class="cs-sub">학원, 강사, 학생을 위한<br>올인원 교육 케어 프로그램</p>
+            <div class="cs-meta">
+              <div><span>소프트웨어</span><strong>Crowny Class</strong></div>
+              <div><span>사용자 기반</span><strong>UI/UX 기획, 시각디, 강의 수업 (3인 팀)</strong></div>
+              <div><span>개발 기간</span><strong>2025.07 — 2026.03</strong></div>
+              <div><span>플랫폼</span><strong>Windows PC App · Web Portal</strong></div>
+            </div>
+          </div>
+          <!-- 01. BACKGROUND & PROBLEM -->
+          <div class="cs-sec">
+            <div class="cs-lbl">01. Background &amp; Problem</div>
+            <h2>현장 경험이 만든 솔루션,<br>이면의 문제를 발견하다</h2>
+            <div class="cs-cards3">
+              <div class="cs-card"><div class="cs-cicon">🔌</div><h3>플러그인 이동의 한계</h3><p>기존 프로젝트 교육용 메세지 기반 슬라이드 앱에서는 플러그인을 위한 전환으로 인해 교육의 흐름이 자주 방해받습니다</p></div>
+              <div class="cs-card"><div class="cs-cicon">📋</div><h3>단절된 피드백</h3><p>학원생들이 작업한 결과물을 현재 파악하기 어렵거나 교사가 직접 학생마다 확인하기가 어렵습니다</p></div>
+              <div class="cs-card"><div class="cs-cicon">📁</div><h3>복잡한 행정 업무</h3><p>출석, 과제 현황, 학생 개별 상담 이력 등 복잡한 행정 업무로 인해 선생님이 수업에만 집중하기 어렵습니다</p></div>
+            </div>
+            <div class="cs-solution">
+              <div class="cs-sol-lbl">💡 Solution</div>
+              <h3>"수업에만 집중할 수 있는 환경을 만들자"</h3>
+              <p>프로젝트 팀이 직접 사용자 인터뷰, 설문과 함께 현장에서 기술이 충족하지 못하는 부분을 파악하고 프로그램 개발에 착수했습니다</p>
+            </div>
+          </div>
+          <!-- 02. CORE STRATEGY -->
+          <div class="cs-sec">
+            <div class="cs-lbl">02. Core Strategy</div>
+            <h2>왜 Crowny Class인가?</h2>
+            <div class="cs-cards3">
+              <div class="cs-card cs-card-acc"><div class="cs-cicon">🔧</div><h3>완전 일체형</h3><p>실무에 쓰는 도구와 동일하게, 그 환경 안에서 모든 것이 해결됩니다</p></div>
+              <div class="cs-card cs-card-acc"><div class="cs-cicon">🌐</div><h3>국경의 연장선</h3><p>연동 가능한 강의를 공유하고 원격으로도 동일한 경험을 제공합니다</p></div>
+              <div class="cs-card cs-card-acc"><div class="cs-cicon">⚡</div><h3>직관적 UX</h3><p>복잡한 업무 없이 그 날 발생한 일을 그 날 바로 해결할 수 있습니다</p></div>
+            </div>
+          </div>
+          <!-- 04. KEY FEATURES -->
+          <div class="cs-sec">
+            <div class="cs-lbl">04. Key Features</div>
+            <h2>수업에 필요한 모든 것을 담다</h2>
+            <div class="cs-feat-grid">
+              <div class="cs-feat"><div class="cs-feat-top"><span class="cs-ficon">📁</span><span class="cs-fname">파일 전송</span><span class="cs-new">NEW</span></div><p class="cs-fdesc">강사가 학생에게 이미지나 파일을 전달하는 빠른 채널</p><p class="cs-fcase">상황: 수업시간 전 학생에게 학습자료를 미리 배분할 수 있다</p></div>
+              <div class="cs-feat"><div class="cs-feat-top"><span class="cs-ficon">🖥️</span><span class="cs-fname">화면 공유</span><span class="cs-plan">구현 계획</span></div><p class="cs-fdesc">강사가 작업 중인 피그마 화면을 학생들에게 실시간 공유</p><p class="cs-fcase">상황: 강사의 작업 화면이 학생 화면에도 그대로 표시됩니다</p></div>
+              <div class="cs-feat"><div class="cs-feat-top"><span class="cs-ficon">🎮</span><span class="cs-fname">원격 제어</span><span class="cs-plan">구현 계획</span></div><p class="cs-fdesc">강사가 허락을 받고 학생의 피그마 화면을 원격으로 제어</p><p class="cs-fcase">상황: 학생 피그마 파일을 원격으로 직접 제어할 수 있어</p></div>
+              <div class="cs-feat"><div class="cs-feat-top"><span class="cs-ficon">💬</span><span class="cs-fname">상담 기록</span></div><p class="cs-fdesc">학생별 상담 및 피드백 관리가 가능하고 이전 기록을 참고해 지속적인 관리가 가능합니다</p></div>
+              <div class="cs-feat"><div class="cs-feat-top"><span class="cs-ficon">👥</span><span class="cs-fname">팀 커뮤니케이션</span></div><p class="cs-fdesc">실제 업무처럼 팀원, 강사 간 채팅으로 소통하고 자료를 공유할 수 있습니다</p></div>
+              <div class="cs-feat-more"><div class="cs-more-num">+ 10개의 핵심기능</div><button class="cs-more-btn">상세 기능 보기</button></div>
+            </div>
+          </div>
+          <!-- 04. EMPATHY & BENEFITS -->
+          <div class="cs-sec">
+            <div class="cs-lbl">04. Empathy &amp; Benefits</div>
+            <h2>기능을 넘어 마음까지 케어합니다</h2>
+            <div class="cs-empathy">
+              <div class="cs-emp">
+                <div class="cs-emp-hd"><span class="cs-emp-ico">👨‍🏫</span><div><h3>강사에게</h3><p>Teaching with Peace of Mind</p></div></div>
+                <div class="cs-emp-list">
+                  <div class="cs-emp-item"><span class="cs-dot"></span><div><strong>효율적 복지</strong><p>관리자 모드에서 학생 케어 데이터와 우선 사항을 한눈에 확인</p></div></div>
+                  <div class="cs-emp-item"><span class="cs-dot"></span><div><strong>스트레스 감소</strong><p>행정 업무에서 오는 스트레스를 줄이고 핵심 수업에 집중할 수 있어</p></div></div>
+                </div>
+              </div>
+              <div class="cs-emp">
+                <div class="cs-emp-hd"><span class="cs-emp-ico">🎓</span><div><h3>학생에게</h3><p>Learning with Confidence</p></div></div>
+                <div class="cs-emp-list">
+                  <div class="cs-emp-item"><span class="cs-dot"></span><div><strong>맞춤형 복지</strong><p>개인 상담이 어려운 학생들도 정기적으로 케어를 받을 수 있어요</p></div></div>
+                  <div class="cs-emp-item"><span class="cs-dot"></span><div><strong>심리 노트</strong><p>학생들이 감정 상태를 기록하고 강사가 확인할 수 있는 안전한 공간</p></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- QUOTE -->
+          <div class="cs-quote">
+            <p>"이 프로젝트는 현장의 목소리를 기술과 디자인으로<br>풀어가고자 하는 미스터리를 담고 있습니다."</p>
+            <span>강사, 학생 인터뷰를 통해 발견한 사용자 니즈 기반 설계</span>
+          </div>
+          <div class="cs-foot">© 2025 Crowny Class Portfolio — Designed by Deonghwi Kim</div>
+        </div>
       </div>
     </div>
 
