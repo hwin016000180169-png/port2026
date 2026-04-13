@@ -107,15 +107,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .feat-desc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
 
 /* MOCKUP */
-.mockwrap{display:flex;flex-direction:row;gap:3px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory;cursor:grab;}
-.mockwrap:active{cursor:grabbing;}
-.mockwrap::-webkit-scrollbar{height:2px;}
-.mockwrap::-webkit-scrollbar-track{background:var(--bdr);}
-.mockwrap::-webkit-scrollbar-thumb{background:var(--acc);}
-.mockitem{flex:0 0 680px;display:flex;flex-direction:column;scroll-snap-align:start;border:1px solid var(--bdr);background:var(--card);}
-.mockitem img{width:100%;height:auto;display:block;flex:1;}
-.mock-caption{padding:10px 20px;background:rgba(0,0,0,.4);border-bottom:1px solid var(--bdr);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);flex-shrink:0;}
-.mock-count{font-size:9px;letter-spacing:.12em;color:var(--acc);margin-top:12px;text-align:right;}
+.mockwrap{display:flex;flex-direction:row;gap:4px;overflow-x:auto;overflow-y:hidden;padding-bottom:16px;cursor:grab;user-select:none;-webkit-user-select:none;}
+.mockwrap.is-dragging{cursor:grabbing;}
+.mockwrap::-webkit-scrollbar{height:3px;}
+.mockwrap::-webkit-scrollbar-track{background:rgba(255,255,255,.05);}
+.mockwrap::-webkit-scrollbar-thumb{background:var(--acc);border-radius:2px;}
+.mockitem{flex:0 0 700px;display:flex;flex-direction:column;border:1px solid var(--bdr);background:var(--card);}
+.mockitem img{width:100%;height:auto;display:block;}
+.mock-caption{padding:14px 22px;background:rgba(8,16,36,.9);border-bottom:1px solid rgba(26,107,255,.25);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(240,236,228,.9);flex-shrink:0;font-weight:700;}
+.mock-count{font-size:10px;letter-spacing:.18em;color:rgba(240,236,228,.3);margin-top:10px;}
 
 /* MIGRATION */
 .mig-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
@@ -566,8 +566,46 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cu.style.lef
 // progress bar
 const pb=document.getElementById('PB');
 window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);pb.style.width=(p*100)+'%';});
-/* drag-scroll for mockup gallery */
-(()=>{const el=document.getElementById('mockGallery');if(!el)return;let isDown=false,startX,scrollLeft;el.addEventListener('mousedown',e=>{isDown=true;el.style.cursor='grabbing';startX=e.pageX-el.offsetLeft;scrollLeft=el.scrollLeft;});el.addEventListener('mouseleave',()=>{isDown=false;el.style.cursor='grab';});el.addEventListener('mouseup',()=>{isDown=false;el.style.cursor='grab';});el.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-el.offsetLeft;el.scrollLeft=scrollLeft-(x-startX)*1.2;});})();
+/* drag-scroll with momentum for mockup gallery */
+(()=>{
+  const el=document.getElementById('mockGallery');
+  if(!el)return;
+  let isDown=false,startX=0,startScroll=0,lastX=0,lastT=0,velX=0,raf=0;
+  const cls='is-dragging';
+  el.addEventListener('mousedown',e=>{
+    isDown=true;
+    el.classList.add(cls);
+    startX=e.pageX;
+    startScroll=el.scrollLeft;
+    lastX=e.pageX;
+    lastT=performance.now();
+    velX=0;
+    cancelAnimationFrame(raf);
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove',e=>{
+    if(!isDown)return;
+    const now=performance.now();
+    const dt=now-lastT||1;
+    velX=(lastX-e.pageX)/dt*14;
+    lastX=e.pageX;
+    lastT=now;
+    el.scrollLeft=startScroll+(startX-e.pageX);
+  });
+  document.addEventListener('mouseup',()=>{
+    if(!isDown)return;
+    isDown=false;
+    el.classList.remove(cls);
+    let v=velX;
+    function coast(){
+      if(Math.abs(v)<0.3)return;
+      el.scrollLeft+=v;
+      v*=0.88;
+      raf=requestAnimationFrame(coast);
+    }
+    coast();
+  });
+})();
 
 // reveal
 const IO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');});},{threshold:.12});
