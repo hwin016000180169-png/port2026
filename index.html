@@ -163,10 +163,10 @@ body.hov #CU{width:22px;height:22px;}
 /* group headers */
 .wgroup{margin-bottom:52px;}
 .wgroup:last-child{margin-bottom:0;}
-.wgroup-hd{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bdr);margin-bottom:2px;}
-.wgroup-dot{width:6px;height:6px;border-radius:50%;background:var(--acc);flex-shrink:0;}
-.wgroup-lbl{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--fg);}
-.wgroup-sub{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-left:auto;}
+.wgroup-hd{display:flex;align-items:center;gap:14px;padding:18px 0 14px;border-bottom:1px solid rgba(255,60,46,.22);margin-bottom:4px;}
+.wgroup-dot{width:8px;height:8px;border-radius:50%;background:var(--acc);flex-shrink:0;box-shadow:0 0 7px rgba(255,60,46,.45);}
+.wgroup-lbl{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);}
+.wgroup-sub{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-left:auto;}
 
 /* grid: equal size cards */
 .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
@@ -178,7 +178,7 @@ body.hov #CU{width:22px;height:22px;}
 .wc:nth-child(3){transition-delay:.18s;}
 .wc:nth-child(4){transition-delay:.26s;}
 
-.ct{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;}
+.ct{width:100%;aspect-ratio:2/1;position:relative;overflow:hidden;}
 .ctbg{position:absolute;inset:0;transition:transform .7s cubic-bezier(.22,1,.36,1);}
 .wc:hover .ctbg{transform:scale(1.05);}
 .wc:nth-child(1) .ctbg{background:linear-gradient(135deg,#010b1e 0%,#02102e 50%,#041a40 100%);}
@@ -200,12 +200,14 @@ body.hov #CU{width:22px;height:22px;}
 .wc:hover .covtxt{transform:translateY(0);}
 .covline{width:26px;height:1px;background:var(--acc);}
 
-.ci{padding:22px 26px 26px;border-top:1px solid var(--bdr);}
+.ci{padding:16px 20px 20px;border-top:1px solid var(--bdr);}
+.ciskills{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px;padding-top:8px;border-top:1px solid rgba(240,236,228,.06);}
+.skill{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;background:rgba(240,236,228,.03);border:1px solid rgba(240,236,228,.1);color:rgba(240,236,228,.42);white-space:nowrap;}
 .cimeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
 .cino{font-size:12px;letter-spacing:.3em;color:var(--mid);}
 .ciy{font-size:12px;letter-spacing:.2em;color:var(--mid);}
 .ciname{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,1.8vw,26px);line-height:1.1;margin-bottom:8px;}
-.cidesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.38);margin-bottom:12px;}
+.cidesc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.8;font-weight:300;color:rgba(240,236,228,.75);margin-bottom:10px;}
 .citags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
 .tag{font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--bdr);color:var(--mid);}
 .tag.ac{border-color:rgba(255,60,46,.35);color:rgba(255,60,46,.65);}
@@ -516,7 +518,8 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
           <div class="ciname">NNC Admin Redesign &amp; Migration</div>
           <div class="cidesc">노후화된 관리자 시스템 전면 리디자인 및 외부 플랫폼 마이그레이션. 서비스 신청·통계·가맹점 관리 기능 추가 개발, 현재 nncmall.com 실운영 중.</div>
           <div class="citags"><span class="tag ac">Live Service</span><span class="tag">Admin UI</span><span class="tag">CMS Module</span><span class="tag">Migration</span><span class="tag">Feature Dev</span></div>
-          <div class="ciai"><div class="aidot cla"></div><span class="ain">Claude</span></div>
+          <div class="ciskills"><span class="skill">PHP</span><span class="skill">MySQL</span><span class="skill">JavaScript</span><span class="skill">CSS3</span><span class="skill">Gnuboard</span></div>
+          <div class="ciai" style="margin-top:8px"><div class="aidot cla"></div><span class="ain">Claude</span></div>
         </div>
       </div>
 
@@ -533,7 +536,8 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
           <div class="ciname">NAVYBAY Brand Landing Page</div>
           <div class="cidesc">네이비베이 e커머스팀 재직 중 단독 기획·디자인·퍼블리싱 납품. 상품 중심 구조를 브랜드 경험 중심으로 전환, 현재 navybay.com 실운영 중.</div>
           <div class="citags"><span class="tag ac">Brand</span><span class="tag">Landing Page</span><span class="tag">Publishing</span><span class="tag">Identity</span></div>
-          <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+          <div class="ciskills"><span class="skill">HTML5</span><span class="skill">CSS3</span><span class="skill">JavaScript</span><span class="skill">Swiper.js</span><span class="skill">Figma</span></div>
+          <div class="ciai" style="margin-top:8px"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
         </div>
       </div>
 
@@ -550,7 +554,8 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
           <div class="ciname">CrownyClass Education Platform</div>
           <div class="cidesc">수업 관리·파일 공유·Gemini AI 오답 노트를 통합한 교육 앱 UI 전담. 실제 학원 학생들이 사용 중인 라이브 서비스.</div>
           <div class="citags"><span class="tag ac">App UI</span><span class="tag">Gemini API</span><span class="tag">Live Service</span></div>
-          <div class="ciai"><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+          <div class="ciskills"><span class="skill">Figma</span><span class="skill">App UI</span><span class="skill">Gemini API</span><span class="skill">Firebase</span><span class="skill">Prototype</span></div>
+          <div class="ciai" style="margin-top:8px"><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
         </div>
       </div>
 
@@ -560,6 +565,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
   <!-- ── Personal Work 그룹 ── -->
   <div class="wgroup">
     <div class="wgroup-hd">
+      <span class="wgroup-dot"></span>
       <span class="wgroup-lbl">Personal Work</span>
       <span class="wgroup-sub">개인 작업물 · 4</span>
     </div>
@@ -578,7 +584,8 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
           <div class="ciname">VALORANT Game Guide Site</div>
           <div class="cidesc">여러 사이트에 분산된 게임 정보를 단일 경험으로 통합. 에이전트·맵·토너먼트 가이드를 인터랙션 중심 UI로 설계·퍼블리싱.</div>
           <div class="citags"><span class="tag ac">Game UI</span><span class="tag">Interaction</span><span class="tag">HTML·CSS·JS</span></div>
-          <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+          <div class="ciskills"><span class="skill">HTML5</span><span class="skill">CSS3</span><span class="skill">JavaScript</span><span class="skill">GSAP</span><span class="skill">JSON API</span></div>
+          <div class="ciai" style="margin-top:8px"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
         </div>
       </div>
 
@@ -595,7 +602,8 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
           <div class="ciname">AI Command Center</div>
           <div class="cidesc">GPT·Claude·Gemini를 단일 인터페이스에서 운영하는 업무 자동화 대시보드 UI 설계 및 인터랙티브 프로토타입 구현.</div>
           <div class="citags"><span class="tag ac">AI Platform</span><span class="tag">Dashboard</span><span class="tag">Automation</span></div>
-          <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+          <div class="ciskills"><span class="skill">Figma</span><span class="skill">UI Design</span><span class="skill">Prototype</span><span class="skill">Framer</span></div>
+          <div class="ciai" style="margin-top:8px"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
         </div>
       </div>
 
@@ -612,7 +620,8 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
           <div class="ciname">OTT Platform UX Redesign</div>
           <div class="cidesc">Netflix·Watcha의 콘텐츠 탐색 피로 문제를 UX 리서치로 분석. Mood 기반 30초 추천 플로우로 선택 과부하를 해소한 리디자인.</div>
           <div class="citags"><span class="tag ac">UX Research</span><span class="tag">OTT</span><span class="tag">Prototype</span></div>
-          <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span></div>
+          <div class="ciskills"><span class="skill">Figma</span><span class="skill">UX Research</span><span class="skill">User Testing</span><span class="skill">Prototype</span></div>
+          <div class="ciai" style="margin-top:8px"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span></div>
         </div>
       </div>
 
@@ -629,7 +638,8 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
           <div class="ciname">Medibook — Hospital Booking UX</div>
           <div class="cidesc">굿닥·똑닥 경쟁사 분석 기반으로 병원 예약 플로우를 재설계. 증상 선택 3단계로 복잡한 예약 프로세스를 단순화한 모바일 UX.</div>
           <div class="citags"><span class="tag ac">Mobile UX</span><span class="tag">Healthcare</span><span class="tag">Figma</span></div>
-          <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+          <div class="ciskills"><span class="skill">Figma</span><span class="skill">Mobile UI</span><span class="skill">Healthcare UX</span><span class="skill">Prototype</span></div>
+          <div class="ciai" style="margin-top:8px"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
         </div>
       </div>
 
