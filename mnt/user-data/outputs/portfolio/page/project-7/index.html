@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NNC Admin Redesign — KDH Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#020202;--fg:#f0ece4;
+  --acc:#1A6BFF;--acc2:#38BFFF;
+  --nnc-dark:#02102E;--nnc-mid:#041A40;
+  --bdr:#1e1e1e;--mid:#666;--card:#0a0a0a;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Noto Sans KR',sans-serif;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
+#CU{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+#CR{position:fixed;width:36px;height:36px;border:1px solid rgba(26,107,255,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+#PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:200;width:0%;}
+a{text-decoration:none;color:inherit;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(2,2,2,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
+.nb{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
+.nb:hover{color:var(--acc);}
+.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
+.nn{font-size:14px;letter-spacing:.22em;color:var(--mid);}
+
+/* HERO */
+#hero{width:100vw;height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:60px;}
+.hl{background:var(--nnc-dark);display:flex;flex-direction:column;justify-content:flex-end;padding:64px 52px;position:relative;overflow:hidden;border-right:1px solid rgba(26,107,255,.15);}
+.hl::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(26,107,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,107,255,.04) 1px,transparent 1px);background-size:60px 60px;}
+.hbignum{position:absolute;right:-.02em;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:26vw;line-height:1;color:rgba(26,107,255,.05);pointer-events:none;user-select:none;}
+.htag{font-size:14px;letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);margin-bottom:20px;position:relative;z-index:1;}
+.htitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,8.5vw,110px);line-height:.88;letter-spacing:.02em;margin-bottom:22px;position:relative;z-index:1;}
+.htitle em{display:block;color:var(--acc);font-style:normal;}
+.hdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.55);margin-bottom:36px;position:relative;z-index:1;max-width:420px;}
+.hbtns{display:flex;gap:14px;position:relative;z-index:1;}
+.hbtn{font-size:14px;letter-spacing:.18em;text-transform:uppercase;padding:13px 26px;transition:all .3s;font-family:'Pretendard',sans-serif;cursor:none;}
+.hbtn.p{background:var(--acc);color:#fff;font-weight:700;}
+.hbtn.p:hover{background:#2d7fff;}
+.hbtn.s{border:1px solid rgba(240,236,228,.2);color:var(--fg);}
+.hbtn.s:hover{border-color:var(--acc);color:var(--acc);}
+.hr{background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:64px 52px;}
+.hmrow{display:flex;align-items:center;padding:22px 0;border-bottom:1px solid var(--bdr);}
+.hmrow:first-child{border-top:1px solid var(--bdr);}
+.hmnum{font-family:'Bebas Neue',sans-serif;font-size:50px;color:var(--acc);line-height:1;min-width:130px;}
+.hminfo{display:flex;flex-direction:column;gap:5px;}
+.hmk{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
+.hmv{font-family:'Noto Sans KR',sans-serif;font-size:14px;color:rgba(240,236,228,.5);font-weight:300;}
+.hmeta2{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:20px;}
+.hm2{padding:16px 18px;background:var(--card);display:flex;flex-direction:column;gap:5px;}
+.hm2k{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
+.hm2v{font-size:14px;letter-spacing:.05em;}
+.hm2v.acc{color:var(--acc);}
+
+/* BADGE */
+.live-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(26,107,255,.12);border:1px solid rgba(26,107,255,.3);padding:6px 14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc2);margin-bottom:18px;position:relative;z-index:1;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--acc2);animation:blink 1.4s ease infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+/* SHARED */
+.sec{padding:96px 52px;border-top:1px solid var(--bdr);}
+.sec-label{font-size:14px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,70px);letter-spacing:.02em;margin-bottom:52px;line-height:.95;}
+.sec-title em{font-style:normal;color:var(--acc);}
+
+/* OVERVIEW */
+.ov2{display:grid;grid-template-columns:1fr 1.3fr;gap:72px;align-items:start;}
+.problist{display:flex;flex-direction:column;}
+.pitem{padding:24px 0;border-bottom:1px solid var(--bdr);display:grid;grid-template-columns:48px 1fr;gap:18px;}
+.pnum{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--acc);line-height:1;}
+.ptitle{font-size:14px;letter-spacing:.05em;color:var(--fg);margin-bottom:8px;font-weight:700;}
+.pdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
+.goalbox{background:var(--nnc-dark);border:1px solid rgba(26,107,255,.2);padding:36px;margin-bottom:22px;}
+.gblabel{font-size:14px;letter-spacing:.26em;text-transform:uppercase;color:var(--acc2);margin-bottom:18px;}
+.gbitems{display:flex;flex-direction:column;gap:10px;}
+.gbitem{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.7;font-weight:300;color:rgba(240,236,228,.65);padding:12px 16px;border-left:2px solid var(--acc);}
+.rolegrid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.roleitem{padding:18px 20px;background:var(--card);}
+.rolekey{font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:7px;}
+.roleval{font-size:14px;margin-bottom:10px;}
+.rolebar{height:2px;background:var(--bdr);position:relative;}
+.rolefill{position:absolute;top:0;left:0;height:100%;width:0%;background:var(--acc);transition:width 1.2s cubic-bezier(.22,1,.36,1);}
+
+/* BEFORE/AFTER */
+.ba-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:48px;}
+.ba-item{position:relative;overflow:hidden;background:var(--card);}
+.ba-label{position:absolute;top:20px;left:20px;z-index:2;font-size:11px;letter-spacing:.28em;text-transform:uppercase;padding:6px 12px;font-weight:700;}
+.ba-label.before{background:#333;color:#999;}
+.ba-label.after{background:var(--acc);color:#fff;}
+.ba-item img{width:100%;height:auto;display:block;opacity:.9;}
+.ba-desc{padding:24px 28px;background:var(--card);border-top:1px solid var(--bdr);}
+.ba-desc-title{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.ba-desc-txt{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.5);}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:0;}
+.feat-item{background:var(--card);padding:36px 30px;border:1px solid var(--bdr);transition:border-color .3s;}
+.feat-item:hover{border-color:rgba(26,107,255,.35);}
+.feat-icon{font-size:28px;margin-bottom:18px;display:block;}
+.feat-badge{display:inline-block;background:rgba(26,107,255,.15);color:var(--acc2);font-size:10px;letter-spacing:.2em;padding:3px 8px;text-transform:uppercase;margin-bottom:12px;}
+.feat-badge.new{background:rgba(255,107,26,.15);color:#ff6b1a;}
+.feat-title{font-size:14px;letter-spacing:.06em;color:var(--fg);margin-bottom:10px;font-weight:700;}
+.feat-desc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
+
+/* MOCKUP */
+.mockwrap{display:flex;flex-direction:column;gap:0;}
+.mockitem{width:100%;position:relative;}
+.mockitem img{width:100%;height:auto;display:block;}
+.mock-caption{padding:12px 24px;background:var(--card);border-bottom:1px solid var(--bdr);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);}
+
+/* MIGRATION */
+.mig-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.mig-list{display:flex;flex-direction:column;gap:0;}
+.mig-item{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--bdr);}
+.mig-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--acc);flex-shrink:0;width:40px;}
+.mig-title{font-size:14px;font-weight:700;color:var(--fg);margin-bottom:6px;letter-spacing:.04em;}
+.mig-desc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
+.mig-box{background:var(--nnc-dark);border:1px solid rgba(26,107,255,.18);padding:40px;}
+.mig-box-label{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc2);margin-bottom:24px;}
+.mig-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.mig-stat{background:rgba(0,0,0,.4);padding:20px 22px;}
+.mig-stat-num{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--acc);line-height:1;margin-bottom:6px;}
+.mig-stat-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);}
+
+/* TIMELINE */
+.tlwrap{overflow-x:auto;padding-bottom:16px;}
+.tlwrap::-webkit-scrollbar{height:2px;}
+.tlwrap::-webkit-scrollbar-thumb{background:var(--acc);}
+.tltrack{display:flex;min-width:max-content;gap:0;}
+.tlitem{min-width:220px;padding-right:32px;position:relative;}
+.tlhdr{display:flex;align-items:center;margin-bottom:20px;}
+.tldot{width:12px;height:12px;border-radius:50%;border:2px solid var(--bdr);background:var(--bg);flex-shrink:0;}
+.tlitem.done .tldot{background:var(--acc);border-color:var(--acc);}
+.tlline{flex:1;height:1px;background:var(--bdr);}
+.tlitem.done .tlline{background:rgba(26,107,255,.3);}
+.tlitem:last-child .tlline{display:none;}
+.tlphase{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.tltask{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:8px;}
+.tlsub{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;color:rgba(240,236,228,.38);font-weight:300;}
+
+/* TECH STACK */
+.stackrow{display:flex;flex-wrap:wrap;gap:8px;}
+.stackbadge{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 20px;border:1px solid var(--bdr);background:var(--nnc-dark);transition:border-color .3s;text-align:center;}
+.stackbadge:hover{border-color:rgba(26,107,255,.35);}
+.sbnm{font-size:13px;letter-spacing:.10em;text-transform:uppercase;color:var(--fg);}
+.sbcat{font-size:11px;letter-spacing:.06em;color:var(--mid);margin-top:2px;}
+.sbi{font-size:26px;line-height:1;}
+
+/* RESULTS */
+.resgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.resitem{padding:40px 28px;background:var(--nnc-dark);border:1px solid rgba(26,107,255,.08);text-align:center;transition:border-color .3s;}
+.resitem:hover{border-color:rgba(26,107,255,.3);}
+.resnum{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--acc);line-height:1;margin-bottom:10px;}
+.reslabel{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;}
+.resdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;font-weight:300;color:rgba(240,236,228,.45);}
+
+/* BOTTOM NAV */
+.pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);}
+.pnl{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
+.pnl:hover{color:var(--acc);}
+.pnc{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.2em;color:var(--bdr);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
+.rv.v{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.25s}.d4{transition-delay:.34s}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:16px 24px;}
+  #hero{grid-template-columns:1fr;height:auto;}
+  .hl{padding:120px 24px 48px;}
+  .hr{padding:36px 24px;}
+  .sec{padding:64px 24px;}
+  .ov2,.mig-wrap,.ba-wrap{grid-template-columns:1fr;}
+  .feat-grid{grid-template-columns:1fr;}
+  .resgrid{grid-template-columns:1fr 1fr;}
+  .pnav-bottom{padding:24px;}
+}
+</style>
+</head>
+<body>
+<div id="CU"></div><div id="CR"></div><div id="PB"></div>
+
+<nav>
+  <a class="nb" href="../../../../../../index.html">← Portfolio</a>
+  <span class="nt">NNC</span>
+  <span class="nn">01 / 07</span>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hl">
+    <div class="hbignum">01</div>
+    <div class="live-badge"><span class="live-dot"></span>Live Service</div>
+    <div class="htag">Admin Redesign · Web Migration · Feature Dev</div>
+    <div class="htitle">NNC<em>ADMIN</em></div>
+    <p class="hdesc">노후화된 관리자 시스템을 전면 리디자인하고, 외부 종속 구조에서 자체 도메인 기반으로 완전 마이그레이션. 클라이언트 요청 기능을 추가 개발하여 실운영 중인 라이브 서비스로 납품.</p>
+    <div class="hbtns">
+      <a class="hbtn p" href="http://nncmall.com/nnc-admin/dashboard.html" target="_blank">Live Admin ↗</a>
+      <a class="hbtn s" href="https://nncplus.com/" target="_blank">기존 사이트 ↗</a>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="hmrow rv"><div class="hmnum">2026</div><div class="hminfo"><span class="hmk">Year</span><span class="hmv">외주 · 실운영 납품</span></div></div>
+    <div class="hmrow rv"><div class="hmnum">16D</div><div class="hminfo"><span class="hmk">Duration</span><span class="hmv">2026.03.24 — 2026.04.08</span></div></div>
+    <div class="hmrow rv"><div class="hmnum">Solo</div><div class="hminfo"><span class="hmk">Build</span><span class="hmv">기획 · 디자인 · 개발 전담</span></div></div>
+    <div class="hmeta2 rv d1">
+      <div class="hm2"><span class="hm2k">UI Redesign</span><span class="hm2v acc">100%</span></div>
+      <div class="hm2"><span class="hm2k">Dev</span><span class="hm2v acc">100%</span></div>
+      <div class="hm2"><span class="hm2k">Migration</span><span class="hm2v acc">100%</span></div>
+      <div class="hm2"><span class="hm2k">AI Used</span><span class="hm2v">Claude</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="sec">
+  <div class="sec-label rv">— Problem &amp; Goal</div>
+  <div class="sec-title rv d1">PROJECT <em>OVERVIEW</em></div>
+  <div class="ov2">
+    <div class="problist rv d2">
+      <div class="pitem">
+        <div class="pnum">01</div>
+        <div>
+          <div class="ptitle">노후화된 관리자 UI</div>
+          <div class="pdesc">기존 쇼핑몰 어드민은 구형 테마 기반으로 정보 파악이 어렵고 UX가 불편해 업무 효율이 낮았음</div>
+        </div>
+      </div>
+      <div class="pitem">
+        <div class="pnum">02</div>
+        <div>
+          <div class="ptitle">외부 플랫폼 종속 구조</div>
+          <div class="pdesc">메인·서브 페이지 대부분이 nncplus.com 외부 링크에 의존, 자체 콘텐츠 관리가 불가능한 구조</div>
+        </div>
+      </div>
+      <div class="pitem">
+        <div class="pnum">03</div>
+        <div>
+          <div class="ptitle">서비스 신청 관리 부재</div>
+          <div class="pdesc">식판 렌탈 서비스 신청 접수·승인·계정 발급 흐름이 수동 처리되어 운영 비효율 발생</div>
+        </div>
+      </div>
+    </div>
+    <div class="rv d3">
+      <div class="goalbox">
+        <div class="gblabel">— Project Goals</div>
+        <div class="gbitems">
+          <div class="gbitem">관리자 UI를 다크 모던 테마로 전면 리디자인</div>
+          <div class="gbitem">nncplus.com 의존 구조를 자체 도메인 기반으로 마이그레이션</div>
+          <div class="gbitem">서비스 신청 → 승인 → 계정발급 워크플로우 신규 구축</div>
+          <div class="gbitem">대시보드 KPI 카드·빠른 실행 단축메뉴 등 편의 기능 추가</div>
+          <div class="gbitem">메인·서브페이지 리모델링 (진행 중)</div>
+        </div>
+      </div>
+      <div class="rolegrid">
+        <div class="roleitem"><div class="rolekey">UI Redesign</div><div class="roleval">100%</div><div class="rolebar"><div class="rolefill" data-w="100"></div></div></div>
+        <div class="roleitem"><div class="rolekey">Dev / Publish</div><div class="roleval">100%</div><div class="rolebar"><div class="rolefill" data-w="100"></div></div></div>
+        <div class="roleitem"><div class="rolekey">Migration</div><div class="roleval">100%</div><div class="rolebar"><div class="rolefill" data-w="100"></div></div></div>
+        <div class="roleitem"><div class="rolekey">Feature Dev</div><div class="roleval">90%</div><div class="rolebar"><div class="rolefill" data-w="90"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="sec">
+  <div class="sec-label rv">— Before &amp; After</div>
+  <div class="sec-title rv d1">REDESIGN <em>COMPARISON</em></div>
+  <div class="ba-wrap rv d2">
+    <div class="ba-item">
+      <span class="ba-label before">BEFORE</span>
+      <img src="../../../../../../images/nnc_before.png" alt="기존 nncplus.com 사이트">
+      <div class="ba-desc">
+        <div class="ba-desc-title">nncplus.com — 기존</div>
+        <div class="ba-desc-txt">화이트 기반 구형 레이아웃. 외부 플랫폼 의존도 높고, 브랜드 통일성 없이 분절된 구조</div>
+      </div>
+    </div>
+    <div class="ba-item">
+      <span class="ba-label after">AFTER</span>
+      <img src="../../../../../../images/nnc_admin_dash.png" alt="리디자인된 NNC 관리자 대시보드">
+      <div class="ba-desc">
+        <div class="ba-desc-title">NNC Admin — 리디자인</div>
+        <div class="ba-desc-txt">다크 모던 테마. KPI 카드·빠른 실행·실시간 현황을 한눈에 파악 가능한 대시보드 중심 구조</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIGRATION -->
+<section class="sec">
+  <div class="sec-label rv">— Core Work</div>
+  <div class="sec-title rv d1">MIGRATION &amp; <em>REBUILD</em></div>
+  <div class="mig-wrap">
+    <div class="mig-list rv d1">
+      <div class="mig-item">
+        <div class="mig-num">01</div>
+        <div>
+          <div class="mig-title">외부 링크 전면 제거</div>
+          <div class="mig-desc">전 페이지에 산재된 nncplus.com onclick 링크를 제거하고 자체 내부 라우팅으로 대체. 외부 의존도 0%로 전환.</div>
+        </div>
+      </div>
+      <div class="mig-item">
+        <div class="mig-num">02</div>
+        <div>
+          <div class="mig-title">공통 레이아웃 컴포넌트화</div>
+          <div class="mig-desc">GNB·사이드바·푸터를 layout.js 단일 소스로 통합 관리. 80+ 페이지에 일괄 적용 가능한 구조 설계.</div>
+        </div>
+      </div>
+      <div class="mig-item">
+        <div class="mig-num">03</div>
+        <div>
+          <div class="mig-title">관리자 UI 전면 리디자인</div>
+          <div class="mig-desc">구형 화이트 테마에서 다크 네이비 테마로 전환. NNC 브랜드 컬러(#1A6BFF) 기반 디자인 시스템 구축.</div>
+        </div>
+      </div>
+      <div class="mig-item">
+        <div class="mig-num">04</div>
+        <div>
+          <div class="mig-title">메인·서브페이지 리모델링</div>
+          <div class="mig-desc">홈페이지·회사소개·CS·서비스 페이지를 신규 설계. 기존 외부 플랫폼의 콘텐츠를 자체 퍼블리싱으로 이전 중.</div>
+        </div>
+      </div>
+    </div>
+    <div class="rv d2">
+      <div class="mig-box">
+        <div class="mig-box-label">— Migration Stats</div>
+        <div class="mig-stat-grid">
+          <div class="mig-stat">
+            <div class="mig-stat-num">80+</div>
+            <div class="mig-stat-label">관리자 페이지</div>
+          </div>
+          <div class="mig-stat">
+            <div class="mig-stat-num">0</div>
+            <div class="mig-stat-label">외부 링크 잔존</div>
+          </div>
+          <div class="mig-stat">
+            <div class="mig-stat-num">16D</div>
+            <div class="mig-stat-label">전체 작업 기간</div>
+          </div>
+          <div class="mig-stat">
+            <div class="mig-stat-num">1</div>
+            <div class="mig-stat-label">단독 개발</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="sec">
+  <div class="sec-label rv">— Added Features</div>
+  <div class="sec-title rv d1">FEATURE <em>IMPROVEMENTS</em></div>
+  <div class="feat-grid rv d1">
+    <div class="feat-item">
+      <span class="feat-icon">📋</span>
+      <span class="feat-badge new">NEW</span>
+      <div class="feat-title">서비스 신청 관리</div>
+      <div class="feat-desc">식판 렌탈 서비스 신청 접수 → 승인 → 계정 발급까지 원스톱 처리. 상태별 탭 필터 및 엑셀 저장 지원.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">⚡</span>
+      <span class="feat-badge">IMPROVED</span>
+      <div class="feat-title">대시보드 KPI &amp; 빠른 실행</div>
+      <div class="feat-desc">오늘 주문·신규 가입·대기 신청·이번 달 매출을 한눈에. 자주 쓰는 메뉴 빠른 실행 단축 카드 추가.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">📊</span>
+      <span class="feat-badge">IMPROVED</span>
+      <div class="feat-title">통계분석 고도화</div>
+      <div class="feat-desc">접속자·주문·가입 통계를 시간·일·주·월·연도별 다차원 분석. 기간 직접 입력 필터 및 엑셀 저장 기능.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">🏪</span>
+      <span class="feat-badge">IMPROVED</span>
+      <div class="feat-title">가맹점 관리 체계화</div>
+      <div class="feat-desc">신규신청·연장·수수료정책·정산·트리구조를 독립 모듈로 분리. 가맹점 주문통계 및 추천인 변경 로그 추가.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">👥</span>
+      <span class="feat-badge">IMPROVED</span>
+      <div class="feat-title">회원 관리 기능 확장</div>
+      <div class="feat-desc">레벨 필터·구매수·로그인 이력·접근차단 컬럼 추가. 전체 메일 발송·문자 발송·엑셀 일괄 처리 지원.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">🎨</span>
+      <span class="feat-badge">IMPROVED</span>
+      <div class="feat-title">디자인 관리 모듈</div>
+      <div class="feat-desc">배너·팝업·로고·모바일 배너·스킨·콘텐츠를 관리자 화면에서 직접 편집·관리할 수 있는 UI 구성.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">📄</span>
+      <span class="feat-badge new">NEW</span>
+      <div class="feat-title">CMS 동의서 PDF 다운로드</div>
+      <div class="feat-desc">선택 건 또는 전체 동의서를 A4 1페이지 PDF로 클라이언트 사이드 변환 저장. html2canvas + jsPDF 활용, 서버 부하 없이 브라우저에서 즉시 생성.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">🏫</span>
+      <span class="feat-badge new">NEW</span>
+      <div class="feat-title">원장 전용 대시보드</div>
+      <div class="feat-desc">어린이집·유치원 원장이 쇼핑몰 로그인 시 '내 원 현황' 버튼 자동 노출. 클릭 시 본인 원의 반별 아이 목록·인원·신청일을 권한 분리 없이 회원 ID 기반으로 표시.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">🏷️</span>
+      <span class="feat-badge new">NEW</span>
+      <div class="feat-title">원명 자동완성 칩 UI</div>
+      <div class="feat-desc">그룹 설정 시 담당 원명을 수동 입력 없이 기존 신청 DB 기반 칩으로 원클릭 입력. 신청 건수와 함께 자동 표시되며 datalist와 동기화.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENS -->
+<section class="sec">
+  <div class="sec-label rv">— Visual Design</div>
+  <div class="sec-title rv d1">SCREENS &amp; <em>MOCKUPS</em></div>
+  <div class="mockwrap">
+    <div class="mock-caption">Dashboard — 대시보드 홈</div>
+    <div class="mockitem"><img src="../../../../../../images/nnc_admin_dash.png" alt="NNC 관리자 대시보드"></div>
+    <div class="mock-caption">Service Management — 서비스 신청 관리</div>
+    <div class="mockitem"><img src="../../../../../../images/nnc_admin_service.png" alt="서비스 신청 관리"></div>
+    <div class="mock-caption">Member Management — 회원 정보관리</div>
+    <div class="mockitem"><img src="../../../../../../images/nnc_admin_member.png" alt="회원 정보관리"></div>
+    <div class="mock-caption">Statistics — 통계분석</div>
+    <div class="mockitem"><img src="../../../../../../images/nnc_admin_stats.png" alt="통계분석"></div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="sec">
+  <div class="sec-label rv">— Work Process</div>
+  <div class="sec-title rv d1">PROJECT <em>TIMELINE</em></div>
+  <div class="tlwrap rv d1">
+    <div class="tltrack">
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Week 1 — 03.24</div>
+        <div class="tltask">외주 수주 &amp; 분석</div>
+        <div class="tlsub">기존 시스템 파악<br>마이그레이션 전략 수립<br>결제 시스템 연동</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Week 1 — 03.26</div>
+        <div class="tltask">관리자 UI 리디자인</div>
+        <div class="tlsub">다크 테마 디자인 시스템<br>공통 레이아웃 컴포넌트화<br>GNB·사이드바 통합</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Week 2 — 03.30</div>
+        <div class="tltask">기능 추가 개발</div>
+        <div class="tlsub">서비스 신청 관리 신규<br>대시보드 KPI 카드<br>통계 모듈 고도화</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Week 2 — 04.02</div>
+        <div class="tltask">메인 페이지 리모델링</div>
+        <div class="tlsub">홈페이지 신규 설계<br>회사소개 7종 서브페이지<br>CS 페이지 3종</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Week 3 — 04.06</div>
+        <div class="tltask">모바일 반응형 &amp; QA</div>
+        <div class="tlsub">전 페이지 모바일 대응<br>외부 링크 전면 제거<br>크로스 브라우저 QA</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">04.08 — 납품</div>
+        <div class="tltask">실서버 배포 완료</div>
+        <div class="tlsub">nncmall.com 실운영 중<br>메인 페이지 업로드 예정<br>지속 업데이트 계약</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">04.09 ~ 04.13</div>
+        <div class="tltask">CMS 모듈 고도화</div>
+        <div class="tlsub">동의서 PDF 1페이지 저장<br>원장 전용 대시보드 신규<br>원명 칩 UI · 한글 인코딩 수정</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="sec">
+  <div class="sec-label rv">— Outcome</div>
+  <div class="sec-title rv d1">PROJECT <em>RESULTS</em></div>
+  <div class="resgrid rv d1">
+    <div class="resitem">
+      <div class="resnum">80+</div>
+      <div class="reslabel">Admin Pages</div>
+      <div class="resdesc">전체 관리자 페이지<br>리디자인 완료</div>
+    </div>
+    <div class="resitem">
+      <div class="resnum">20D+</div>
+      <div class="reslabel">개발 기간</div>
+      <div class="resdesc">기획~CMS 고도화까지<br>지속 단독 개발 중</div>
+    </div>
+    <div class="resitem">
+      <div class="resnum">2.2K</div>
+      <div class="reslabel">Live Members</div>
+      <div class="resdesc">실운영 중인<br>회원 데이터</div>
+    </div>
+    <div class="resitem">
+      <div class="resnum">∞</div>
+      <div class="reslabel">지속 계약</div>
+      <div class="resdesc">납품 후 지속<br>업데이트 계약 유지</div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="sec">
+  <div class="sec-label rv">— Technologies</div>
+  <div class="sec-title rv d1">TECH <em>STACK</em></div>
+  <div class="stackrow rv d1">
+    <div class="stackbadge"><span class="sbi">🌐</span><span class="sbnm">HTML5</span><span class="sbcat">Structure</span></div>
+    <div class="stackbadge"><span class="sbi">🎨</span><span class="sbnm">CSS3</span><span class="sbcat">Styling</span></div>
+    <div class="stackbadge"><span class="sbi">⚙️</span><span class="sbnm">JavaScript</span><span class="sbcat">Logic</span></div>
+    <div class="stackbadge"><span class="sbi">🗄️</span><span class="sbnm">Supabase</span><span class="sbcat">Database</span></div>
+    <div class="stackbadge"><span class="sbi">💳</span><span class="sbnm">PortOne</span><span class="sbcat">Payment</span></div>
+    <div class="stackbadge"><span class="sbi">🤖</span><span class="sbnm">Claude AI</span><span class="sbcat">Dev Partner</span></div>
+  </div>
+</section>
+
+<div class="pnav-bottom">
+  <a class="pnl" href="../project-2/">← Project 02 / NAVYBAY</a>
+  <span class="pnc">KDH © 2026</span>
+  <a class="pnl" href="../project-3/">Project 03 / VALORANT →</a>
+</div>
+
+<script>
+// cursor
+const cu=document.getElementById('CU'),cr=document.getElementById('CR');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cu.style.left=mx+'px';cu.style.top=my+'px';});
+(function loop(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;cr.style.left=cx+'px';cr.style.top=cy+'px';requestAnimationFrame(loop);})();
+
+// progress bar
+const pb=document.getElementById('PB');
+window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);pb.style.width=(p*100)+'%';});
+
+// reveal
+const IO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');});},{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>IO.observe(el));
+
+// role bars
+const RO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.rolefill').forEach(f=>{f.style.width=f.dataset.w+'%';});}});},{threshold:.3});
+document.querySelectorAll('.rolegrid').forEach(el=>RO.observe(el));
+</script>
+</body>
+</html>
