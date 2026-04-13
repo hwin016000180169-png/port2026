@@ -107,10 +107,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .feat-desc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
 
 /* MOCKUP */
-.mockwrap{display:flex;flex-direction:column;gap:0;max-width:860px;margin:0 auto;border:1px solid var(--bdr);}
-.mockitem{width:100%;position:relative;}
-.mockitem img{width:100%;height:auto;display:block;}
-.mock-caption{padding:10px 20px;background:var(--card);border-bottom:1px solid var(--bdr);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);}
+.mockwrap{display:flex;flex-direction:row;gap:3px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory;cursor:grab;}
+.mockwrap:active{cursor:grabbing;}
+.mockwrap::-webkit-scrollbar{height:2px;}
+.mockwrap::-webkit-scrollbar-track{background:var(--bdr);}
+.mockwrap::-webkit-scrollbar-thumb{background:var(--acc);}
+.mockitem{flex:0 0 680px;display:flex;flex-direction:column;scroll-snap-align:start;border:1px solid var(--bdr);background:var(--card);}
+.mockitem img{width:100%;height:auto;display:block;flex:1;}
+.mock-caption{padding:10px 20px;background:rgba(0,0,0,.4);border-bottom:1px solid var(--bdr);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);flex-shrink:0;}
+.mock-count{font-size:9px;letter-spacing:.12em;color:var(--acc);margin-top:12px;text-align:right;}
 
 /* MIGRATION */
 .mig-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
@@ -418,16 +423,37 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 <section class="sec">
   <div class="sec-label rv">— Visual Design</div>
   <div class="sec-title rv d1">SCREENS &amp; <em>MOCKUPS</em></div>
-  <div class="mockwrap">
-    <div class="mock-caption">Dashboard — 대시보드 홈</div>
-    <div class="mockitem"><img src="../../../../../../images/nnc_admin_dash.png" alt="NNC 관리자 대시보드"></div>
-    <div class="mock-caption">Service Management — 서비스 신청 관리</div>
-    <div class="mockitem"><img src="../../../../../../images/nnc_admin_service.png" alt="서비스 신청 관리"></div>
-    <div class="mock-caption">Member Management — 회원 정보관리</div>
-    <div class="mockitem"><img src="../../../../../../images/nnc_admin_member.png" alt="회원 정보관리"></div>
-    <div class="mock-caption">Statistics — 통계분석</div>
-    <div class="mockitem"><img src="../../../../../../images/nnc_admin_stats.png" alt="통계분석"></div>
+  <div class="mockwrap" id="mockGallery">
+    <div class="mockitem">
+      <div class="mock-caption">01 / Dashboard — 대시보드 홈</div>
+      <img src="../../../../../../images/nnc_admin_dash.png" alt="NNC 관리자 대시보드">
+    </div>
+    <div class="mockitem">
+      <div class="mock-caption">02 / Service Management — 서비스 신청 관리</div>
+      <img src="../../../../../../images/nnc_admin_service.png" alt="서비스 신청 관리">
+    </div>
+    <div class="mockitem">
+      <div class="mock-caption">03 / Member Management — 회원 정보관리</div>
+      <img src="../../../../../../images/nnc_admin_member.png" alt="회원 정보관리">
+    </div>
+    <div class="mockitem">
+      <div class="mock-caption">04 / Statistics — 통계분석</div>
+      <img src="../../../../../../images/nnc_admin_stats.png" alt="통계분석">
+    </div>
+    <div class="mockitem">
+      <div class="mock-caption">05 / CMS — 콘텐츠 관리</div>
+      <img src="../../../../../../images/nnc_admin_cms.png" alt="CMS 콘텐츠 관리">
+    </div>
+    <div class="mockitem">
+      <div class="mock-caption">06 / Product — 상품 관리</div>
+      <img src="../../../../../../images/nnc_admin_product.png" alt="상품 관리">
+    </div>
+    <div class="mockitem">
+      <div class="mock-caption">07 / Skin — 스킨 설정</div>
+      <img src="../../../../../../images/nnc_admin_skin.png" alt="스킨 설정">
+    </div>
   </div>
+  <div class="mock-count">← scroll to explore · 7 screens →</div>
 </section>
 
 <!-- TIMELINE -->
@@ -540,6 +566,8 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cu.style.lef
 // progress bar
 const pb=document.getElementById('PB');
 window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);pb.style.width=(p*100)+'%';});
+/* drag-scroll for mockup gallery */
+(()=>{const el=document.getElementById('mockGallery');if(!el)return;let isDown=false,startX,scrollLeft;el.addEventListener('mousedown',e=>{isDown=true;el.style.cursor='grabbing';startX=e.pageX-el.offsetLeft;scrollLeft=el.scrollLeft;});el.addEventListener('mouseleave',()=>{isDown=false;el.style.cursor='grab';});el.addEventListener('mouseup',()=>{isDown=false;el.style.cursor='grab';});el.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-el.offsetLeft;el.scrollLeft=scrollLeft-(x-startX)*1.2;});})();
 
 // reveal
 const IO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');});},{threshold:.12});
