@@ -160,17 +160,23 @@ body.hov #CU{width:22px;height:22px;}
 .wcnt span:first-child{font-size:9px;letter-spacing:.2em;color:var(--mid);}
 .wcnt span:last-child{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--bdr);}
 
-/* grid: 3 col, mixed span */
+/* group headers */
+.wgroup{margin-bottom:52px;}
+.wgroup:last-child{margin-bottom:0;}
+.wgroup-hd{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bdr);margin-bottom:2px;}
+.wgroup-dot{width:6px;height:6px;border-radius:50%;background:var(--acc);flex-shrink:0;}
+.wgroup-lbl{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--fg);}
+.wgroup-sub{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-left:auto;}
+
+/* grid: equal size cards */
 .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.wgrid-4{grid-template-columns:repeat(4,1fr);}
 .wc{position:relative;overflow:hidden;background:var(--card);cursor:pointer;opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;}
 .wc.v{opacity:1;transform:none;}
-.wc:nth-child(1){transition-delay:.00s;grid-column:span 2;}
+.wc:nth-child(1){transition-delay:.00s;}
 .wc:nth-child(2){transition-delay:.10s;}
-.wc:nth-child(3){transition-delay:.15s;}
-.wc:nth-child(4){transition-delay:.22s;}
-.wc:nth-child(5){transition-delay:.28s;grid-column:span 2;}
-.wc:nth-child(6){transition-delay:.34s;}
-.wc:nth-child(7){transition-delay:.40s;}
+.wc:nth-child(3){transition-delay:.18s;}
+.wc:nth-child(4){transition-delay:.26s;}
 
 .ct{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;}
 .ctbg{position:absolute;inset:0;transition:transform .7s cubic-bezier(.22,1,.36,1);}
@@ -326,11 +332,10 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
 
   /* works */
   #S3{padding:72px 16px 80px;}
-  .wgrid{grid-template-columns:1fr;}
-  .wc:nth-child(1),.wc:nth-child(5){grid-column:span 1;}
-  .wc:nth-child(7){grid-column:span 1;}
+  .wgrid,.wgrid-4{grid-template-columns:1fr;}
   .wht{font-size:clamp(40px,11vw,64px);}
   .whead{margin-bottom:36px;}
+  .wgroup-hd{flex-wrap:wrap;}
   .ciname{font-size:clamp(16px,5vw,22px);}
   .cidesc{font-size:13px;}
 
@@ -434,6 +439,13 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <div class="rv d4">
       <div class="sklbl">— Career &amp; Credentials</div>
       <div class="tl">
+        <div class="tli now">
+          <div class="tldot"></div>
+          <div class="tlbody">
+            <div class="tldate">2026 — 현재 <span class="tlnow">ACTIVE</span></div>
+            <div class="tltxt"><strong>프리랜서</strong> — 위시캣·크몽 플랫폼 기반 UI/UX 디자인 &amp; 웹 퍼블리싱 의뢰 수주 활동 중</div>
+          </div>
+        </div>
         <div class="tli ac">
           <div class="tldot"></div>
           <div class="tlbody">
@@ -445,7 +457,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
           <div class="tldot"></div>
           <div class="tlbody">
             <div class="tldate">2025.07 — 현재</div>
-            <div class="tltxt"><strong>CrownyClass (팀 프로젝트)</strong> — UI/UX 디자인 전담 · 실사용 테스트 · QA 진행 중 · 학원생 약 60명 사용</div>
+            <div class="tltxt"><strong>CrownyClass (팀 프로젝트)</strong> — UI/UX 디자인 전담 · 실제 학원 학생들이 사용 중인 라이브 서비스</div>
           </div>
         </div>
         <div class="tli ac">
@@ -482,128 +494,148 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <div class="wcnt"><span>Total Projects</span><span>07</span></div>
   </div>
 
-  <div class="wgrid">
-
-    <!-- 01 NNC ADMIN — 메인 히어로 카드 -->
-    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-7/">
-      <div class="ct">
-        <div class="ctbg" style="background-image:url(images/thunmb-07.png); background-size:cover; background-position:center top;"></div>
-        <div class="ctnum">01</div>
-        <div class="ctlabel">Admin · Migration · Live</div>
-      </div>
-      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
-      <div class="ci">
-        <div class="cimeta"><span class="cino">Project 01</span><span class="ciy">2026</span></div>
-        <div class="ciname">NNC Admin Redesign &amp; Migration</div>
-        <div class="cidesc">노후화된 관리자 시스템 전면 리디자인 및 외부 플랫폼 마이그레이션. 서비스 신청·통계·가맹점 관리 기능 추가 개발, 현재 nncmall.com 실운영 중.</div>
-        <div class="citags"><span class="tag ac">Live Service</span><span class="tag">Admin UI</span><span class="tag">CMS Module</span><span class="tag">Migration</span><span class="tag">Feature Dev</span></div>
-        <div class="ciai"><div class="aidot cla"></div><span class="ain">Claude</span></div>
-      </div>
+  <!-- ── Live Service 그룹 ── -->
+  <div class="wgroup">
+    <div class="wgroup-hd">
+      <span class="wgroup-dot"></span>
+      <span class="wgroup-lbl">Live Service</span>
+      <span class="wgroup-sub">실운영 프로젝트 · 3</span>
     </div>
+    <div class="wgrid">
 
-    <!-- 02 NAVYBAY -->
-    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-1/">
-      <div class="ct">
-       <div class="ctbg" style="background-image:url(images/thunmb-01.png); background-size:cover; background-position:center;"></div>
-        <div class="ctnum">02</div>
-        <div class="ctlabel">Brand · Landing · Publishing</div>
+      <!-- 01 NNC ADMIN -->
+      <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-7/">
+        <div class="ct">
+          <div class="ctbg" style="background-image:url(images/thunmb-07.png); background-size:cover; background-position:center top;"></div>
+          <div class="ctnum">01</div>
+          <div class="ctlabel">Admin · Migration · Live</div>
+        </div>
+        <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+        <div class="ci">
+          <div class="cimeta"><span class="cino">Project 01</span><span class="ciy">2026</span></div>
+          <div class="ciname">NNC Admin Redesign &amp; Migration</div>
+          <div class="cidesc">노후화된 관리자 시스템 전면 리디자인 및 외부 플랫폼 마이그레이션. 서비스 신청·통계·가맹점 관리 기능 추가 개발, 현재 nncmall.com 실운영 중.</div>
+          <div class="citags"><span class="tag ac">Live Service</span><span class="tag">Admin UI</span><span class="tag">CMS Module</span><span class="tag">Migration</span><span class="tag">Feature Dev</span></div>
+          <div class="ciai"><div class="aidot cla"></div><span class="ain">Claude</span></div>
+        </div>
       </div>
-      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
-      <div class="ci">
-        <div class="cimeta"><span class="cino">Project 02</span><span class="ciy">2026</span></div>
-        <div class="ciname">NAVYBAY Brand Landing Page</div>
-        <div class="cidesc">네이비베이 e커머스팀 재직 중 단독 기획·디자인·퍼블리싱 납품. 상품 중심 구조를 브랜드 경험 중심으로 전환, 현재 navybay.com 실운영 중.</div>
-        <div class="citags"><span class="tag ac">Brand</span><span class="tag">Landing Page</span><span class="tag">Publishing</span><span class="tag">Identity</span></div>
-        <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+
+      <!-- 02 NAVYBAY -->
+      <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-1/">
+        <div class="ct">
+          <div class="ctbg" style="background-image:url(images/thunmb-01.png); background-size:cover; background-position:center;"></div>
+          <div class="ctnum">02</div>
+          <div class="ctlabel">Brand · Landing · Publishing</div>
+        </div>
+        <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+        <div class="ci">
+          <div class="cimeta"><span class="cino">Project 02</span><span class="ciy">2026</span></div>
+          <div class="ciname">NAVYBAY Brand Landing Page</div>
+          <div class="cidesc">네이비베이 e커머스팀 재직 중 단독 기획·디자인·퍼블리싱 납품. 상품 중심 구조를 브랜드 경험 중심으로 전환, 현재 navybay.com 실운영 중.</div>
+          <div class="citags"><span class="tag ac">Brand</span><span class="tag">Landing Page</span><span class="tag">Publishing</span><span class="tag">Identity</span></div>
+          <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+        </div>
       </div>
+
+      <!-- 03 CROWNYCLASS -->
+      <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-3/">
+        <div class="ct">
+          <div class="ctbg" style="background-image:url(images/thunmb-03.png); background-size:cover; background-position:center;"></div>
+          <div class="ctnum">03</div>
+          <div class="ctlabel">Education · App · AI</div>
+        </div>
+        <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+        <div class="ci">
+          <div class="cimeta"><span class="cino">Project 03</span><span class="ciy">2026</span></div>
+          <div class="ciname">CrownyClass Education Platform</div>
+          <div class="cidesc">수업 관리·파일 공유·Gemini AI 오답 노트를 통합한 교육 앱 UI 전담. 실제 학원 학생들이 사용 중인 라이브 서비스.</div>
+          <div class="citags"><span class="tag ac">App UI</span><span class="tag">Gemini API</span><span class="tag">Live Service</span></div>
+          <div class="ciai"><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+        </div>
+      </div>
+
     </div>
-
-    <!-- 03 VALORANT -->
-    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-2/">
-      <div class="ct">
-        <div class="ctbg" style="background-image:url(images/thunmb-02.png); background-size:cover; background-position:center;"></div>
-        <div class="ctnum">03</div>
-        <div class="ctlabel">Game · Info · UI</div>
-      </div>
-      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
-      <div class="ci">
-        <div class="cimeta"><span class="cino">Project 03</span><span class="ciy">2026</span></div>
-        <div class="ciname">VALORANT Game Guide Site</div>
-        <div class="cidesc">여러 사이트에 분산된 게임 정보를 단일 경험으로 통합. 에이전트·맵·토너먼트 가이드를 인터랙션 중심 UI로 설계·퍼블리싱.</div>
-        <div class="citags"><span class="tag ac">Game UI</span><span class="tag">Interaction</span><span class="tag">HTML·CSS·JS</span></div>
-        <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
-      </div>
-    </div>
-
-    <!-- 04 CLASS CARE -->
-    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-3/">
-      <div class="ct">
-        <div class="ctbg" style="background-image:url(images/thunmb-03.png); background-size:cover; background-position:center;"></div>
-        <div class="ctnum">04</div>
-        <div class="ctlabel">Education · App · AI</div>
-      </div>
-      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
-      <div class="ci">
-        <div class="cimeta"><span class="cino">Project 04</span><span class="ciy">2026</span></div>
-        <div class="ciname">CrownyClass Education Platform</div>
-        <div class="cidesc">수업 관리·파일 공유·Gemini AI 오답 노트를 통합한 교육 앱 UI 전담. 현재 학원생 약 60명이 실사용 중인 라이브 서비스.</div>
-        <div class="citags"><span class="tag ac">App UI</span><span class="tag">Gemini API</span><span class="tag">Live Service</span></div>
-        <div class="ciai"><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
-      </div>
-    </div>
-
-    <!-- 05 AI COMMAND CENTER -->
-    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-4/">
-      <div class="ct">
-        <div class="ctbg" style="background-image:url(images/thunmb-04.png); background-size:100% 100%; background-position:center;"></div>
-        <div class="ctnum">05</div>
-        <div class="ctlabel">AI · Platform · Design</div>
-      </div>
-      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
-      <div class="ci">
-        <div class="cimeta"><span class="cino">Project 05</span><span class="ciy">2026</span></div>
-        <div class="ciname">AI Command Center</div>
-        <div class="cidesc">GPT·Claude·Gemini를 단일 인터페이스에서 운영하는 업무 자동화 대시보드 UI 설계 및 인터랙티브 프로토타입 구현.</div>
-        <div class="citags"><span class="tag ac">AI Platform</span><span class="tag">Dashboard</span><span class="tag">Automation</span></div>
-        <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
-      </div>
-    </div>
-
-    <!-- 06 OTT -->
-    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-5/">
-      <div class="ct">
-        <div class="ctbg" style="background-image:url(images/thunmb-05.png); background-size:100% 100%; background-position:center;"></div>
-        <div class="ctnum">06</div>
-        <div class="ctlabel">OTT · UX · Research</div>
-      </div>
-      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
-      <div class="ci">
-        <div class="cimeta"><span class="cino">Project 06</span><span class="ciy">2026</span></div>
-        <div class="ciname">OTT Platform UX Redesign</div>
-        <div class="cidesc">Netflix·Watcha의 콘텐츠 탐색 피로 문제를 UX 리서치로 분석. Mood 기반 30초 추천 플로우로 선택 과부하를 해소한 리디자인.</div>
-        <div class="citags"><span class="tag ac">UX Research</span><span class="tag">OTT</span><span class="tag">Prototype</span></div>
-        <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span></div>
-      </div>
-    </div>
-
-    <!-- 07 HOSPITAL -->
-    <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-6/">
-      <div class="ct">
-        <div class="ctbg" style="background-image:url(images/thunmb-05-2.png); background-size:cover; background-position:center;"></div>
-        <div class="ctnum">07</div>
-        <div class="ctlabel">Medical · Mobile · UX</div>
-      </div>
-      <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
-      <div class="ci">
-        <div class="cimeta"><span class="cino">Project 07</span><span class="ciy">2026</span></div>
-        <div class="ciname">Medibook — Hospital Booking UX</div>
-        <div class="cidesc">굿닥·똑닥 경쟁사 분석 기반으로 병원 예약 플로우를 재설계. 증상 선택 3단계로 복잡한 예약 프로세스를 단순화한 모바일 UX.</div>
-        <div class="citags"><span class="tag ac">Mobile UX</span><span class="tag">Healthcare</span><span class="tag">Figma</span></div>
-        <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
-      </div>
-    </div>
-
   </div>
+
+  <!-- ── Personal Work 그룹 ── -->
+  <div class="wgroup">
+    <div class="wgroup-hd">
+      <span class="wgroup-lbl">Personal Work</span>
+      <span class="wgroup-sub">개인 작업물 · 4</span>
+    </div>
+    <div class="wgrid wgrid-4">
+
+      <!-- 04 VALORANT -->
+      <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-2/">
+        <div class="ct">
+          <div class="ctbg" style="background-image:url(images/thunmb-02.png); background-size:cover; background-position:center;"></div>
+          <div class="ctnum">04</div>
+          <div class="ctlabel">Game · Info · UI</div>
+        </div>
+        <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+        <div class="ci">
+          <div class="cimeta"><span class="cino">Project 04</span><span class="ciy">2026</span></div>
+          <div class="ciname">VALORANT Game Guide Site</div>
+          <div class="cidesc">여러 사이트에 분산된 게임 정보를 단일 경험으로 통합. 에이전트·맵·토너먼트 가이드를 인터랙션 중심 UI로 설계·퍼블리싱.</div>
+          <div class="citags"><span class="tag ac">Game UI</span><span class="tag">Interaction</span><span class="tag">HTML·CSS·JS</span></div>
+          <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+        </div>
+      </div>
+
+      <!-- 05 AI COMMAND CENTER -->
+      <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-4/">
+        <div class="ct">
+          <div class="ctbg" style="background-image:url(images/thunmb-04.png); background-size:100% 100%; background-position:center;"></div>
+          <div class="ctnum">05</div>
+          <div class="ctlabel">AI · Platform · Design</div>
+        </div>
+        <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+        <div class="ci">
+          <div class="cimeta"><span class="cino">Project 05</span><span class="ciy">2026</span></div>
+          <div class="ciname">AI Command Center</div>
+          <div class="cidesc">GPT·Claude·Gemini를 단일 인터페이스에서 운영하는 업무 자동화 대시보드 UI 설계 및 인터랙티브 프로토타입 구현.</div>
+          <div class="citags"><span class="tag ac">AI Platform</span><span class="tag">Dashboard</span><span class="tag">Automation</span></div>
+          <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+        </div>
+      </div>
+
+      <!-- 06 OTT -->
+      <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-5/">
+        <div class="ct">
+          <div class="ctbg" style="background-image:url(images/thunmb-05.png); background-size:100% 100%; background-position:center;"></div>
+          <div class="ctnum">06</div>
+          <div class="ctlabel">OTT · UX · Research</div>
+        </div>
+        <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+        <div class="ci">
+          <div class="cimeta"><span class="cino">Project 06</span><span class="ciy">2026</span></div>
+          <div class="ciname">OTT Platform UX Redesign</div>
+          <div class="cidesc">Netflix·Watcha의 콘텐츠 탐색 피로 문제를 UX 리서치로 분석. Mood 기반 30초 추천 플로우로 선택 과부하를 해소한 리디자인.</div>
+          <div class="citags"><span class="tag ac">UX Research</span><span class="tag">OTT</span><span class="tag">Prototype</span></div>
+          <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot gem"></div><span class="ain">Gemini</span></div>
+        </div>
+      </div>
+
+      <!-- 07 HOSPITAL -->
+      <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-6/">
+        <div class="ct">
+          <div class="ctbg" style="background-image:url(images/thunmb-05-2.png); background-size:cover; background-position:center;"></div>
+          <div class="ctnum">07</div>
+          <div class="ctlabel">Medical · Mobile · UX</div>
+        </div>
+        <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+        <div class="ci">
+          <div class="cimeta"><span class="cino">Project 07</span><span class="ciy">2026</span></div>
+          <div class="ciname">Medibook — Hospital Booking UX</div>
+          <div class="cidesc">굿닥·똑닥 경쟁사 분석 기반으로 병원 예약 플로우를 재설계. 증상 선택 3단계로 복잡한 예약 프로세스를 단순화한 모바일 UX.</div>
+          <div class="citags"><span class="tag ac">Mobile UX</span><span class="tag">Healthcare</span><span class="tag">Figma</span></div>
+          <div class="ciai"><div class="aidot gpt"></div><span class="ain">GPT</span><div class="aidot cla"></div><span class="ain">Claude</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
 <!-- ─── S5 ARCHIVE ─── -->
@@ -650,8 +682,8 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
   </div>
   <div class="cr rv d2">
     <a class="clink" href="mailto:rlaehdgnldls@naver.com"><div class="clinfo"><span class="clk">Email</span><span class="clv">rlaehdgnldls@naver.com</span></div><span class="carrow">↗</span></a>
-    <a class="clink" href="https://github.com/hwin016000180169-png" target="_blank"><div class="clinfo"><span class="clk">GitHub</span><span class="clv">github.com/hwin016000180169-png</span></div><span class="carrow">↗</span></a>
-    <a class="clink" href="https://instagram.com/_rlaehdgnl" target="_blank"><div class="clinfo"><span class="clk">Instagram</span><span class="clv">_rlaehdgnl</span></div><span class="carrow">↗</span></a>
+    <a class="clink" href="https://kmong.com/@DesignRENA" target="_blank"><div class="clinfo"><span class="clk">크몽</span><span class="clv">kmong.com/@DesignRENA</span></div><span class="carrow">↗</span></a>
+    <a class="clink" href="https://www.wishket.com/partners/p/rlaehdgnldls/" target="_blank"><div class="clinfo"><span class="clk">위시캣</span><span class="clv">wishket.com/partners/p/rlaehdgnldls</span></div><span class="carrow">↗</span></a>
     <a class="clink" href="김동휘 이력서 — KIM DONG HWI.pdf" download><div class="clinfo"><span class="clk">Resume</span><span class="clv">이력서 다운로드 (PDF)</span></div><span class="carrow">↓</span></a>
   </div>
 </section>
