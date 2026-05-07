@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Power Technology Renewal — KDH Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#020202;--fg:#f0ece4;
+  --acc:#76c442;--acc2:#a0d860;
+  --gp-dark:#0d2010;--gp-mid:#112b1c;
+  --bdr:#1e1e1e;--mid:#666;--card:#0a0a0a;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--fg);font-family:'Pretendard','Noto Sans KR',sans-serif;cursor:none;overflow-x:hidden;font-size:14px;line-height:1.6;}
+#CU{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+#CR{position:fixed;width:36px;height:36px;border:1px solid rgba(118,196,66,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+#PB{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:200;width:0%;}
+a{text-decoration:none;color:inherit;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 52px;background:rgba(2,2,2,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);}
+.nb{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;transition:color .3s;}
+.nb:hover{color:var(--acc);}
+.nt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.18em;color:var(--acc);}
+.nn{font-size:14px;letter-spacing:.22em;color:var(--mid);}
+
+/* HERO */
+#hero{width:100vw;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:60px;}
+.hl{background:var(--gp-dark);display:flex;flex-direction:column;justify-content:flex-end;padding:64px 52px;position:relative;overflow:hidden;border-right:1px solid rgba(118,196,66,.15);}
+.hl::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(118,196,66,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(118,196,66,.04) 1px,transparent 1px);background-size:60px 60px;}
+.hbignum{position:absolute;right:-.02em;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:26vw;line-height:1;color:rgba(118,196,66,.05);pointer-events:none;user-select:none;}
+.htag{font-size:14px;letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);margin-bottom:20px;position:relative;z-index:1;}
+.htitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,8.5vw,110px);line-height:.88;letter-spacing:.02em;margin-bottom:22px;position:relative;z-index:1;}
+.htitle em{display:block;color:var(--acc);font-style:normal;}
+.hdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.9;font-weight:300;color:rgba(240,236,228,.6);margin-bottom:36px;position:relative;z-index:1;max-width:460px;}
+.hbtns{display:flex;gap:14px;position:relative;z-index:1;flex-wrap:wrap;}
+.hbtn{font-size:14px;letter-spacing:.18em;text-transform:uppercase;padding:13px 26px;transition:all .3s;font-family:'Pretendard',sans-serif;cursor:none;}
+.hbtn.p{background:var(--acc);color:#022;font-weight:700;}
+.hbtn.p:hover{background:#86d452;}
+.hbtn.s{border:1px solid rgba(240,236,228,.2);color:var(--fg);}
+.hbtn.s:hover{border-color:var(--acc);color:var(--acc);}
+.hr{background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:64px 52px;}
+.hmrow{display:flex;align-items:center;padding:22px 0;border-bottom:1px solid var(--bdr);}
+.hmrow:first-child{border-top:1px solid var(--bdr);}
+.hmnum{font-family:'Bebas Neue',sans-serif;font-size:50px;color:var(--acc);line-height:1;min-width:130px;}
+.hminfo{display:flex;flex-direction:column;gap:5px;}
+.hmk{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
+.hmv{font-family:'Noto Sans KR',sans-serif;font-size:14px;color:rgba(240,236,228,.55);font-weight:300;}
+.hmeta2{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:20px;}
+.hm2{padding:16px 18px;background:var(--card);display:flex;flex-direction:column;gap:5px;}
+.hm2k{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);}
+.hm2v{font-size:14px;letter-spacing:.05em;}
+.hm2v.acc{color:var(--acc);}
+
+/* BADGE */
+.live-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(118,196,66,.14);border:1px solid rgba(118,196,66,.32);padding:6px 14px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc2);margin-bottom:18px;position:relative;z-index:1;width:fit-content;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--acc2);animation:blink 1.4s ease infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+/* SHARED */
+.sec{padding:96px 52px;border-top:1px solid var(--bdr);}
+.sec-label{font-size:14px;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,70px);letter-spacing:.02em;margin-bottom:52px;line-height:.95;}
+.sec-title em{font-style:normal;color:var(--acc);}
+
+/* PROBLEM/SOLUTION (6 핵심) */
+.ps-wrap{display:flex;flex-direction:column;gap:3px;}
+.ps-row{display:grid;grid-template-columns:80px 1fr 80px 1fr;gap:0;align-items:stretch;background:var(--card);border:1px solid var(--bdr);transition:border-color .3s;}
+.ps-row:hover{border-color:rgba(118,196,66,.3);}
+.ps-num{display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(118,196,66,.3);background:rgba(0,0,0,.3);border-right:1px solid var(--bdr);}
+.ps-cell{padding:28px 30px;display:flex;flex-direction:column;justify-content:center;gap:10px;border-right:1px solid var(--bdr);}
+.ps-cell:last-child{border-right:none;}
+.ps-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--acc);background:var(--gp-dark);border-right:1px solid rgba(118,196,66,.18);}
+.ps-tag{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;}
+.ps-tag.before{color:#999;}
+.ps-tag.after{color:var(--acc);}
+.ps-title{font-size:14px;font-weight:700;color:var(--fg);letter-spacing:.04em;line-height:1.5;}
+.ps-desc{font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.7;font-weight:300;color:rgba(240,236,228,.5);}
+.ps-cell.after-cell{background:rgba(118,196,66,.04);}
+
+/* OVERVIEW */
+.ov2{display:grid;grid-template-columns:1fr 1.3fr;gap:72px;align-items:start;}
+.problist{display:flex;flex-direction:column;}
+.pitem{padding:24px 0;border-bottom:1px solid var(--bdr);display:grid;grid-template-columns:48px 1fr;gap:18px;}
+.pnum{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--acc);line-height:1;}
+.ptitle{font-size:14px;letter-spacing:.05em;color:var(--fg);margin-bottom:8px;font-weight:700;}
+.pdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
+.goalbox{background:var(--gp-dark);border:1px solid rgba(118,196,66,.2);padding:36px;margin-bottom:22px;}
+.gblabel{font-size:14px;letter-spacing:.26em;text-transform:uppercase;color:var(--acc2);margin-bottom:18px;}
+.gbitems{display:flex;flex-direction:column;gap:10px;}
+.gbitem{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.7;font-weight:300;color:rgba(240,236,228,.65);padding:12px 16px;border-left:2px solid var(--acc);}
+.rolegrid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.roleitem{padding:18px 20px;background:var(--card);}
+.rolekey{font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:7px;}
+.roleval{font-size:14px;margin-bottom:10px;}
+.rolebar{height:2px;background:var(--bdr);position:relative;}
+.rolefill{position:absolute;top:0;left:0;height:100%;width:0%;background:var(--acc);transition:width 1.2s cubic-bezier(.22,1,.36,1);}
+
+/* BEFORE/AFTER */
+.ba-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:48px;}
+.ba-item{position:relative;overflow:hidden;background:var(--card);}
+.ba-label{position:absolute;top:20px;left:20px;z-index:2;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:7px 12px;font-weight:700;}
+.ba-label.before{background:#333;color:#999;}
+.ba-label.after{background:var(--acc);color:#022;}
+.ba-item img{width:100%;height:auto;display:block;opacity:.92;}
+.ba-ph{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#0a0a0a 0%,#0d0d0d 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;color:rgba(240,236,228,.18);}
+.ba-ph.after{background:linear-gradient(135deg,var(--gp-dark) 0%,var(--gp-mid) 100%);color:rgba(118,196,66,.4);}
+.ba-ph-tx{font-size:12px;letter-spacing:.22em;text-transform:uppercase;}
+.ba-ph-sz{font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:1;}
+.ba-desc{padding:24px 28px;background:var(--card);border-top:1px solid var(--bdr);}
+.ba-desc-title{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.ba-desc-txt{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.5);}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:0;}
+.feat-item{background:var(--card);padding:36px 30px;border:1px solid var(--bdr);transition:border-color .3s;}
+.feat-item:hover{border-color:rgba(118,196,66,.35);}
+.feat-icon{font-size:28px;margin-bottom:18px;display:block;}
+.feat-badge{display:inline-block;background:rgba(118,196,66,.15);color:var(--acc2);font-size:12px;letter-spacing:.14em;padding:4px 8px;text-transform:uppercase;margin-bottom:12px;}
+.feat-badge.new{background:rgba(255,107,26,.15);color:#ff6b1a;}
+.feat-title{font-size:14px;letter-spacing:.06em;color:var(--fg);margin-bottom:10px;font-weight:700;}
+.feat-desc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.75;font-weight:300;color:rgba(240,236,228,.45);}
+
+/* MOCKUP */
+.mockwrap{display:flex;flex-direction:row;gap:4px;overflow-x:auto;overflow-y:hidden;padding-bottom:16px;cursor:grab;user-select:none;-webkit-user-select:none;}
+.mockwrap.is-dragging{cursor:grabbing;}
+.mockwrap::-webkit-scrollbar{height:3px;}
+.mockwrap::-webkit-scrollbar-track{background:rgba(255,255,255,.05);}
+.mockwrap::-webkit-scrollbar-thumb{background:var(--acc);border-radius:2px;}
+.mockitem{flex:0 0 700px;display:flex;flex-direction:column;border:1px solid var(--bdr);background:var(--card);}
+/* 모든 스크린샷 — 비율 무관하게 잘림 없이 전체 표시 (16:9 프레임에 contain) */
+.mockitem img{width:100%;aspect-ratio:16/9;object-fit:contain;display:block;background:linear-gradient(135deg,var(--gp-dark) 0%,var(--gp-mid) 100%);}
+.mockitem.mobile img{background:linear-gradient(135deg,#0a0a0a 0%,#0d0d0d 100%);}
+.mock-ph{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--gp-dark) 0%,var(--gp-mid) 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:rgba(118,196,66,.4);}
+.mock-ph-tx{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;}
+.mock-ph-sub{font-size:11px;letter-spacing:.22em;text-transform:uppercase;}
+.mock-caption{padding:14px 22px;background:rgba(13,32,16,.9);border-bottom:1px solid rgba(118,196,66,.25);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(240,236,228,.9);flex-shrink:0;font-weight:700;}
+.mock-count{font-size:12px;letter-spacing:.14em;color:rgba(240,236,228,.42);margin-top:10px;}
+
+/* TIMELINE */
+.tlwrap{overflow-x:auto;padding-bottom:16px;}
+.tlwrap::-webkit-scrollbar{height:2px;}
+.tlwrap::-webkit-scrollbar-thumb{background:var(--acc);}
+.tltrack{display:flex;min-width:max-content;gap:0;}
+.tlitem{min-width:220px;padding-right:32px;position:relative;}
+.tlhdr{display:flex;align-items:center;margin-bottom:20px;}
+.tldot{width:12px;height:12px;border-radius:50%;border:2px solid var(--bdr);background:var(--bg);flex-shrink:0;}
+.tlitem.done .tldot{background:var(--acc);border-color:var(--acc);}
+.tlline{flex:1;height:1px;background:var(--bdr);}
+.tlitem.done .tlline{background:rgba(118,196,66,.3);}
+.tlitem:last-child .tlline{display:none;}
+.tlphase{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.tltask{font-size:14px;letter-spacing:.04em;color:var(--fg);margin-bottom:8px;}
+.tlsub{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;color:rgba(240,236,228,.4);font-weight:300;}
+
+/* TECH STACK */
+.stackrow{display:flex;flex-wrap:wrap;gap:8px;}
+.stackbadge{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 20px;border:1px solid var(--bdr);background:var(--gp-dark);transition:border-color .3s;text-align:center;}
+.stackbadge:hover{border-color:rgba(118,196,66,.35);}
+.sbnm{font-size:13px;letter-spacing:.10em;text-transform:uppercase;color:var(--fg);}
+.sbcat{font-size:12px;letter-spacing:.05em;color:var(--mid);margin-top:2px;}
+.sbi{font-size:26px;line-height:1;}
+
+/* RESULTS */
+.resgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.resitem{padding:40px 28px;background:var(--gp-dark);border:1px solid rgba(118,196,66,.08);text-align:center;transition:border-color .3s;}
+.resitem:hover{border-color:rgba(118,196,66,.3);}
+.resnum{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--acc);line-height:1;margin-bottom:10px;}
+.reslabel{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;}
+.resdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;font-weight:300;color:rgba(240,236,228,.45);}
+
+/* BOTTOM NAV */
+.pnav-bottom{display:flex;justify-content:space-between;align-items:center;padding:30px 52px;border-top:1px solid var(--bdr);}
+.pnl{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);transition:color .3s;}
+.pnl:hover{color:var(--acc);}
+.pnc{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.2em;color:var(--bdr);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
+.rv.v{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.25s}.d4{transition-delay:.34s}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  body{cursor:auto;}
+  #CU,#CR{display:none;}
+  nav{padding:16px 20px;}
+  nav .nb,nav .nn{font-size:12px;letter-spacing:.16em;}
+  #hero{grid-template-columns:1fr;}
+  .hl{padding:120px 24px 48px;}
+  .hr{padding:36px 24px;}
+  .htitle{font-size:clamp(48px,13vw,80px);}
+  .sec{padding:64px 24px;}
+  .ov2,.mig-wrap,.ba-wrap{grid-template-columns:1fr;}
+  .feat-grid{grid-template-columns:1fr;}
+  .resgrid{grid-template-columns:1fr 1fr;}
+  .pnav-bottom{padding:24px;flex-direction:column;gap:14px;text-align:center;}
+  /* PS row → 세로 1열 */
+  .ps-row{grid-template-columns:1fr;}
+  .ps-num{padding:14px;border-right:none;border-bottom:1px solid var(--bdr);}
+  .ps-cell{border-right:none;border-bottom:1px solid var(--bdr);}
+  .ps-arrow{padding:8px;border-right:none;border-bottom:1px solid rgba(118,196,66,.18);transform:rotate(90deg);}
+}
+</style>
+</head>
+<body>
+<div id="CU"></div><div id="CR"></div><div id="PB"></div>
+
+<nav>
+  <a class="nb" href="../../../../../../index.html">← Portfolio</a>
+  <span class="nt">GREEN POWER</span>
+  <span class="nn">01 / 04</span>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hl">
+    <div class="hbignum">01</div>
+    <div class="live-badge"><span class="live-dot"></span>Live · greenups.co.kr</div>
+    <div class="htag">Corporate Web · Renewal · Mobile · Interaction</div>
+    <div class="htitle">GREEN<em>POWER</em></div>
+    <p class="hdesc">UPS·AVR·충전기 제조기업 (주)그린파워테크놀로지의 공식 홈페이지를 전면 리뉴얼. 모바일 미대응, 정보 단절, 인터랙션 부재 등 6가지 핵심 문제를 진단하고 기획·디자인·퍼블리싱 단독 수행으로 해결. greenups.co.kr 도메인 실운영 중.</p>
+    <div class="hbtns">
+      <a class="hbtn p" href="https://greenups.co.kr" target="_blank">라이브 사이트 ↗</a>
+      <a class="hbtn s" href="https://hwin016000180169-png.github.io/greenpower2/" target="_blank">GitHub Demo ↗</a>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="hmrow rv"><div class="hmnum">2026</div><div class="hminfo"><span class="hmk">Year</span><span class="hmv">외주 · 실운영 납품</span></div></div>
+    <div class="hmrow rv"><div class="hmnum">Web</div><div class="hminfo"><span class="hmk">Type</span><span class="hmv">기업 공식 홈페이지 리뉴얼</span></div></div>
+    <div class="hmrow rv"><div class="hmnum">Solo</div><div class="hminfo"><span class="hmk">Build</span><span class="hmv">기획 · 디자인 · 퍼블리싱 전담</span></div></div>
+    <div class="hmeta2 rv d1">
+      <div class="hm2"><span class="hm2k">Renewal</span><span class="hm2v acc">100%</span></div>
+      <div class="hm2"><span class="hm2k">Mobile</span><span class="hm2v acc">100%</span></div>
+      <div class="hm2"><span class="hm2k">Interaction</span><span class="hm2v acc">100%</span></div>
+      <div class="hm2"><span class="hm2k">AI Used</span><span class="hm2v">Claude</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="sec">
+  <div class="sec-label rv">— Problem &amp; Goal</div>
+  <div class="sec-title rv d1">PROJECT <em>OVERVIEW</em></div>
+  <div class="ov2">
+    <div class="problist rv d2">
+      <div class="pitem">
+        <div class="pnum">01</div>
+        <div>
+          <div class="ptitle">기업 정체성을 보여주지 못하는 구식 홈페이지</div>
+          <div class="pdesc">2010년대 초반 그대로 멈춰있는 레이아웃. 제조 기업의 신뢰감과 친환경 가치를 전달하지 못함</div>
+        </div>
+      </div>
+      <div class="pitem">
+        <div class="pnum">02</div>
+        <div>
+          <div class="ptitle">모바일 사용자 이탈</div>
+          <div class="pdesc">반응형 미적용으로 모바일 고객 유입 시 정보 확인 자체가 어려운 상태</div>
+        </div>
+      </div>
+      <div class="pitem">
+        <div class="pnum">03</div>
+        <div>
+          <div class="ptitle">고객 문의 채널 부재</div>
+          <div class="pdesc">문의 메뉴는 있지만 실제 이메일·견적 시스템 미연동, 전화 외 접점이 끊겨있음</div>
+        </div>
+      </div>
+    </div>
+    <div class="rv d3">
+      <div class="goalbox">
+        <div class="gblabel">— Project Goals</div>
+        <div class="gbitems">
+          <div class="gbitem">신뢰감 있는 모던 디자인 시스템 구축 (그린 컬러 기반)</div>
+          <div class="gbitem">전 페이지 모바일 반응형 대응</div>
+          <div class="gbitem">스크롤 인터랙션·풀스크린 섹션으로 체류시간 증대</div>
+          <div class="gbitem">제품 상세·자료실·영상 섹션 신규 제작</div>
+          <div class="gbitem">도입 상담·견적 문의·서비스 요청 폼 신규 구축</div>
+          <div class="gbitem">CEO 인사말·연혁·인증·파트너 등 회사 정보 최신화</div>
+        </div>
+      </div>
+      <div class="rolegrid">
+        <div class="roleitem"><div class="rolekey">UI Design</div><div class="roleval">100%</div><div class="rolebar"><div class="rolefill" data-w="100"></div></div></div>
+        <div class="roleitem"><div class="rolekey">Publishing</div><div class="roleval">100%</div><div class="rolebar"><div class="rolefill" data-w="100"></div></div></div>
+        <div class="roleitem"><div class="rolekey">Mobile</div><div class="roleval">100%</div><div class="rolebar"><div class="rolefill" data-w="100"></div></div></div>
+        <div class="roleitem"><div class="rolekey">Interaction</div><div class="roleval">100%</div><div class="rolebar"><div class="rolefill" data-w="100"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 KEY IMPROVEMENTS -->
+<section class="sec">
+  <div class="sec-label rv">— 6 Key Improvements</div>
+  <div class="sec-title rv d1">PROBLEM &amp; <em>SOLUTION</em></div>
+  <div class="ps-wrap rv d2">
+    <div class="ps-row">
+      <div class="ps-num">01</div>
+      <div class="ps-cell">
+        <span class="ps-tag before">Before · 문제</span>
+        <span class="ps-title">모바일 화면 미흡</span>
+        <span class="ps-desc">반응형 미적용 — 모바일에서 PC 화면이 그대로 축소되어 정보 확인 자체가 어려운 상태</span>
+      </div>
+      <div class="ps-arrow">→</div>
+      <div class="ps-cell after-cell">
+        <span class="ps-tag after">After · 개선</span>
+        <span class="ps-title">전 페이지 모바일 반응형 대응</span>
+        <span class="ps-desc">메인·서브·제품 상세까지 모든 페이지 모바일 전용 레이아웃 신규 제작. 햄버거 메뉴·터치 인터랙션 적용</span>
+      </div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-num">02</div>
+      <div class="ps-cell">
+        <span class="ps-tag before">Before · 문제</span>
+        <span class="ps-title">정보 전달이 부족한 디자인</span>
+        <span class="ps-desc">평면적인 텍스트 나열 — 핵심 정보가 묻히고 기업의 경쟁력이 시각적으로 드러나지 않음</span>
+      </div>
+      <div class="ps-arrow">→</div>
+      <div class="ps-cell after-cell">
+        <span class="ps-tag after">After · 개선</span>
+        <span class="ps-title">인터랙션 기반 정보 시각화</span>
+        <span class="ps-desc">stat-card·핵심사업 패널·풀스크린 환경 기부 섹션 등으로 중요 정보를 단계적으로 시각화. 가독성·전달력 동시 향상</span>
+      </div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-num">03</div>
+      <div class="ps-cell">
+        <span class="ps-tag before">Before · 문제</span>
+        <span class="ps-title">인터랙션 부족 → 체류시간 감소</span>
+        <span class="ps-desc">정적인 페이지 — 방문 즉시 이탈하는 구조로 회사 정보·제품 라인업 노출 기회 부족</span>
+      </div>
+      <div class="ps-arrow">→</div>
+      <div class="ps-cell after-cell">
+        <span class="ps-tag after">After · 개선</span>
+        <span class="ps-title">스크롤 연동 인터랙션으로 흥미 유도</span>
+        <span class="ps-desc">히어로 슬라이더·파트너 플로우 배너·블랙 커튼 리빌·텍스트 순차 등장 등 다층 인터랙션으로 체류시간 증가</span>
+      </div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-num">04</div>
+      <div class="ps-cell">
+        <span class="ps-tag before">Before · 문제</span>
+        <span class="ps-title">업데이트 부족 → 회사 정보 단절</span>
+        <span class="ps-desc">수년째 갱신되지 않은 인사말·연혁·인증 — 현재 회사 상태를 반영하지 못하는 정보 단절</span>
+      </div>
+      <div class="ps-arrow">→</div>
+      <div class="ps-cell after-cell">
+        <span class="ps-tag after">After · 개선</span>
+        <span class="ps-title">클라이언트 자료 기반 정보 최신화</span>
+        <span class="ps-desc">CEO 인사말·연혁·인증 현황·주요 파트너·오시는 길 — 클라이언트 제공 자료로 전 페이지 최신 정보 반영</span>
+      </div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-num">05</div>
+      <div class="ps-cell">
+        <span class="ps-tag before">Before · 문제</span>
+        <span class="ps-title">자료 탐색이 번거로운 구조</span>
+        <span class="ps-desc">제품 정보가 분산되어 있고 다운로드 자료실 미존재 — 고객이 원하는 자료를 찾기 어려움</span>
+      </div>
+      <div class="ps-arrow">→</div>
+      <div class="ps-cell after-cell">
+        <span class="ps-tag after">After · 개선</span>
+        <span class="ps-title">제품 상세 · 자료실 · 영상 섹션 신규</span>
+        <span class="ps-desc">UPS 시리즈별 상세 페이지, 통합 자료실(규격서·카탈로그·매뉴얼), 제품 사용 영상 섹션 신규 제작 (영상 미수령 상태로 임시 숨김 처리)</span>
+      </div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-num">06</div>
+      <div class="ps-cell">
+        <span class="ps-tag before">Before · 문제</span>
+        <span class="ps-title">연락 채널 부재</span>
+        <span class="ps-desc">문의 탭은 있지만 실제 이메일 발송·견적 폼이 작동하지 않아 사실상 전화로만 문의 가능한 상태</span>
+      </div>
+      <div class="ps-arrow">→</div>
+      <div class="ps-cell after-cell">
+        <span class="ps-tag after">After · 개선</span>
+        <span class="ps-title">도입 상담·견적·서비스 폼 연동 완료</span>
+        <span class="ps-desc">3종(도입 상담·견적 문의·서비스 요청) 문의 폼 신규 제작 및 이메일 연동. 즉시 답변 가능한 채널 확보</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="sec">
+  <div class="sec-label rv">— Highlight Features</div>
+  <div class="sec-title rv d1">SIGNATURE <em>INTERACTIONS</em></div>
+  <div class="feat-grid rv d1">
+    <div class="feat-item">
+      <span class="feat-icon">🖥️</span>
+      <span class="feat-badge">CORE</span>
+      <div class="feat-title">히어로 슬라이더</div>
+      <div class="feat-desc">3종 메인 비주얼이 자동 전환되며 자체 제조 UPS·산업 인프라·친환경 가치를 단계적으로 노출</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">🌱</span>
+      <span class="feat-badge new">NEW</span>
+      <div class="feat-title">친환경 기부 풀스크린 섹션</div>
+      <div class="feat-desc">스크롤 진입 시 블랙 커튼 리빌 효과 → 배경 이미지·텍스트 순차 등장. 수익 1% 환경단체 기부 메시지를 시네마틱하게 전달</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">📦</span>
+      <span class="feat-badge new">NEW</span>
+      <div class="feat-title">제품 상세 페이지 시스템</div>
+      <div class="feat-desc">UPS 시리즈별 상세 페이지 — 갤러리·스펙 표·관련 자료 다운로드를 단일 템플릿으로 관리. JS 데이터 객체 기반 콘텐츠 확장 가능</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">📚</span>
+      <span class="feat-badge new">NEW</span>
+      <div class="feat-title">통합 자료실</div>
+      <div class="feat-desc">규격서·카탈로그·매뉴얼을 모델별로 묶은 자료실. 시리즈/용량/상품군 다중 필터 + 검색</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">📱</span>
+      <span class="feat-badge new">NEW</span>
+      <div class="feat-title">전 페이지 모바일 반응형</div>
+      <div class="feat-desc">햄버거 메뉴·아코디언·터치 슬라이더 등 모바일 전용 컴포넌트 신규 제작. 768px 기준 브레이크포인트</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">📨</span>
+      <span class="feat-badge new">NEW</span>
+      <div class="feat-title">3종 문의 폼 연동</div>
+      <div class="feat-desc">도입 상담·견적 문의·서비스 요청 폼을 목적별로 분리 제작. 이메일 발송 시스템 연동으로 실시간 응대 채널 확보</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENS -->
+<section class="sec">
+  <div class="sec-label rv">— Visual Design</div>
+  <div class="sec-title rv d1">SCREENS &amp; <em>MOCKUPS</em></div>
+  <div class="mockwrap" id="mockGallery">
+    <div class="mockitem">
+      <div class="mock-caption">01 / Main Hero — 메인 히어로 슬라이더</div>
+      <img src="../../../../../../images/gp_main.png" alt="메인 히어로 슬라이더" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;div class=&quot;mock-ph&quot;&gt;&lt;span class=&quot;mock-ph-tx&quot;&gt;MAIN&lt;/span&gt;&lt;span class=&quot;mock-ph-sub&quot;&gt;Hero · Stat Cards · Capability&lt;/span&gt;&lt;/div&gt;');">
+    </div>
+    <div class="mockitem">
+      <div class="mock-caption">02 / Eco Section — 친환경 기부 풀스크린</div>
+      <img src="../../../../../../images/gp_eco.png" alt="친환경 풀스크린 섹션" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;div class=&quot;mock-ph&quot;&gt;&lt;span class=&quot;mock-ph-tx&quot;&gt;ECO&lt;/span&gt;&lt;span class=&quot;mock-ph-sub&quot;&gt;Black Curtain Reveal&lt;/span&gt;&lt;/div&gt;');">
+    </div>
+    <div class="mockitem">
+      <div class="mock-caption">03 / Products — GREEN UPS 제품 라인업</div>
+      <img src="../../../../../../images/gp_products.png" alt="GREEN UPS 제품 라인업" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;div class=&quot;mock-ph&quot;&gt;&lt;span class=&quot;mock-ph-tx&quot;&gt;PRODUCTS&lt;/span&gt;&lt;span class=&quot;mock-ph-sub&quot;&gt;Series · Detail · Spec&lt;/span&gt;&lt;/div&gt;');">
+    </div>
+    <div class="mockitem">
+      <div class="mock-caption">04 / Resources — 통합 자료실</div>
+      <img src="../../../../../../images/gp_catalog.png" alt="통합 자료실" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;div class=&quot;mock-ph&quot;&gt;&lt;span class=&quot;mock-ph-tx&quot;&gt;CATALOG&lt;/span&gt;&lt;span class=&quot;mock-ph-sub&quot;&gt;Spec · Manual · Filter&lt;/span&gt;&lt;/div&gt;');">
+    </div>
+    <div class="mockitem">
+      <div class="mock-caption">05 / Inquiry — 3종 문의 폼</div>
+      <img src="../../../../../../images/gp_inquiry.png" alt="3종 문의 폼" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;div class=&quot;mock-ph&quot;&gt;&lt;span class=&quot;mock-ph-tx&quot;&gt;INQUIRY&lt;/span&gt;&lt;span class=&quot;mock-ph-sub&quot;&gt;Consulting · Quote · Service&lt;/span&gt;&lt;/div&gt;');">
+    </div>
+    <div class="mockitem mobile">
+      <div class="mock-caption">06 / Mobile — 전 페이지 반응형</div>
+      <img src="../../../../../../images/gp_mobile.png" alt="모바일 반응형" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;div class=&quot;mock-ph&quot;&gt;&lt;span class=&quot;mock-ph-tx&quot;&gt;MOBILE&lt;/span&gt;&lt;span class=&quot;mock-ph-sub&quot;&gt;Hamburger · Touch · 768px&lt;/span&gt;&lt;/div&gt;');">
+    </div>
+  </div>
+  <div class="mock-count">← scroll to explore · 6 screens →</div>
+</section>
+
+<!-- TIMELINE -->
+<section class="sec">
+  <div class="sec-label rv">— Work Process</div>
+  <div class="sec-title rv d1">PROJECT <em>TIMELINE</em></div>
+  <div class="tlwrap rv d1">
+    <div class="tltrack">
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Phase 1</div>
+        <div class="tltask">기존 사이트 분석</div>
+        <div class="tlsub">6가지 핵심 문제 진단<br>리뉴얼 방향성 수립<br>Light Premium 디자인안 확정</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Phase 2</div>
+        <div class="tltask">디자인 시스템 구축</div>
+        <div class="tlsub">그린 컬러 토큰 정의<br>Pretendard·Space Grotesk 조합<br>섹션·컴포넌트 라이브러리</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Phase 3</div>
+        <div class="tltask">메인 페이지 퍼블리싱</div>
+        <div class="tlsub">히어로 슬라이더<br>핵심사업·파트너 배너<br>친환경 풀스크린 섹션</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Phase 4</div>
+        <div class="tltask">서브 페이지 / 제품 상세</div>
+        <div class="tlsub">기업소개 5종<br>제품 상세 8종<br>자료실 · 공지사항</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Phase 5</div>
+        <div class="tltask">문의 시스템 연동</div>
+        <div class="tlsub">3종 폼 신규 제작<br>이메일 발송 연동<br>도메인 연결 (greenups.co.kr)</div>
+      </div>
+      <div class="tlitem done">
+        <div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div>
+        <div class="tlphase">Phase 6</div>
+        <div class="tltask">모바일 대응 &amp; QA</div>
+        <div class="tlsub">전 페이지 반응형<br>크로스 브라우저 QA<br>실서버 배포 · 운영 중</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="sec">
+  <div class="sec-label rv">— Outcome</div>
+  <div class="sec-title rv d1">PROJECT <em>RESULTS</em></div>
+  <div class="resgrid rv d1">
+    <div class="resitem">
+      <div class="resnum">20+</div>
+      <div class="reslabel">Pages</div>
+      <div class="resdesc">메인·서브·제품 상세<br>전 페이지 신규 제작</div>
+    </div>
+    <div class="resitem">
+      <div class="resnum">100%</div>
+      <div class="reslabel">Mobile Ready</div>
+      <div class="resdesc">PC만 지원하던 기존 →<br>모든 페이지 모바일 대응</div>
+    </div>
+    <div class="resitem">
+      <div class="resnum">3</div>
+      <div class="reslabel">Inquiry Forms</div>
+      <div class="resdesc">상담·견적·서비스<br>이메일 연동 완료</div>
+    </div>
+    <div class="resitem">
+      <div class="resnum">Live</div>
+      <div class="reslabel">greenups.co.kr</div>
+      <div class="resdesc">자체 도메인<br>실운영 중</div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="sec">
+  <div class="sec-label rv">— Technologies</div>
+  <div class="sec-title rv d1">TECH <em>STACK</em></div>
+  <div class="stackrow rv d1">
+    <div class="stackbadge"><span class="sbi">🌐</span><span class="sbnm">HTML5</span><span class="sbcat">Structure</span></div>
+    <div class="stackbadge"><span class="sbi">🎨</span><span class="sbnm">CSS3</span><span class="sbcat">Styling</span></div>
+    <div class="stackbadge"><span class="sbi">⚙️</span><span class="sbnm">JavaScript</span><span class="sbcat">Interaction</span></div>
+    <div class="stackbadge"><span class="sbi">✏️</span><span class="sbnm">Figma</span><span class="sbcat">Design</span></div>
+    <div class="stackbadge"><span class="sbi">🔧</span><span class="sbnm">GitHub</span><span class="sbcat">Versioning</span></div>
+    <div class="stackbadge"><span class="sbi">🤖</span><span class="sbnm">Claude AI</span><span class="sbcat">Dev Partner</span></div>
+  </div>
+</section>
+
+<div class="pnav-bottom">
+  <a class="pnl" href="../../../../../../index.html">← Back to Works</a>
+  <span class="pnc">KDH © 2026</span>
+  <a class="pnl" href="../project-7/">Project 02 / NNC ADMIN →</a>
+</div>
+
+<script>
+// cursor
+const cu=document.getElementById('CU'),cr=document.getElementById('CR');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cu.style.left=mx+'px';cu.style.top=my+'px';});
+(function loop(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;cr.style.left=cx+'px';cr.style.top=cy+'px';requestAnimationFrame(loop);})();
+
+// progress bar
+const pb=document.getElementById('PB');
+window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);pb.style.width=(p*100)+'%';});
+
+// drag-scroll for mockup gallery
+(()=>{
+  const el=document.getElementById('mockGallery');
+  if(!el)return;
+  let isDown=false,startX=0,startScroll=0,lastX=0,lastT=0,velX=0,raf=0;
+  const cls='is-dragging';
+  el.addEventListener('mousedown',e=>{
+    isDown=true;el.classList.add(cls);startX=e.pageX;startScroll=el.scrollLeft;
+    lastX=e.pageX;lastT=performance.now();velX=0;cancelAnimationFrame(raf);e.preventDefault();
+  });
+  document.addEventListener('mousemove',e=>{
+    if(!isDown)return;
+    const now=performance.now();const dt=now-lastT||1;
+    velX=(lastX-e.pageX)/dt*14;lastX=e.pageX;lastT=now;
+    el.scrollLeft=startScroll+(startX-e.pageX);
+  });
+  document.addEventListener('mouseup',()=>{
+    if(!isDown)return;
+    isDown=false;el.classList.remove(cls);
+    let v=velX;
+    function coast(){if(Math.abs(v)<0.3)return;el.scrollLeft+=v;v*=0.88;raf=requestAnimationFrame(coast);}
+    coast();
+  });
+})();
+
+// reveal
+const IO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');});},{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>IO.observe(el));
+
+// role bars
+const RO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.rolefill').forEach(f=>{f.style.width=f.dataset.w+'%';});}});},{threshold:.3});
+document.querySelectorAll('.rolegrid').forEach(el=>RO.observe(el));
+</script>
+</body>
+</html>
