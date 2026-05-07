@@ -171,6 +171,10 @@ body.hov #CU{width:22px;height:22px;}
 /* grid: equal size cards */
 .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
 .wgrid-4{grid-template-columns:repeat(4,1fr);}
+.wgrid-2{grid-template-columns:repeat(2,1fr);}
+/* 썸네일에 디자인 자체가 들어간 카드 — 오버레이 제거 */
+.wc.wc-clean .ctbg::after{display:none;}
+.wc.wc-clean .ctlabel,.wc.wc-clean .ctnum{display:none;}
 .wc{position:relative;overflow:hidden;background:var(--card);cursor:pointer;opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;}
 .wc.v{opacity:1;transform:none;}
 .wc:nth-child(1){transition-delay:.00s;}
@@ -493,7 +497,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
       <div class="whn">— 003 / Selected Works</div>
       <div class="wht">WORKS</div>
     </div>
-    <div class="wcnt"><span>Total Projects</span><span>03</span></div>
+    <div class="wcnt"><span>Total Projects</span><span>04</span></div>
   </div>
 
   <!-- ── Live Service 그룹 ── -->
@@ -501,20 +505,36 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <div class="wgroup-hd">
       <span class="wgroup-dot"></span>
       <span class="wgroup-lbl">Live Service</span>
-      <span class="wgroup-sub">실운영 프로젝트 · 3</span>
+      <span class="wgroup-sub">실운영 프로젝트 · 4</span>
     </div>
-    <div class="wgrid">
+    <div class="wgrid wgrid-2">
 
-      <!-- 01 NNC ADMIN -->
-      <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-7/">
+      <!-- 01 GREENPOWER -->
+      <div class="wc wc-clean" data-href="mnt/user-data/outputs/portfolio/page/project-8/">
         <div class="ct">
-          <div class="ctbg" style="background-image:url(images/thunmb-07.png); background-size:cover; background-position:center top;"></div>
-          <div class="ctnum">01</div>
-          <div class="ctlabel">Admin · Migration · Live</div>
+          <div class="ctbg" style="background-image:url(images/thunmb-08.png); background-size:cover; background-position:center;"></div>
         </div>
         <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
         <div class="ci">
           <div class="cimeta"><span class="cino">Project 01</span><span class="ciy">2026</span></div>
+          <div class="ciname">Green Power Technology</div>
+          <div class="cidesc">UPS·AVR 제조기업 공식 홈페이지 전면 리뉴얼. 기획·디자인·퍼블리싱 전담. 모바일 대응·스크롤 인터랙션·문의 연동까지, greenups.co.kr 도메인 실운영 중.</div>
+          <div class="citags"><span class="tag ac">Live Service</span><span class="tag">Corporate Web</span><span class="tag">Renewal</span></div>
+          <div class="ciskills"><span class="skill">HTML5</span><span class="skill">CSS3</span><span class="skill">JavaScript</span><span class="skill">Figma</span></div>
+          <div class="ciai" style="margin-top:8px"><div class="aidot cla"></div><span class="ain">Claude</span></div>
+        </div>
+      </div>
+
+      <!-- 02 NNC ADMIN -->
+      <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-7/">
+        <div class="ct">
+          <div class="ctbg" style="background-image:url(images/thunmb-07.png); background-size:cover; background-position:center top;"></div>
+          <div class="ctnum">02</div>
+          <div class="ctlabel">Admin · Migration · Live</div>
+        </div>
+        <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
+        <div class="ci">
+          <div class="cimeta"><span class="cino">Project 02</span><span class="ciy">2026</span></div>
           <div class="ciname">NNC Admin Redesign &amp; Migration</div>
           <div class="cidesc">노후화된 관리자 시스템 전면 리디자인 및 외부 플랫폼 마이그레이션. 서비스 신청·통계·가맹점 관리 기능 추가 개발, 현재 nncmall.com 실운영 중.</div>
           <div class="citags"><span class="tag ac">Live Service</span><span class="tag">Admin UI</span><span class="tag">CMS Module</span><span class="tag">Migration</span><span class="tag">Feature Dev</span></div>
@@ -523,16 +543,16 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
         </div>
       </div>
 
-      <!-- 02 NAVYBAY -->
+      <!-- 03 NAVYBAY -->
       <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-1/">
         <div class="ct">
           <div class="ctbg" style="background-image:url(images/thunmb-01.png); background-size:cover; background-position:center;"></div>
-          <div class="ctnum">02</div>
+          <div class="ctnum">03</div>
           <div class="ctlabel">Brand · Landing · Publishing</div>
         </div>
         <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
         <div class="ci">
-          <div class="cimeta"><span class="cino">Project 02</span><span class="ciy">2026</span></div>
+          <div class="cimeta"><span class="cino">Project 03</span><span class="ciy">2026</span></div>
           <div class="ciname">NAVYBAY Brand Landing Page</div>
           <div class="cidesc">네이비베이 e커머스팀 재직 중 단독 기획·디자인·퍼블리싱 납품. 상품 중심 구조를 브랜드 경험 중심으로 전환, 현재 navybay.com 실운영 중.</div>
           <div class="citags"><span class="tag ac">Brand</span><span class="tag">Landing Page</span><span class="tag">Publishing</span><span class="tag">Identity</span></div>
@@ -541,16 +561,16 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
         </div>
       </div>
 
-      <!-- 03 CROWNYCLASS -->
+      <!-- 04 CROWNYCLASS -->
       <div class="wc" data-href="mnt/user-data/outputs/portfolio/page/project-3/">
         <div class="ct">
           <div class="ctbg" style="background-image:url(images/thunmb-03.png); background-size:cover; background-position:center;"></div>
-          <div class="ctnum">03</div>
+          <div class="ctnum">04</div>
           <div class="ctlabel">Education · App · AI</div>
         </div>
         <div class="cov"><div class="covtxt"><span class="covline"></span>View Project</div></div>
         <div class="ci">
-          <div class="cimeta"><span class="cino">Project 03</span><span class="ciy">2026</span></div>
+          <div class="cimeta"><span class="cino">Project 04</span><span class="ciy">2026</span></div>
           <div class="ciname">CrownyClass Education Platform</div>
           <div class="cidesc">수업 관리·파일 공유·Gemini AI 오답 노트를 통합한 교육 앱 UI 전담. 실제 학원 학생들이 사용 중인 라이브 서비스.</div>
           <div class="citags"><span class="tag ac">App UI</span><span class="tag">Gemini API</span><span class="tag">Live Service</span></div>
@@ -694,7 +714,7 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <a class="clink" href="mailto:rlaehdgnldls@naver.com"><div class="clinfo"><span class="clk">Email</span><span class="clv">rlaehdgnldls@naver.com</span></div><span class="carrow">↗</span></a>
     <a class="clink" href="https://kmong.com/@DesignRENA" target="_blank"><div class="clinfo"><span class="clk">Kmong</span><span class="clv">kmong.com/@DesignRENA</span></div><span class="carrow">↗</span></a>
     <a class="clink" href="https://www.wishket.com/partners/p/rlaehdgnldls/" target="_blank"><div class="clinfo"><span class="clk">Wishket</span><span class="clv">wishket.com/partners/p/rlaehdgnldls</span></div><span class="carrow">↗</span></a>
-    <a class="clink" href="김동휘 이력서 — KIM DONG HWI.pdf" download><div class="clinfo"><span class="clk">Resume</span><span class="clv">이력서 다운로드 (PDF)</span></div><span class="carrow">↓</span></a>
+    <a class="clink" href="김동휘_이력서_2026.pdf" download><div class="clinfo"><span class="clk">Resume</span><span class="clv">이력서 다운로드 (PDF)</span></div><span class="carrow">↓</span></a>
   </div>
 </section>
 
