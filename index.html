@@ -13,19 +13,20 @@
 <meta name="twitter:card" content="summary_large_image">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap');
+@font-face{font-family:'KBL Court';src:url('font/KBLCourt_EB.ttf') format('truetype');font-weight:800;font-style:normal;font-display:block;}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{--bg:#020202;--fg:#f0ece4;--acc:#ff3c2e;--bdr:#1e1e1e;--mid:#555;--card:#0d0d0d;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--fg);font-family:'Space Mono',monospace;cursor:none;overflow-x:hidden;}
 
 /* cursor */
-#CU{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .18s,height .18s;mix-blend-mode:difference;}
-#CR{position:fixed;width:36px;height:36px;border:1px solid rgba(240,236,228,.24);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+#CU{position:fixed;top:0;left:0;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;will-change:transform;transition:width .18s,height .18s;mix-blend-mode:difference;}
+#CR{position:fixed;top:0;left:0;width:36px;height:36px;border:1px solid rgba(240,236,228,.24);border-radius:50%;pointer-events:none;z-index:9998;will-change:transform;}
 body.hov #CU{width:22px;height:22px;}
 
 /* scanlines + grain */
 #SL{position:fixed;inset:0;pointer-events:none;z-index:91;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,0,0,.12) 3px,rgba(0,0,0,.12) 4px);opacity:.42;}
-#GR{position:fixed;inset:-60%;width:220%;height:220%;pointer-events:none;z-index:90;opacity:.22;animation:gra 9s steps(10) infinite;}
+#GR{position:fixed;inset:-60%;width:220%;height:220%;pointer-events:none;z-index:90;opacity:.22;animation:gra 9s steps(10) infinite;will-change:transform;}
 @keyframes gra{0%{transform:translate(0,0)}10%{transform:translate(-3%,-2%)}25%{transform:translate(2%,4%)}40%{transform:translate(-2%,1%)}55%{transform:translate(3%,-3%)}70%{transform:translate(-1%,2%)}85%{transform:translate(2%,-1%)}100%{transform:translate(0,0)}}
 #GR{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");}
 
@@ -384,11 +385,11 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
     <div class="mh-sub">UI / UX · Publisher · AI Collaborator</div>
   </div>
 
-  <div class="itl rv">
+  <div class="itl">
     <span class="lbl">Based in</span><span class="lbv">Seoul, Korea</span>
     <span class="lbl" style="margin-top:14px">Discipline</span><span class="lbv">UI/UX · Publishing</span>
   </div>
-  <div class="itr rv">
+  <div class="itr">
     <span class="lbl">Portfolio</span><span class="lbv">2026</span>
     <span class="lbl" style="margin-top:14px">AI Powered</span><span class="lbv">GPT · Claude · Gemini</span>
   </div>
@@ -727,14 +728,17 @@ footer{position:relative;z-index:10;display:flex;justify-content:space-between;a
 /* ── CURSOR ── */
 const CU=document.getElementById('CU'),CR=document.getElementById('CR');
 let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-(function loop(){CU.style.left=mx+'px';CU.style.top=my+'px';rx+=(mx-rx)*.13;ry+=(my-ry)*.13;CR.style.left=rx+'px';CR.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;},{passive:true});
 document.querySelectorAll('a,button,.wc').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));});
 
 /* ── LOADER ── */
 const LDN=document.getElementById('LDN'),LF=document.getElementById('LF');
 const LD=document.getElementById('LD');
-document.fonts.load("900 100px 'Bebas Neue'").then(()=>{
+Promise.all([
+  document.fonts.load("900 100px 'Bebas Neue'"),
+  document.fonts.load("400 16px 'Space Mono'"),
+  document.fonts.load("800 100px 'KBL Court'")
+]).then(()=>{
 if(sessionStorage.getItem('visited')){
   LD.style.display='none';
   initCanvas();
@@ -755,23 +759,29 @@ function initCanvas(){
   const cv=document.getElementById('C');
   const ctx=cv.getContext('2d');
   let W,H,pts=[];
-  const MOUSE={x:-9999,y:-9999};
-  document.addEventListener('mousemove',e=>{MOUSE.x=e.clientX;MOUSE.y=e.clientY;});
 
-  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;build();}
+  let cachedVignette=null,_lastFont='';
+  function resize(){
+    W=cv.width=innerWidth;H=cv.height=innerHeight;
+    cachedVignette=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.7);
+    cachedVignette.addColorStop(0,'transparent');cachedVignette.addColorStop(1,'rgba(0,0,0,.55)');
+    build();
+  }
 
   function sampleText(){
+    const SC=4,sw=Math.ceil(W/SC),sh=Math.ceil(H/SC);
     const tmp=document.createElement('canvas');
-    tmp.width=W;tmp.height=H;
+    tmp.width=sw;tmp.height=sh;
     const tc=tmp.getContext('2d');
     tc.fillStyle='#fff';tc.textAlign='center';tc.textBaseline='middle';
-    const sz=Math.min(Math.floor(W*.094),110);
-    tc.font=`900 ${sz*1.65}px 'Bebas Neue',sans-serif`;
-    tc.fillText('KIM',W/2,H*.38);
-    tc.font=`900 ${sz*1.8}px 'Bebas Neue',sans-serif`;
-    tc.fillText('DONG HWI',W/2,H*.62);
-    const d=tc.getImageData(0,0,W,H).data,res=[],step=W<640?7:5;
-    for(let y=0;y<H;y+=step)for(let x=0;x<W;x+=step)if(d[(y*W+x)*4+3]>120)res.push({x,y});
+    const sz=Math.min(Math.floor(sw*.094),28);
+    tc.letterSpacing='2px';
+    tc.font=`800 ${sz*1.35}px 'KBL Court',sans-serif`;
+    tc.fillText('KIM',sw/2,sh*.38);
+    tc.font=`800 ${sz*1.5}px 'KBL Court',sans-serif`;
+    tc.fillText('DONG HWI',sw/2,sh*.62);
+    const d=tc.getImageData(0,0,sw,sh).data,res=[],step=2;
+    for(let y=0;y<sh;y+=step)for(let x=0;x<sw;x+=step)if(d[(y*sw+x)*4+3]>120)res.push({x:x*SC,y:y*SC});
     return res;
   }
 
@@ -785,10 +795,10 @@ function initCanvas(){
       x:Math.random()*W,y:Math.random()*H,
       vx:0,vy:0,
       ch:rc(),ct:0,ci:10+Math.floor(Math.random()*18),
-      sz:6.5+Math.random()*4,al:0,
+      sz:Math.random()<.5?6.5:9.5,al:0,
       delay:Math.random()*90,age:0,
       isAcc:Math.random()<.055
-    }));
+    })).sort((a,b)=>a.sz-b.sz);
   }
 
   /* background streaks */
@@ -796,13 +806,15 @@ function initCanvas(){
 
   let frame=0;
   function draw(){
+    /* 커서 업데이트 — 별도 RAF 제거, 캔버스 루프에 통합 */
+    CU.style.transform=`translate(${mx-5}px,${my-5}px)`;
+    rx+=(mx-rx)*.13;ry+=(my-ry)*.13;
+    CR.style.transform=`translate(${rx-18}px,${ry-18}px)`;
     frame++;
     ctx.clearRect(0,0,W,H);
 
-    /* radial vignette */
-    const vg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.7);
-    vg.addColorStop(0,'transparent');vg.addColorStop(1,'rgba(0,0,0,.55)');
-    ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
+    /* radial vignette — resize 시 1회 생성된 캐시 재사용 */
+    ctx.fillStyle=cachedVignette;ctx.fillRect(0,0,W,H);
 
     /* streaks */
     streaks.forEach(s=>{
@@ -816,14 +828,15 @@ function initCanvas(){
       p.age++;if(p.age<p.delay)return;
       const elapsed=p.age-p.delay;
       p.al=Math.min(elapsed/80,1);
-      const dx=p.x-MOUSE.x,dy=p.y-MOUSE.y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<100&&d>0){const f=(100-d)/100;p.vx+=(dx/d)*f*4.5;p.vy+=(dy/d)*f*4.5;}
-      p.vx+=(p.tx-p.x)*.045;p.vy+=(p.ty-p.y)*.045;
-      p.vx*=.81;p.vy*=.81;
+      const dx=p.x-mx,dy=p.y-my,d2=dx*dx+dy*dy;
+      if(d2<10000&&d2>0){const d=Math.sqrt(d2);const f=(100-d)/100;p.vx+=(dx/d)*f*4.5;p.vy+=(dy/d)*f*4.5;}
+      p.vx+=(p.tx-p.x)*.022;p.vy+=(p.ty-p.y)*.022;
+      p.vx*=.85;p.vy*=.85;
       p.x+=p.vx;p.y+=p.vy;
       p.ct++;if(p.ct>=p.ci){p.ch=rc();p.ct=0;p.ci=10+Math.floor(Math.random()*24);}
       const spd=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
-      ctx.font=`${p.sz}px 'Space Mono',monospace`;
+      const font=`${p.sz}px 'Space Mono',monospace`;
+      if(font!==_lastFont){ctx.font=_lastFont=font;}
       if(p.isAcc){ctx.fillStyle=`rgba(255,60,46,${p.al})`;}
       else{ctx.fillStyle=`rgba(240,236,228,${p.al*(.44+Math.min(spd*.065,.56))})`;}
       ctx.fillText(p.ch,p.x,p.y);
