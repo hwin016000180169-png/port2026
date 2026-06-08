@@ -125,6 +125,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .resnum{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--acc);line-height:1;margin-bottom:10px;}
 .reslabel{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;}
 .resdesc{font-family:'Noto Sans KR',sans-serif;font-size:14px;line-height:1.65;font-weight:300;color:rgba(240,236,228,.75);}
+.opsgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;}
+.opsitem{padding:34px 32px;background:var(--card);border:1px solid var(--bdr);transition:border-color .3s;}
+.opsitem:hover{border-color:var(--acc);}
+.opsnum{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--acc);line-height:1;margin-bottom:14px;}
+.opstitle{font-size:15px;letter-spacing:.03em;color:var(--fg);font-weight:700;margin-bottom:9px;}
+.opsdesc{font-family:'Noto Sans KR',sans-serif;font-size:13.5px;line-height:1.78;font-weight:300;color:rgba(240,236,228,.78);}
+.opstags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px;}
+.opstag{font-size:11px;letter-spacing:.05em;color:var(--acc);border:1px solid var(--bdr);padding:3px 9px;}
 
 /* TECH STACK */
 .stackrow{display:flex;flex-wrap:wrap;gap:8px;}
@@ -280,6 +288,37 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
       <div class="tlitem done"><div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div><div class="tlphase">Week 04</div><div class="tltask">퍼블리싱</div><div class="tlsub">HTML/CSS/JS<br>인터랙션 구현<br>반응형 작업</div></div>
       <div class="tlitem done"><div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div><div class="tlphase">Week 05</div><div class="tltask">배너 &amp; 로고</div><div class="tlsub">브랜드 배너 디자인<br>로고 작업<br>상세 페이지</div></div>
       <div class="tlitem done"><div class="tlhdr"><div class="tldot"></div><div class="tlline"></div></div><div class="tlphase">Week 06</div><div class="tltask">QA &amp; 런칭</div><div class="tlsub">크로스브라우저<br>성능 최적화<br>navybay.com 런칭</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-label rv">— Day-to-day Publishing Work</div>
+  <div class="sec-title rv d1">OPERATIONAL <em>PUBLISHING</em></div>
+  <div class="opsgrid rv d1">
+    <div class="opsitem">
+      <div class="opsnum">01</div>
+      <div class="opstitle">배너 퍼블리싱</div>
+      <div class="opsdesc">Figma 시안 기반 배너 시안을 HTML5 마크업으로 전환하고, CSS3로 크기를 고정해 채널별 노출 규격에 맞게 정리했습니다.</div>
+      <div class="opstags"><span class="opstag">Figma</span><span class="opstag">HTML5</span><span class="opstag">CSS3</span></div>
+    </div>
+    <div class="opsitem">
+      <div class="opsnum">02</div>
+      <div class="opstitle">상세페이지 제작</div>
+      <div class="opsdesc">Adobe Photoshop PSD 산출물을 HTML5 템플릿에 맞춰 상품 상세페이지 레이아웃을 정렬하고, 정보 흐름이 한눈에 들어오도록 구성했습니다.</div>
+      <div class="opstags"><span class="opstag">Photoshop</span><span class="opstag">HTML5</span><span class="opstag">Layout</span></div>
+    </div>
+    <div class="opsitem">
+      <div class="opsnum">03</div>
+      <div class="opstitle">UI 수정 운영</div>
+      <div class="opsdesc">jQuery로 배너 클릭 이벤트를 설정해 전환 트래킹용 스크립트를 삽입·반영하고, 운영 중 발생한 UI 이슈를 점검·수정했습니다.</div>
+      <div class="opstags"><span class="opstag">jQuery</span><span class="opstag">Event</span><span class="opstag">Tracking</span></div>
+    </div>
+    <div class="opsitem">
+      <div class="opsnum">04</div>
+      <div class="opstitle">접근성 검토</div>
+      <div class="opsdesc">CSS3 폰트 스타일을 점검해 모바일 뷰포트 기준 대비율과 줄바꿈 규격을 맞추며, 다양한 화면에서 가독성을 유지하도록 보완했습니다.</div>
+      <div class="opstags"><span class="opstag">CSS3</span><span class="opstag">Viewport</span><span class="opstag">A11y</span></div>
     </div>
   </div>
 </section>
